@@ -30,6 +30,8 @@
 #include "ht32.h"
 #include "ht32_board.h"
 
+#define USART_FLAG_TXE ((u16)0x0080)
+
 /** @addtogroup Project_Template Project Template
   * @{
   */
@@ -91,9 +93,11 @@ int main(void)
     HT32F_DVB_LEDToggle(HT_LED3);
   }
 
-  for (input = 0; input < 100; input++)
-  {
-    printf("Hello World! %d\r\n", input);
+  /* Send "Hello, world!" over UART1 */
+  char *message = "Hello, world!\r\n";
+  while (*message) {
+    USART_SendData(HT_USART1, (uint8_t)*message++);
+    while (USART_GetFlagStatus(HT_USART1, USART_FLAG_TXE) == RESET);
   }
 
   while (1)                           /* Infinite loop                                                      */
@@ -307,6 +311,7 @@ void USART1_Init(void)
   USART_TxCmd(HT_USART1, ENABLE);
   USART_RxCmd(HT_USART1, ENABLE);
 }
+
 
 #if (HT32_LIB_DEBUG == 1)
 /*********************************************************************************************************//**
