@@ -50,6 +50,8 @@
 void NVIC_Configuration(void);
 void CKCU_Configuration(void);
 void GPIO_Configuration(void);
+void USART1_Init(void);
+
 #if (ENABLE_CKOUT == 1)
 void CKOUTConfig(void);
 #endif
@@ -71,7 +73,8 @@ int main(void)
   NVIC_Configuration();               /* NVIC configuration                                                 */
   CKCU_Configuration();               /* System Related configuration                                       */
   GPIO_Configuration();               /* GPIO Related configuration                                         */
-  RETARGET_Configuration();           /* Retarget Related configuration                                     */
+  //RETARGET_Configuration();           /* Retarget Related configuration                                     */
+	USART1_Init();
 
   HT32F_DVB_LEDInit(HT_LED1);
   HT32F_DVB_LEDInit(HT_LED2);
@@ -80,16 +83,37 @@ int main(void)
   HT32F_DVB_LEDOff(HT_LED2);
   HT32F_DVB_LEDOn(HT_LED3);
 
+  for (input = 0; input < 10; input++)
+  {
+    __Delay(2000000);
+    HT32F_DVB_LEDToggle(HT_LED1);
+    HT32F_DVB_LEDToggle(HT_LED2);
+    HT32F_DVB_LEDToggle(HT_LED3);
+  }
+
+  for (input = 0; input < 100; input++)
+  {
+    printf("Hello World! %d\r\n", input);
+  }
+
   while (1)                           /* Infinite loop                                                      */
   {
-    for (input = 0; input < 10; input++)
-		{
-			__Delay(2000000);
-			HT32F_DVB_LEDToggle(HT_LED1);
-			HT32F_DVB_LEDToggle(HT_LED2);
-			HT32F_DVB_LEDToggle(HT_LED3);
-		}
 		__Delay(2000000);
+    HT32F_DVB_LEDToggle(HT_LED1);
+    HT32F_DVB_LEDToggle(HT_LED2);
+    HT32F_DVB_LEDToggle(HT_LED3);
+		/*
+    printf("Please input key for printf....");
+    SERIAL_Flush();
+
+    input = getchar();
+    printf("\r\nYour input is %c[0x%x]\r\n\r\n", input, input);
+    SERIAL_Flush();
+
+    HT32F_DVB_LEDToggle(HT_LED1);
+    HT32F_DVB_LEDToggle(HT_LED2);
+    HT32F_DVB_LEDToggle(HT_LED3);
+		*/
   }
 }
 
@@ -182,35 +206,6 @@ void CKCU_Configuration(void)
   CKCU_PeripClockConfig(CKCUClock, ENABLE);
 #endif
 
-/* FOR GNSS                                                                              	                  */
-{
-	USART_InitTypeDef USART_InitS = {0};
-	
-	/* Turn on UxART Rx internal pull up resistor to prevent unknow state                                     */
-	GPIO_PullResistorConfig(HT_GPIOB, GPIO_PIN_8, GPIO_PR_DOWN);
-	
-	/* Config AFIO mode as UxART function.                                                                    */
-	AFIO_GPxConfig(GPIO_PB, AFIO_PIN_7, AFIO_FUN_USART_UART);
-  AFIO_GPxConfig(GPIO_PB, AFIO_PIN_8, AFIO_FUN_USART_UART);
-
-	/* UxART configured as follow:
-          - BaudRate = 9600 baud
-          - Word Length = 8 Bits
-          - One Stop Bit
-          - None parity bit
-  */
-	USART_InitS.USART_BaudRate = 9600;
-	USART_InitS.USART_WordLength = USART_WORDLENGTH_8B;
-	USART_InitS.USART_StopBits = USART_STOPBITS_1;
-	USART_InitS.USART_Parity = USART_PARITY_NO;
-	USART_InitS.USART_Mode = USART_MODE_NORMAL;
-	USART_Init(HT_UART0, &USART_InitS);
-	
-	/* Enable UxART Tx and Rx function                                                                        */
-  USART_RxCmd(HT_UART0, ENABLE);
-	USART_RxCmd(HT_UART0, ENABLE);
-}
-
 #if (ENABLE_CKOUT == 1)
   CKOUTConfig();
 #endif
@@ -263,6 +258,54 @@ void GPIO_Configuration(void)
 #if (RETARGET_PORT == RETARGET_UART1)
   //AFIO_GPxConfig(GPIO_PC, AFIO_PIN_1 | AFIO_PIN_3, AFIO_FUN_USART_UART);
 #endif
+}
+
+/*********************************************************************************************************//**
+  * @brief  Configure the UART1.
+  * @retval None
+  ***********************************************************************************************************/
+void USART1_Init(void)
+{
+	CKCU_PeripClockConfig_TypeDef CKCUClock = {{ 0 }}; // Set all the fields to zero, which means that no peripheral clocks are enabled by default.
+
+	{/* Enable peripheral clock of AFIO, UxART                                                                 */
+	CKCUClock.Bit.AFIO = 1;
+	CKCUClock.Bit.PA = 1;
+	CKCUClock.Bit.USART1 = 1;
+	CKCU_PeripClockConfig(CKCUClock, ENABLE);
+	}
+	
+	/* Turn on UxART Rx internal pull up resistor to prevent unknow state                                     */
+  GPIO_PullResistorConfig(HT_GPIOA, GPIO_PIN_4, GPIO_PR_UP);
+	
+	/* Config AFIO mode as UxART function.                                                                    */
+  AFIO_GPxConfig(GPIO_PA, AFIO_PIN_4, AFIO_FUN_USART_UART);
+  AFIO_GPxConfig(GPIO_PA, AFIO_PIN_5, AFIO_FUN_USART_UART);
+	
+	{
+    /* UxART configured as follow:
+          - BaudRate = 115200 baud
+          - Word Length = 8 Bits
+          - One Stop Bit
+          - None parity bit
+    */
+
+    /* !!! NOTICE !!!
+       Notice that the local variable (structure) did not have an initial value.
+       Please confirm that there are no missing members in the parameter settings below in this function.
+    */
+    USART_InitTypeDef USART_InitStructure = {0};
+    USART_InitStructure.USART_BaudRate = 115200;
+    USART_InitStructure.USART_WordLength = USART_WORDLENGTH_8B;
+    USART_InitStructure.USART_StopBits = USART_STOPBITS_1;
+    USART_InitStructure.USART_Parity = USART_PARITY_NO;
+    USART_InitStructure.USART_Mode = USART_MODE_NORMAL;
+    USART_Init(HT_USART1, &USART_InitStructure);
+  }
+	
+	/* Enable UxART Tx and Rx function                                                                        */
+  USART_TxCmd(HT_USART1, ENABLE);
+  USART_RxCmd(HT_USART1, ENABLE);
 }
 
 #if (HT32_LIB_DEBUG == 1)
