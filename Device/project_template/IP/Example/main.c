@@ -29,8 +29,13 @@
 /* Includes ------------------------------------------------------------------------------------------------*/
 #include "ht32.h"
 #include "ht32_board.h"
+#include "ht32f5xxxx_usart.h"
+
+
 
 #define USART_FLAG_TXE ((u16)0x0080)
+#define USART_FLAG_RXNE ((uint16_t)0x0020)
+
 
 /** @addtogroup Project_Template Project Template
   * @{
@@ -52,7 +57,11 @@
 void NVIC_Configuration(void);
 void CKCU_Configuration(void);
 void GPIO_Configuration(void);
-void USART1_Init(void);
+void UxART1_Configuration(void);
+void UxART1_TxSend(u16 Data);
+void UxART1_TxTest(void);
+void UxART1_RxTest_Block(void);
+void UxART1_RxTest_NonBlock(void);
 
 #if (ENABLE_CKOUT == 1)
 void CKOUTConfig(void);
@@ -63,6 +72,8 @@ static void __Delay(u32 count);
 /* Private macro -------------------------------------------------------------------------------------------*/
 /* Global variables ----------------------------------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------------------------------------*/
+uc8 gHelloString[] = "Hello, this is USART Tx/Rx Polling example. Please enter characters.....\r\n";
+
 /* Global functions ----------------------------------------------------------------------------------------*/
 /*********************************************************************************************************//**
   * @brief  Main program.
@@ -76,7 +87,7 @@ int main(void)
   CKCU_Configuration();               /* System Related configuration                                       */
   GPIO_Configuration();               /* GPIO Related configuration                                         */
   //RETARGET_Configuration();           /* Retarget Related configuration                                     */
-	USART1_Init();
+	UxART1_Configuration();
 
   HT32F_DVB_LEDInit(HT_LED1);
   HT32F_DVB_LEDInit(HT_LED2);
@@ -100,24 +111,17 @@ int main(void)
     while (USART_GetFlagStatus(HT_USART1, USART_FLAG_TXE) == RESET);
   }
 
-  while (1)                           /* Infinite loop                                                      */
+  while (1)
   {
-		__Delay(2000000);
-    HT32F_DVB_LEDToggle(HT_LED1);
-    HT32F_DVB_LEDToggle(HT_LED2);
-    HT32F_DVB_LEDToggle(HT_LED3);
-		/*
-    printf("Please input key for printf....");
-    SERIAL_Flush();
-
-    input = getchar();
-    printf("\r\nYour input is %c[0x%x]\r\n\r\n", input, input);
-    SERIAL_Flush();
-
-    HT32F_DVB_LEDToggle(HT_LED1);
-    HT32F_DVB_LEDToggle(HT_LED2);
-    HT32F_DVB_LEDToggle(HT_LED3);
-		*/
+    #if 0 // Blocking mode
+    {
+      UxART_RxTest_Block();       // Wait until get UxART data
+    }
+    #else // Non-Blocking mode
+    {
+      UxART1_RxTest_NonBlock();    // Return if no UxART data, LED can toggle by "LED_Demo()".
+    }
+    #endif
   }
 }
 
@@ -268,7 +272,7 @@ void GPIO_Configuration(void)
   * @brief  Configure the UART1.
   * @retval None
   ***********************************************************************************************************/
-void USART1_Init(void)
+void UxART1_Configuration(void)
 {
 	CKCU_PeripClockConfig_TypeDef CKCUClock = {{ 0 }}; // Set all the fields to zero, which means that no peripheral clocks are enabled by default.
 
@@ -310,6 +314,70 @@ void USART1_Init(void)
 	/* Enable UxART Tx and Rx function                                                                        */
   USART_TxCmd(HT_USART1, ENABLE);
   USART_RxCmd(HT_USART1, ENABLE);
+}
+
+/*********************************************************************************************************//**
+  * @brief  UxART Tx Send Byte.
+  * @param  Data: the data to be transmitted.
+  * @retval None
+  ***********************************************************************************************************/
+void UxART1_TxSend(u16 Data)
+{
+  while (USART_GetFlagStatus(HT_USART1, USART_FLAG_TXC) == RESET);
+  USART_SendData(HT_USART1, Data);
+}
+
+/*********************************************************************************************************//**
+  * @brief  UxART Tx Test.
+  * @retval None
+  ***********************************************************************************************************/
+void UxART1_TxTest(void)
+{
+  u32 i;
+  u8 *uPtr = (u8 *)gHelloString;
+  u32 uLen = sizeof(gHelloString) - 1;
+
+  /* Send a buffer from UxART to terminal                                                                   */
+  for (i = 0; i < uLen; i++)
+  {
+    UxART1_TxSend(uPtr[i]);
+  }
+}
+
+/*********************************************************************************************************//**
+  * @brief  UxART Rx Test - Blocking mode.
+  * @retval None
+  ***********************************************************************************************************/
+void UxART1_RxTest_Block(void)
+{
+  u16 uData;
+
+  /* Waits until the Rx FIFO/DR is not empty then get data from them                                        */
+  while (USART_GetFlagStatus(HT_USART1, USART_FLAG_RXDR) == RESET);
+  uData = USART_ReceiveData(HT_USART1);
+
+  #if 1 // Loop back Rx data to Tx for test
+  UxART1_TxSend(uData);
+  #endif
+}
+
+/*********************************************************************************************************//**
+  * @brief  UxART Rx Test - Non-Blocking mode
+  * @retval None
+  ***********************************************************************************************************/
+void UxART1_RxTest_NonBlock(void)
+{
+  u16 uData;
+
+  /* Waits until the Rx FIFO/DR is not empty then get data from them                                        */
+  if (USART_GetFlagStatus(HT_USART1, USART_FLAG_RXDR) == SET)
+  {
+    uData = USART_ReceiveData(HT_USART1);
+
+    #if 1 // Loop back Rx data to Tx for test
+    UxART1_TxSend(uData);
+    #endif
+  }
 }
 
 

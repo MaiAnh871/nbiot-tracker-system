@@ -16,6 +16,7 @@ Section Cross References
     main.o(.text.main) refers to ht32_board.o(.text.HT32F_DVB_LEDToggle) for HT32F_DVB_LEDToggle
     main.o(.text.main) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
     main.o(.text.main) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
+    main.o(.text.main) refers to ht32f5xxxx_usart.o(.text.USART_ReceiveData) for USART_ReceiveData
     main.o(.text.main) refers to main.o(.rodata.str1.1) for [Anonymous Symbol]
     main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
     main.o(.text.NVIC_Configuration) refers to ht32_cm0plus_misc.o(.text.NVIC_SetVectorTable) for NVIC_SetVectorTable
@@ -23,12 +24,27 @@ Section Cross References
     main.o(.text.CKCU_Configuration) refers to ht32f5xxxx_ckcu.o(.text.CKCU_PeripClockConfig) for CKCU_PeripClockConfig
     main.o(.ARM.exidx.text.CKCU_Configuration) refers to main.o(.text.CKCU_Configuration) for [Anonymous Symbol]
     main.o(.ARM.exidx.text.GPIO_Configuration) refers to main.o(.text.GPIO_Configuration) for [Anonymous Symbol]
-    main.o(.text.USART1_Init) refers to ht32f5xxxx_ckcu.o(.text.CKCU_PeripClockConfig) for CKCU_PeripClockConfig
-    main.o(.text.USART1_Init) refers to ht32f5xxxx_gpio.o(.text.GPIO_PullResistorConfig) for GPIO_PullResistorConfig
-    main.o(.text.USART1_Init) refers to ht32f5xxxx_gpio.o(.text.AFIO_GPxConfig) for AFIO_GPxConfig
-    main.o(.text.USART1_Init) refers to ht32f5xxxx_usart.o(.text.USART_Init) for USART_Init
-    main.o(.text.USART1_Init) refers to ht32f5xxxx_usart.o(.text.USART_TxRxCmd) for USART_TxRxCmd
-    main.o(.ARM.exidx.text.USART1_Init) refers to main.o(.text.USART1_Init) for [Anonymous Symbol]
+    main.o(.text.UxART1_Configuration) refers to ht32f5xxxx_ckcu.o(.text.CKCU_PeripClockConfig) for CKCU_PeripClockConfig
+    main.o(.text.UxART1_Configuration) refers to ht32f5xxxx_gpio.o(.text.GPIO_PullResistorConfig) for GPIO_PullResistorConfig
+    main.o(.text.UxART1_Configuration) refers to ht32f5xxxx_gpio.o(.text.AFIO_GPxConfig) for AFIO_GPxConfig
+    main.o(.text.UxART1_Configuration) refers to ht32f5xxxx_usart.o(.text.USART_Init) for USART_Init
+    main.o(.text.UxART1_Configuration) refers to ht32f5xxxx_usart.o(.text.USART_TxRxCmd) for USART_TxRxCmd
+    main.o(.ARM.exidx.text.UxART1_Configuration) refers to main.o(.text.UxART1_Configuration) for [Anonymous Symbol]
+    main.o(.text.UxART1_RxTest_NonBlock) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
+    main.o(.text.UxART1_RxTest_NonBlock) refers to ht32f5xxxx_usart.o(.text.USART_ReceiveData) for USART_ReceiveData
+    main.o(.text.UxART1_RxTest_NonBlock) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
+    main.o(.ARM.exidx.text.UxART1_RxTest_NonBlock) refers to main.o(.text.UxART1_RxTest_NonBlock) for [Anonymous Symbol]
+    main.o(.text.UxART1_TxSend) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
+    main.o(.text.UxART1_TxSend) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
+    main.o(.ARM.exidx.text.UxART1_TxSend) refers to main.o(.text.UxART1_TxSend) for [Anonymous Symbol]
+    main.o(.text.UxART1_TxTest) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
+    main.o(.text.UxART1_TxTest) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
+    main.o(.text.UxART1_TxTest) refers to main.o(.rodata.gHelloString) for gHelloString
+    main.o(.ARM.exidx.text.UxART1_TxTest) refers to main.o(.text.UxART1_TxTest) for [Anonymous Symbol]
+    main.o(.text.UxART1_RxTest_Block) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
+    main.o(.text.UxART1_RxTest_Block) refers to ht32f5xxxx_usart.o(.text.USART_ReceiveData) for USART_ReceiveData
+    main.o(.text.UxART1_RxTest_Block) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
+    main.o(.ARM.exidx.text.UxART1_RxTest_Block) refers to main.o(.text.UxART1_RxTest_Block) for [Anonymous Symbol]
     ht32f5xxxx_01_it.o(.ARM.exidx.text.NMI_Handler) refers to ht32f5xxxx_01_it.o(.text.NMI_Handler) for [Anonymous Symbol]
     ht32f5xxxx_01_it.o(.text.HardFault_Handler) refers to ht32f5xxxx_01_it.o(.bss.HardFault_Handler.gIsContinue) for [Anonymous Symbol]
     ht32f5xxxx_01_it.o(.ARM.exidx.text.HardFault_Handler) refers to ht32f5xxxx_01_it.o(.text.HardFault_Handler) for [Anonymous Symbol]
@@ -953,8 +969,17 @@ Removing Unused input sections from the image.
     Removing main.o(.ARM.exidx.text.CKCU_Configuration), (8 bytes).
     Removing main.o(.text.GPIO_Configuration), (2 bytes).
     Removing main.o(.ARM.exidx.text.GPIO_Configuration), (8 bytes).
-    Removing main.o(.text.USART1_Init), (112 bytes).
-    Removing main.o(.ARM.exidx.text.USART1_Init), (8 bytes).
+    Removing main.o(.text.UxART1_Configuration), (112 bytes).
+    Removing main.o(.ARM.exidx.text.UxART1_Configuration), (8 bytes).
+    Removing main.o(.text.UxART1_RxTest_NonBlock), (52 bytes).
+    Removing main.o(.ARM.exidx.text.UxART1_RxTest_NonBlock), (8 bytes).
+    Removing main.o(.text.UxART1_TxSend), (36 bytes).
+    Removing main.o(.ARM.exidx.text.UxART1_TxSend), (8 bytes).
+    Removing main.o(.text.UxART1_TxTest), (52 bytes).
+    Removing main.o(.ARM.exidx.text.UxART1_TxTest), (8 bytes).
+    Removing main.o(.text.UxART1_RxTest_Block), (52 bytes).
+    Removing main.o(.ARM.exidx.text.UxART1_RxTest_Block), (8 bytes).
+    Removing main.o(.rodata.gHelloString), (75 bytes).
     Removing main.o(.ARM.use_no_argv), (4 bytes).
     Removing ht32f5xxxx_01_it.o(.text), (0 bytes).
     Removing ht32f5xxxx_01_it.o(.ARM.exidx.text.NMI_Handler), (8 bytes).
@@ -1756,7 +1781,6 @@ Removing Unused input sections from the image.
     Removing ht32f5xxxx_usart.o(.text.USART_StructInit), (18 bytes).
     Removing ht32f5xxxx_usart.o(.ARM.exidx.text.USART_StructInit), (8 bytes).
     Removing ht32f5xxxx_usart.o(.ARM.exidx.text.USART_SendData), (8 bytes).
-    Removing ht32f5xxxx_usart.o(.text.USART_ReceiveData), (6 bytes).
     Removing ht32f5xxxx_usart.o(.ARM.exidx.text.USART_ReceiveData), (8 bytes).
     Removing ht32f5xxxx_usart.o(.ARM.exidx.text.USART_GetFlagStatus), (8 bytes).
     Removing ht32f5xxxx_usart.o(.text.USART_GetIntStatus), (10 bytes).
@@ -2056,7 +2080,7 @@ Removing Unused input sections from the image.
     Removing spi_flash.o(.text.SPI_FLASH_WriteDisable), (76 bytes).
     Removing spi_flash.o(.ARM.exidx.text.SPI_FLASH_WriteDisable), (8 bytes).
 
-1110 unused section(s) (total 39916 bytes) removed from the image.
+1118 unused section(s) (total 40209 bytes) removed from the image.
 
 ==============================================================================
 
@@ -2181,18 +2205,18 @@ Image Symbol Table
     __arm_cp.1_3                             0x00000850   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
     __arm_cp.1_5                             0x00000854   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
     __arm_cp.1_6                             0x00000858   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
-    [Anonymous Symbol]                       0x0000085c   Section        0  ht32f5xxxx_usart.o(.text.USART_SendData)
-    [Anonymous Symbol]                       0x00000860   Section        0  ht32f5xxxx_usart.o(.text.USART_TxRxCmd)
-    [Anonymous Symbol]                       0x00000878   Section        0  main.o(.text.main)
-    __arm_cp.0_5                             0x0000091c   Number         4  main.o(.text.main)
-    __arm_cp.0_6                             0x00000920   Number         4  main.o(.text.main)
-    __arm_cp.0_7                             0x00000924   Number         4  main.o(.text.main)
-    __arm_cp.0_3                             0x00000f58   Number         4  main.o(.text.main)
-    __arm_cp.0_4                             0x00000f5c   Number         4  main.o(.text.main)
-    i.__scatterload_copy                     0x00000f60   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x00000f6e   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x00000f70   Section       14  handlers.o(i.__scatterload_zeroinit)
-    [Anonymous Symbol]                       0x00000fa4   Section        0  main.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x0000085c   Section        0  ht32f5xxxx_usart.o(.text.USART_ReceiveData)
+    [Anonymous Symbol]                       0x00000862   Section        0  ht32f5xxxx_usart.o(.text.USART_SendData)
+    [Anonymous Symbol]                       0x00000866   Section        0  ht32f5xxxx_usart.o(.text.USART_TxRxCmd)
+    [Anonymous Symbol]                       0x00000880   Section        0  main.o(.text.main)
+    __arm_cp.0_4                             0x00000924   Number         4  main.o(.text.main)
+    __arm_cp.0_5                             0x00000928   Number         4  main.o(.text.main)
+    __arm_cp.0_6                             0x0000092c   Number         4  main.o(.text.main)
+    __arm_cp.0_3                             0x00000f70   Number         4  main.o(.text.main)
+    i.__scatterload_copy                     0x00000f74   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x00000f82   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x00000f84   Section       14  handlers.o(i.__scatterload_zeroinit)
+    [Anonymous Symbol]                       0x00000fb8   Section        0  main.o(.rodata.str1.1)
     HardFault_Handler.gIsContinue            0x20000000   Data           4  ht32f5xxxx_01_it.o(.bss.HardFault_Handler.gIsContinue)
     [Anonymous Symbol]                       0x20000000   Section        0  ht32f5xxxx_01_it.o(.bss.HardFault_Handler.gIsContinue)
     STACK                                    0x20000008   Section      512  startup_ht32f5xxxx_03.o(STACK)
@@ -2276,18 +2300,19 @@ Image Symbol Table
     SystemInit                               0x0000064d   Thumb Code   364  system_ht32f5xxxx_03.o(.text.SystemInit)
     USART_GetFlagStatus                      0x000007c9   Thumb Code    10  ht32f5xxxx_usart.o(.text.USART_GetFlagStatus)
     USART_Init                               0x000007d5   Thumb Code   112  ht32f5xxxx_usart.o(.text.USART_Init)
-    USART_SendData                           0x0000085d   Thumb Code     4  ht32f5xxxx_usart.o(.text.USART_SendData)
-    USART_TxRxCmd                            0x00000861   Thumb Code    24  ht32f5xxxx_usart.o(.text.USART_TxRxCmd)
-    main                                     0x00000879   Thumb Code  1760  main.o(.text.main)
-    __scatterload_copy                       0x00000f61   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x00000f6f   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x00000f71   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    GPIO_PORT                                0x00000f80   Data          24  ht32_board.o(.rodata.GPIO_PORT)
-    LED_AFIO_MODE                            0x00000f98   Data           3  ht32_board.o(.rodata.LED_AFIO_MODE)
-    LED_GPIO_ID                              0x00000f9b   Data           3  ht32_board.o(.rodata.LED_GPIO_ID)
-    LED_GPIO_PIN                             0x00000f9e   Data           6  ht32_board.o(.rodata.LED_GPIO_PIN)
-    Region$$Table$$Base                      0x00000fb4   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00000fc4   Number         0  anon$$obj.o(Region$$Table)
+    USART_ReceiveData                        0x0000085d   Thumb Code     6  ht32f5xxxx_usart.o(.text.USART_ReceiveData)
+    USART_SendData                           0x00000863   Thumb Code     4  ht32f5xxxx_usart.o(.text.USART_SendData)
+    USART_TxRxCmd                            0x00000867   Thumb Code    24  ht32f5xxxx_usart.o(.text.USART_TxRxCmd)
+    main                                     0x00000881   Thumb Code  1776  main.o(.text.main)
+    __scatterload_copy                       0x00000f75   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x00000f83   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x00000f85   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    GPIO_PORT                                0x00000f94   Data          24  ht32_board.o(.rodata.GPIO_PORT)
+    LED_AFIO_MODE                            0x00000fac   Data           3  ht32_board.o(.rodata.LED_AFIO_MODE)
+    LED_GPIO_ID                              0x00000faf   Data           3  ht32_board.o(.rodata.LED_GPIO_ID)
+    LED_GPIO_PIN                             0x00000fb2   Data           6  ht32_board.o(.rodata.LED_GPIO_PIN)
+    Region$$Table$$Base                      0x00000fc8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00000fd8   Number         0  anon$$obj.o(Region$$Table)
     __HT_check_sp                            0x20000008   Data           0  startup_ht32f5xxxx_03.o(STACK)
     __initial_sp                             0x20000208   Data           0  startup_ht32f5xxxx_03.o(STACK)
 
@@ -2299,74 +2324,76 @@ Memory Map of the image
 
   Image Entry point : 0x000000c1
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00000fc4, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00000fd8, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000fc4, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000fd8, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000000   0x00000164   Code   RO           54  * RESET               startup_ht32f5xxxx_03.o
-    0x00000164   0x00000164   0x00000000   Code   RO         1396  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
-    0x00000164   0x00000164   0x00000004   Code   RO         1407    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
-    0x00000168   0x00000168   0x00000004   Code   RO         1410    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
-    0x0000016c   0x0000016c   0x00000000   Code   RO         1412    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
-    0x0000016c   0x0000016c   0x00000000   Code   RO         1414    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
-    0x0000016c   0x0000016c   0x00000008   Code   RO         1415    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
-    0x00000174   0x00000174   0x00000000   Code   RO         1417    .ARM.Collect$$$$0000000D  mc_p.l(entry10a.o)
-    0x00000174   0x00000174   0x00000000   Code   RO         1419    .ARM.Collect$$$$0000000F  mc_p.l(entry11a.o)
-    0x00000174   0x00000174   0x00000004   Code   RO         1408    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
-    0x00000178   0x00000178   0x0000003e   Code   RO         1425    .text               mc_p.l(uidiv_div0.o)
+    0x00000000   0x00000000   0x00000164   Code   RO           63  * RESET               startup_ht32f5xxxx_03.o
+    0x00000164   0x00000164   0x00000000   Code   RO         1405  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
+    0x00000164   0x00000164   0x00000004   Code   RO         1416    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
+    0x00000168   0x00000168   0x00000004   Code   RO         1419    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
+    0x0000016c   0x0000016c   0x00000000   Code   RO         1421    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
+    0x0000016c   0x0000016c   0x00000000   Code   RO         1423    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
+    0x0000016c   0x0000016c   0x00000008   Code   RO         1424    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
+    0x00000174   0x00000174   0x00000000   Code   RO         1426    .ARM.Collect$$$$0000000D  mc_p.l(entry10a.o)
+    0x00000174   0x00000174   0x00000000   Code   RO         1428    .ARM.Collect$$$$0000000F  mc_p.l(entry11a.o)
+    0x00000174   0x00000174   0x00000004   Code   RO         1417    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
+    0x00000178   0x00000178   0x0000003e   Code   RO         1434    .text               mc_p.l(uidiv_div0.o)
     0x000001b6   0x000001b6   0x00000002   PAD
-    0x000001b8   0x000001b8   0x00000024   Code   RO         1431    .text               mc_p.l(init.o)
-    0x000001dc   0x000001dc   0x0000017c   Code   RO          541    .text.AFIO_GPxConfig  ht32f5xxxx_gpio.o
-    0x00000358   0x00000358   0x0000009c   Code   RO          277    .text.CKCU_GetPeripFrequency  ht32f5xxxx_ckcu.o
-    0x000003f4   0x000003f4   0x00000038   Code   RO          303    .text.CKCU_PeripClockConfig  ht32f5xxxx_ckcu.o
-    0x0000042c   0x0000042c   0x00000014   Code   RO          505    .text.GPIO_DirectionConfig  ht32f5xxxx_gpio.o
-    0x00000440   0x00000440   0x000000d6   Code   RO          511    .text.GPIO_DriveConfig  ht32f5xxxx_gpio.o
-    0x00000516   0x00000516   0x00000026   Code   RO          507    .text.GPIO_PullResistorConfig  ht32f5xxxx_gpio.o
-    0x0000053c   0x0000053c   0x00000084   Code   RO         1239    .text.HT32F_DVB_LEDInit  ht32_board.o
-    0x000005c0   0x000005c0   0x00000014   Code   RO         1241    .text.HT32F_DVB_LEDOff  ht32_board.o
-    0x000005d4   0x000005d4   0x00000014   Code   RO         1243    .text.HT32F_DVB_LEDOn  ht32_board.o
-    0x000005e8   0x000005e8   0x00000024   Code   RO         1245    .text.HT32F_DVB_LEDToggle  ht32_board.o
-    0x0000060c   0x0000060c   0x00000020   Code   RO           24    .text.HardFault_Handler  ht32f5xxxx_01_it.o
-    0x0000062c   0x0000062c   0x00000002   Code   RO           22    .text.NMI_Handler   ht32f5xxxx_01_it.o
+    0x000001b8   0x000001b8   0x00000024   Code   RO         1440    .text               mc_p.l(init.o)
+    0x000001dc   0x000001dc   0x0000017c   Code   RO          550    .text.AFIO_GPxConfig  ht32f5xxxx_gpio.o
+    0x00000358   0x00000358   0x0000009c   Code   RO          286    .text.CKCU_GetPeripFrequency  ht32f5xxxx_ckcu.o
+    0x000003f4   0x000003f4   0x00000038   Code   RO          312    .text.CKCU_PeripClockConfig  ht32f5xxxx_ckcu.o
+    0x0000042c   0x0000042c   0x00000014   Code   RO          514    .text.GPIO_DirectionConfig  ht32f5xxxx_gpio.o
+    0x00000440   0x00000440   0x000000d6   Code   RO          520    .text.GPIO_DriveConfig  ht32f5xxxx_gpio.o
+    0x00000516   0x00000516   0x00000026   Code   RO          516    .text.GPIO_PullResistorConfig  ht32f5xxxx_gpio.o
+    0x0000053c   0x0000053c   0x00000084   Code   RO         1248    .text.HT32F_DVB_LEDInit  ht32_board.o
+    0x000005c0   0x000005c0   0x00000014   Code   RO         1250    .text.HT32F_DVB_LEDOff  ht32_board.o
+    0x000005d4   0x000005d4   0x00000014   Code   RO         1252    .text.HT32F_DVB_LEDOn  ht32_board.o
+    0x000005e8   0x000005e8   0x00000024   Code   RO         1254    .text.HT32F_DVB_LEDToggle  ht32_board.o
+    0x0000060c   0x0000060c   0x00000020   Code   RO           33    .text.HardFault_Handler  ht32f5xxxx_01_it.o
+    0x0000062c   0x0000062c   0x00000002   Code   RO           31    .text.NMI_Handler   ht32f5xxxx_01_it.o
     0x0000062e   0x0000062e   0x00000002   PAD
-    0x00000630   0x00000630   0x00000014   Code   RO           88    .text.NVIC_SetVectorTable  ht32_cm0plus_misc.o
-    0x00000644   0x00000644   0x00000002   Code   RO           28    .text.PendSV_Handler  ht32f5xxxx_01_it.o
-    0x00000646   0x00000646   0x00000002   Code   RO           26    .text.SVC_Handler   ht32f5xxxx_01_it.o
-    0x00000648   0x00000648   0x00000002   Code   RO           30    .text.SysTick_Handler  ht32f5xxxx_01_it.o
+    0x00000630   0x00000630   0x00000014   Code   RO           97    .text.NVIC_SetVectorTable  ht32_cm0plus_misc.o
+    0x00000644   0x00000644   0x00000002   Code   RO           37    .text.PendSV_Handler  ht32f5xxxx_01_it.o
+    0x00000646   0x00000646   0x00000002   Code   RO           35    .text.SVC_Handler   ht32f5xxxx_01_it.o
+    0x00000648   0x00000648   0x00000002   Code   RO           39    .text.SysTick_Handler  ht32f5xxxx_01_it.o
     0x0000064a   0x0000064a   0x00000002   PAD
-    0x0000064c   0x0000064c   0x0000017c   Code   RO           40    .text.SystemInit    system_ht32f5xxxx_03.o
-    0x000007c8   0x000007c8   0x0000000a   Code   RO         1027    .text.USART_GetFlagStatus  ht32f5xxxx_usart.o
+    0x0000064c   0x0000064c   0x0000017c   Code   RO           49    .text.SystemInit    system_ht32f5xxxx_03.o
+    0x000007c8   0x000007c8   0x0000000a   Code   RO         1036    .text.USART_GetFlagStatus  ht32f5xxxx_usart.o
     0x000007d2   0x000007d2   0x00000002   PAD
-    0x000007d4   0x000007d4   0x00000088   Code   RO         1019    .text.USART_Init    ht32f5xxxx_usart.o
-    0x0000085c   0x0000085c   0x00000004   Code   RO         1023    .text.USART_SendData  ht32f5xxxx_usart.o
-    0x00000860   0x00000860   0x00000018   Code   RO         1035    .text.USART_TxRxCmd  ht32f5xxxx_usart.o
-    0x00000878   0x00000878   0x000006e8   Code   RO            2    .text.main          main.o
-    0x00000f60   0x00000f60   0x0000000e   Code   RO         1435    i.__scatterload_copy  mc_p.l(handlers.o)
-    0x00000f6e   0x00000f6e   0x00000002   Code   RO         1436    i.__scatterload_null  mc_p.l(handlers.o)
-    0x00000f70   0x00000f70   0x0000000e   Code   RO         1437    i.__scatterload_zeroinit  mc_p.l(handlers.o)
-    0x00000f7e   0x00000f7e   0x00000002   PAD
-    0x00000f80   0x00000f80   0x00000018   Data   RO         1257    .rodata.GPIO_PORT   ht32_board.o
-    0x00000f98   0x00000f98   0x00000003   Data   RO         1260    .rodata.LED_AFIO_MODE  ht32_board.o
-    0x00000f9b   0x00000f9b   0x00000003   Data   RO         1258    .rodata.LED_GPIO_ID  ht32_board.o
-    0x00000f9e   0x00000f9e   0x00000006   Data   RO         1259    .rodata.LED_GPIO_PIN  ht32_board.o
-    0x00000fa4   0x00000fa4   0x00000010   Data   RO           12    .rodata.str1.1      main.o
-    0x00000fb4   0x00000fb4   0x00000010   Data   RO         1434    Region$$Table       anon$$obj.o
+    0x000007d4   0x000007d4   0x00000088   Code   RO         1028    .text.USART_Init    ht32f5xxxx_usart.o
+    0x0000085c   0x0000085c   0x00000006   Code   RO         1034    .text.USART_ReceiveData  ht32f5xxxx_usart.o
+    0x00000862   0x00000862   0x00000004   Code   RO         1032    .text.USART_SendData  ht32f5xxxx_usart.o
+    0x00000866   0x00000866   0x00000018   Code   RO         1044    .text.USART_TxRxCmd  ht32f5xxxx_usart.o
+    0x0000087e   0x0000087e   0x00000002   PAD
+    0x00000880   0x00000880   0x000006f4   Code   RO            2    .text.main          main.o
+    0x00000f74   0x00000f74   0x0000000e   Code   RO         1444    i.__scatterload_copy  mc_p.l(handlers.o)
+    0x00000f82   0x00000f82   0x00000002   Code   RO         1445    i.__scatterload_null  mc_p.l(handlers.o)
+    0x00000f84   0x00000f84   0x0000000e   Code   RO         1446    i.__scatterload_zeroinit  mc_p.l(handlers.o)
+    0x00000f92   0x00000f92   0x00000002   PAD
+    0x00000f94   0x00000f94   0x00000018   Data   RO         1266    .rodata.GPIO_PORT   ht32_board.o
+    0x00000fac   0x00000fac   0x00000003   Data   RO         1269    .rodata.LED_AFIO_MODE  ht32_board.o
+    0x00000faf   0x00000faf   0x00000003   Data   RO         1267    .rodata.LED_GPIO_ID  ht32_board.o
+    0x00000fb2   0x00000fb2   0x00000006   Data   RO         1268    .rodata.LED_GPIO_PIN  ht32_board.o
+    0x00000fb8   0x00000fb8   0x00000010   Data   RO           21    .rodata.str1.1      main.o
+    0x00000fc8   0x00000fc8   0x00000010   Data   RO         1443    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000fc4, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000fd8, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x00000fc4, Size: 0x00000208, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x00000fd8, Size: 0x00000208, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000        -       0x00000004   Zero   RW           32    .bss.HardFault_Handler.gIsContinue  ht32f5xxxx_01_it.o
-    0x20000004   0x00000fc4   0x00000004   PAD
-    0x20000008        -       0x00000200   Zero   RW           52    STACK               startup_ht32f5xxxx_03.o
+    0x20000000        -       0x00000004   Zero   RW           41    .bss.HardFault_Handler.gIsContinue  ht32f5xxxx_01_it.o
+    0x20000004   0x00000fd8   0x00000004   PAD
+    0x20000008        -       0x00000200   Zero   RW           61    STACK               startup_ht32f5xxxx_03.o
 
 
 ==============================================================================
@@ -2381,15 +2408,15 @@ Image component sizes
         40          4          0          0          4        968   ht32f5xxxx_01_it.o
        212         20          0          0          0      17524   ht32f5xxxx_ckcu.o
        652          4          0          0          0      11365   ht32f5xxxx_gpio.o
-       174         24          0          0          0      10201   ht32f5xxxx_usart.o
-      1768         20         16          0          0      14506   main.o
+       180         24          0          0          0      10201   ht32f5xxxx_usart.o
+      1780         16         16          0          0      15449   main.o
        356        238          0          0        512        716   startup_ht32f5xxxx_03.o
        380         16          0          0          0       3048   system_ht32f5xxxx_03.o
 
     ----------------------------------------------------------------------
-      3816        350         68          0        520      75293   Object Totals
+      3836        346         68          0        520      76236   Object Totals
          0          0         16          0          0          0   (incl. Generated)
-         6          0          0          0          4          0   (incl. Padding)
+         8          0          0          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -2427,15 +2454,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3968        366         68          0        520      75445   Grand Totals
-      3968        366         68          0        520      75445   ELF Image Totals
-      3968        366         68          0          0          0   ROM Totals
+      3988        362         68          0        520      76388   Grand Totals
+      3988        362         68          0        520      76388   ELF Image Totals
+      3988        362         68          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4036 (   3.94kB)
+    Total RO  Size (Code + RO Data)                 4056 (   3.96kB)
     Total RW  Size (RW Data + ZI Data)               520 (   0.51kB)
-    Total ROM Size (Code + RO Data + RW Data)       4036 (   3.94kB)
+    Total ROM Size (Code + RO Data + RW Data)       4056 (   3.96kB)
 
 ==============================================================================
 
