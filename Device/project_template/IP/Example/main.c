@@ -29,6 +29,7 @@
 /* Includes ------------------------------------------------------------------------------------------------*/
 #include "ht32.h"
 #include "ht32_board.h"
+#include "E:\STUDY\Graduate-Thesis\Device\project_template\IP\Example\MDK_ARMv5\ht32_board_config.h"
 #include "ht32f5xxxx_usart.h"
 
 #define USART_FLAG_TXE ((u16)0x0080)

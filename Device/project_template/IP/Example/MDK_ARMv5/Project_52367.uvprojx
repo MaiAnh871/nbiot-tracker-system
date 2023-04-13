@@ -405,11 +405,6 @@
               <FilePath>..\_ht32_project_source.h</FilePath>
             </File>
             <File>
-              <FileName>ht32_board_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\ht32_board_config.h</FilePath>
-            </File>
-            <File>
               <FileName>ht32f5xxxx_conf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\ht32f5xxxx_conf.h</FilePath>
@@ -428,6 +423,11 @@
               <FileName>HT32F5xxxx_01_DebugSupport.ini</FileName>
               <FileType>5</FileType>
               <FilePath>.\HT32F5xxxx_01_DebugSupport.ini</FilePath>
+            </File>
+            <File>
+              <FileName>ht32_board_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ht32_board_config.h</FilePath>
             </File>
           </Files>
         </Group>
