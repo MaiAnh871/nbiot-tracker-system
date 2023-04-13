@@ -43,4 +43,5 @@
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_cm0plus_misc.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_serial.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_div.h \
-  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h \
+  E:\STUDY\Graduate-Thesis\Device\project_template\IP\Example\MDK_ARMv5\ht32_board_config.h

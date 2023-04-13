@@ -27,6 +27,7 @@
 
 /* Includes ------------------------------------------------------------------------------------------------*/
 #include "ht32.h"
+#include "E:\STUDY\Graduate-Thesis\Device\project_template\IP\Example\MDK_ARMv5\ht32_board_config.h"
 
 /** @addtogroup Project_Template Project Template
   * @{
@@ -420,9 +421,51 @@ void SysTick_Handler(void)
  * @brief   This function handles PDMA interrupt.
  * @retval  None
  ************************************************************************************************************/
-//void PDMA_CH2_5_IRQHandler(void)
-//{
-//}
+void PDMA_CH2_5_IRQHandler(void)
+{
+	extern u32 UxART_PDMA_RxIsFull(void);
+  extern vu32 gIsUxART_PDMA_TxBusy;
+
+  #if 0 // Auto Reload by PDMA
+  extern PDMACH_InitTypeDef gPDMACH_RxStructure;
+  extern u8 gRxBuffer[];
+  if (PDMA_GetFlagStatus(HTCFG_RX_PDMA_CH, PDMA_FLAG_TC))
+  {
+    /* Clear interrupt flags                                                                                */
+    PDMA_ClearFlag(HTCFG_RX_PDMA_CH, PDMA_FLAG_TC);
+
+    /* Reload Rx PDMA                                                                                       */
+    gPDMACH_RxStructure.PDMACH_DstAddr = (u32)gRxBuffer;
+    PDMA_Config(HTCFG_RX_PDMA_CH, &PDMACH_RxStructure);
+
+    /* Enable Rx PDMA                                                                                       */
+    PDMA_EnaCmd(HTCFG_RX_PDMA_CH, ENABLE);
+  }
+  #endif
+
+  #if 1 // Check Rx Full by PDMA Block end interrupt
+  if (PDMA_GetFlagStatus(HTCFG_RX_PDMA_CH, PDMA_FLAG_BE))
+  {
+    /* Clear interrupt flags                                                                                */
+    PDMA_ClearFlag(HTCFG_RX_PDMA_CH, PDMA_FLAG_BE);
+
+    if (UxART_PDMA_RxIsFull())
+    {
+      printf("\r\n\r\nRx Buffer Full\r\n\r\n");
+      while (1); // Reach here means Rx Buffer Full
+    }
+  }
+  #endif
+
+  if (PDMA_GetFlagStatus(HTCFG_TX_PDMA_CH, PDMA_FLAG_TC))
+  {
+    /* Clear interrupt flags                                                                                */
+    PDMA_ClearFlag(HTCFG_TX_PDMA_CH, PDMA_FLAG_TC);
+
+    gIsUxART_PDMA_TxBusy = FALSE;
+    USART_PDMACmd(HTCFG_UART_PORT, USART_PDMAREQ_TX, DISABLE);
+  }
+}
 
 
 /**

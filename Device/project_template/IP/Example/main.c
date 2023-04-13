@@ -98,8 +98,8 @@ u8 gTempBuffer[64];
   ***********************************************************************************************************/
 int main(void)
 {
-  HT32F_DVB_LEDInit(HT_LED1);
-
+  LED_Init();
+	LED_Toggle();
   PDMA_Configuration();
   UxART_Configuration();
 
@@ -109,8 +109,8 @@ int main(void)
   while (1)
   {
     UxART_RxMainRoutine();
-    LED_Toggle();
   }
+	LED_Toggle();
 }
 
 /*********************************************************************************************************//**
@@ -323,7 +323,7 @@ void UxART_RxMainRoutine(void)
     // Do data process here
 
     #if 1 // Loopback Rx data to Tx
-    UxART_PDMA_Tx((uc8 *)&gTempBuffer, 1);
+    UxART_PDMA_Tx((uc8 *)&gTempBuffer, 2);
     #endif
   }
   #else
