@@ -316,6 +316,19 @@ void UxART_RxMainRoutine(void)
     #endif
   }
   #else
+  HT32F_DVB_LEDInit(HT_LED1);
+  HT32F_DVB_LEDInit(HT_LED2);
+  HT32F_DVB_LEDInit(HT_LED3);
+  HT32F_DVB_LEDOn(HT_LED1);
+  HT32F_DVB_LEDOff(HT_LED2);
+  HT32F_DVB_LEDOn(HT_LED3);
+  for (input = 0; input < 10; input++)
+  {
+    __Delay(2000000);
+    HT32F_DVB_LEDToggle(HT_LED1);
+    HT32F_DVB_LEDToggle(HT_LED2);
+    HT32F_DVB_LEDToggle(HT_LED3);
+  }
   if (UxART_PDMA_RxGetLength() >= 5)      // Process data after 5 byte received
   {
     u32 uLen;
