@@ -323,7 +323,7 @@ void UxART_RxMainRoutine(void)
     // Do data process here
 
     #if 1 // Loopback Rx data to Tx
-    UxART_PDMA_Tx((uc8 *)&gTempBuffer, 2);
+    UxART_PDMA_Tx((uc8 *)&gTempBuffer, 1);
     #endif
   }
   #else
