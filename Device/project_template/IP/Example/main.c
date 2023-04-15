@@ -252,6 +252,9 @@ void UxART_Configuration(void)
   ***********************************************************************************************************/
 u32 UxART_PDMA_Tx(uc8 *TxBuffer, u32 length)
 {
+	u32 i;
+	
+	/* UART0 - MCU TO MODULE
   /* Wait until previou Tx finished                                                                         */
   while (gIsUxART_PDMA_TxBusy == TRUE);
 
@@ -264,6 +267,12 @@ u32 UxART_PDMA_Tx(uc8 *TxBuffer, u32 length)
   gIsUxART_PDMA_TxBusy = TRUE;
   USART_PDMACmd(HTCFG_UART_PORT, USART_PDMAREQ_TX, ENABLE);
 
+	/* UART1 - MCU TO PC
+	/* Send a buffer from UxART1 to terminal                                                                   */
+  for (i = 0; i < length; i++)
+  {
+    UxART1_TxSend(TxBuffer[i]);
+  }
   return length;
 }
 
