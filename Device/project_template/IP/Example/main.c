@@ -71,14 +71,19 @@
 /* Private function prototypes -----------------------------------------------------------------------------*/
 void PDMA_Configuration(void);
 void UxART_Configuration(void);
-
 u32 UxART_PDMA_Tx(uc8 *TxBuffer, u32 length);
 u32 UxART_PDMA_RxReadByte(u8* pBuf);
 u32 UxART_PDMA_RxReadBlock(u8* pBuf, u32 uLen);
 u32 UxART_PDMA_RxGetLength(void);
 u32 UxART_PDMA_RxIsFull(void);
-
 void UxART_RxMainRoutine(void);
+
+void UxART1_Configuration(void);
+void UxART1_TxSend(u16 Data);
+void UxART1_TxTest(void);
+void UxART1_RxTest_Block(void);
+void UxART1_RxTest_NonBlock(void);
+
 
 void LED_Init(void);
 void LED_Toggle(void);
@@ -116,6 +121,14 @@ int main(void)
 	LED_Toggle();
   PDMA_Configuration();
   UxART_Configuration();
+	UxART1_Configuration();
+	
+	/* Send "Hello, world!" over UART1 */
+  char *message = "Hello, world!\r\n";
+  while (*message) {
+    USART_SendData(HT_USART1, (uint8_t)*message++);
+    while (USART_GetFlagStatus(HT_USART1, USART_FLAG_TXE) == RESET);
+  }
 
   /* Send hello information by PDMA mode                                                                    */
   UxART_PDMA_Tx(gHelloString, sizeof(gHelloString) - 1);
@@ -352,6 +365,118 @@ void UxART_RxMainRoutine(void)
     #endif
   }
   #endif
+}
+
+/*********************************************************************************************************//**
+  * @brief  Configure the UART1.
+  * @retval None
+  ***********************************************************************************************************/
+void UxART1_Configuration(void)
+{
+	CKCU_PeripClockConfig_TypeDef CKCUClock; // Set all the fields to zero, which means that no peripheral clocks are enabled by default.
+
+	{/* Enable peripheral clock of AFIO, UxART                                                                 */
+	CKCUClock.Bit.AFIO = 1;
+	CKCUClock.Bit.PA = 1;
+	CKCUClock.Bit.USART1 = 1;
+	CKCU_PeripClockConfig(CKCUClock, ENABLE);
+	}
+	
+	/* Turn on UxART Rx internal pull up resistor to prevent unknow state                                     */
+  GPIO_PullResistorConfig(HT_GPIOA, GPIO_PIN_4, GPIO_PR_UP);
+	
+	/* Config AFIO mode as UxART function.                                                                    */
+  AFIO_GPxConfig(GPIO_PA, AFIO_PIN_4, AFIO_FUN_USART_UART);
+  AFIO_GPxConfig(GPIO_PA, AFIO_PIN_5, AFIO_FUN_USART_UART);
+	
+	{
+    /* UxART configured as follow:
+          - BaudRate = 115200 baud
+          - Word Length = 8 Bits
+          - One Stop Bit
+          - None parity bit
+    */
+
+    /* !!! NOTICE !!!
+       Notice that the local variable (structure) did not have an initial value.
+       Please confirm that there are no missing members in the parameter settings below in this function.
+    */
+    USART_InitTypeDef USART_InitStructure = {0};
+    USART_InitStructure.USART_BaudRate = 115200;
+    USART_InitStructure.USART_WordLength = USART_WORDLENGTH_8B;
+    USART_InitStructure.USART_StopBits = USART_STOPBITS_1;
+    USART_InitStructure.USART_Parity = USART_PARITY_NO;
+    USART_InitStructure.USART_Mode = USART_MODE_NORMAL;
+    USART_Init(HT_USART1, &USART_InitStructure);
+  }
+	
+	/* Enable UxART Tx and Rx function                                                                        */
+  USART_TxCmd(HT_USART1, ENABLE);
+  USART_RxCmd(HT_USART1, ENABLE);
+}
+
+/*********************************************************************************************************//**
+  * @brief  UxART Tx Send Byte.
+  * @param  Data: the data to be transmitted.
+  * @retval None
+  ***********************************************************************************************************/
+void UxART1_TxSend(u16 Data)
+{
+  while (USART_GetFlagStatus(HT_USART1, USART_FLAG_TXC) == RESET);
+  USART_SendData(HT_USART1, Data);
+}
+
+/*********************************************************************************************************//**
+  * @brief  UxART Tx Test.
+  * @retval None
+  ***********************************************************************************************************/
+void UxART1_TxTest(void)
+{
+  u32 i;
+  u8 *uPtr = (u8 *)gHelloString;
+  u32 uLen = sizeof(gHelloString) - 1;
+
+  /* Send a buffer from UxART to terminal                                                                   */
+  for (i = 0; i < uLen; i++)
+  {
+    UxART1_TxSend(uPtr[i]);
+  }
+}
+
+/*********************************************************************************************************//**
+  * @brief  UxART Rx Test - Blocking mode.
+  * @retval None
+  ***********************************************************************************************************/
+void UxART1_RxTest_Block(void)
+{
+  u16 uData;
+
+  /* Waits until the Rx FIFO/DR is not empty then get data from them                                        */
+  while (USART_GetFlagStatus(HT_USART1, USART_FLAG_RXDR) == RESET);
+  uData = USART_ReceiveData(HT_USART1);
+
+  #if 1 // Loop back Rx data to Tx for test
+  UxART1_TxSend(uData);
+  #endif
+}
+
+/*********************************************************************************************************//**
+  * @brief  UxART Rx Test - Non-Blocking mode
+  * @retval None
+  ***********************************************************************************************************/
+void UxART1_RxTest_NonBlock(void)
+{
+  u16 uData;
+
+  /* Waits until the Rx FIFO/DR is not empty then get data from them                                        */
+  if (USART_GetFlagStatus(HT_USART1, USART_FLAG_RXDR) == SET)
+  {
+    uData = USART_ReceiveData(HT_USART1);
+
+    #if 1 // Loop back Rx data to Tx for test
+    UxART1_TxSend(uData);
+    #endif
+  }
 }
 
 void LED_Init()
