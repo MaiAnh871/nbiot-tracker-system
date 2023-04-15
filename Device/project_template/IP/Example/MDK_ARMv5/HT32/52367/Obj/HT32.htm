@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\HT32\52367\Obj\HT32.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\HT32\52367\Obj\HT32.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Sat Apr 15 23:04:40 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Sat Apr 15 23:36:36 2023
 <BR><P>
 <H3>Maximum Stack Usage =        124 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -303,14 +303,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[43]"></a>PDMA_Config</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, ht32f5xxxx_pdma.o(.text.PDMA_Config))
-<BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_PDMA_Tx
+<BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_RxMainRoutine
 <LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[44]"></a>PDMA_EnaCmd</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, ht32f5xxxx_pdma.o(.text.PDMA_EnaCmd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = PDMA_EnaCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_PDMA_Tx
+<BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_RxMainRoutine
 <LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -343,7 +343,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_ht32f5xxxx_03.o(RESET)
 </UL>
 <P><STRONG><a name="[45]"></a>USART_GetFlagStatus</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, ht32f5xxxx_usart.o(.text.USART_GetFlagStatus))
-<BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_PDMA_Tx
+<BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_RxMainRoutine
 <LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -359,12 +359,12 @@ Global Symbols
 
 <P><STRONG><a name="[3c]"></a>USART_PDMACmd</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, ht32f5xxxx_usart.o(.text.USART_PDMACmd))
 <BR><BR>[Called By]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDMA_CH2_5_IRQHandler
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_PDMA_Tx
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_RxMainRoutine
 <LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_Configuration
 </UL>
 
 <P><STRONG><a name="[46]"></a>USART_SendData</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, ht32f5xxxx_usart.o(.text.USART_SendData))
-<BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_PDMA_Tx
+<BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_RxMainRoutine
 <LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -390,8 +390,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDMA_CH2_5_IRQHandler
 </UL>
 
-<P><STRONG><a name="[42]"></a>UxART_PDMA_Tx</STRONG> (Thumb, 124 bytes, Stack size 32 bytes, main.o(.text.UxART_PDMA_Tx))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = UxART_PDMA_Tx &rArr; PDMA_EnaCmd
+<P><STRONG><a name="[42]"></a>UxART_RxMainRoutine</STRONG> (Thumb, 400 bytes, Stack size 24 bytes, main.o(.text.UxART_RxMainRoutine))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = UxART_RxMainRoutine &rArr; PDMA_EnaCmd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_PDMACmd
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
@@ -410,10 +410,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
 </UL>
 
-<P><STRONG><a name="[29]"></a>main</STRONG> (Thumb, 400 bytes, Stack size 16 bytes, main.o(.text.main))
+<P><STRONG><a name="[29]"></a>main</STRONG> (Thumb, 392 bytes, Stack size 16 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = main &rArr; UxART_Configuration &rArr; AFIO_GPxConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_PDMA_Tx
+<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UxART_RxMainRoutine
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_TxRxCmd

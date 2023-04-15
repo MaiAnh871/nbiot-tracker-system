@@ -137,7 +137,7 @@ int main(void)
   while (1)
   {
     UxART_RxMainRoutine();
-		__Delay(100000000);
+		__Delay(10000000);
   }
 	LED_Toggle();
 }
@@ -266,7 +266,7 @@ u32 UxART_PDMA_Tx(uc8 *TxBuffer, u32 length)
   PDMA_Config(HTCFG_TX_PDMA_CH, &gPDMACH_TxStructure);
   PDMA_EnaCmd(HTCFG_TX_PDMA_CH, ENABLE);
 
-  gIsUxART_PDMA_TxBusy = TRUE;
+//  gIsUxART_PDMA_TxBusy = TRUE;
   USART_PDMACmd(HTCFG_UART_PORT, USART_PDMAREQ_TX, ENABLE);
 
 	/* UART1 - MCU TO PC */
@@ -275,7 +275,7 @@ u32 UxART_PDMA_Tx(uc8 *TxBuffer, u32 length)
   {
     UxART1_TxSend(TxBuffer[i]);
   }
-	gIsUxART_PDMA_TxBusy = FALSE;
+//	gIsUxART_PDMA_TxBusy = FALSE;
   return length;
 }
 
@@ -359,43 +359,47 @@ void UxART_RxMainRoutine(void)
 	/* Send hello information by PDMA mode                                                                    */
   UxART_PDMA_Tx(gHelloString, sizeof(gHelloString) - 1);
 	
-//	u32 i;
-//	u8 *uPtr = (u8*)gTempBuffer;
-//	u32 uLen = sizeof(gTempBuffer) - 1;
-//  #if 1
-//  if (UxART_PDMA_RxReadByte(gTempBuffer)) // Process data after 1 byte received
-//  {
-//    // Do data process here
+	u32 i;
+	u8 *uPtr = (u8*)gTempBuffer;
+	u32 uLen = sizeof(gTempBuffer) - 1;
+	
+	while (UxART_PDMA_RxReadByte(gTempBuffer)){
+  #if 1
+  if (UxART_PDMA_RxReadByte(gTempBuffer)) // Process data after 1 byte received
+  {
+    // Do data process here
 
-//    #if 1 // Loopback Rx data to Tx
-//    //UxART_PDMA_Tx((uc8 *)&gTempBuffer, 1);
-//		/* UART1 - MCU TO PC */
-//		/* Send a buffer from UxART1 to terminal                                                                   */
+    #if 1 // Loopback Rx data to Tx
+    //UxART_PDMA_Tx((uc8 *)&gTempBuffer, 1);
+		/* UART1 - MCU TO PC */
+		/* Send a buffer from UxART1 to terminal                                                                   */
 //		for (i = 0; i < uLen; i++)
 //		{
-//			UxART1_TxSend(uPtr[i]);
+//			UxART1_TxSend(gTempBuffer[i]);
 //		}
-//		
+		
+		UxART1_TxSend(gTempBuffer[0]);
 
-////		for (i = 0; i < uLen; i++)
-////		{
-////			uPtr[i] = 0;
-////		}
-//    #endif
-//  }
-//	
-//  #else
-//  if (UxART_PDMA_RxGetLength() >= 5)      // Process data after 5 byte received
-//  {
-//    u32 uLen;
-//    uLen = UxART_PDMA_RxReadBlock(gTempBuffer, UxART_PDMA_RxGetLength());
-//    // Do data process here
+//		for (i = 0; i < uLen; i++)
+//		{
+//			uPtr[i] = 0;
+//		}
+    #endif
+  }
+	
+  #else
+  if (UxART_PDMA_RxGetLength() >= 5)      // Process data after 5 byte received
+  {
+    u32 uLen;
+    uLen = UxART_PDMA_RxReadBlock(gTempBuffer, UxART_PDMA_RxGetLength());
+    // Do data process here
 
-//    #if 1 // Loopback Rx data to Tx
-//    UxART_PDMA_Tx((uc8 *)gTempBuffer, uLen);
-//    #endif
-//  }
-//  #endif
+    #if 1 // Loopback Rx data to Tx
+    UxART_PDMA_Tx((uc8 *)gTempBuffer, uLen);
+    #endif
+  }
+  #endif
+}
 }
 
 /*********************************************************************************************************//**
