@@ -25,8 +25,6 @@ Section Cross References
     main.o(.text.main) refers to main.o(.bss.gRxBuffer) for gRxBuffer
     main.o(.text.main) refers to main.o(.rodata.str1.1) for [Anonymous Symbol]
     main.o(.text.main) refers to main.o(.rodata.gHelloString) for gHelloString
-    main.o(.text.main) refers to main.o(.bss.gRxBufferReadIndex) for gRxBufferReadIndex
-    main.o(.text.main) refers to main.o(.bss.gTempBuffer) for gTempBuffer
     main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
     main.o(.text.LED_Init) refers to ht32_board.o(.text.HT32F_DVB_LEDInit) for HT32F_DVB_LEDInit
     main.o(.text.LED_Init) refers to ht32_board.o(.text.HT32F_DVB_LEDOn) for HT32F_DVB_LEDOn
@@ -55,6 +53,9 @@ Section Cross References
     main.o(.text.UxART1_Configuration) refers to ht32f5xxxx_usart.o(.text.USART_Init) for USART_Init
     main.o(.text.UxART1_Configuration) refers to ht32f5xxxx_usart.o(.text.USART_TxRxCmd) for USART_TxRxCmd
     main.o(.ARM.exidx.text.UxART1_Configuration) refers to main.o(.text.UxART1_Configuration) for [Anonymous Symbol]
+    main.o(.text.UxART_RxMainRoutine) refers to main.o(.text.UxART_PDMA_Tx) for UxART_PDMA_Tx
+    main.o(.text.UxART_RxMainRoutine) refers to main.o(.rodata.gHelloString) for gHelloString
+    main.o(.ARM.exidx.text.UxART_RxMainRoutine) refers to main.o(.text.UxART_RxMainRoutine) for [Anonymous Symbol]
     main.o(.text.UxART_PDMA_Tx) refers to ht32f5xxxx_pdma.o(.text.PDMA_Config) for PDMA_Config
     main.o(.text.UxART_PDMA_Tx) refers to ht32f5xxxx_pdma.o(.text.PDMA_EnaCmd) for PDMA_EnaCmd
     main.o(.text.UxART_PDMA_Tx) refers to ht32f5xxxx_usart.o(.text.USART_PDMACmd) for USART_PDMACmd
@@ -63,11 +64,6 @@ Section Cross References
     main.o(.text.UxART_PDMA_Tx) refers to main.o(.bss.gIsUxART_PDMA_TxBusy) for gIsUxART_PDMA_TxBusy
     main.o(.text.UxART_PDMA_Tx) refers to main.o(.bss.gPDMACH_TxStructure) for gPDMACH_TxStructure
     main.o(.ARM.exidx.text.UxART_PDMA_Tx) refers to main.o(.text.UxART_PDMA_Tx) for [Anonymous Symbol]
-    main.o(.text.UxART_RxMainRoutine) refers to main.o(.text.UxART_PDMA_Tx) for UxART_PDMA_Tx
-    main.o(.text.UxART_RxMainRoutine) refers to main.o(.bss.gRxBufferReadIndex) for gRxBufferReadIndex
-    main.o(.text.UxART_RxMainRoutine) refers to main.o(.bss.gRxBuffer) for gRxBuffer
-    main.o(.text.UxART_RxMainRoutine) refers to main.o(.bss.gTempBuffer) for gTempBuffer
-    main.o(.ARM.exidx.text.UxART_RxMainRoutine) refers to main.o(.text.UxART_RxMainRoutine) for [Anonymous Symbol]
     main.o(.text.UxART1_TxSend) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
     main.o(.text.UxART1_TxSend) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
     main.o(.ARM.exidx.text.UxART1_TxSend) refers to main.o(.text.UxART1_TxSend) for [Anonymous Symbol]
@@ -83,7 +79,6 @@ Section Cross References
     main.o(.ARM.exidx.text.UxART_PDMA_RxIsFull) refers to main.o(.text.UxART_PDMA_RxIsFull) for [Anonymous Symbol]
     main.o(.text.UxART1_TxTest) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
     main.o(.text.UxART1_TxTest) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
-    main.o(.text.UxART1_TxTest) refers to main.o(.rodata.gHelloString) for gHelloString
     main.o(.ARM.exidx.text.UxART1_TxTest) refers to main.o(.text.UxART1_TxTest) for [Anonymous Symbol]
     main.o(.text.UxART1_RxTest_Block) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
     main.o(.text.UxART1_RxTest_Block) refers to ht32f5xxxx_usart.o(.text.USART_ReceiveData) for USART_ReceiveData
@@ -1031,9 +1026,9 @@ Removing Unused input sections from the image.
     Removing main.o(.ARM.exidx.text.UxART_Configuration), (8 bytes).
     Removing main.o(.text.UxART1_Configuration), (108 bytes).
     Removing main.o(.ARM.exidx.text.UxART1_Configuration), (8 bytes).
-    Removing main.o(.ARM.exidx.text.UxART_PDMA_Tx), (8 bytes).
-    Removing main.o(.text.UxART_RxMainRoutine), (68 bytes).
+    Removing main.o(.text.UxART_RxMainRoutine), (16 bytes).
     Removing main.o(.ARM.exidx.text.UxART_RxMainRoutine), (8 bytes).
+    Removing main.o(.ARM.exidx.text.UxART_PDMA_Tx), (8 bytes).
     Removing main.o(.text.UxART1_TxSend), (36 bytes).
     Removing main.o(.ARM.exidx.text.UxART1_TxSend), (8 bytes).
     Removing main.o(.text.UxART_PDMA_RxReadByte), (60 bytes).
@@ -1043,12 +1038,13 @@ Removing Unused input sections from the image.
     Removing main.o(.text.UxART_PDMA_RxGetLength), (32 bytes).
     Removing main.o(.ARM.exidx.text.UxART_PDMA_RxGetLength), (8 bytes).
     Removing main.o(.ARM.exidx.text.UxART_PDMA_RxIsFull), (8 bytes).
-    Removing main.o(.text.UxART1_TxTest), (52 bytes).
+    Removing main.o(.text.UxART1_TxTest), (96 bytes).
     Removing main.o(.ARM.exidx.text.UxART1_TxTest), (8 bytes).
     Removing main.o(.text.UxART1_RxTest_Block), (52 bytes).
     Removing main.o(.ARM.exidx.text.UxART1_RxTest_Block), (8 bytes).
     Removing main.o(.text.UxART1_RxTest_NonBlock), (52 bytes).
     Removing main.o(.ARM.exidx.text.UxART1_RxTest_NonBlock), (8 bytes).
+    Removing main.o(.bss.gTempBuffer), (64 bytes).
     Removing main.o(.ARM.use_no_argv), (4 bytes).
     Removing ht32f5xxxx_01_it.o(.text), (0 bytes).
     Removing ht32f5xxxx_01_it.o(.ARM.exidx.text.NMI_Handler), (8 bytes).
@@ -2144,7 +2140,7 @@ Removing Unused input sections from the image.
     Removing spi_flash.o(.text.SPI_FLASH_WriteDisable), (76 bytes).
     Removing spi_flash.o(.ARM.exidx.text.SPI_FLASH_WriteDisable), (8 bytes).
 
-1122 unused section(s) (total 40338 bytes) removed from the image.
+1123 unused section(s) (total 40394 bytes) removed from the image.
 
 ==============================================================================
 
@@ -2290,33 +2286,33 @@ Image Symbol Table
     [Anonymous Symbol]                       0x00000f98   Section        0  ht32f5xxxx_usart.o(.text.USART_TxRxCmd)
     [Anonymous Symbol]                       0x00000fb0   Section        0  main.o(.text.UxART_Configuration)
     [Anonymous Symbol]                       0x00001020   Section        0  main.o(.text.UxART_PDMA_RxIsFull)
-    [Anonymous Symbol]                       0x00001048   Section        0  main.o(.text.UxART_PDMA_Tx)
-    __arm_cp.6_0                             0x000010c0   Number         4  main.o(.text.UxART_PDMA_Tx)
-    [Anonymous Symbol]                       0x000010c4   Section        0  ht32_retarget.o(.text.fputc)
-    [Anonymous Symbol]                       0x000010cc   Section        0  main.o(.text.main)
-    __arm_cp.0_0                             0x00001220   Number         4  main.o(.text.main)
-    __arm_cp.0_1                             0x00001224   Number         4  main.o(.text.main)
-    __arm_cp.0_2                             0x00001228   Number         4  main.o(.text.main)
-    __arm_cp.0_3                             0x0000122c   Number         4  main.o(.text.main)
-    __arm_cp.0_4                             0x00001230   Number         4  main.o(.text.main)
-    __arm_cp.0_5                             0x00001234   Number         4  main.o(.text.main)
-    __arm_cp.0_6                             0x00001238   Number         4  main.o(.text.main)
-    __arm_cp.0_7                             0x0000123c   Number         4  main.o(.text.main)
-    __arm_cp.0_8                             0x00001240   Number         4  main.o(.text.main)
-    __arm_cp.0_9                             0x00001244   Number         4  main.o(.text.main)
-    __arm_cp.0_10                            0x00001248   Number         4  main.o(.text.main)
-    __arm_cp.0_11                            0x0000124c   Number         4  main.o(.text.main)
-    __arm_cp.0_12                            0x00001250   Number         4  main.o(.text.main)
-    __arm_cp.0_13                            0x00001254   Number         4  main.o(.text.main)
-    i.__scatterload_copy                     0x00001258   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x00001266   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x00001268   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.puts                                   0x00001278   Section        0  puts.o(i.puts)
-    [Anonymous Symbol]                       0x00001304   Section        0  main.o(.rodata.str1.1)
+    __arm_cp.12_0                            0x00001048   Number         4  main.o(.text.UxART_PDMA_RxIsFull)
+    __arm_cp.12_1                            0x0000104c   Number         4  main.o(.text.UxART_PDMA_RxIsFull)
+    [Anonymous Symbol]                       0x00001050   Section        0  main.o(.text.UxART_PDMA_Tx)
+    __arm_cp.7_0                             0x000010cc   Number         4  main.o(.text.UxART_PDMA_Tx)
+    [Anonymous Symbol]                       0x000010d0   Section        0  ht32_retarget.o(.text.fputc)
+    [Anonymous Symbol]                       0x000010d8   Section        0  main.o(.text.main)
+    __arm_cp.0_0                             0x00001268   Number         4  main.o(.text.main)
+    __arm_cp.0_1                             0x0000126c   Number         4  main.o(.text.main)
+    __arm_cp.0_2                             0x00001270   Number         4  main.o(.text.main)
+    __arm_cp.0_3                             0x00001274   Number         4  main.o(.text.main)
+    __arm_cp.0_4                             0x00001278   Number         4  main.o(.text.main)
+    __arm_cp.0_5                             0x0000127c   Number         4  main.o(.text.main)
+    __arm_cp.0_6                             0x00001280   Number         4  main.o(.text.main)
+    __arm_cp.0_7                             0x00001284   Number         4  main.o(.text.main)
+    __arm_cp.0_8                             0x00001288   Number         4  main.o(.text.main)
+    __arm_cp.0_9                             0x0000128c   Number         4  main.o(.text.main)
+    __arm_cp.0_10                            0x00001290   Number         4  main.o(.text.main)
+    __arm_cp.0_11                            0x00001294   Number         4  main.o(.text.main)
+    i.__scatterload_copy                     0x00001298   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x000012a6   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x000012a8   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.puts                                   0x000012b8   Section        0  puts.o(i.puts)
+    [Anonymous Symbol]                       0x00001301   Section        0  main.o(.rodata.str1.1)
     .data                                    0x20000000   Section        4  stdout.o(.data)
     HardFault_Handler.gIsContinue            0x20000008   Data           4  ht32f5xxxx_01_it.o(.bss.HardFault_Handler.gIsContinue)
     [Anonymous Symbol]                       0x20000008   Section        0  ht32f5xxxx_01_it.o(.bss.HardFault_Handler.gIsContinue)
-    STACK                                    0x200000b8   Section      512  startup_ht32f5xxxx_03.o(STACK)
+    STACK                                    0x20000078   Section      512  startup_ht32f5xxxx_03.o(STACK)
 
     Global Symbols
 
@@ -2408,29 +2404,28 @@ Image Symbol Table
     USART_TxRxCmd                            0x00000f99   Thumb Code    24  ht32f5xxxx_usart.o(.text.USART_TxRxCmd)
     UxART_Configuration                      0x00000fb1   Thumb Code   112  main.o(.text.UxART_Configuration)
     UxART_PDMA_RxIsFull                      0x00001021   Thumb Code    40  main.o(.text.UxART_PDMA_RxIsFull)
-    UxART_PDMA_Tx                            0x00001049   Thumb Code   120  main.o(.text.UxART_PDMA_Tx)
-    fputc                                    0x000010c5   Thumb Code     8  ht32_retarget.o(.text.fputc)
-    main                                     0x000010cd   Thumb Code   340  main.o(.text.main)
-    __scatterload_copy                       0x00001259   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x00001267   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x00001269   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    puts                                     0x00001279   Thumb Code    28  puts.o(i.puts)
-    GPIO_PORT                                0x00001298   Data          24  ht32_board.o(.rodata.GPIO_PORT)
-    LED_AFIO_MODE                            0x000012b0   Data           3  ht32_board.o(.rodata.LED_AFIO_MODE)
-    LED_GPIO_ID                              0x000012b3   Data           3  ht32_board.o(.rodata.LED_GPIO_ID)
-    LED_GPIO_PIN                             0x000012b6   Data           6  ht32_board.o(.rodata.LED_GPIO_PIN)
-    gHelloString                             0x000012bc   Data          72  main.o(.rodata.gHelloString)
-    Region$$Table$$Base                      0x00001314   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00001334   Number         0  anon$$obj.o(Region$$Table)
+    UxART_PDMA_Tx                            0x00001051   Thumb Code   124  main.o(.text.UxART_PDMA_Tx)
+    fputc                                    0x000010d1   Thumb Code     8  ht32_retarget.o(.text.fputc)
+    main                                     0x000010d9   Thumb Code   400  main.o(.text.main)
+    __scatterload_copy                       0x00001299   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x000012a7   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x000012a9   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    puts                                     0x000012b9   Thumb Code    28  puts.o(i.puts)
+    GPIO_PORT                                0x000012d8   Data          24  ht32_board.o(.rodata.GPIO_PORT)
+    LED_AFIO_MODE                            0x000012f0   Data           3  ht32_board.o(.rodata.LED_AFIO_MODE)
+    LED_GPIO_ID                              0x000012f3   Data           3  ht32_board.o(.rodata.LED_GPIO_ID)
+    LED_GPIO_PIN                             0x000012f6   Data           6  ht32_board.o(.rodata.LED_GPIO_PIN)
+    gHelloString                             0x000012fc   Data           5  main.o(.rodata.gHelloString)
+    Region$$Table$$Base                      0x0000131c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0000133c   Number         0  anon$$obj.o(Region$$Table)
     __stdout                                 0x20000000   Data           4  stdout.o(.data)
     gIsUxART_PDMA_TxBusy                     0x2000000c   Data           4  main.o(.bss.gIsUxART_PDMA_TxBusy)
     gPDMACH_RxStructure                      0x20000010   Data          16  main.o(.bss.gPDMACH_RxStructure)
     gPDMACH_TxStructure                      0x20000020   Data          16  main.o(.bss.gPDMACH_TxStructure)
     gRxBuffer                                0x20000030   Data          64  main.o(.bss.gRxBuffer)
     gRxBufferReadIndex                       0x20000070   Data           4  main.o(.bss.gRxBufferReadIndex)
-    gTempBuffer                              0x20000074   Data          64  main.o(.bss.gTempBuffer)
-    __HT_check_sp                            0x200000b8   Data           0  startup_ht32f5xxxx_03.o(STACK)
-    __initial_sp                             0x200002b8   Data           0  startup_ht32f5xxxx_03.o(STACK)
+    __HT_check_sp                            0x20000078   Data           0  startup_ht32f5xxxx_03.o(STACK)
+    __initial_sp                             0x20000278   Data           0  startup_ht32f5xxxx_03.o(STACK)
 
 
 
@@ -2440,9 +2435,9 @@ Memory Map of the image
 
   Image Entry point : 0x000000c1
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00001338, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00001340, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00001334, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x0000133c, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2491,32 +2486,32 @@ Memory Map of the image
     0x00000f94   0x00000f94   0x00000004   Code   RO         1054    .text.USART_SendData  ht32f5xxxx_usart.o
     0x00000f98   0x00000f98   0x00000018   Code   RO         1066    .text.USART_TxRxCmd  ht32f5xxxx_usart.o
     0x00000fb0   0x00000fb0   0x00000070   Code   RO           10    .text.UxART_Configuration  main.o
-    0x00001020   0x00001020   0x00000028   Code   RO           26    .text.UxART_PDMA_RxIsFull  main.o
-    0x00001048   0x00001048   0x0000007c   Code   RO           14    .text.UxART_PDMA_Tx  main.o
-    0x000010c4   0x000010c4   0x00000008   Code   RO         1243    .text.fputc         ht32_retarget.o
-    0x000010cc   0x000010cc   0x0000018c   Code   RO            2    .text.main          main.o
-    0x00001258   0x00001258   0x0000000e   Code   RO         1471    i.__scatterload_copy  mc_p.l(handlers.o)
-    0x00001266   0x00001266   0x00000002   Code   RO         1472    i.__scatterload_null  mc_p.l(handlers.o)
-    0x00001268   0x00001268   0x0000000e   Code   RO         1473    i.__scatterload_zeroinit  mc_p.l(handlers.o)
-    0x00001276   0x00001276   0x00000002   PAD
-    0x00001278   0x00001278   0x00000020   Code   RO         1430    i.puts              mc_p.l(puts.o)
-    0x00001298   0x00001298   0x00000018   Data   RO         1288    .rodata.GPIO_PORT   ht32_board.o
-    0x000012b0   0x000012b0   0x00000003   Data   RO         1291    .rodata.LED_AFIO_MODE  ht32_board.o
-    0x000012b3   0x000012b3   0x00000003   Data   RO         1289    .rodata.LED_GPIO_ID  ht32_board.o
-    0x000012b6   0x000012b6   0x00000006   Data   RO         1290    .rodata.LED_GPIO_PIN  ht32_board.o
-    0x000012bc   0x000012bc   0x00000048   Data   RO           36    .rodata.gHelloString  main.o
-    0x00001304   0x00001304   0x00000010   Data   RO           37    .rodata.str1.1      main.o
-    0x00001314   0x00001314   0x00000020   Data   RO         1470    Region$$Table       anon$$obj.o
+    0x00001020   0x00001020   0x00000030   Code   RO           26    .text.UxART_PDMA_RxIsFull  main.o
+    0x00001050   0x00001050   0x00000080   Code   RO           16    .text.UxART_PDMA_Tx  main.o
+    0x000010d0   0x000010d0   0x00000008   Code   RO         1243    .text.fputc         ht32_retarget.o
+    0x000010d8   0x000010d8   0x000001c0   Code   RO            2    .text.main          main.o
+    0x00001298   0x00001298   0x0000000e   Code   RO         1471    i.__scatterload_copy  mc_p.l(handlers.o)
+    0x000012a6   0x000012a6   0x00000002   Code   RO         1472    i.__scatterload_null  mc_p.l(handlers.o)
+    0x000012a8   0x000012a8   0x0000000e   Code   RO         1473    i.__scatterload_zeroinit  mc_p.l(handlers.o)
+    0x000012b6   0x000012b6   0x00000002   PAD
+    0x000012b8   0x000012b8   0x00000020   Code   RO         1430    i.puts              mc_p.l(puts.o)
+    0x000012d8   0x000012d8   0x00000018   Data   RO         1288    .rodata.GPIO_PORT   ht32_board.o
+    0x000012f0   0x000012f0   0x00000003   Data   RO         1291    .rodata.LED_AFIO_MODE  ht32_board.o
+    0x000012f3   0x000012f3   0x00000003   Data   RO         1289    .rodata.LED_GPIO_ID  ht32_board.o
+    0x000012f6   0x000012f6   0x00000006   Data   RO         1290    .rodata.LED_GPIO_PIN  ht32_board.o
+    0x000012fc   0x000012fc   0x00000005   Data   RO           36    .rodata.gHelloString  main.o
+    0x00001301   0x00001301   0x0000001b   Data   RO           37    .rodata.str1.1      main.o
+    0x0000131c   0x0000131c   0x00000020   Data   RO         1470    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00001334, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x0000133c, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x00001334   0x00000004   Data   RW         1456    .data               mc_p.l(stdout.o)
+    0x20000000   0x0000133c   0x00000004   Data   RW         1456    .data               mc_p.l(stdout.o)
 
 
-    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x00001338, Size: 0x000002b0, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x00001340, Size: 0x00000270, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2526,9 +2521,8 @@ Memory Map of the image
     0x20000020        -       0x00000010   Zero   RW           38    .bss.gPDMACH_TxStructure  main.o
     0x20000030        -       0x00000040   Zero   RW           40    .bss.gRxBuffer      main.o
     0x20000070        -       0x00000004   Zero   RW           35    .bss.gRxBufferReadIndex  main.o
-    0x20000074        -       0x00000040   Zero   RW           41    .bss.gTempBuffer    main.o
-    0x200000b4   0x00001338   0x00000004   PAD
-    0x200000b8        -       0x00000200   Zero   RW           83    STACK               startup_ht32f5xxxx_03.o
+    0x20000074   0x00001340   0x00000004   PAD
+    0x20000078        -       0x00000200   Zero   RW           83    STACK               startup_ht32f5xxxx_03.o
 
 
 ==============================================================================
@@ -2546,12 +2540,12 @@ Image component sizes
        652          4          0          0          0      11372   ht32f5xxxx_gpio.o
        168         16          0          0          0       5893   ht32f5xxxx_pdma.o
        198         28          0          0          0      10208   ht32f5xxxx_usart.o
-      2202         64         88          0        168      19509   main.o
+      2266         64         32          0        104      20480   main.o
        356        238          0          0        512        724   startup_ht32f5xxxx_03.o
        380         16          0          0          0       3055   system_ht32f5xxxx_03.o
 
     ----------------------------------------------------------------------
-      4576        438        156          0        688      86236   Object Totals
+      4640        438        100          0        624      87207   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          4          0          0          0          4          0   (incl. Padding)
 
@@ -2593,15 +2587,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      4760        458        156          4        688      86372   Grand Totals
-      4760        458        156          4        688      86372   ELF Image Totals
-      4760        458        156          4          0          0   ROM Totals
+      4824        458        100          4        624      87343   Grand Totals
+      4824        458        100          4        624      87343   ELF Image Totals
+      4824        458        100          4          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4916 (   4.80kB)
-    Total RW  Size (RW Data + ZI Data)               692 (   0.68kB)
-    Total ROM Size (Code + RO Data + RW Data)       4920 (   4.80kB)
+    Total RO  Size (Code + RO Data)                 4924 (   4.81kB)
+    Total RW  Size (RW Data + ZI Data)               628 (   0.61kB)
+    Total ROM Size (Code + RO Data + RW Data)       4928 (   4.81kB)
 
 ==============================================================================
 
