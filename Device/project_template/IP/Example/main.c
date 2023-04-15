@@ -29,11 +29,25 @@
 /* Includes ------------------------------------------------------------------------------------------------*/
 #include "ht32.h"
 #include "ht32_board.h"
-#include "E:\STUDY\Graduate-Thesis\Device\project_template\IP\Example\MDK_ARMv5\ht32_board_config.h"
-#include "ht32f5xxxx_usart.h"
 
 #define USART_FLAG_TXE ((u16)0x0080)
 #define USART_FLAG_RXNE ((uint16_t)0x0020)
+
+#define HTCFG_UART_PORT 									HT_USART1
+#define HTCFG_TX_PDMA_CH 									PDMA_USART1_TX
+#define HTCFG_RX_PDMA_CH 									PDMA_USART1_RX
+#define HTCFG_PDMA_IRQ 										PDMACH2_5_IRQn 
+#define HTCFG_PDMA_IRQHandler             (PDMA_CH2_5_IRQHandler)
+#define HTCFG_UART_RX_GPIO_CLK 						PA
+#define HTCFG_UART_IPN										USART1
+#define HTCFG_UART_RX_GPIO_PORT 					HT_GPIOA
+#define HTCFG_UART_RX_GPIO_PIN  					GPIO_PIN_5
+#define HTCFG_UART_TX_GPIO_ID							GPIO_PA
+#define HTCFG_UART_TX_AFIO_PIN						AFIO_PIN_4
+#define HTCFG_UART_RX_GPIO_ID							GPIO_PA
+#define HTCFG_UART_RX_AFIO_PIN						AFIO_PIN_5
+#define HTCFG_PDMA_CURRENT_TRANSFER_SIZE  (HT_PDMA->PDMACH2.CTSR >> 16)
+
 
 /** @addtogroup Project_Template Project Template
   * @{

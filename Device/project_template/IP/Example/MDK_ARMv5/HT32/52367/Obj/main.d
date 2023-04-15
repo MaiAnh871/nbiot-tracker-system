@@ -50,5 +50,4 @@
   ..\..\..\..\utilities\common\spi_flash.h \
   ..\..\..\..\utilities\common\spi_lcd.h \
   ..\..\..\..\utilities\common\lcd.h \
-  ..\..\..\..\utilities\common\ebi_lcd.h \
-  E:\STUDY\Graduate-Thesis\Device\project_template\IP\Example\MDK_ARMv5\ht32_board_config.h
+  ..\..\..\..\utilities\common\ebi_lcd.h
