@@ -30,6 +30,8 @@
 #include "ht32.h"
 #include "ht32_board.h"
 
+#include "string.h"
+
 #define USART_FLAG_TXE ((u16)0x0080)
 #define USART_FLAG_RXNE ((uint16_t)0x0020)
 
@@ -80,7 +82,7 @@ void UxART_RxMainRoutine(void);
 
 void UxART1_Configuration(void);
 void UxART1_TxSend(u16 Data);
-void UxART1_TxTest(void);
+void UxART1_Tx(char* input_string);
 void UxART1_RxTest_Block(void);
 void UxART1_RxTest_NonBlock(void);
 
@@ -124,20 +126,23 @@ int main(void)
   UxART_Configuration();
 	UxART1_Configuration();
 	
-	/* Send "Hello, world!" over UART1 */
-  char *message = "Start to send AT command\r\n";
-  while (*message) {
-    USART_SendData(HT_USART1, (uint8_t)*message++);
-    while (USART_GetFlagStatus(HT_USART1, USART_FLAG_TXE) == RESET);
-  }
+	UxART1_Tx((char*)"Chao cong chua");
+	
+//	/* Send "Hello, world!" over UART1 */
+//  char *message = "Start to send AT command\r\n";
+//  while (*message) {
+//    USART_SendData(HT_USART1, (uint8_t)*message++);
+//    while (USART_GetFlagStatus(HT_USART1, USART_FLAG_TXE) == RESET);
+//  }
 
-//  /* Send hello information by PDMA mode                                                                    */
+//  /* Send hello information by PDMA mode      */
+//	UxART_PDMA_Tx((uc8*)"Chao cong chua", sizeof((uc8*)"Chao cong chua") - 1);
 //  UxART_PDMA_Tx(gHelloString, sizeof(gHelloString) - 1);
 
   while (1)
   {
-    UxART_RxMainRoutine();
-		__Delay(10000000);
+//    UxART_RxMainRoutine();
+//		__Delay(10000000);
   }
 	LED_Toggle();
 }
@@ -248,36 +253,36 @@ void UxART_Configuration(void)
   USART_RxCmd(HTCFG_UART_PORT, ENABLE);
 }
 
-/*********************************************************************************************************//**
-  * @brief  UxART send a buffer by PDMA.
-  * @retval None
-  ***********************************************************************************************************/
-u32 UxART_PDMA_Tx(uc8 *TxBuffer, u32 length)
-{
-	u32 i;
-	
-	/* UART0 - MCU TO MODULE */
-  /* Wait until previou Tx finished                                                                         */
-  while (gIsUxART_PDMA_TxBusy == TRUE);
+///*********************************************************************************************************//**
+//  * @brief  UxART send a buffer by PDMA.
+//  * @retval None
+//  ***********************************************************************************************************/
+//u32 UxART_PDMA_Tx(uc8 *TxBuffer, u32 length)
+//{
+//	u32 i;
+//	
+//	/* UART0 - MCU TO MODULE */
+//  /* Wait until previou Tx finished                                                                         */
+//  while (gIsUxART_PDMA_TxBusy == TRUE);
 
-  /* UxART Tx PDMA channel configuration                                                                    */
-  gPDMACH_TxStructure.PDMACH_SrcAddr = (u32)TxBuffer;
-  gPDMACH_TxStructure.PDMACH_BlkCnt = length;
-  PDMA_Config(HTCFG_TX_PDMA_CH, &gPDMACH_TxStructure);
-  PDMA_EnaCmd(HTCFG_TX_PDMA_CH, ENABLE);
+//  /* UxART Tx PDMA channel configuration                                                                    */
+//  gPDMACH_TxStructure.PDMACH_SrcAddr = (u32)TxBuffer;
+//  gPDMACH_TxStructure.PDMACH_BlkCnt = length;
+//  PDMA_Config(HTCFG_TX_PDMA_CH, &gPDMACH_TxStructure);
+//  PDMA_EnaCmd(HTCFG_TX_PDMA_CH, ENABLE);
 
 //  gIsUxART_PDMA_TxBusy = TRUE;
-  USART_PDMACmd(HTCFG_UART_PORT, USART_PDMAREQ_TX, ENABLE);
+//  USART_PDMACmd(HTCFG_UART_PORT, USART_PDMAREQ_TX, ENABLE);
 
-	/* UART1 - MCU TO PC */
-	/* Send a buffer from UxART1 to terminal                                                                   */
-  for (i = 0; i < length; i++)
-  {
-    UxART1_TxSend(TxBuffer[i]);
-  }
+//	/* UART1 - MCU TO PC */
+//	/* Send a buffer from UxART1 to terminal                                                                   */
+//  for (i = 0; i < length; i++)
+//  {
+//    UxART1_TxSend(TxBuffer[i]);
+//  }
 //	gIsUxART_PDMA_TxBusy = FALSE;
-  return length;
-}
+//  return length;
+//}
 
 /*********************************************************************************************************//**
   * @brief  Read byte from Rx buffer.
@@ -357,49 +362,49 @@ u32 UxART_PDMA_RxIsFull(void)
 void UxART_RxMainRoutine(void)
 {
 	/* Send hello information by PDMA mode                                                                    */
-  UxART_PDMA_Tx(gHelloString, sizeof(gHelloString) - 1);
+//  UxART_PDMA_Tx(gHelloString, sizeof(gHelloString) - 1);
 	
-	u32 i;
-	u8 *uPtr = (u8*)gTempBuffer;
-	u32 uLen = sizeof(gTempBuffer) - 1;
-	
-	while (UxART_PDMA_RxReadByte(gTempBuffer)){
-  #if 1
-  if (UxART_PDMA_RxReadByte(gTempBuffer)) // Process data after 1 byte received
-  {
-    // Do data process here
+//	u32 i;
+//	u8 *uPtr = (u8*)gTempBuffer;
+//	u32 uLen = sizeof(gTempBuffer) - 1;
+//	
+//	while (UxART_PDMA_RxReadByte(gTempBuffer)){
+//  #if 1
+//  if (UxART_PDMA_RxReadByte(gTempBuffer)) // Process data after 1 byte received
+//  {
+//    // Do data process here
 
-    #if 1 // Loopback Rx data to Tx
-    //UxART_PDMA_Tx((uc8 *)&gTempBuffer, 1);
-		/* UART1 - MCU TO PC */
-		/* Send a buffer from UxART1 to terminal                                                                   */
-//		for (i = 0; i < uLen; i++)
-//		{
-//			UxART1_TxSend(gTempBuffer[i]);
-//		}
-		
-		UxART1_TxSend(gTempBuffer[0]);
+//    #if 1 // Loopback Rx data to Tx
+//    //UxART_PDMA_Tx((uc8 *)&gTempBuffer, 1);
+//		/* UART1 - MCU TO PC */
+//		/* Send a buffer from UxART1 to terminal                                                                   */
+////		for (i = 0; i < uLen; i++)
+////		{
+////			UxART1_TxSend(gTempBuffer[i]);
+////		}
+//		
+//		UxART1_TxSend(gTempBuffer[0]);
 
-//		for (i = 0; i < uLen; i++)
-//		{
-//			uPtr[i] = 0;
-//		}
-    #endif
-  }
-	
-  #else
-  if (UxART_PDMA_RxGetLength() >= 5)      // Process data after 5 byte received
-  {
-    u32 uLen;
-    uLen = UxART_PDMA_RxReadBlock(gTempBuffer, UxART_PDMA_RxGetLength());
-    // Do data process here
+////		for (i = 0; i < uLen; i++)
+////		{
+////			uPtr[i] = 0;
+////		}
+//    #endif
+//  }
+//	
+//  #else
+//  if (UxART_PDMA_RxGetLength() >= 5)      // Process data after 5 byte received
+//  {
+//    u32 uLen;
+//    uLen = UxART_PDMA_RxReadBlock(gTempBuffer, UxART_PDMA_RxGetLength());
+//    // Do data process here
 
-    #if 1 // Loopback Rx data to Tx
-    UxART_PDMA_Tx((uc8 *)gTempBuffer, uLen);
-    #endif
-  }
-  #endif
-}
+//    #if 1 // Loopback Rx data to Tx
+//    UxART_PDMA_Tx((uc8 *)gTempBuffer, uLen);
+//    #endif
+//  }
+//  #endif
+//}
 }
 
 /*********************************************************************************************************//**
@@ -465,16 +470,13 @@ void UxART1_TxSend(u16 Data)
   * @brief  UxART Tx Test.
   * @retval None
   ***********************************************************************************************************/
-void UxART1_TxTest(void)
+void UxART1_Tx(char* input_string)
 {
-  u32 i;
-  u8 *uPtr = (u8 *)gHelloString;
-  u32 uLen = sizeof(gHelloString) - 1;
-
+	int i;
   /* Send a buffer from UxART to terminal                                                                   */
-  for (i = 0; i < uLen; i++)
+  for (i = 0; i < strlen(input_string); i++)
   {
-    UxART1_TxSend(uPtr[i]);
+    UxART1_TxSend(input_string[i]);
   }
 }
 
