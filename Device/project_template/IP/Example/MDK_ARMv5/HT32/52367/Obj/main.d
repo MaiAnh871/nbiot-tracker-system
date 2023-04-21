@@ -50,4 +50,5 @@
   ..\..\..\..\utilities\common\spi_flash.h \
   ..\..\..\..\utilities\common\spi_lcd.h \
   ..\..\..\..\utilities\common\lcd.h \
-  ..\..\..\..\utilities\common\ebi_lcd.h
+  ..\..\..\..\utilities\common\ebi_lcd.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h
