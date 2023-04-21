@@ -92,12 +92,14 @@ int main(void)
     USART0_Configuration();
     USART1_Configuration();
 
+		USART1_Send((char*)"First send AT\r\n");
     USART0_Send((char*)"AT\r\n");
-    USART1_Send((char*)"AT\r\n");
+
 
   while (1)
   {
-			USART1_Rx_NonBlock();    
+			USART1_Rx_NonBlock(); 
+			USART0_Rx_NonBlock();		
   }
 }
 
@@ -321,7 +323,7 @@ void USART0_Rx_NonBlock(void)
     uData = USART_ReceiveData(HT_USART0);
 
     #if 1 // Loop back Rx data to Tx for test
-    USART0_Send_Char(uData);
+    USART1_Send_Char(uData);
     #endif
   }
 }
