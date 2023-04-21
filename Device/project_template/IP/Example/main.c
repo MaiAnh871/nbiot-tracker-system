@@ -279,6 +279,9 @@ void USART0_Send(char* input_string)
     {
         USART0_Send_Char(input_string[i]);
     }
+		
+		// Send to USART1 what sent to USART0
+		USART1_Send(input_string);
 }
 
 /********************************************************************************************************//*
