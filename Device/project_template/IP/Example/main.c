@@ -80,10 +80,10 @@ const char *ERROR_COMMAND_SIGN[] = { "ERROR" };
 #define ERROR_COMMAND_SIGN_LENGTH sizeof(ERROR_COMMAND_SIGN) / sizeof(ERROR_COMMAND_SIGN[0])
 
 #define LOG_CONTENT_SIZE 100
-#define COMMAND_TIMEOUT_MS 100
+#define COMMAND_TIMEOUT_MS 3000
 #define COMMAND_SIZE 1100
 #define MODULE_BUFFER_SIZE 200
-#define SEND_COMMAND_DELAY_MS 2000
+#define SEND_COMMAND_DELAY_MS 2500
 
 
 /* Private function prototypes -----------------------------------------------------------------------------*/
@@ -197,16 +197,16 @@ void setup(struct BC660K * self) {
 	
 	checkModule_AT(self);
 	checkModule_AT(self);
-	checkModule_AT(self);
 	offEcho_ATE0(self);
-	getIMEI_AT_CGSN(self);
-	getModelID_AT_CGMM(self);
+//	getIMEI_AT_CGSN(self);
+//	getModelID_AT_CGMM(self);
 	checkNetworkRegister_AT_CEREG(self);
 	getNetworkStatus_AT_QENG(self);
+	disconnectMQTT_AT_QMTDISC(self);
 	openMQTT_AT_QMTOPEN(self);
 	connectClient_AT_QMTCONN(self);
+	publishMessage_AT_QMTPUB(self);
 	disconnectMQTT_AT_QMTDISC(self);
-	
 }
 
 void loop(struct BC660K * self) {
@@ -527,7 +527,71 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 		return output_status;
 }
 
-enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self);
+enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		
+		/* Write Command */
+		sprintf(self->command, "AT+QMTPUB=0,0,0,0,\"topic/pub\"");
+		sprintf(self->log_content, "\n=== SENDING <%s> ===\n", self->command);
+		writeLog(self);
+		clearModuleBuffer(self);
+	
+		USART0_Send(self->command);
+		USART0_Send((char *)"\r\n");
+
+		self->command_timer = utick;
+		while(utick - self->command_timer <= (COMMAND_TIMEOUT_MS + 5000)) {
+				output_status = USART0_Receive(self);
+		}
+		delay_ms(2000);
+	
+		sprintf(self->command, "hello");
+		USART0_Send(self->command);
+		USART0_Send((char *)"\r\n");
+	
+		self->command_timer = utick;
+		while(utick - self->command_timer <= COMMAND_TIMEOUT_MS) {
+				output_status = USART0_Receive(self);
+		}
+		
+		sprintf(self->log_content, "%s\n\n", self->module_buffer);
+		writeLog(self);
+		clearModuleBuffer(self);
+		sprintf(self->log_content, "Command status: %s\n", getStatusTypeString(output_status));
+		writeLog(self);
+		sprintf(self->log_content, "==========\n");
+		writeLog(self);
+		
+		delay_ms(SEND_COMMAND_DELAY_MS);
+		
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
 
 enum StatusType disconnectMQTT_AT_QMTDISC(struct BC660K *self) {
 		/* Initialize status */
