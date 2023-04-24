@@ -36,6 +36,12 @@
 
 #include "string.h"
 
+#include "BC660K.h"
+
+#include "LC76F.h"
+
+#include "MC3416.h"
+
 /** @addtogroup Project_Template Project Template
  * @{
  */
@@ -195,18 +201,18 @@ void setup(struct BC660K * self) {
   sprintf(self -> log_content, "Setup successfully!\n");
   writeLog(self);
 	
-	checkModule_AT(self);
-	checkModule_AT(self);
-	offEcho_ATE0(self);
+//	checkModule_AT(self);
+//	checkModule_AT(self);
+//	offEcho_ATE0(self);
 //	getIMEI_AT_CGSN(self);
 //	getModelID_AT_CGMM(self);
-	checkNetworkRegister_AT_CEREG(self);
-	getNetworkStatus_AT_QENG(self);
-	disconnectMQTT_AT_QMTDISC(self);
-	openMQTT_AT_QMTOPEN(self);
-	connectClient_AT_QMTCONN(self);
-	publishMessage_AT_QMTPUB(self);
-	disconnectMQTT_AT_QMTDISC(self);
+//	checkNetworkRegister_AT_CEREG(self);
+//	getNetworkStatus_AT_QENG(self);
+//	disconnectMQTT_AT_QMTDISC(self);
+//	openMQTT_AT_QMTOPEN(self);
+//	connectClient_AT_QMTCONN(self);
+//	publishMessage_AT_QMTPUB(self);
+//	disconnectMQTT_AT_QMTDISC(self);
 	
 }
 

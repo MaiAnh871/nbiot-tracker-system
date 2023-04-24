@@ -394,6 +394,21 @@
               <FileType>1</FileType>
               <FilePath>..\ht32f5xxxx_01_it.c</FilePath>
             </File>
+            <File>
+              <FileName>BC660K.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BC660K.c</FilePath>
+            </File>
+            <File>
+              <FileName>LC76F.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LC76F.c</FilePath>
+            </File>
+            <File>
+              <FileName>MC3416.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MC3416.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -655,5 +670,14 @@
     <components/>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>Project_52367</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

@@ -28,6 +28,7 @@
 /* Includes ------------------------------------------------------------------------------------------------*/
 #include "ht32.h"
 
+
 /** @addtogroup Project_Template Project Template
   * @{
   */
