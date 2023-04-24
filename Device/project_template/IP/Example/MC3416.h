@@ -1,3 +1,14 @@
+/* Settings ------------------------------------------------------------------------------------------------*/
+#define HTCFG_I2C_MASTER_CLK(CKCUClock) CKCUClock.Bit.I2C0
+#define HTCFG_I2C_MASTER_SCL_GPIO_ID    GPIO_PB
+#define HTCFG_I2C_MASTER_SCL_AFIO_PIN   AFIO_PIN_1
+#define HTCFG_I2C_MASTER_SDA_GPIO_ID    GPIO_PB
+#define HTCFG_I2C_MASTER_SDA_AFIO_PIN   AFIO_PIN_0
+#define I2C_MASTER_ADDRESS							0
+#define ClockSpeed											100000
+#define HTCFG_I2C_MASTER_PORT						HT_I2C0
+
+
 /* Includes ------------------------------------------------------------------------------------------------*/
 #include "ht32.h"
 #include "ht32_board.h"
