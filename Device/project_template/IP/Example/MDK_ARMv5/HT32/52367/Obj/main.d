@@ -53,4 +53,4 @@
   ..\..\..\..\utilities\common\ebi_lcd.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h ..\BC660K.h ..\LC76F.h \
-  ..\MC3416.h
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h ..\MC3416.h

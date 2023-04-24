@@ -43,11 +43,4 @@
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_cm0plus_misc.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_serial.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_div.h \
-  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h \
-  ..\..\..\..\utilities\ht32_board.h \
-  ..\..\..\..\utilities\HT32_Board\ht32f52367_sk.h \
-  ..\..\..\..\utilities\common\i2c_eeprom.h \
-  ..\..\..\..\utilities\common\spi_flash.h \
-  ..\..\..\..\utilities\common\spi_lcd.h \
-  ..\..\..\..\utilities\common\lcd.h \
-  ..\..\..\..\utilities\common\ebi_lcd.h
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h
