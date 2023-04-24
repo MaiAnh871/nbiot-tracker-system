@@ -207,6 +207,7 @@ void setup(struct BC660K * self) {
 	connectClient_AT_QMTCONN(self);
 	publishMessage_AT_QMTPUB(self);
 	disconnectMQTT_AT_QMTDISC(self);
+	
 }
 
 void loop(struct BC660K * self) {
@@ -599,6 +600,181 @@ enum StatusType disconnectMQTT_AT_QMTDISC(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTDISC=0");
+		output_status = sendCommand(self);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
+
+enum StatusType setAuthentication_AT_QSSLCFG(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		sprintf(self->command, "AT+QSSLCFG=0,0,\"seclevel\",2");
+		output_status = sendCommand(self);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
+
+enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self)  {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		sprintf(self->command, "AT+QSSLCFG=0,0,\"cacert\"");
+		output_status = sendCommand(self);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
+
+enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		sprintf(self->command, "AT+QSSLCFG=0,0,\"clientcert\"");
+		output_status = sendCommand(self);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
+
+enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		sprintf(self->command, "AT+QSSLCFG=0,0,\"clientkey\"");
+		output_status = sendCommand(self);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
+
+enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		sprintf(self->command, "AT+QMTCFG=\"ssl\",0,1,0,0");
 		output_status = sendCommand(self);
 	
 		/* Actions with status */
