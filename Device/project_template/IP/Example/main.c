@@ -57,7 +57,6 @@
 /* Settings ------------------------------------------------------------------------------------------------*/
 
 
-
 /* Private types -------------------------------------------------------------------------------------------*/
 struct BC660K {
   /* Debug */
@@ -147,6 +146,10 @@ void Toggle_LED_3(void);
 struct BC660K BC660K_h;
 vu32 utick;
 
+int16_t Ax = 0;
+int16_t Ay = 0;
+int16_t Az = 0;
+
 /* Global functions ----------------------------------------------------------------------------------------*/
 
 /********************************************************************************************************/
@@ -178,6 +181,8 @@ void setup(struct BC660K * self) {
   UART0_GNSS_Configuration();
   USART0_MODULE_Configuration();
   USART1_DEBUG_Configuration();
+	I2C_Configuration();
+	MC3416_Init();
 
   /* Initialize BC660K_handler */
   self->log_content = (char * ) malloc(LOG_CONTENT_SIZE * sizeof(char));
@@ -201,6 +206,11 @@ void setup(struct BC660K * self) {
   sprintf(self -> log_content, "Setup successfully!\n");
   writeLog(self);
 	
+	while (1) {
+		MC3416_Read_Accel(&Ax, &Ay, &Az);
+		printf("Ax = %d, Ay = %d, Az = %d\r\n", Ax, Ay, Az);
+		delay_ms(2000);
+	}
 //	checkModule_AT(self);
 //	checkModule_AT(self);
 //	offEcho_ATE0(self);
@@ -213,7 +223,6 @@ void setup(struct BC660K * self) {
 //	connectClient_AT_QMTCONN(self);
 //	publishMessage_AT_QMTPUB(self);
 //	disconnectMQTT_AT_QMTDISC(self);
-	
 }
 
 void loop(struct BC660K * self) {

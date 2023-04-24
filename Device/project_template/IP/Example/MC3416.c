@@ -37,6 +37,7 @@ void I2C_Configuration(void)
 
   /* Enable I2C                                                                                             */
   I2C_Cmd(HTCFG_I2C_MASTER_PORT, ENABLE);
+	I2C_SetTimeOutValue(HT_I2C0, 1000);
 }
 
 void Read_Mem_Slave(I2C_AddressTypeDef Slave_Adr, uint8_t RegAddr, uint8_t* str_data)
