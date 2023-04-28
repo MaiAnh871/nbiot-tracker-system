@@ -67,4 +67,5 @@ void UART0_Receive(void)
   #if 1 // Loop back Rx data to Tx for test
   USART1_Send_Char(uData);
   #endif
+	//USART1_Send("hi");
 }

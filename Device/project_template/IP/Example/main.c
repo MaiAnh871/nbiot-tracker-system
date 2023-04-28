@@ -203,23 +203,23 @@ void setup(struct BC660K * self) {
   sprintf(self -> log_content, "Setup successfully!\n");
   writeLog(self);
 	
-	while (1) {
+//	while (1) {
 		//MC3416_Read_Accel(&Ax, &Ay, &Az);
-		UART0_Receive();
+//		UART0_Receive();
 		//printf("Ax = %d, Ay = %d, Az = %d\r\n", Ax, Ay, Az);
-	}
-//	checkModule_AT(self);
-//	checkModule_AT(self);
-//	offEcho_ATE0(self);
-//	getIMEI_AT_CGSN(self);
-//	getModelID_AT_CGMM(self);
-//	checkNetworkRegister_AT_CEREG(self);
-//	getNetworkStatus_AT_QENG(self);
-//	disconnectMQTT_AT_QMTDISC(self);
-//	openMQTT_AT_QMTOPEN(self);
-//	connectClient_AT_QMTCONN(self);
-//	publishMessage_AT_QMTPUB(self);
-//	disconnectMQTT_AT_QMTDISC(self);
+//	}
+	checkModule_AT(self);
+	checkModule_AT(self);
+	offEcho_ATE0(self);
+	getIMEI_AT_CGSN(self);
+	getModelID_AT_CGMM(self);
+	checkNetworkRegister_AT_CEREG(self);
+	getNetworkStatus_AT_QENG(self);
+	disconnectMQTT_AT_QMTDISC(self);
+	openMQTT_AT_QMTOPEN(self);
+	connectClient_AT_QMTCONN(self);
+	publishMessage_AT_QMTPUB(self);
+	disconnectMQTT_AT_QMTDISC(self);
 }
 
 void loop(struct BC660K * self) {
