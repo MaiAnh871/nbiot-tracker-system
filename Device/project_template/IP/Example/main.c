@@ -36,12 +36,6 @@
 
 #include "string.h"
 
-#include "BC660K.h"
-
-#include "LC76F.h"
-
-#include "MC3416.h"
-
 /** @addtogroup Project_Template Project Template
  * @{
  */
@@ -55,6 +49,7 @@
  */
 
 /* Settings ------------------------------------------------------------------------------------------------*/
+
 
 
 /* Private types -------------------------------------------------------------------------------------------*/
@@ -115,6 +110,7 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self);
 enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self);
 enum StatusType disconnectMQTT_AT_QMTDISC(struct BC660K *self);
 
+
 /* ==================== */
 
 /* Debug */
@@ -122,6 +118,9 @@ void writeLog(struct BC660K * self);
 char *getStatusTypeString(enum StatusType status);
 
 /* UART ports */
+void UART0_GNSS_Configuration(void);
+void UART0_Receive(void);
+
 void USART0_MODULE_Configuration(void);
 void USART0_Send_Char(u16 Data);
 void USART0_Send(char * input_string);
@@ -140,12 +139,8 @@ void Toggle_LED_3(void);
 /* Private macro -------------------------------------------------------------------------------------------*/
 
 /* Global variables ----------------------------------------------------------------------------------------*/
-struct BC660K BC660K_h;
+struct BC660K BC660K_h_h;
 vu32 utick;
-
-int16_t Ax = 0;
-int16_t Ay = 0;
-int16_t Az = 0;
 
 /* Global functions ----------------------------------------------------------------------------------------*/
 
@@ -155,10 +150,10 @@ int16_t Az = 0;
  * @retval None
  ***********************************************************************************************************/
 int main(void) {
-  setup(&BC660K_h);
+  setup(&BC660K_h_h);
 
   while (1) {
-    loop(&BC660K_h);
+    loop(&BC660K_h_h);
   }
 }
 
@@ -178,8 +173,6 @@ void setup(struct BC660K * self) {
   UART0_GNSS_Configuration();
   USART0_MODULE_Configuration();
   USART1_DEBUG_Configuration();
-	I2C_Configuration();
-	MC3416_Init();
 
   /* Initialize BC660K_handler */
   self->log_content = (char * ) malloc(LOG_CONTENT_SIZE * sizeof(char));
@@ -189,13 +182,13 @@ void setup(struct BC660K * self) {
   }
 	
   self->command = (char * ) malloc(COMMAND_SIZE * sizeof(char));
-  if (!self -> log_content) {
+  if (!self -> command) {
     Toggle_LED_1();
     while (1);
   }
 	
   self->module_buffer = (char * ) malloc(MODULE_BUFFER_SIZE * sizeof(char));
-  if (!self -> log_content) {
+  if (!self -> module_buffer) {
     Toggle_LED_1();
     while (1);
   }
@@ -203,53 +196,80 @@ void setup(struct BC660K * self) {
   sprintf(self -> log_content, "Setup successfully!\n");
   writeLog(self);
 	
-//	while (1) {
-		//MC3416_Read_Accel(&Ax, &Ay, &Az);
-//		UART0_Receive();
-		//printf("Ax = %d, Ay = %d, Az = %d\r\n", Ax, Ay, Az);
-//	}
-	checkModule_AT(self);
-	checkModule_AT(self);
-	offEcho_ATE0(self);
-	getIMEI_AT_CGSN(self);
-	getModelID_AT_CGMM(self);
-	checkNetworkRegister_AT_CEREG(self);
-	getNetworkStatus_AT_QENG(self);
-	disconnectMQTT_AT_QMTDISC(self);
-	openMQTT_AT_QMTOPEN(self);
-	connectClient_AT_QMTCONN(self);
-	publishMessage_AT_QMTPUB(self);
-	disconnectMQTT_AT_QMTDISC(self);
+		checkModule_AT(self);
+		offEcho_ATE0(self);
+		getIMEI_AT_CGSN(self);
+		setAuthentication_AT_QSSLCFG(self);
+		setCACert_AT_QSSLCFG(self);
+		setClientCert_AT_QSSLCFG(self);
+		setClientPrivateKey_AT_QSSLCFG(self);
 }
 
 void loop(struct BC660K * self) {
-
+		checkModule_AT(self);
+//		offEcho_ATE0(self);
+//		getIMEI_AT_CGSN(self);
+//		setAuthentication_AT_QSSLCFG(self);
+//		setCACert_AT_QSSLCFG(self);
+//		setClientCert_AT_QSSLCFG(self);
+//		setClientPrivateKey_AT_QSSLCFG(self);
+//		getModelID_AT_CGMM(self);
+//		checkNetworkRegister_AT_CEREG(self);
+//		getNetworkStatus_AT_QENG(self);
+//		disconnectMQTT_AT_QMTDISC(self);
+		openMQTT_AT_QMTOPEN(self);
+		connectClient_AT_QMTCONN(self);
+		publishMessage_AT_QMTPUB(self);
+		publishMessage_AT_QMTPUB(self);
+		disconnectMQTT_AT_QMTDISC(self);
 }
-
-enum StatusType sendCommand(struct BC660K * self) {
-		enum StatusType output_status = STATUS_UNKNOWN;
-		sprintf(self->log_content, "\n=== SENDING <%s> ===\n", self->command);
-		writeLog(self);
 	
-		clearModuleBuffer(self);
-		
-		USART0_Send(self->command);
-		USART0_Send((char *)"\r\n");
-
-		self->command_timer = utick;
-		while(utick - self->command_timer <= COMMAND_TIMEOUT_MS) {
-				output_status = USART0_Receive(self);
+enum StatusType sendCommand(struct BC660K * self, u8 send_attempt, u32 command_timeout) {
+		enum StatusType output_status = STATUS_UNKNOWN;
+		if (send_attempt <= 0) {
+				send_attempt = SEND_ATTEMPT_DEFAULT;
 		}
+		u8 count = send_attempt;
 		
-		sprintf(self->log_content, "%s\n\n", self->module_buffer);
-		writeLog(self);
-		clearModuleBuffer(self);
-		sprintf(self->log_content, "Command status: %s\n", getStatusTypeString(output_status));
-		writeLog(self);
-		sprintf(self->log_content, "==========\n");
-		writeLog(self);
+//		char *command;
+//		command = (char * ) malloc(COMMAND_SIZE * sizeof(char));
+//		if (!command) {
+//			Toggle_LED_1();
+//			while (1);
+//		}
 		
-		delay_ms(SEND_COMMAND_DELAY_MS);
+//		strcpy(command, self->command);
+		
+		while (count--){
+				
+				sprintf(self->log_content, "\n=== SENDING <%s> | ATTEMPT %u/%u ===\n", self->command, (send_attempt-count), send_attempt);
+				writeLog(self);
+			
+				clearModuleBuffer(self);
+				
+				
+				USART0_Send(self->command);
+				USART0_Send((char *)"\r\n");
+
+				self->command_timer = utick;
+				while(utick - self->command_timer <= COMMAND_TIMEOUT_DEFAULT_MS) {
+						output_status = USART0_Receive(self);
+				}
+				
+				sprintf(self->log_content, "%s\n\n", self->module_buffer);
+				writeLog(self);
+				clearModuleBuffer(self);
+				sprintf(self->log_content, "Command status: %s\n", getStatusTypeString(output_status));
+				writeLog(self);
+				sprintf(self->log_content, "==========\n");
+				writeLog(self);
+				
+				delay_ms(SEND_COMMAND_DELAY_MS);
+				
+				if (output_status == STATUS_SUCCESS) {
+						break;
+				}
+		}
 		
 		return output_status;
 }
@@ -267,7 +287,7 @@ enum StatusType checkModule_AT(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT");
-		output_status = sendCommand(self);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -302,7 +322,7 @@ enum StatusType offEcho_ATE0(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "ATE0");
-		output_status = sendCommand(self);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -337,7 +357,7 @@ enum StatusType getIMEI_AT_CGSN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+CGSN");
-		output_status = sendCommand(self);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -372,7 +392,7 @@ enum StatusType getModelID_AT_CGMM(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+CGMM");
-		output_status = sendCommand(self);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -407,7 +427,7 @@ enum StatusType checkNetworkRegister_AT_CEREG(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+CEREG?");
-		output_status = sendCommand(self);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -442,7 +462,7 @@ enum StatusType getNetworkStatus_AT_QENG(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QENG=0");
-		output_status = sendCommand(self);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -476,8 +496,8 @@ enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self) {
 		enum StatusType output_status = STATUS_UNKNOWN;
 		
 		/* Write Command */
-		sprintf(self->command, "AT+QMTOPEN=0,\"broker.hivemq.com\",1883");
-		output_status = sendCommand(self);
+		sprintf(self->command, "AT+QMTOPEN=0,\"a2ht7rbdkt6040-ats.iot.ap-northeast-2.amazonaws.com\",8883");
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -511,7 +531,7 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTCONN=0,\"anhttm8client\"");
-		output_status = sendCommand(self);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS + 6000);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -536,7 +556,7 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 					/* Do something */
 					break;
 		}
-		
+
 		return output_status;
 }
 
@@ -546,7 +566,7 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
 		
 		
 		/* Write Command */
-		sprintf(self->command, "AT+QMTPUB=0,0,0,0,\"topic/pub\"");
+		sprintf(self->command, "AT+QMTPUB=0,0,0,0,\"tracker/data\",3");
 		sprintf(self->log_content, "\n=== SENDING <%s> ===\n", self->command);
 		writeLog(self);
 		clearModuleBuffer(self);
@@ -555,17 +575,20 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
 		USART0_Send((char *)"\r\n");
 
 		self->command_timer = utick;
-		while(utick - self->command_timer <= (COMMAND_TIMEOUT_MS + 5000)) {
+		while(utick - self->command_timer <= COMMAND_TIMEOUT_DEFAULT_MS) {
 				output_status = USART0_Receive(self);
 		}
-		delay_ms(2000);
-	
+		
+		sprintf(self->log_content, "%s", self->module_buffer);
+		writeLog(self);
+		clearModuleBuffer(self);
+		
 		sprintf(self->command, "hello");
 		USART0_Send(self->command);
 		USART0_Send((char *)"\r\n");
 	
 		self->command_timer = utick;
-		while(utick - self->command_timer <= COMMAND_TIMEOUT_MS) {
+		while(utick - self->command_timer <= (COMMAND_TIMEOUT_DEFAULT_MS + 2000)) {
 				output_status = USART0_Receive(self);
 		}
 		
@@ -612,7 +635,7 @@ enum StatusType disconnectMQTT_AT_QMTDISC(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTDISC=0");
-		output_status = sendCommand(self);
+		output_status = sendCommand(self, 2, COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -647,7 +670,7 @@ enum StatusType setAuthentication_AT_QSSLCFG(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QSSLCFG=0,0,\"seclevel\",2");
-		output_status = sendCommand(self);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -682,8 +705,43 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self)  {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QSSLCFG=0,0,\"cacert\"");
-		output_status = sendCommand(self);
+		sprintf(self->log_content, "\n=== SENDING <%s> ===\n", self->command);
+		writeLog(self);
+		clearModuleBuffer(self);
 	
+		USART0_Send(self->command);
+		USART0_Send((char *)"\r\n");
+
+		self->command_timer = utick;
+		while(utick - self->command_timer <= COMMAND_TIMEOUT_DEFAULT_MS) {
+				output_status = USART0_Receive(self);
+		}
+		
+		sprintf(self->log_content, "%s", self->module_buffer);
+		writeLog(self);
+		clearModuleBuffer(self);
+		
+		sprintf(self->command, CA_CERT);
+		USART0_Send(self->command);
+		USART0_Send((char *)"\r\n");
+		delay_ms(100);
+		USART0_Send_Char(26);
+	
+		self->command_timer = utick;
+		while(utick - self->command_timer <= (COMMAND_TIMEOUT_DEFAULT_MS + 2000)) {
+				output_status = USART0_Receive(self);
+		}
+		
+		sprintf(self->log_content, "%s\n\n", self->module_buffer);
+		writeLog(self);
+		clearModuleBuffer(self);
+		sprintf(self->log_content, "Command status: %s\n", getStatusTypeString(output_status));
+		writeLog(self);
+		sprintf(self->log_content, "==========\n");
+		writeLog(self);
+		
+		delay_ms(SEND_COMMAND_DELAY_MS);
+		
 		/* Actions with status */
 		switch(output_status){
 			
@@ -717,8 +775,43 @@ enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QSSLCFG=0,0,\"clientcert\"");
-		output_status = sendCommand(self);
+		sprintf(self->log_content, "\n=== SENDING <%s> ===\n", self->command);
+		writeLog(self);
+		clearModuleBuffer(self);
 	
+		USART0_Send(self->command);
+		USART0_Send((char *)"\r\n");
+
+		self->command_timer = utick;
+		while(utick - self->command_timer <= COMMAND_TIMEOUT_DEFAULT_MS) {
+				output_status = USART0_Receive(self);
+		}
+		
+		sprintf(self->log_content, "%s", self->module_buffer);
+		writeLog(self);
+		clearModuleBuffer(self);
+		
+		sprintf(self->command, CLIENT_CERT);
+		USART0_Send(self->command);
+		USART0_Send((char *)"\r\n");
+		delay_ms(100);
+		USART0_Send_Char(26);
+	
+		self->command_timer = utick;
+		while(utick - self->command_timer <= (COMMAND_TIMEOUT_DEFAULT_MS + 2000)) {
+				output_status = USART0_Receive(self);
+		}
+		
+		sprintf(self->log_content, "%s\n\n", self->module_buffer);
+		writeLog(self);
+		clearModuleBuffer(self);
+		sprintf(self->log_content, "Command status: %s\n", getStatusTypeString(output_status));
+		writeLog(self);
+		sprintf(self->log_content, "==========\n");
+		writeLog(self);
+		
+		delay_ms(SEND_COMMAND_DELAY_MS);
+		
 		/* Actions with status */
 		switch(output_status){
 			
@@ -752,8 +845,43 @@ enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QSSLCFG=0,0,\"clientkey\"");
-		output_status = sendCommand(self);
+		sprintf(self->log_content, "\n=== SENDING <%s> ===\n", self->command);
+		writeLog(self);
+		clearModuleBuffer(self);
 	
+		USART0_Send(self->command);
+		USART0_Send((char *)"\r\n");
+
+		self->command_timer = utick;
+		while(utick - self->command_timer <= COMMAND_TIMEOUT_DEFAULT_MS) {
+				output_status = USART0_Receive(self);
+		}
+		
+		sprintf(self->log_content, "%s", self->module_buffer);
+		writeLog(self);
+		clearModuleBuffer(self);
+		
+		sprintf(self->command, CLIENT_KEY);
+		USART0_Send(self->command);
+		USART0_Send((char *)"\r\n");
+		delay_ms(100);
+		USART0_Send_Char(26);
+	
+		self->command_timer = utick;
+		while(utick - self->command_timer <= (COMMAND_TIMEOUT_DEFAULT_MS + 2000)) {
+				output_status = USART0_Receive(self);
+		}
+		
+		sprintf(self->log_content, "%s\n\n", self->module_buffer);
+		writeLog(self);
+		clearModuleBuffer(self);
+		sprintf(self->log_content, "Command status: %s\n", getStatusTypeString(output_status));
+		writeLog(self);
+		sprintf(self->log_content, "==========\n");
+		writeLog(self);
+		
+		delay_ms(SEND_COMMAND_DELAY_MS);
+		
 		/* Actions with status */
 		switch(output_status){
 			
@@ -787,7 +915,7 @@ enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTCFG=\"ssl\",0,1,0,0");
-		output_status = sendCommand(self);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -816,6 +944,7 @@ enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self) {
 		return output_status;
 }
 
+
 /* Debug */
 void writeLog(struct BC660K * self) {
   USART1_Send(self -> log_content);
@@ -838,7 +967,55 @@ char *getStatusTypeString(enum StatusType status) {
 		}
 }
 
+/*************************************************************************************************************
+ * @brief  Configure the UART0 for GNSS
+ * @retval None
+ ***********************************************************************************************************/
+void UART0_GNSS_Configuration(void) {
+  CKCU_PeripClockConfig_TypeDef CKCUClock; // Set all the fields to zero, which means that no peripheral clocks are enabled by default.
 
+  {
+    /* Enable peripheral clock of AFIO, UxART                                                                 */
+    CKCUClock.Bit.AFIO = 1;
+    CKCUClock.Bit.PB = 1;
+    CKCUClock.Bit.UART0 = 1;
+    CKCU_PeripClockConfig(CKCUClock, ENABLE);
+  }
+
+  /* Turn on UxART Rx internal pull up resistor to prevent unknow state                                     */
+  GPIO_PullResistorConfig(HT_GPIOB, GPIO_PIN_8, GPIO_PR_UP);
+
+  /* Config AFIO mode as UxART function.                                                                    */
+  AFIO_GPxConfig(GPIO_PB, AFIO_PIN_7, AFIO_FUN_USART_UART);
+  AFIO_GPxConfig(GPIO_PB, AFIO_PIN_8, AFIO_FUN_USART_UART);
+
+  {
+    /* UxART configured as follow:
+          - BaudRate = 115200 baud
+          - Word Length = 8 Bits
+          - One Stop Bit
+          - None parity bit
+    */
+
+    /* !!! NOTICE !!!
+       Notice that the local variable (structure) did not have an initial value.
+       Please confirm that there are no missing members in the parameter settings below in this function.
+    */
+    USART_InitTypeDef USART_InitStructure = {
+      0
+    };
+    USART_InitStructure.USART_BaudRate = 9600;
+    USART_InitStructure.USART_WordLength = USART_WORDLENGTH_8B;
+    USART_InitStructure.USART_StopBits = USART_STOPBITS_1;
+    USART_InitStructure.USART_Parity = USART_PARITY_NO;
+    USART_InitStructure.USART_Mode = USART_MODE_NORMAL;
+    USART_Init(HT_UART0, & USART_InitStructure);
+  }
+
+  /* Enable UxART Tx and Rx function                                                                        */
+  USART_TxCmd(HT_UART0, ENABLE);
+  USART_RxCmd(HT_UART0, ENABLE);
+}
 
 /*************************************************************************************************************
  * @brief  Configure the USART0
@@ -989,6 +1166,19 @@ void USART1_Send(char * input_string) {
   /* Send a buffer from UxART to terminal                                                                   */
   for (i = 0; i < strlen(input_string); i++) {
     USART1_Send_Char(input_string[i]);
+  }
+}
+
+void UART0_Receive(void) {
+  u16 uData;
+
+  /* Waits until the Rx FIFO/DR is not empty then get data from them                                        */
+  if (USART_GetFlagStatus(HT_UART0, USART_FLAG_RXDR) == SET) {
+    uData = USART_ReceiveData(HT_UART0);
+
+    #if 1 // Loop back Rx data to Tx for test
+    USART1_Send_Char(uData);
+    #endif
   }
 }
 
