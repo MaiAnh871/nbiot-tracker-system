@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\HT32\52367\Obj\HT32.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\HT32\52367\Obj\HT32.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Wed May  3 22:50:35 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Thu May  4 17:09:43 2023
 <BR><P>
 <H3>Maximum Stack Usage =        156 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -197,12 +197,12 @@ Global Symbols
 
 <P><STRONG><a name="[57]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
-<P><STRONG><a name="[43]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
+<P><STRONG><a name="[42]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setClientPrivateKey_AT_QSSLCFG
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setClientCert_AT_QSSLCFG
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setCACert_AT_QSSLCFG
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;publishMessage_AT_QMTPUB
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
 <LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -223,14 +223,13 @@ Global Symbols
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setClientCert_AT_QSSLCFG
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setCACert_AT_QSSLCFG
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;publishMessage_AT_QMTPUB
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
 </UL>
 
 <P><STRONG><a name="[46]"></a>strcpy</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, strcpy.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setClientPrivateKey_AT_QSSLCFG
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setClientCert_AT_QSSLCFG
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setCACert_AT_QSSLCFG
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;publishMessage_AT_QMTPUB
 </UL>
 
@@ -293,11 +292,11 @@ Global Symbols
 <P><STRONG><a name="[31]"></a>HT32F_DVB_LEDInit</STRONG> (Thumb, 128 bytes, Stack size 24 bytes, ht32_board.o(.text.HT32F_DVB_LEDInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = HT32F_DVB_LEDInit &rArr; AFIO_GPxConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_DriveConfig
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_DirectionConfig
-<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFIO_GPxConfig
+<BR>[Calls]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFIO_GPxConfig
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PullResistorConfig
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CKCU_PeripClockConfig
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_DriveConfig
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_DirectionConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
 </UL>
@@ -345,7 +344,7 @@ Global Symbols
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setClientCert_AT_QSSLCFG
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setCACert_AT_QSSLCFG
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;publishMessage_AT_QMTPUB
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
 </UL>
 
 <P><STRONG><a name="[3b]"></a>USART0_Send</STRONG> (Thumb, 112 bytes, Stack size 32 bytes, main.o(.text.USART0_Send))
@@ -359,7 +358,7 @@ Global Symbols
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setClientCert_AT_QSSLCFG
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setCACert_AT_QSSLCFG
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;publishMessage_AT_QMTPUB
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
 </UL>
 
 <P><STRONG><a name="[38]"></a>USART_GetFlagStatus</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, ht32f5xxxx_usart.o(.text.USART_GetFlagStatus))
@@ -369,7 +368,7 @@ Global Symbols
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setClientCert_AT_QSSLCFG
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setCACert_AT_QSSLCFG
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;publishMessage_AT_QMTPUB
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
 </UL>
 
@@ -392,7 +391,7 @@ Global Symbols
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setClientCert_AT_QSSLCFG
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setCACert_AT_QSSLCFG
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;publishMessage_AT_QMTPUB
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
 </UL>
 
@@ -400,13 +399,13 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
 </UL>
 
-<P><STRONG><a name="[29]"></a>main</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, main.o(.text.main))
+<P><STRONG><a name="[29]"></a>main</STRONG> (Thumb, 112 bytes, Stack size 0 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 156<LI>Call Chain = main &rArr; setup &rArr; HT32F_DVB_LEDInit &rArr; AFIO_GPxConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;publishMessage_AT_QMTPUB
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
@@ -420,12 +419,12 @@ Global Symbols
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcpy
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[42]"></a>sendCommand</STRONG> (Thumb, 668 bytes, Stack size 48 bytes, main.o(.text.sendCommand))
+<P><STRONG><a name="[43]"></a>sendCommand</STRONG> (Thumb, 676 bytes, Stack size 48 bytes, main.o(.text.sendCommand))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = sendCommand &rArr; USART0_Receive &rArr; strstr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART0_Receive
@@ -434,7 +433,7 @@ Global Symbols
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
 <LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -448,9 +447,8 @@ Global Symbols
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcpy
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
 </UL>
@@ -465,7 +463,7 @@ Global Symbols
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcpy
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
 </UL>
@@ -480,12 +478,12 @@ Global Symbols
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcpy
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
 </UL>
 
-<P><STRONG><a name="[41]"></a>setup</STRONG> (Thumb, 1012 bytes, Stack size 56 bytes, main.o(.text.setup))
+<P><STRONG><a name="[41]"></a>setup</STRONG> (Thumb, 1024 bytes, Stack size 56 bytes, main.o(.text.setup))
 <BR><BR>[Stack]<UL><LI>Max Depth = 156<LI>Call Chain = setup &rArr; HT32F_DVB_LEDInit &rArr; AFIO_GPxConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HT32F_DVB_LEDToggle
@@ -502,11 +500,11 @@ Global Symbols
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HT32F_DVB_LEDOff
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HT32F_DVB_LEDOn
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HT32F_DVB_LEDInit
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
 <LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidiv
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -525,7 +523,7 @@ Global Symbols
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setClientCert_AT_QSSLCFG
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setCACert_AT_QSSLCFG
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;publishMessage_AT_QMTPUB
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendCommand
 </UL>
 
 <P><STRONG><a name="[5c]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)

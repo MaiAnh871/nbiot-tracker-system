@@ -252,7 +252,7 @@ enum StatusType sendCommand(struct BC660K * self, u8 send_attempt, u32 command_t
 				USART0_Send((char *)"\r\n");
 
 				self->command_timer = utick;
-				while(utick - self->command_timer <= COMMAND_TIMEOUT_DEFAULT_MS) {
+				while(utick - self->command_timer <= command_timeout) {
 						output_status = USART0_Receive(self);
 				}
 				
@@ -286,7 +286,7 @@ enum StatusType checkModule_AT(struct BC660K *self) {
 		enum StatusType output_status = STATUS_UNKNOWN;
 		
 		/* Write Command */
-		sprintf(self->command, "AT");
+		sprintf(self->command, "AT+QSCLK=0");
 		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
@@ -497,7 +497,7 @@ enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTOPEN=0,\"a2ht7rbdkt6040-ats.iot.ap-northeast-2.amazonaws.com\",8883");
-		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS+10000);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -531,8 +531,7 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTCONN=0,\"anhttm8client\"");
-		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS + 6000);
-	
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS + 4000);
 		/* Actions with status */
 		switch(output_status){
 			
@@ -634,7 +633,7 @@ enum StatusType disconnectMQTT_AT_QMTDISC(struct BC660K *self) {
 		enum StatusType output_status = STATUS_UNKNOWN;
 		
 		/* Write Command */
-		sprintf(self->command, "AT+QMTDISC=0");
+		sprintf(self->command, "AT+QMTCLOSE=0");
 		output_status = sendCommand(self, 2, COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
@@ -717,7 +716,7 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self)  {
 				output_status = USART0_Receive(self);
 		}
 		
-		sprintf(self->log_content, "%s", self->module_buffer);
+		sprintf(self->log_content, "|%s|", self->module_buffer);
 		writeLog(self);
 		clearModuleBuffer(self);
 		
