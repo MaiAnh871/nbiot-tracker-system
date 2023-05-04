@@ -108,7 +108,7 @@ enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self);
 enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self);
 enum StatusType connectClient_AT_QMTCONN(struct BC660K *self);
 enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self);
-enum StatusType disconnectMQTT_AT_QMTDISC(struct BC660K *self);
+enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self);
 
 
 /* ==================== */
@@ -206,7 +206,7 @@ void setup(struct BC660K * self) {
 }
 
 void loop(struct BC660K * self) {
-		checkModule_AT(self);
+		
 //		offEcho_ATE0(self);
 //		getIMEI_AT_CGSN(self);
 //		setAuthentication_AT_QSSLCFG(self);
@@ -216,12 +216,14 @@ void loop(struct BC660K * self) {
 //		getModelID_AT_CGMM(self);
 //		checkNetworkRegister_AT_CEREG(self);
 //		getNetworkStatus_AT_QENG(self);
-//		disconnectMQTT_AT_QMTDISC(self);
+		checkModule_AT(self);
+//		closeMQTT_AT_QMTCLOSE(self);
 		openMQTT_AT_QMTOPEN(self);
 		connectClient_AT_QMTCONN(self);
 		publishMessage_AT_QMTPUB(self);
 		publishMessage_AT_QMTPUB(self);
-		disconnectMQTT_AT_QMTDISC(self);
+		publishMessage_AT_QMTPUB(self);
+		closeMQTT_AT_QMTCLOSE(self);
 }
 	
 enum StatusType sendCommand(struct BC660K * self, u8 send_attempt, u32 command_timeout) {
@@ -497,7 +499,7 @@ enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTOPEN=0,\"a2ht7rbdkt6040-ats.iot.ap-northeast-2.amazonaws.com\",8883");
-		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS+10000);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS + 9000);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -531,7 +533,7 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTCONN=0,\"anhttm8client\"");
-		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS + 4000);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS + 2000);
 		/* Actions with status */
 		switch(output_status){
 			
@@ -628,7 +630,7 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
 		return output_status;
 }
 
-enum StatusType disconnectMQTT_AT_QMTDISC(struct BC660K *self) {
+enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self) {
 		/* Initialize status */
 		enum StatusType output_status = STATUS_UNKNOWN;
 		
