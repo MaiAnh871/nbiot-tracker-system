@@ -109,7 +109,7 @@ enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self);
 enum StatusType connectClient_AT_QMTCONN(struct BC660K *self);
 enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self);
 enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self);
-
+enum StatusType wakeUpModule_AT_QSCLK(struct BC660K *self);
 
 /* ==================== */
 
@@ -216,8 +216,9 @@ void loop(struct BC660K * self) {
 //		getModelID_AT_CGMM(self);
 //		checkNetworkRegister_AT_CEREG(self);
 //		getNetworkStatus_AT_QENG(self);
-		checkModule_AT(self);
+//		checkModule_AT(self);
 //		closeMQTT_AT_QMTCLOSE(self);
+		wakeUpModule_AT_QSCLK(self);
 		openMQTT_AT_QMTOPEN(self);
 		connectClient_AT_QMTCONN(self);
 		publishMessage_AT_QMTPUB(self);
@@ -284,6 +285,41 @@ void clearModuleBuffer(struct BC660K *self) {
 }
 
 enum StatusType checkModule_AT(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		sprintf(self->command, "AT");
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
+
+enum StatusType wakeUpModule_AT_QSCLK(struct BC660K *self) {
 		/* Initialize status */
 		enum StatusType output_status = STATUS_UNKNOWN;
 		
