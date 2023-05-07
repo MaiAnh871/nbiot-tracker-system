@@ -79,18 +79,19 @@ const char *ERROR_COMMAND_SIGN[] = { "ERROR" };
 #define SUCCESS_COMMAND_SIGN_LENGTH sizeof(SUCCESS_COMMAND_SIGN) / sizeof(SUCCESS_COMMAND_SIGN[0])
 #define ERROR_COMMAND_SIGN_LENGTH sizeof(ERROR_COMMAND_SIGN) / sizeof(ERROR_COMMAND_SIGN[0])
 
-#define LOG_CONTENT_SIZE 100
-#define COMMAND_TIMEOUT_MS 3000
-#define COMMAND_SIZE 1100
-#define MODULE_BUFFER_SIZE 200
-#define SEND_COMMAND_DELAY_MS 2500
+#define LOG_CONTENT_SIZE 1700
+#define SEND_ATTEMPT_DEFAULT 3
+#define COMMAND_TIMEOUT_DEFAULT_MS 2000
+#define COMMAND_SIZE 1700
+#define MODULE_BUFFER_SIZE 100
+#define SEND_COMMAND_DELAY_MS 500
 
 
 /* Private function prototypes -----------------------------------------------------------------------------*/
 static void delay_ms(u32 count);
 void setup(struct BC660K * self);
 void loop(struct BC660K * self);
-enum StatusType sendCommand(struct BC660K * self);
+enum StatusType sendCommand(struct BC660K * self, u8 send_attempt, u32 command_timeout);
 void clearModuleBuffer(struct BC660K *self);
 
 /* AT Command functions */
