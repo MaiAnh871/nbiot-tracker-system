@@ -196,16 +196,17 @@ void setup(struct BC660K * self) {
   sprintf(self -> log_content, "Setup successfully!\n");
   writeLog(self);
 	
-		checkModule_AT(self);
-		offEcho_ATE0(self);
-		getIMEI_AT_CGSN(self);
-		setAuthentication_AT_QSSLCFG(self);
-		setCACert_AT_QSSLCFG(self);
-		setClientCert_AT_QSSLCFG(self);
-		setClientPrivateKey_AT_QSSLCFG(self);
+//		checkModule_AT(self);
+//		offEcho_ATE0(self);
+//		getIMEI_AT_CGSN(self);
+//		setAuthentication_AT_QSSLCFG(self);
+//		setCACert_AT_QSSLCFG(self);
+//		setClientCert_AT_QSSLCFG(self);
+//		setClientPrivateKey_AT_QSSLCFG(self);
 }
 
 void loop(struct BC660K * self) {
+	UART0_Receive();
 		
 //		offEcho_ATE0(self);
 //		getIMEI_AT_CGSN(self);
@@ -218,13 +219,14 @@ void loop(struct BC660K * self) {
 //		getNetworkStatus_AT_QENG(self);
 //		checkModule_AT(self);
 //		closeMQTT_AT_QMTCLOSE(self);
-		wakeUpModule_AT_QSCLK(self);
-		openMQTT_AT_QMTOPEN(self);
-		connectClient_AT_QMTCONN(self);
-		publishMessage_AT_QMTPUB(self);
-		publishMessage_AT_QMTPUB(self);
-		publishMessage_AT_QMTPUB(self);
-		closeMQTT_AT_QMTCLOSE(self);
+	
+//		wakeUpModule_AT_QSCLK(self);
+//		openMQTT_AT_QMTOPEN(self);
+//		connectClient_AT_QMTCONN(self);
+//		publishMessage_AT_QMTPUB(self);
+//		publishMessage_AT_QMTPUB(self);
+//		publishMessage_AT_QMTPUB(self);
+//		closeMQTT_AT_QMTCLOSE(self);
 }
 	
 enum StatusType sendCommand(struct BC660K * self, u8 send_attempt, u32 command_timeout) {
