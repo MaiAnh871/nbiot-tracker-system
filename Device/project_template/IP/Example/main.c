@@ -148,7 +148,8 @@ vu32 utick;
 uint8_t data[100];
 uint8_t* check = NULL;
 uint8_t GPS_raw[100];
-
+float latitude;
+float longitude;
 
 
 /* Global functions ----------------------------------------------------------------------------------------*/
@@ -157,6 +158,7 @@ bool getRawGPS(void);
 bool checkValidGPS(uint8_t *raw_GPS);
 void printBool(bool b);
 void extractMainData(void);
+void USART1_Send_Float(float f);
 void updatePosition(void);
 float calculateDistance(void);
 /********************************************************************************************************/
@@ -221,16 +223,16 @@ void setup(struct BC660K * self) {
 }
 
 
-void printBool(bool b) {
-  char buf[6]; // enough to hold "false" or "true"
-  sprintf(buf, "%s\r\n", b ? "Valid\r\n" : "Invalid\r\n");
-  USART1_Send(buf);
-}
+
 
 void loop(struct BC660K * self) {
 	getRawGPS();
 	USART1_Send((char*) data);
 	printBool(getRawGPS());
+	extractMainData();
+	USART1_Send_Float(latitude);
+	USART1_Send_Float(longitude);
+	
 	
 	delay_ms(1000);
 //	UART0_Receive();
@@ -1303,7 +1305,56 @@ bool checkValidGPS(uint8_t *raw_GPS)
 	return valid;
 }
 
-void extractMainData(void);
+void printBool(bool b) 
+{
+  char buf[6]; // enough to hold "false" or "true"
+  sprintf(buf, "%s\r\n", b ? "Valid\r\n" : "Invalid\r\n");
+  USART1_Send(buf);
+}
+
+void extractMainData(void)
+{
+	extern uint8_t data[100];
+	extern float latitude;
+	extern float longitude;
+	uint8_t* check = NULL;
+	int b = 0;
+	float a = 0.0;
+	float c = 0.0;
+	
+	check = strtok(data, ",");
+	check = strtok(NULL, ",");
+	check = strtok(NULL, ",");
+	
+	check = strtok(NULL, ",");
+	a = atof(check);
+	b = a/100;
+	c  = a-b*100;
+	latitude = (b + (c/60));
+	check = strtok(NULL, ",");
+	if (strcmp(check, "S") == 0)
+	{
+		latitude = latitude*(-1);
+	}
+	
+	check = strtok(NULL, ",");
+	a = atof(check);
+	b = a/100;
+	c  = a-b*100;
+	longitude = (b + (c/60));
+	check = strtok(NULL, ",");
+	if (strcmp(check, "S") == 0)
+	{
+		longitude = longitude*(-1);
+	}
+}
+
+void USART1_Send_Float(float f) {
+  char buffer[16]; // adjust buffer size as needed
+  sprintf(buffer, "%.6f\r\n", f); // convert float to string with 6 decimal places
+  USART1_Send(buffer); // send string over USART1
+}
+
 void updatePosition(void);
 float calculateDistance(void);
 

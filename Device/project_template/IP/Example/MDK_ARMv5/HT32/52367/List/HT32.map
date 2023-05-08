@@ -29,9 +29,13 @@ Section Cross References
     main.o(.text.loop) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
     main.o(.text.loop) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
     main.o(.text.loop) refers to strlen.o(.text) for strlen
-    main.o(.text.loop) refers to printf3.o(i.__0sprintf$3) for __2sprintf
+    main.o(.text.loop) refers to printfa.o(i.__0sprintf) for __2sprintf
+    main.o(.text.loop) refers to main.o(.text.extractMainData) for extractMainData
+    main.o(.text.loop) refers to f2d.o(.text) for __aeabi_f2d
     main.o(.text.loop) refers to main.o(.bss.data) for data
     main.o(.text.loop) refers to main.o(.rodata.str1.1) for [Anonymous Symbol]
+    main.o(.text.loop) refers to main.o(.bss.latitude) for latitude
+    main.o(.text.loop) refers to main.o(.bss.longitude) for longitude
     main.o(.ARM.exidx.text.loop) refers to main.o(.text.loop) for [Anonymous Symbol]
     main.o(.text.LED_Init) refers to ht32_board.o(.text.HT32F_DVB_LEDInit) for HT32F_DVB_LEDInit
     main.o(.text.LED_Init) refers to ht32_board.o(.text.HT32F_DVB_LEDOn) for HT32F_DVB_LEDOn
@@ -61,16 +65,6 @@ Section Cross References
     main.o(.text.writeLog) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
     main.o(.text.writeLog) refers to strlen.o(.text) for strlen
     main.o(.ARM.exidx.text.writeLog) refers to main.o(.text.writeLog) for [Anonymous Symbol]
-    main.o(.text.printBool) refers to printf3.o(i.__0sprintf$3) for __2sprintf
-    main.o(.text.printBool) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
-    main.o(.text.printBool) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
-    main.o(.text.printBool) refers to strlen.o(.text) for strlen
-    main.o(.text.printBool) refers to main.o(.rodata.str1.1) for [Anonymous Symbol]
-    main.o(.ARM.exidx.text.printBool) refers to main.o(.text.printBool) for [Anonymous Symbol]
-    main.o(.text.USART1_Send) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
-    main.o(.text.USART1_Send) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
-    main.o(.text.USART1_Send) refers to strlen.o(.text) for strlen
-    main.o(.ARM.exidx.text.USART1_Send) refers to main.o(.text.USART1_Send) for [Anonymous Symbol]
     main.o(.text.getRawGPS) refers to strstr.o(.text) for strstr
     main.o(.text.getRawGPS) refers to memseta.o(.text) for __aeabi_memclr4
     main.o(.text.getRawGPS) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
@@ -82,7 +76,37 @@ Section Cross References
     main.o(.text.getRawGPS) refers to main.o(.bss.GPS_raw) for GPS_raw
     main.o(.text.getRawGPS) refers to main.o(.rodata.str1.1) for [Anonymous Symbol]
     main.o(.ARM.exidx.text.getRawGPS) refers to main.o(.text.getRawGPS) for [Anonymous Symbol]
-    main.o(.text.sendCommand) refers to printf3.o(i.__0sprintf$3) for __2sprintf
+    main.o(.text.USART1_Send) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
+    main.o(.text.USART1_Send) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
+    main.o(.text.USART1_Send) refers to strlen.o(.text) for strlen
+    main.o(.ARM.exidx.text.USART1_Send) refers to main.o(.text.USART1_Send) for [Anonymous Symbol]
+    main.o(.text.printBool) refers to printfa.o(i.__0sprintf) for __2sprintf
+    main.o(.text.printBool) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
+    main.o(.text.printBool) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
+    main.o(.text.printBool) refers to strlen.o(.text) for strlen
+    main.o(.text.printBool) refers to main.o(.rodata.str1.1) for [Anonymous Symbol]
+    main.o(.ARM.exidx.text.printBool) refers to main.o(.text.printBool) for [Anonymous Symbol]
+    main.o(.text.extractMainData) refers to strtok.o(.text) for strtok
+    main.o(.text.extractMainData) refers to atof.o(i.atof) for atof
+    main.o(.text.extractMainData) refers to d2f.o(.text) for __aeabi_d2f
+    main.o(.text.extractMainData) refers to fdiv.o(.text) for __aeabi_fdiv
+    main.o(.text.extractMainData) refers to ffixi.o(.text) for __aeabi_f2iz
+    main.o(.text.extractMainData) refers to fflti.o(.text) for __aeabi_i2f
+    main.o(.text.extractMainData) refers to fadd.o(.text) for __aeabi_fsub
+    main.o(.text.extractMainData) refers to strcmp.o(.text) for strcmp
+    main.o(.text.extractMainData) refers to main.o(.bss.data) for data
+    main.o(.text.extractMainData) refers to main.o(.rodata.str1.1) for [Anonymous Symbol]
+    main.o(.text.extractMainData) refers to main.o(.bss.latitude) for latitude
+    main.o(.text.extractMainData) refers to main.o(.bss.longitude) for longitude
+    main.o(.ARM.exidx.text.extractMainData) refers to main.o(.text.extractMainData) for [Anonymous Symbol]
+    main.o(.text.USART1_Send_Float) refers to f2d.o(.text) for __aeabi_f2d
+    main.o(.text.USART1_Send_Float) refers to printfa.o(i.__0sprintf) for __2sprintf
+    main.o(.text.USART1_Send_Float) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
+    main.o(.text.USART1_Send_Float) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
+    main.o(.text.USART1_Send_Float) refers to strlen.o(.text) for strlen
+    main.o(.text.USART1_Send_Float) refers to main.o(.rodata.str1.1) for [Anonymous Symbol]
+    main.o(.ARM.exidx.text.USART1_Send_Float) refers to main.o(.text.USART1_Send_Float) for [Anonymous Symbol]
+    main.o(.text.sendCommand) refers to printfa.o(i.__0sprintf) for __2sprintf
     main.o(.text.sendCommand) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
     main.o(.text.sendCommand) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
     main.o(.text.sendCommand) refers to strlen.o(.text) for strlen
@@ -134,7 +158,7 @@ Section Cross References
     main.o(.text.connectClient_AT_QMTCONN) refers to main.o(.text.sendCommand) for sendCommand
     main.o(.ARM.exidx.text.connectClient_AT_QMTCONN) refers to main.o(.text.connectClient_AT_QMTCONN) for [Anonymous Symbol]
     main.o(.text.publishMessage_AT_QMTPUB) refers to memcpya.o(.text) for __aeabi_memcpy
-    main.o(.text.publishMessage_AT_QMTPUB) refers to printf3.o(i.__0sprintf$3) for __2sprintf
+    main.o(.text.publishMessage_AT_QMTPUB) refers to printfa.o(i.__0sprintf) for __2sprintf
     main.o(.text.publishMessage_AT_QMTPUB) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
     main.o(.text.publishMessage_AT_QMTPUB) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
     main.o(.text.publishMessage_AT_QMTPUB) refers to strlen.o(.text) for strlen
@@ -153,7 +177,7 @@ Section Cross References
     main.o(.text.setAuthentication_AT_QSSLCFG) refers to main.o(.text.sendCommand) for sendCommand
     main.o(.ARM.exidx.text.setAuthentication_AT_QSSLCFG) refers to main.o(.text.setAuthentication_AT_QSSLCFG) for [Anonymous Symbol]
     main.o(.text.setCACert_AT_QSSLCFG) refers to memcpya.o(.text) for __aeabi_memcpy
-    main.o(.text.setCACert_AT_QSSLCFG) refers to printf3.o(i.__0sprintf$3) for __2sprintf
+    main.o(.text.setCACert_AT_QSSLCFG) refers to printfa.o(i.__0sprintf) for __2sprintf
     main.o(.text.setCACert_AT_QSSLCFG) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
     main.o(.text.setCACert_AT_QSSLCFG) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
     main.o(.text.setCACert_AT_QSSLCFG) refers to strlen.o(.text) for strlen
@@ -168,7 +192,7 @@ Section Cross References
     main.o(.text.USART0_Send_Char) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
     main.o(.ARM.exidx.text.USART0_Send_Char) refers to main.o(.text.USART0_Send_Char) for [Anonymous Symbol]
     main.o(.text.setClientCert_AT_QSSLCFG) refers to memcpya.o(.text) for __aeabi_memcpy
-    main.o(.text.setClientCert_AT_QSSLCFG) refers to printf3.o(i.__0sprintf$3) for __2sprintf
+    main.o(.text.setClientCert_AT_QSSLCFG) refers to printfa.o(i.__0sprintf) for __2sprintf
     main.o(.text.setClientCert_AT_QSSLCFG) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
     main.o(.text.setClientCert_AT_QSSLCFG) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
     main.o(.text.setClientCert_AT_QSSLCFG) refers to strlen.o(.text) for strlen
@@ -181,7 +205,7 @@ Section Cross References
     main.o(.text.setClientCert_AT_QSSLCFG) refers to main.o(.rodata..Lswitch.table.setClientPrivateKey_AT_QSSLCFG) for [Anonymous Symbol]
     main.o(.ARM.exidx.text.setClientCert_AT_QSSLCFG) refers to main.o(.text.setClientCert_AT_QSSLCFG) for [Anonymous Symbol]
     main.o(.text.setClientPrivateKey_AT_QSSLCFG) refers to memcpya.o(.text) for __aeabi_memcpy
-    main.o(.text.setClientPrivateKey_AT_QSSLCFG) refers to printf3.o(i.__0sprintf$3) for __2sprintf
+    main.o(.text.setClientPrivateKey_AT_QSSLCFG) refers to printfa.o(i.__0sprintf) for __2sprintf
     main.o(.text.setClientPrivateKey_AT_QSSLCFG) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
     main.o(.text.setClientPrivateKey_AT_QSSLCFG) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
     main.o(.text.setClientPrivateKey_AT_QSSLCFG) refers to strlen.o(.text) for strlen
@@ -1141,6 +1165,14 @@ Section Cross References
     spi_flash.o(.text.SPI_FLASH_WriteDisable) refers to ht32f5xxxx_gpio.o(.text.GPIO_SetOutBits) for GPIO_SetOutBits
     spi_flash.o(.text.SPI_FLASH_WriteDisable) refers to ht32_board.o(.rodata.GPIO_PORT) for GPIO_PORT
     spi_flash.o(.ARM.exidx.text.SPI_FLASH_WriteDisable) refers to spi_flash.o(.text.SPI_FLASH_WriteDisable) for [Anonymous Symbol]
+    atof.o(i.__softfp_atof) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atof.o(i.__softfp_atof) refers to errno.o(i.__read_errno) for __read_errno
+    atof.o(i.__softfp_atof) refers to strtod.o(.text) for __strtod_int
+    atof.o(i.__softfp_atof) refers to errno.o(i.__set_errno) for __set_errno
+    atof.o(i.atof) refers (Special) to iusefp.o(.text) for __I$use$fp
+    atof.o(i.atof) refers to errno.o(i.__read_errno) for __read_errno
+    atof.o(i.atof) refers to strtod.o(.text) for __strtod_int
+    atof.o(i.atof) refers to errno.o(i.__set_errno) for __set_errno
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
@@ -1418,6 +1450,16 @@ Section Cross References
     mallocra.o(i.__realloc$memalign) refers to mvars.o(.data) for __microlib_freelist
     mallocra.o(i.internal_alloc) refers to memcpya.o(.text) for __aeabi_memcpy
     mallocra.o(i.internal_alloc) refers to mvars.o(.data) for __microlib_freelist
+    fadd.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    fadd.o(.text) refers to fepilogue.o(.text) for _float_epilogue
+    fdiv.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    fdiv.o(.text) refers to fepilogue.o(.text) for _float_round
+    fflti.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    fflti.o(.text) refers to fepilogue.o(.text) for _float_epilogue
+    ffixi.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    f2d.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    d2f.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    d2f.o(.text) refers to fepilogue.o(.text) for _float_round
     entry2.o(.ARM.Collect$$$$00000001) refers to entry2.o(.ARM.Collect$$$$00002712) for __lit__00000000
     entry2.o(.ARM.Collect$$$$00002712) refers to startup_ht32f5xxxx_03.o(STACK) for __initial_sp
     entry2.o(__vectab_stack_and_reset_area) refers to startup_ht32f5xxxx_03.o(STACK) for __initial_sp
@@ -1428,6 +1470,13 @@ Section Cross References
     idiv_div0.o(.text) refers to uidiv_div0.o(.text) for __aeabi_uidivmod
     uldiv.o(.text) refers to llushr.o(.text) for __aeabi_llsr
     uldiv.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    errno.o(i.__aeabi_errno_addr) refers to errno.o(.data) for .data
+    errno.o(i.__read_errno) refers to errno.o(.data) for .data
+    errno.o(i.__set_errno) refers to errno.o(.data) for .data
+    strtod.o(.text) refers to scanf_fp.o(.text) for _scanf_real
+    strtod.o(.text) refers to _sgetc.o(.text) for _sgetc
+    strtod.o(.text) refers to isspace_c.o(.text) for isspace
+    fepilogue.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
     dadd.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
     dadd.o(.text) refers to llshl.o(.text) for __aeabi_llsl
     dadd.o(.text) refers to llsshr.o(.text) for __aeabi_lasr
@@ -1441,10 +1490,22 @@ Section Cross References
     dfixul.o(.text) refers to llshl.o(.text) for __aeabi_llsl
     cdrcmple.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
     init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
+    isspace_c.o(.text) refers to ctype_c.o(.text) for __ctype_lookup
+    scanf_fp.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    scanf_fp.o(.text) refers to llmul.o(.text) for __aeabi_lmul
+    scanf_fp.o(.text) refers to dfltul.o(.text) for __aeabi_ul2d
+    scanf_fp.o(.text) refers to dmul.o(.text) for __aeabi_dmul
+    scanf_fp.o(.text) refers to ddiv.o(.text) for __aeabi_ddiv
+    scanf_fp.o(.text) refers to scanf_fp.o(i._is_digit) for _is_digit
+    scanf_fp.o(.text) refers to d2f.o(.text) for __aeabi_d2f
     depilogue.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
     depilogue.o(.text) refers to depilogue.o(i.__ARM_clz) for __ARM_clz
     depilogue.o(.text) refers to llshl.o(.text) for __aeabi_llsl
     depilogue.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+    ctype_c.o(.text) refers to ctype_c.o(.constdata) for .constdata
+    dfltul.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dfltul.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    scanf_fp.o(i._is_digit) refers (Special) to iusefp.o(.text) for __I$use$fp
     depilogue.o(i.__ARM_clz) refers (Special) to iusefp.o(.text) for __I$use$fp
 
 
@@ -1468,11 +1529,14 @@ Removing Unused input sections from the image.
     Removing main.o(.ARM.exidx.text.Toggle_LED_1), (8 bytes).
     Removing main.o(.text.writeLog), (60 bytes).
     Removing main.o(.ARM.exidx.text.writeLog), (8 bytes).
-    Removing main.o(.text.printBool), (92 bytes).
-    Removing main.o(.ARM.exidx.text.printBool), (8 bytes).
+    Removing main.o(.ARM.exidx.text.getRawGPS), (8 bytes).
     Removing main.o(.text.USART1_Send), (60 bytes).
     Removing main.o(.ARM.exidx.text.USART1_Send), (8 bytes).
-    Removing main.o(.ARM.exidx.text.getRawGPS), (8 bytes).
+    Removing main.o(.text.printBool), (92 bytes).
+    Removing main.o(.ARM.exidx.text.printBool), (8 bytes).
+    Removing main.o(.ARM.exidx.text.extractMainData), (8 bytes).
+    Removing main.o(.text.USART1_Send_Float), (84 bytes).
+    Removing main.o(.ARM.exidx.text.USART1_Send_Float), (8 bytes).
     Removing main.o(.text.sendCommand), (752 bytes).
     Removing main.o(.ARM.exidx.text.sendCommand), (8 bytes).
     Removing main.o(.text.clearModuleBuffer), (82 bytes).
@@ -2652,15 +2716,8 @@ Removing Unused input sections from the image.
     Removing spi_flash.o(.ARM.exidx.text.SPI_FLASH_WriteStatus2), (8 bytes).
     Removing spi_flash.o(.text.SPI_FLASH_WriteDisable), (76 bytes).
     Removing spi_flash.o(.ARM.exidx.text.SPI_FLASH_WriteDisable), (8 bytes).
-    Removing dadd.o(.text), (356 bytes).
-    Removing dmul.o(.text), (208 bytes).
-    Removing ddiv.o(.text), (240 bytes).
-    Removing dfixul.o(.text), (64 bytes).
-    Removing cdrcmple.o(.text), (40 bytes).
-    Removing depilogue.o(.text), (190 bytes).
-    Removing depilogue.o(i.__ARM_clz), (46 bytes).
 
-1207 unused section(s) (total 53401 bytes) removed from the image.
+1203 unused section(s) (total 52357 bytes) removed from the image.
 
 ==============================================================================
 
@@ -2672,11 +2729,15 @@ Image Symbol Table
 
     ../clib/division.s                       0x00000000   Number         0  aeabi_sdivfast.o ABSOLUTE
     ../clib/division.s                       0x00000000   Number         0  aeabi_sdivfast_div0.o ABSOLUTE
+    ../clib/longlong.c                       0x00000000   Number         0  llmul.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isspace_c.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ctype_c.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv_div0.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  idiv_div0.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  idiv0.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
+    ../clib/microlib/errno.c                 0x00000000   Number         0  errno.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
@@ -2721,11 +2782,23 @@ Image Symbol Table
     ../clib/microlib/string/strtok.c         0x00000000   Number         0  strtok.o ABSOLUTE
     ../clib/microlib/string/strtok.c         0x00000000   Number         0  strtok_r.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  strtod.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  scanf_fp.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  _sgetc.o ABSOLUTE
+    ../fplib/microlib/d2f.c                  0x00000000   Number         0  d2f.o ABSOLUTE
+    ../fplib/microlib/f2d.c                  0x00000000   Number         0  f2d.o ABSOLUTE
+    ../fplib/microlib/fpadd.c                0x00000000   Number         0  fadd.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
+    ../fplib/microlib/fpdiv.c                0x00000000   Number         0  fdiv.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
+    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  fepilogue.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
+    ../fplib/microlib/fpfix.c                0x00000000   Number         0  ffixi.o ABSOLUTE
     ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixul.o ABSOLUTE
+    ../fplib/microlib/fpflt.c                0x00000000   Number         0  fflti.o ABSOLUTE
+    ../fplib/microlib/fpflt.c                0x00000000   Number         0  dfltul.o ABSOLUTE
     ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
+    ../mathlib/atof.c                        0x00000000   Number         0  atof.o ABSOLUTE
     BC660K.c                                 0x00000000   Number         0  bc660k.o ABSOLUTE
     LC76F.c                                  0x00000000   Number         0  lc76f.o ABSOLUTE
     MC3416.c                                 0x00000000   Number         0  mc3416.o ABSOLUTE
@@ -2790,97 +2863,145 @@ Image Symbol Table
     .text                                    0x000001f6   Section        0  strcmp.o(.text)
     .text                                    0x00000212   Section        0  strcpy.o(.text)
     .text                                    0x00000224   Section        0  strtok.o(.text)
-    .text                                    0x0000026c   Section        0  uidiv_div0.o(.text)
-    .text                                    0x000002ac   Section       36  init.o(.text)
-    [Anonymous Symbol]                       0x000002d0   Section        0  ht32f5xxxx_gpio.o(.text.AFIO_GPxConfig)
-    __arm_cp.19_0                            0x00000448   Number         4  ht32f5xxxx_gpio.o(.text.AFIO_GPxConfig)
-    [Anonymous Symbol]                       0x0000044c   Section        0  ht32f5xxxx_ckcu.o(.text.CKCU_GetPeripFrequency)
-    __arm_cp.18_0                            0x000004e0   Number         4  ht32f5xxxx_ckcu.o(.text.CKCU_GetPeripFrequency)
-    __arm_cp.18_1                            0x000004e4   Number         4  ht32f5xxxx_ckcu.o(.text.CKCU_GetPeripFrequency)
-    [Anonymous Symbol]                       0x000004e8   Section        0  ht32f5xxxx_ckcu.o(.text.CKCU_PeripClockConfig)
-    __arm_cp.31_0                            0x0000051c   Number         4  ht32f5xxxx_ckcu.o(.text.CKCU_PeripClockConfig)
-    [Anonymous Symbol]                       0x00000520   Section        0  ht32f5xxxx_gpio.o(.text.GPIO_DirectionConfig)
-    [Anonymous Symbol]                       0x00000534   Section        0  ht32f5xxxx_gpio.o(.text.GPIO_DriveConfig)
-    [Anonymous Symbol]                       0x0000060a   Section        0  ht32f5xxxx_gpio.o(.text.GPIO_PullResistorConfig)
-    [Anonymous Symbol]                       0x00000630   Section        0  ht32_board.o(.text.HT32F_DVB_LEDInit)
-    __arm_cp.0_1                             0x000006b0   Number         4  ht32_board.o(.text.HT32F_DVB_LEDInit)
-    [Anonymous Symbol]                       0x000006b4   Section        0  ht32_board.o(.text.HT32F_DVB_LEDOff)
-    [Anonymous Symbol]                       0x000006c8   Section        0  ht32_board.o(.text.HT32F_DVB_LEDOn)
-    [Anonymous Symbol]                       0x000006dc   Section        0  ht32_board.o(.text.HT32F_DVB_LEDToggle)
-    __arm_cp.3_0                             0x000006f4   Number         4  ht32_board.o(.text.HT32F_DVB_LEDToggle)
-    __arm_cp.3_1                             0x000006f8   Number         4  ht32_board.o(.text.HT32F_DVB_LEDToggle)
-    __arm_cp.3_2                             0x000006fc   Number         4  ht32_board.o(.text.HT32F_DVB_LEDToggle)
-    [Anonymous Symbol]                       0x00000700   Section        0  ht32f5xxxx_01_it.o(.text.HardFault_Handler)
-    __arm_cp.1_0                             0x0000071c   Number         4  ht32f5xxxx_01_it.o(.text.HardFault_Handler)
-    [Anonymous Symbol]                       0x00000720   Section        0  ht32f5xxxx_01_it.o(.text.NMI_Handler)
-    [Anonymous Symbol]                       0x00000722   Section        0  ht32f5xxxx_01_it.o(.text.PendSV_Handler)
-    [Anonymous Symbol]                       0x00000724   Section        0  ht32f5xxxx_01_it.o(.text.SVC_Handler)
-    [Anonymous Symbol]                       0x00000728   Section        0  ht32f5xxxx_01_it.o(.text.SysTick_Handler)
-    __arm_cp.4_0                             0x00000734   Number         4  ht32f5xxxx_01_it.o(.text.SysTick_Handler)
-    [Anonymous Symbol]                       0x00000738   Section        0  system_ht32f5xxxx_03.o(.text.SystemInit)
-    __arm_cp.0_0                             0x000008a4   Number         4  system_ht32f5xxxx_03.o(.text.SystemInit)
-    __arm_cp.0_1                             0x000008a8   Number         4  system_ht32f5xxxx_03.o(.text.SystemInit)
-    __arm_cp.0_2                             0x000008ac   Number         4  system_ht32f5xxxx_03.o(.text.SystemInit)
-    __arm_cp.0_3                             0x000008b0   Number         4  system_ht32f5xxxx_03.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x000008b4   Section        0  ht32f5xxxx_usart.o(.text.USART_GetFlagStatus)
-    [Anonymous Symbol]                       0x000008c0   Section        0  ht32f5xxxx_usart.o(.text.USART_Init)
-    __arm_cp.1_0                             0x00000930   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
-    __arm_cp.1_1                             0x00000934   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
-    __arm_cp.1_2                             0x00000938   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
-    __arm_cp.1_3                             0x0000093c   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
-    __arm_cp.1_6                             0x00000940   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
-    [Anonymous Symbol]                       0x00000944   Section        0  ht32f5xxxx_usart.o(.text.USART_ReceiveData)
-    [Anonymous Symbol]                       0x0000094a   Section        0  ht32f5xxxx_usart.o(.text.USART_SendData)
-    [Anonymous Symbol]                       0x0000094e   Section        0  ht32f5xxxx_usart.o(.text.USART_TxRxCmd)
-    [Anonymous Symbol]                       0x00000968   Section        0  main.o(.text.getRawGPS)
-    __arm_cp.11_0                            0x000009e0   Number         4  main.o(.text.getRawGPS)
-    __arm_cp.11_3                            0x000009ec   Number         4  main.o(.text.getRawGPS)
-    __arm_cp.11_4                            0x000009f0   Number         4  main.o(.text.getRawGPS)
-    __arm_cp.11_5                            0x000009f4   Number         4  main.o(.text.getRawGPS)
-    [Anonymous Symbol]                       0x000009f8   Section        0  main.o(.text.loop)
-    __arm_cp.2_0                             0x00000b08   Number         4  main.o(.text.loop)
-    __arm_cp.2_1                             0x00000b0c   Number         4  main.o(.text.loop)
-    __arm_cp.2_2                             0x00000b10   Number         4  main.o(.text.loop)
-    __arm_cp.2_3                             0x00000b14   Number         4  main.o(.text.loop)
-    __arm_cp.2_4                             0x00000b18   Number         4  main.o(.text.loop)
-    __arm_cp.2_5                             0x00000b1c   Number         4  main.o(.text.loop)
-    [Anonymous Symbol]                       0x00000b20   Section        0  main.o(.text.main)
-    __arm_cp.0_0                             0x00000b2c   Number         4  main.o(.text.main)
-    [Anonymous Symbol]                       0x00000b30   Section        0  main.o(.text.setup)
-    __arm_cp.1_0                             0x00000ea8   Number         4  main.o(.text.setup)
-    __arm_cp.1_1                             0x00000eac   Number         4  main.o(.text.setup)
-    __arm_cp.1_2                             0x00000eb0   Number         4  main.o(.text.setup)
-    __arm_cp.1_3                             0x00000eb4   Number         4  main.o(.text.setup)
-    __arm_cp.1_4                             0x00000eb8   Number         4  main.o(.text.setup)
-    __arm_cp.1_5                             0x00000ebc   Number         4  main.o(.text.setup)
-    __arm_cp.1_6                             0x00000ec0   Number         4  main.o(.text.setup)
-    __arm_cp.1_7                             0x00000ec4   Number         4  main.o(.text.setup)
-    __arm_cp.1_8                             0x00000ec8   Number         4  main.o(.text.setup)
-    __arm_cp.1_10                            0x00000ee4   Number         4  main.o(.text.setup)
-    i.__0sprintf$3                           0x00000ee8   Section        0  printf3.o(i.__0sprintf$3)
-    i.__scatterload_copy                     0x00000f10   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x00000f1e   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x00000f20   Section       14  handlers.o(i.__scatterload_zeroinit)
-    _printf_core                             0x00000f31   Thumb Code   456  printf3.o(i._printf_core)
-    i._printf_core                           0x00000f30   Section        0  printf3.o(i._printf_core)
-    _sputc                                   0x000010fd   Thumb Code    10  printf3.o(i._sputc)
-    i._sputc                                 0x000010fc   Section        0  printf3.o(i._sputc)
-    i.malloc                                 0x00001108   Section        0  malloc.o(i.malloc)
-    [Anonymous Symbol]                       0x00001198   Section        0  main.o(.rodata.str1.1)
+    .text                                    0x0000026c   Section        0  fadd.o(.text)
+    .text                                    0x0000031e   Section        0  fdiv.o(.text)
+    .text                                    0x0000039a   Section        0  fflti.o(.text)
+    .text                                    0x000003b0   Section        0  ffixi.o(.text)
+    .text                                    0x000003e2   Section        0  f2d.o(.text)
+    .text                                    0x0000040a   Section        0  d2f.o(.text)
+    .text                                    0x00000442   Section        0  uidiv_div0.o(.text)
+    .text                                    0x00000480   Section        0  uldiv.o(.text)
+    _local_sscanf                            0x000004e1   Thumb Code    64  strtod.o(.text)
+    .text                                    0x000004e0   Section        0  strtod.o(.text)
+    .text                                    0x00000594   Section        0  iusefp.o(.text)
+    .text                                    0x00000594   Section        0  fepilogue.o(.text)
+    .text                                    0x00000618   Section        0  dadd.o(.text)
+    .text                                    0x0000077c   Section        0  dmul.o(.text)
+    .text                                    0x0000084c   Section        0  ddiv.o(.text)
+    .text                                    0x0000093c   Section        0  dfixul.o(.text)
+    .text                                    0x0000097c   Section       40  cdrcmple.o(.text)
+    .text                                    0x000009a4   Section       36  init.o(.text)
+    .text                                    0x000009c8   Section        0  llshl.o(.text)
+    .text                                    0x000009e8   Section        0  llushr.o(.text)
+    .text                                    0x00000a0a   Section        0  llsshr.o(.text)
+    .text                                    0x00000a30   Section        0  isspace_c.o(.text)
+    _fp_value                                0x00000a41   Thumb Code   286  scanf_fp.o(.text)
+    .text                                    0x00000a40   Section        0  scanf_fp.o(.text)
+    .text                                    0x00000db4   Section        0  _sgetc.o(.text)
+    .text                                    0x00000df8   Section        0  depilogue.o(.text)
+    .text                                    0x00000eb6   Section        0  llmul.o(.text)
+    .text                                    0x00000ee8   Section        0  ctype_c.o(.text)
+    .text                                    0x00000f0c   Section        0  dfltul.o(.text)
+    [Anonymous Symbol]                       0x00000f28   Section        0  ht32f5xxxx_gpio.o(.text.AFIO_GPxConfig)
+    __arm_cp.19_0                            0x000010a0   Number         4  ht32f5xxxx_gpio.o(.text.AFIO_GPxConfig)
+    [Anonymous Symbol]                       0x000010a4   Section        0  ht32f5xxxx_ckcu.o(.text.CKCU_GetPeripFrequency)
+    __arm_cp.18_0                            0x00001138   Number         4  ht32f5xxxx_ckcu.o(.text.CKCU_GetPeripFrequency)
+    __arm_cp.18_1                            0x0000113c   Number         4  ht32f5xxxx_ckcu.o(.text.CKCU_GetPeripFrequency)
+    [Anonymous Symbol]                       0x00001140   Section        0  ht32f5xxxx_ckcu.o(.text.CKCU_PeripClockConfig)
+    __arm_cp.31_0                            0x00001174   Number         4  ht32f5xxxx_ckcu.o(.text.CKCU_PeripClockConfig)
+    [Anonymous Symbol]                       0x00001178   Section        0  ht32f5xxxx_gpio.o(.text.GPIO_DirectionConfig)
+    [Anonymous Symbol]                       0x0000118c   Section        0  ht32f5xxxx_gpio.o(.text.GPIO_DriveConfig)
+    [Anonymous Symbol]                       0x00001262   Section        0  ht32f5xxxx_gpio.o(.text.GPIO_PullResistorConfig)
+    [Anonymous Symbol]                       0x00001288   Section        0  ht32_board.o(.text.HT32F_DVB_LEDInit)
+    __arm_cp.0_1                             0x00001308   Number         4  ht32_board.o(.text.HT32F_DVB_LEDInit)
+    [Anonymous Symbol]                       0x0000130c   Section        0  ht32_board.o(.text.HT32F_DVB_LEDOff)
+    [Anonymous Symbol]                       0x00001320   Section        0  ht32_board.o(.text.HT32F_DVB_LEDOn)
+    [Anonymous Symbol]                       0x00001334   Section        0  ht32_board.o(.text.HT32F_DVB_LEDToggle)
+    __arm_cp.3_0                             0x0000134c   Number         4  ht32_board.o(.text.HT32F_DVB_LEDToggle)
+    __arm_cp.3_1                             0x00001350   Number         4  ht32_board.o(.text.HT32F_DVB_LEDToggle)
+    __arm_cp.3_2                             0x00001354   Number         4  ht32_board.o(.text.HT32F_DVB_LEDToggle)
+    [Anonymous Symbol]                       0x00001358   Section        0  ht32f5xxxx_01_it.o(.text.HardFault_Handler)
+    __arm_cp.1_0                             0x00001374   Number         4  ht32f5xxxx_01_it.o(.text.HardFault_Handler)
+    [Anonymous Symbol]                       0x00001378   Section        0  ht32f5xxxx_01_it.o(.text.NMI_Handler)
+    [Anonymous Symbol]                       0x0000137a   Section        0  ht32f5xxxx_01_it.o(.text.PendSV_Handler)
+    [Anonymous Symbol]                       0x0000137c   Section        0  ht32f5xxxx_01_it.o(.text.SVC_Handler)
+    [Anonymous Symbol]                       0x00001380   Section        0  ht32f5xxxx_01_it.o(.text.SysTick_Handler)
+    __arm_cp.4_0                             0x0000138c   Number         4  ht32f5xxxx_01_it.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x00001390   Section        0  system_ht32f5xxxx_03.o(.text.SystemInit)
+    __arm_cp.0_0                             0x000014fc   Number         4  system_ht32f5xxxx_03.o(.text.SystemInit)
+    __arm_cp.0_1                             0x00001500   Number         4  system_ht32f5xxxx_03.o(.text.SystemInit)
+    __arm_cp.0_2                             0x00001504   Number         4  system_ht32f5xxxx_03.o(.text.SystemInit)
+    __arm_cp.0_3                             0x00001508   Number         4  system_ht32f5xxxx_03.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x0000150c   Section        0  ht32f5xxxx_usart.o(.text.USART_GetFlagStatus)
+    [Anonymous Symbol]                       0x00001518   Section        0  ht32f5xxxx_usart.o(.text.USART_Init)
+    __arm_cp.1_0                             0x00001588   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
+    __arm_cp.1_1                             0x0000158c   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
+    __arm_cp.1_2                             0x00001590   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
+    __arm_cp.1_3                             0x00001594   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
+    __arm_cp.1_6                             0x00001598   Number         4  ht32f5xxxx_usart.o(.text.USART_Init)
+    [Anonymous Symbol]                       0x0000159c   Section        0  ht32f5xxxx_usart.o(.text.USART_ReceiveData)
+    [Anonymous Symbol]                       0x000015a2   Section        0  ht32f5xxxx_usart.o(.text.USART_SendData)
+    [Anonymous Symbol]                       0x000015a6   Section        0  ht32f5xxxx_usart.o(.text.USART_TxRxCmd)
+    [Anonymous Symbol]                       0x000015c0   Section        0  main.o(.text.extractMainData)
+    __arm_cp.12_2                            0x000016b8   Number         4  main.o(.text.extractMainData)
+    __arm_cp.12_3                            0x000016bc   Number         4  main.o(.text.extractMainData)
+    __arm_cp.12_5                            0x000016c0   Number         4  main.o(.text.extractMainData)
+    [Anonymous Symbol]                       0x000016c4   Section        0  main.o(.text.getRawGPS)
+    __arm_cp.9_0                             0x0000173c   Number         4  main.o(.text.getRawGPS)
+    __arm_cp.9_3                             0x00001748   Number         4  main.o(.text.getRawGPS)
+    __arm_cp.9_4                             0x0000174c   Number         4  main.o(.text.getRawGPS)
+    __arm_cp.9_5                             0x00001750   Number         4  main.o(.text.getRawGPS)
+    [Anonymous Symbol]                       0x00001754   Section        0  main.o(.text.loop)
+    __arm_cp.2_0                             0x000018ec   Number         4  main.o(.text.loop)
+    __arm_cp.2_1                             0x000018f0   Number         4  main.o(.text.loop)
+    __arm_cp.2_2                             0x000018f4   Number         4  main.o(.text.loop)
+    __arm_cp.2_3                             0x000018f8   Number         4  main.o(.text.loop)
+    __arm_cp.2_4                             0x000018fc   Number         4  main.o(.text.loop)
+    __arm_cp.2_5                             0x00001900   Number         4  main.o(.text.loop)
+    __arm_cp.2_6                             0x00001904   Number         4  main.o(.text.loop)
+    __arm_cp.2_7                             0x00001908   Number         4  main.o(.text.loop)
+    __arm_cp.2_8                             0x0000190c   Number         4  main.o(.text.loop)
+    [Anonymous Symbol]                       0x00001910   Section        0  main.o(.text.main)
+    __arm_cp.0_0                             0x0000191c   Number         4  main.o(.text.main)
+    [Anonymous Symbol]                       0x00001920   Section        0  main.o(.text.setup)
+    __arm_cp.1_0                             0x00001c98   Number         4  main.o(.text.setup)
+    __arm_cp.1_1                             0x00001c9c   Number         4  main.o(.text.setup)
+    __arm_cp.1_2                             0x00001ca0   Number         4  main.o(.text.setup)
+    __arm_cp.1_3                             0x00001ca4   Number         4  main.o(.text.setup)
+    __arm_cp.1_4                             0x00001ca8   Number         4  main.o(.text.setup)
+    __arm_cp.1_5                             0x00001cac   Number         4  main.o(.text.setup)
+    __arm_cp.1_6                             0x00001cb0   Number         4  main.o(.text.setup)
+    __arm_cp.1_7                             0x00001cb4   Number         4  main.o(.text.setup)
+    __arm_cp.1_8                             0x00001cb8   Number         4  main.o(.text.setup)
+    __arm_cp.1_10                            0x00001cd4   Number         4  main.o(.text.setup)
+    i.__0sprintf                             0x00001cd8   Section        0  printfa.o(i.__0sprintf)
+    i.__ARM_clz                              0x00001d00   Section        0  depilogue.o(i.__ARM_clz)
+    i.__read_errno                           0x00001d30   Section        0  errno.o(i.__read_errno)
+    i.__scatterload_copy                     0x00001d3c   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x00001d4a   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x00001d4c   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.__set_errno                            0x00001d5c   Section        0  errno.o(i.__set_errno)
+    _fp_digits                               0x00001d69   Thumb Code   344  printfa.o(i._fp_digits)
+    i._fp_digits                             0x00001d68   Section        0  printfa.o(i._fp_digits)
+    i._is_digit                              0x00001edc   Section        0  scanf_fp.o(i._is_digit)
+    _printf_core                             0x00001eed   Thumb Code  1754  printfa.o(i._printf_core)
+    i._printf_core                           0x00001eec   Section        0  printfa.o(i._printf_core)
+    _printf_post_padding                     0x000025d9   Thumb Code    32  printfa.o(i._printf_post_padding)
+    i._printf_post_padding                   0x000025d8   Section        0  printfa.o(i._printf_post_padding)
+    _printf_pre_padding                      0x000025f9   Thumb Code    44  printfa.o(i._printf_pre_padding)
+    i._printf_pre_padding                    0x000025f8   Section        0  printfa.o(i._printf_pre_padding)
+    _sputc                                   0x00002625   Thumb Code    10  printfa.o(i._sputc)
+    i._sputc                                 0x00002624   Section        0  printfa.o(i._sputc)
+    i.atof                                   0x0000262e   Section        0  atof.o(i.atof)
+    i.malloc                                 0x0000265c   Section        0  malloc.o(i.malloc)
+    .constdata                               0x000026c8   Section       64  ctype_c.o(.constdata)
+    [Anonymous Symbol]                       0x0000272c   Section        0  main.o(.rodata.str1.1)
     state                                    0x20000000   Data           4  strtok.o(.data)
     .data                                    0x20000000   Section        4  strtok.o(.data)
     .data                                    0x20000004   Section        4  mvars.o(.data)
     .data                                    0x20000008   Section        4  mvars.o(.data)
-    HardFault_Handler.gIsContinue            0x20000088   Data           4  ht32f5xxxx_01_it.o(.bss.HardFault_Handler.gIsContinue)
-    [Anonymous Symbol]                       0x20000088   Section        0  ht32f5xxxx_01_it.o(.bss.HardFault_Handler.gIsContinue)
-    HEAP                                     0x200000f8   Section        0  startup_ht32f5xxxx_03.o(HEAP)
-    STACK                                    0x200000f8   Section      512  startup_ht32f5xxxx_03.o(STACK)
+    _errno                                   0x2000000c   Data           4  errno.o(.data)
+    .data                                    0x2000000c   Section        4  errno.o(.data)
+    HardFault_Handler.gIsContinue            0x20000090   Data           4  ht32f5xxxx_01_it.o(.bss.HardFault_Handler.gIsContinue)
+    [Anonymous Symbol]                       0x20000090   Section        0  ht32f5xxxx_01_it.o(.bss.HardFault_Handler.gIsContinue)
+    HEAP                                     0x20000108   Section        0  startup_ht32f5xxxx_03.o(HEAP)
+    STACK                                    0x20000108   Section      512  startup_ht32f5xxxx_03.o(STACK)
 
     Global Symbols
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
-    BuildAttributes$$THM_ISAv3M$S$PE$A:L22$X:L11$S22$IEEE1$IW$~IW$USESV6$~STKCKD$USESV7$~SHL$OTIME$ROPI$EBA8$MICROLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    BuildAttributes$$THM_ISAv3M$S$PE$A:L22$X:L11$S22$IEEE1$IW$~IW$USESV6$~STKCKD$USESV7$~SHL$OTIME$ROPI$IEEEJ$EBA8$MICROLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
     __Vectors                                0x00000000   Data           0  startup_ht32f5xxxx_03.o(RESET)
     _printf_a                                0x00000000   Number         0  printfstubs.o ABSOLUTE
     _printf_c                                0x00000000   Number         0  printfstubs.o ABSOLUTE
@@ -2988,60 +3109,108 @@ Image Symbol Table
     strcmp                                   0x000001f7   Thumb Code    28  strcmp.o(.text)
     strcpy                                   0x00000213   Thumb Code    18  strcpy.o(.text)
     strtok                                   0x00000225   Thumb Code    68  strtok.o(.text)
-    __aeabi_uidiv                            0x0000026d   Thumb Code     0  uidiv_div0.o(.text)
-    __aeabi_uidivmod                         0x0000026d   Thumb Code    62  uidiv_div0.o(.text)
-    __scatterload                            0x000002ad   Thumb Code    28  init.o(.text)
-    __scatterload_rt2                        0x000002ad   Thumb Code     0  init.o(.text)
-    AFIO_GPxConfig                           0x000002d1   Thumb Code   376  ht32f5xxxx_gpio.o(.text.AFIO_GPxConfig)
-    CKCU_GetPeripFrequency                   0x0000044d   Thumb Code   148  ht32f5xxxx_ckcu.o(.text.CKCU_GetPeripFrequency)
-    CKCU_PeripClockConfig                    0x000004e9   Thumb Code    52  ht32f5xxxx_ckcu.o(.text.CKCU_PeripClockConfig)
-    GPIO_DirectionConfig                     0x00000521   Thumb Code    20  ht32f5xxxx_gpio.o(.text.GPIO_DirectionConfig)
-    GPIO_DriveConfig                         0x00000535   Thumb Code   214  ht32f5xxxx_gpio.o(.text.GPIO_DriveConfig)
-    GPIO_PullResistorConfig                  0x0000060b   Thumb Code    38  ht32f5xxxx_gpio.o(.text.GPIO_PullResistorConfig)
-    HT32F_DVB_LEDInit                        0x00000631   Thumb Code   128  ht32_board.o(.text.HT32F_DVB_LEDInit)
-    HT32F_DVB_LEDOff                         0x000006b5   Thumb Code    20  ht32_board.o(.text.HT32F_DVB_LEDOff)
-    HT32F_DVB_LEDOn                          0x000006c9   Thumb Code    20  ht32_board.o(.text.HT32F_DVB_LEDOn)
-    HT32F_DVB_LEDToggle                      0x000006dd   Thumb Code    24  ht32_board.o(.text.HT32F_DVB_LEDToggle)
-    HardFault_Handler                        0x00000701   Thumb Code    28  ht32f5xxxx_01_it.o(.text.HardFault_Handler)
-    NMI_Handler                              0x00000721   Thumb Code     2  ht32f5xxxx_01_it.o(.text.NMI_Handler)
-    PendSV_Handler                           0x00000723   Thumb Code     2  ht32f5xxxx_01_it.o(.text.PendSV_Handler)
-    SVC_Handler                              0x00000725   Thumb Code     2  ht32f5xxxx_01_it.o(.text.SVC_Handler)
-    SysTick_Handler                          0x00000729   Thumb Code    12  ht32f5xxxx_01_it.o(.text.SysTick_Handler)
-    SystemInit                               0x00000739   Thumb Code   364  system_ht32f5xxxx_03.o(.text.SystemInit)
-    USART_GetFlagStatus                      0x000008b5   Thumb Code    10  ht32f5xxxx_usart.o(.text.USART_GetFlagStatus)
-    USART_Init                               0x000008c1   Thumb Code   112  ht32f5xxxx_usart.o(.text.USART_Init)
-    USART_ReceiveData                        0x00000945   Thumb Code     6  ht32f5xxxx_usart.o(.text.USART_ReceiveData)
-    USART_SendData                           0x0000094b   Thumb Code     4  ht32f5xxxx_usart.o(.text.USART_SendData)
-    USART_TxRxCmd                            0x0000094f   Thumb Code    24  ht32f5xxxx_usart.o(.text.USART_TxRxCmd)
-    getRawGPS                                0x00000969   Thumb Code   120  main.o(.text.getRawGPS)
-    loop                                     0x000009f9   Thumb Code   272  main.o(.text.loop)
-    main                                     0x00000b21   Thumb Code    12  main.o(.text.main)
-    setup                                    0x00000b31   Thumb Code   888  main.o(.text.setup)
-    __0sprintf$3                             0x00000ee9   Thumb Code    36  printf3.o(i.__0sprintf$3)
-    __1sprintf$3                             0x00000ee9   Thumb Code     0  printf3.o(i.__0sprintf$3)
-    __2sprintf                               0x00000ee9   Thumb Code     0  printf3.o(i.__0sprintf$3)
-    __scatterload_copy                       0x00000f11   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x00000f1f   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x00000f21   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    malloc                                   0x00001109   Thumb Code    92  malloc.o(i.malloc)
-    GPIO_PORT                                0x00001174   Data          24  ht32_board.o(.rodata.GPIO_PORT)
-    LED_AFIO_MODE                            0x0000118c   Data           3  ht32_board.o(.rodata.LED_AFIO_MODE)
-    LED_GPIO_ID                              0x0000118f   Data           3  ht32_board.o(.rodata.LED_GPIO_ID)
-    LED_GPIO_PIN                             0x00001192   Data           6  ht32_board.o(.rodata.LED_GPIO_PIN)
-    Region$$Table$$Base                      0x000011b4   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x000011d4   Number         0  anon$$obj.o(Region$$Table)
+    __aeabi_fadd                             0x0000026d   Thumb Code   162  fadd.o(.text)
+    __aeabi_fsub                             0x0000030f   Thumb Code     8  fadd.o(.text)
+    __aeabi_frsub                            0x00000317   Thumb Code     8  fadd.o(.text)
+    __aeabi_fdiv                             0x0000031f   Thumb Code   124  fdiv.o(.text)
+    __aeabi_i2f                              0x0000039b   Thumb Code    22  fflti.o(.text)
+    __aeabi_f2iz                             0x000003b1   Thumb Code    50  ffixi.o(.text)
+    __aeabi_f2d                              0x000003e3   Thumb Code    40  f2d.o(.text)
+    __aeabi_d2f                              0x0000040b   Thumb Code    56  d2f.o(.text)
+    __aeabi_uidiv                            0x00000443   Thumb Code     0  uidiv_div0.o(.text)
+    __aeabi_uidivmod                         0x00000443   Thumb Code    62  uidiv_div0.o(.text)
+    __aeabi_uldivmod                         0x00000481   Thumb Code    96  uldiv.o(.text)
+    __strtod_int                             0x00000521   Thumb Code    98  strtod.o(.text)
+    __I$use$fp                               0x00000595   Thumb Code     0  iusefp.o(.text)
+    _float_round                             0x00000595   Thumb Code    16  fepilogue.o(.text)
+    _float_epilogue                          0x000005a5   Thumb Code   114  fepilogue.o(.text)
+    __aeabi_dadd                             0x00000619   Thumb Code   328  dadd.o(.text)
+    __aeabi_dsub                             0x00000761   Thumb Code    12  dadd.o(.text)
+    __aeabi_drsub                            0x0000076d   Thumb Code    12  dadd.o(.text)
+    __aeabi_dmul                             0x0000077d   Thumb Code   202  dmul.o(.text)
+    __aeabi_ddiv                             0x0000084d   Thumb Code   234  ddiv.o(.text)
+    __aeabi_d2ulz                            0x0000093d   Thumb Code    54  dfixul.o(.text)
+    __aeabi_cdrcmple                         0x0000097d   Thumb Code    38  cdrcmple.o(.text)
+    __scatterload                            0x000009a5   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x000009a5   Thumb Code     0  init.o(.text)
+    __aeabi_llsl                             0x000009c9   Thumb Code    32  llshl.o(.text)
+    _ll_shift_l                              0x000009c9   Thumb Code     0  llshl.o(.text)
+    __aeabi_llsr                             0x000009e9   Thumb Code    34  llushr.o(.text)
+    _ll_ushift_r                             0x000009e9   Thumb Code     0  llushr.o(.text)
+    __aeabi_lasr                             0x00000a0b   Thumb Code    38  llsshr.o(.text)
+    _ll_sshift_r                             0x00000a0b   Thumb Code     0  llsshr.o(.text)
+    isspace                                  0x00000a31   Thumb Code    14  isspace_c.o(.text)
+    _scanf_real                              0x00000b5f   Thumb Code     0  scanf_fp.o(.text)
+    _scanf_really_real                       0x00000b5f   Thumb Code   584  scanf_fp.o(.text)
+    _sgetc                                   0x00000db5   Thumb Code    32  _sgetc.o(.text)
+    _sbackspace                              0x00000dd5   Thumb Code    36  _sgetc.o(.text)
+    _double_round                            0x00000df9   Thumb Code    26  depilogue.o(.text)
+    _double_epilogue                         0x00000e13   Thumb Code   164  depilogue.o(.text)
+    __aeabi_lmul                             0x00000eb7   Thumb Code    48  llmul.o(.text)
+    _ll_mul                                  0x00000eb7   Thumb Code     0  llmul.o(.text)
+    __ctype_lookup                           0x00000ee9   Thumb Code    32  ctype_c.o(.text)
+    __aeabi_ul2d                             0x00000f0d   Thumb Code    22  dfltul.o(.text)
+    AFIO_GPxConfig                           0x00000f29   Thumb Code   376  ht32f5xxxx_gpio.o(.text.AFIO_GPxConfig)
+    CKCU_GetPeripFrequency                   0x000010a5   Thumb Code   148  ht32f5xxxx_ckcu.o(.text.CKCU_GetPeripFrequency)
+    CKCU_PeripClockConfig                    0x00001141   Thumb Code    52  ht32f5xxxx_ckcu.o(.text.CKCU_PeripClockConfig)
+    GPIO_DirectionConfig                     0x00001179   Thumb Code    20  ht32f5xxxx_gpio.o(.text.GPIO_DirectionConfig)
+    GPIO_DriveConfig                         0x0000118d   Thumb Code   214  ht32f5xxxx_gpio.o(.text.GPIO_DriveConfig)
+    GPIO_PullResistorConfig                  0x00001263   Thumb Code    38  ht32f5xxxx_gpio.o(.text.GPIO_PullResistorConfig)
+    HT32F_DVB_LEDInit                        0x00001289   Thumb Code   128  ht32_board.o(.text.HT32F_DVB_LEDInit)
+    HT32F_DVB_LEDOff                         0x0000130d   Thumb Code    20  ht32_board.o(.text.HT32F_DVB_LEDOff)
+    HT32F_DVB_LEDOn                          0x00001321   Thumb Code    20  ht32_board.o(.text.HT32F_DVB_LEDOn)
+    HT32F_DVB_LEDToggle                      0x00001335   Thumb Code    24  ht32_board.o(.text.HT32F_DVB_LEDToggle)
+    HardFault_Handler                        0x00001359   Thumb Code    28  ht32f5xxxx_01_it.o(.text.HardFault_Handler)
+    NMI_Handler                              0x00001379   Thumb Code     2  ht32f5xxxx_01_it.o(.text.NMI_Handler)
+    PendSV_Handler                           0x0000137b   Thumb Code     2  ht32f5xxxx_01_it.o(.text.PendSV_Handler)
+    SVC_Handler                              0x0000137d   Thumb Code     2  ht32f5xxxx_01_it.o(.text.SVC_Handler)
+    SysTick_Handler                          0x00001381   Thumb Code    12  ht32f5xxxx_01_it.o(.text.SysTick_Handler)
+    SystemInit                               0x00001391   Thumb Code   364  system_ht32f5xxxx_03.o(.text.SystemInit)
+    USART_GetFlagStatus                      0x0000150d   Thumb Code    10  ht32f5xxxx_usart.o(.text.USART_GetFlagStatus)
+    USART_Init                               0x00001519   Thumb Code   112  ht32f5xxxx_usart.o(.text.USART_Init)
+    USART_ReceiveData                        0x0000159d   Thumb Code     6  ht32f5xxxx_usart.o(.text.USART_ReceiveData)
+    USART_SendData                           0x000015a3   Thumb Code     4  ht32f5xxxx_usart.o(.text.USART_SendData)
+    USART_TxRxCmd                            0x000015a7   Thumb Code    24  ht32f5xxxx_usart.o(.text.USART_TxRxCmd)
+    extractMainData                          0x000015c1   Thumb Code   248  main.o(.text.extractMainData)
+    getRawGPS                                0x000016c5   Thumb Code   120  main.o(.text.getRawGPS)
+    loop                                     0x00001755   Thumb Code   408  main.o(.text.loop)
+    main                                     0x00001911   Thumb Code    12  main.o(.text.main)
+    setup                                    0x00001921   Thumb Code   888  main.o(.text.setup)
+    __0sprintf                               0x00001cd9   Thumb Code    36  printfa.o(i.__0sprintf)
+    __1sprintf                               0x00001cd9   Thumb Code     0  printfa.o(i.__0sprintf)
+    __2sprintf                               0x00001cd9   Thumb Code     0  printfa.o(i.__0sprintf)
+    __c89sprintf                             0x00001cd9   Thumb Code     0  printfa.o(i.__0sprintf)
+    sprintf                                  0x00001cd9   Thumb Code     0  printfa.o(i.__0sprintf)
+    __ARM_clz                                0x00001d01   Thumb Code    46  depilogue.o(i.__ARM_clz)
+    __read_errno                             0x00001d31   Thumb Code     6  errno.o(i.__read_errno)
+    __scatterload_copy                       0x00001d3d   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x00001d4b   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x00001d4d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    __set_errno                              0x00001d5d   Thumb Code     6  errno.o(i.__set_errno)
+    _is_digit                                0x00001edd   Thumb Code    14  scanf_fp.o(i._is_digit)
+    atof                                     0x0000262f   Thumb Code    44  atof.o(i.atof)
+    malloc                                   0x0000265d   Thumb Code    92  malloc.o(i.malloc)
+    __ctype_categories                       0x000026c8   Data          64  ctype_c.o(.constdata)
+    GPIO_PORT                                0x00002708   Data          24  ht32_board.o(.rodata.GPIO_PORT)
+    LED_AFIO_MODE                            0x00002720   Data           3  ht32_board.o(.rodata.LED_AFIO_MODE)
+    LED_GPIO_ID                              0x00002723   Data           3  ht32_board.o(.rodata.LED_GPIO_ID)
+    LED_GPIO_PIN                             0x00002726   Data           6  ht32_board.o(.rodata.LED_GPIO_PIN)
+    Region$$Table$$Base                      0x00002750   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00002770   Number         0  anon$$obj.o(Region$$Table)
     __microlib_freelist                      0x20000004   Data           4  mvars.o(.data)
     __microlib_freelist_initialised          0x20000008   Data           4  mvars.o(.data)
-    SystemCoreClock                          0x2000000c   Data           4  system_ht32f5xxxx_03.o(.data.SystemCoreClock)
-    BC660K_h_h                               0x20000010   Data          20  main.o(.bss.BC660K_h_h)
-    GPS_raw                                  0x20000024   Data         100  main.o(.bss.GPS_raw)
-    data                                     0x2000008c   Data         100  main.o(.bss.data)
-    utick                                    0x200000f0   Data           4  main.o(.bss.utick)
-    __HT_check_heap                          0x200000f8   Data           0  startup_ht32f5xxxx_03.o(HEAP)
-    __HT_check_sp                            0x200000f8   Data           0  startup_ht32f5xxxx_03.o(STACK)
-    __heap_base                              0x200000f8   Data           0  startup_ht32f5xxxx_03.o(HEAP)
-    __heap_limit                             0x200000f8   Data           0  startup_ht32f5xxxx_03.o(HEAP)
-    __initial_sp                             0x200002f8   Data           0  startup_ht32f5xxxx_03.o(STACK)
+    SystemCoreClock                          0x20000010   Data           4  system_ht32f5xxxx_03.o(.data.SystemCoreClock)
+    BC660K_h_h                               0x20000018   Data          20  main.o(.bss.BC660K_h_h)
+    GPS_raw                                  0x2000002c   Data         100  main.o(.bss.GPS_raw)
+    data                                     0x20000094   Data         100  main.o(.bss.data)
+    latitude                                 0x200000f8   Data           4  main.o(.bss.latitude)
+    longitude                                0x200000fc   Data           4  main.o(.bss.longitude)
+    utick                                    0x20000100   Data           4  main.o(.bss.utick)
+    __HT_check_heap                          0x20000108   Data           0  startup_ht32f5xxxx_03.o(HEAP)
+    __HT_check_sp                            0x20000108   Data           0  startup_ht32f5xxxx_03.o(STACK)
+    __heap_base                              0x20000108   Data           0  startup_ht32f5xxxx_03.o(HEAP)
+    __heap_limit                             0x20000108   Data           0  startup_ht32f5xxxx_03.o(HEAP)
+    __initial_sp                             0x20000308   Data           0  startup_ht32f5xxxx_03.o(STACK)
 
 
 
@@ -3051,100 +3220,141 @@ Memory Map of the image
 
   Image Entry point : 0x000000c1
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x000011e4, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00002784, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000011d4, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x00000000   0x00000000   0x00000164   Code   RO          160  * RESET               startup_ht32f5xxxx_03.o
-    0x00000164   0x00000164   0x00000000   Code   RO         1502  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
-    0x00000164   0x00000164   0x00000004   Code   RO         1820    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
-    0x00000168   0x00000168   0x00000004   Code   RO         1823    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
-    0x0000016c   0x0000016c   0x00000000   Code   RO         1825    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
-    0x0000016c   0x0000016c   0x00000000   Code   RO         1827    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
-    0x0000016c   0x0000016c   0x00000008   Code   RO         1828    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
-    0x00000174   0x00000174   0x00000000   Code   RO         1830    .ARM.Collect$$$$0000000D  mc_p.l(entry10a.o)
-    0x00000174   0x00000174   0x00000000   Code   RO         1832    .ARM.Collect$$$$0000000F  mc_p.l(entry11a.o)
-    0x00000174   0x00000174   0x00000004   Code   RO         1821    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
-    0x00000178   0x00000178   0x00000024   Code   RO         1511    .text               mc_p.l(memcpya.o)
-    0x0000019c   0x0000019c   0x00000024   Code   RO         1513    .text               mc_p.l(memseta.o)
-    0x000001c0   0x000001c0   0x00000028   Code   RO         1515    .text               mc_p.l(strstr.o)
-    0x000001e8   0x000001e8   0x0000000e   Code   RO         1517    .text               mc_p.l(strlen.o)
-    0x000001f6   0x000001f6   0x0000001c   Code   RO         1519    .text               mc_p.l(strcmp.o)
-    0x00000212   0x00000212   0x00000012   Code   RO         1521    .text               mc_p.l(strcpy.o)
-    0x00000224   0x00000224   0x00000048   Code   RO         1523    .text               mc_p.l(strtok.o)
-    0x0000026c   0x0000026c   0x0000003e   Code   RO         1839    .text               mc_p.l(uidiv_div0.o)
-    0x000002aa   0x000002aa   0x00000002   PAD
-    0x000002ac   0x000002ac   0x00000024   Code   RO         1860    .text               mc_p.l(init.o)
-    0x000002d0   0x000002d0   0x0000017c   Code   RO          647    .text.AFIO_GPxConfig  ht32f5xxxx_gpio.o
-    0x0000044c   0x0000044c   0x0000009c   Code   RO          383    .text.CKCU_GetPeripFrequency  ht32f5xxxx_ckcu.o
-    0x000004e8   0x000004e8   0x00000038   Code   RO          409    .text.CKCU_PeripClockConfig  ht32f5xxxx_ckcu.o
-    0x00000520   0x00000520   0x00000014   Code   RO          611    .text.GPIO_DirectionConfig  ht32f5xxxx_gpio.o
-    0x00000534   0x00000534   0x000000d6   Code   RO          617    .text.GPIO_DriveConfig  ht32f5xxxx_gpio.o
-    0x0000060a   0x0000060a   0x00000026   Code   RO          613    .text.GPIO_PullResistorConfig  ht32f5xxxx_gpio.o
-    0x00000630   0x00000630   0x00000084   Code   RO         1345    .text.HT32F_DVB_LEDInit  ht32_board.o
-    0x000006b4   0x000006b4   0x00000014   Code   RO         1347    .text.HT32F_DVB_LEDOff  ht32_board.o
-    0x000006c8   0x000006c8   0x00000014   Code   RO         1349    .text.HT32F_DVB_LEDOn  ht32_board.o
-    0x000006dc   0x000006dc   0x00000024   Code   RO         1351    .text.HT32F_DVB_LEDToggle  ht32_board.o
-    0x00000700   0x00000700   0x00000020   Code   RO          109    .text.HardFault_Handler  ht32f5xxxx_01_it.o
-    0x00000720   0x00000720   0x00000002   Code   RO          107    .text.NMI_Handler   ht32f5xxxx_01_it.o
-    0x00000722   0x00000722   0x00000002   Code   RO          113    .text.PendSV_Handler  ht32f5xxxx_01_it.o
-    0x00000724   0x00000724   0x00000002   Code   RO          111    .text.SVC_Handler   ht32f5xxxx_01_it.o
-    0x00000726   0x00000726   0x00000002   PAD
-    0x00000728   0x00000728   0x00000010   Code   RO          115    .text.SysTick_Handler  ht32f5xxxx_01_it.o
-    0x00000738   0x00000738   0x0000017c   Code   RO          146    .text.SystemInit    system_ht32f5xxxx_03.o
-    0x000008b4   0x000008b4   0x0000000a   Code   RO         1133    .text.USART_GetFlagStatus  ht32f5xxxx_usart.o
-    0x000008be   0x000008be   0x00000002   PAD
-    0x000008c0   0x000008c0   0x00000084   Code   RO         1125    .text.USART_Init    ht32f5xxxx_usart.o
-    0x00000944   0x00000944   0x00000006   Code   RO         1131    .text.USART_ReceiveData  ht32f5xxxx_usart.o
-    0x0000094a   0x0000094a   0x00000004   Code   RO         1129    .text.USART_SendData  ht32f5xxxx_usart.o
-    0x0000094e   0x0000094e   0x00000018   Code   RO         1141    .text.USART_TxRxCmd  ht32f5xxxx_usart.o
-    0x00000966   0x00000966   0x00000002   PAD
-    0x00000968   0x00000968   0x00000090   Code   RO           24    .text.getRawGPS     main.o
-    0x000009f8   0x000009f8   0x00000128   Code   RO            6    .text.loop          main.o
-    0x00000b20   0x00000b20   0x00000010   Code   RO            2    .text.main          main.o
-    0x00000b30   0x00000b30   0x000003b8   Code   RO            4    .text.setup         main.o
-    0x00000ee8   0x00000ee8   0x00000028   Code   RO         1622    i.__0sprintf$3      mc_p.l(printf3.o)
-    0x00000f10   0x00000f10   0x0000000e   Code   RO         1874    i.__scatterload_copy  mc_p.l(handlers.o)
-    0x00000f1e   0x00000f1e   0x00000002   Code   RO         1875    i.__scatterload_null  mc_p.l(handlers.o)
-    0x00000f20   0x00000f20   0x0000000e   Code   RO         1876    i.__scatterload_zeroinit  mc_p.l(handlers.o)
-    0x00000f2e   0x00000f2e   0x00000002   PAD
-    0x00000f30   0x00000f30   0x000001cc   Code   RO         1627    i._printf_core      mc_p.l(printf3.o)
-    0x000010fc   0x000010fc   0x0000000a   Code   RO         1629    i._sputc            mc_p.l(printf3.o)
-    0x00001106   0x00001106   0x00000002   PAD
-    0x00001108   0x00001108   0x0000006c   Code   RO         1793    i.malloc            mc_p.l(malloc.o)
-    0x00001174   0x00001174   0x00000018   Data   RO         1363    .rodata.GPIO_PORT   ht32_board.o
-    0x0000118c   0x0000118c   0x00000003   Data   RO         1366    .rodata.LED_AFIO_MODE  ht32_board.o
-    0x0000118f   0x0000118f   0x00000003   Data   RO         1364    .rodata.LED_GPIO_ID  ht32_board.o
-    0x00001192   0x00001192   0x00000006   Data   RO         1365    .rodata.LED_GPIO_PIN  ht32_board.o
-    0x00001198   0x00001198   0x0000001b   Data   RO           86    .rodata.str1.1      main.o
-    0x000011b3   0x000011b3   0x00000001   PAD
-    0x000011b4   0x000011b4   0x00000020   Data   RO         1873    Region$$Table       anon$$obj.o
-
-
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x000011d4, Size: 0x00000010, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00002770, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x000011d4   0x00000004   Data   RW         1524    .data               mc_p.l(strtok.o)
-    0x20000004   0x000011d8   0x00000004   Data   RW         1847    .data               mc_p.l(mvars.o)
-    0x20000008   0x000011dc   0x00000004   Data   RW         1848    .data               mc_p.l(mvars.o)
-    0x2000000c   0x000011e0   0x00000004   Data   RW          150    .data.SystemCoreClock  system_ht32f5xxxx_03.o
+    0x00000000   0x00000000   0x00000164   Code   RO          166  * RESET               startup_ht32f5xxxx_03.o
+    0x00000164   0x00000164   0x00000000   Code   RO         1512  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
+    0x00000164   0x00000164   0x00000004   Code   RO         1842    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
+    0x00000168   0x00000168   0x00000004   Code   RO         1845    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
+    0x0000016c   0x0000016c   0x00000000   Code   RO         1847    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
+    0x0000016c   0x0000016c   0x00000000   Code   RO         1849    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
+    0x0000016c   0x0000016c   0x00000008   Code   RO         1850    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
+    0x00000174   0x00000174   0x00000000   Code   RO         1852    .ARM.Collect$$$$0000000D  mc_p.l(entry10a.o)
+    0x00000174   0x00000174   0x00000000   Code   RO         1854    .ARM.Collect$$$$0000000F  mc_p.l(entry11a.o)
+    0x00000174   0x00000174   0x00000004   Code   RO         1843    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
+    0x00000178   0x00000178   0x00000024   Code   RO         1521    .text               mc_p.l(memcpya.o)
+    0x0000019c   0x0000019c   0x00000024   Code   RO         1523    .text               mc_p.l(memseta.o)
+    0x000001c0   0x000001c0   0x00000028   Code   RO         1525    .text               mc_p.l(strstr.o)
+    0x000001e8   0x000001e8   0x0000000e   Code   RO         1527    .text               mc_p.l(strlen.o)
+    0x000001f6   0x000001f6   0x0000001c   Code   RO         1529    .text               mc_p.l(strcmp.o)
+    0x00000212   0x00000212   0x00000012   Code   RO         1531    .text               mc_p.l(strcpy.o)
+    0x00000224   0x00000224   0x00000048   Code   RO         1533    .text               mc_p.l(strtok.o)
+    0x0000026c   0x0000026c   0x000000b2   Code   RO         1830    .text               mf_p.l(fadd.o)
+    0x0000031e   0x0000031e   0x0000007c   Code   RO         1832    .text               mf_p.l(fdiv.o)
+    0x0000039a   0x0000039a   0x00000016   Code   RO         1834    .text               mf_p.l(fflti.o)
+    0x000003b0   0x000003b0   0x00000032   Code   RO         1836    .text               mf_p.l(ffixi.o)
+    0x000003e2   0x000003e2   0x00000028   Code   RO         1838    .text               mf_p.l(f2d.o)
+    0x0000040a   0x0000040a   0x00000038   Code   RO         1840    .text               mf_p.l(d2f.o)
+    0x00000442   0x00000442   0x0000003e   Code   RO         1861    .text               mc_p.l(uidiv_div0.o)
+    0x00000480   0x00000480   0x00000060   Code   RO         1867    .text               mc_p.l(uldiv.o)
+    0x000004e0   0x000004e0   0x000000b4   Code   RO         1878    .text               mc_p.l(strtod.o)
+    0x00000594   0x00000594   0x00000000   Code   RO         1880    .text               mc_p.l(iusefp.o)
+    0x00000594   0x00000594   0x00000082   Code   RO         1881    .text               mf_p.l(fepilogue.o)
+    0x00000616   0x00000616   0x00000002   PAD
+    0x00000618   0x00000618   0x00000164   Code   RO         1883    .text               mf_p.l(dadd.o)
+    0x0000077c   0x0000077c   0x000000d0   Code   RO         1885    .text               mf_p.l(dmul.o)
+    0x0000084c   0x0000084c   0x000000f0   Code   RO         1887    .text               mf_p.l(ddiv.o)
+    0x0000093c   0x0000093c   0x00000040   Code   RO         1889    .text               mf_p.l(dfixul.o)
+    0x0000097c   0x0000097c   0x00000028   Code   RO         1891    .text               mf_p.l(cdrcmple.o)
+    0x000009a4   0x000009a4   0x00000024   Code   RO         1893    .text               mc_p.l(init.o)
+    0x000009c8   0x000009c8   0x00000020   Code   RO         1895    .text               mc_p.l(llshl.o)
+    0x000009e8   0x000009e8   0x00000022   Code   RO         1897    .text               mc_p.l(llushr.o)
+    0x00000a0a   0x00000a0a   0x00000026   Code   RO         1899    .text               mc_p.l(llsshr.o)
+    0x00000a30   0x00000a30   0x0000000e   Code   RO         1901    .text               mc_p.l(isspace_c.o)
+    0x00000a3e   0x00000a3e   0x00000002   PAD
+    0x00000a40   0x00000a40   0x00000374   Code   RO         1903    .text               mc_p.l(scanf_fp.o)
+    0x00000db4   0x00000db4   0x00000044   Code   RO         1907    .text               mc_p.l(_sgetc.o)
+    0x00000df8   0x00000df8   0x000000be   Code   RO         1909    .text               mf_p.l(depilogue.o)
+    0x00000eb6   0x00000eb6   0x00000030   Code   RO         1913    .text               mc_p.l(llmul.o)
+    0x00000ee6   0x00000ee6   0x00000002   PAD
+    0x00000ee8   0x00000ee8   0x00000024   Code   RO         1915    .text               mc_p.l(ctype_c.o)
+    0x00000f0c   0x00000f0c   0x0000001c   Code   RO         1918    .text               mf_p.l(dfltul.o)
+    0x00000f28   0x00000f28   0x0000017c   Code   RO          653    .text.AFIO_GPxConfig  ht32f5xxxx_gpio.o
+    0x000010a4   0x000010a4   0x0000009c   Code   RO          389    .text.CKCU_GetPeripFrequency  ht32f5xxxx_ckcu.o
+    0x00001140   0x00001140   0x00000038   Code   RO          415    .text.CKCU_PeripClockConfig  ht32f5xxxx_ckcu.o
+    0x00001178   0x00001178   0x00000014   Code   RO          617    .text.GPIO_DirectionConfig  ht32f5xxxx_gpio.o
+    0x0000118c   0x0000118c   0x000000d6   Code   RO          623    .text.GPIO_DriveConfig  ht32f5xxxx_gpio.o
+    0x00001262   0x00001262   0x00000026   Code   RO          619    .text.GPIO_PullResistorConfig  ht32f5xxxx_gpio.o
+    0x00001288   0x00001288   0x00000084   Code   RO         1351    .text.HT32F_DVB_LEDInit  ht32_board.o
+    0x0000130c   0x0000130c   0x00000014   Code   RO         1353    .text.HT32F_DVB_LEDOff  ht32_board.o
+    0x00001320   0x00001320   0x00000014   Code   RO         1355    .text.HT32F_DVB_LEDOn  ht32_board.o
+    0x00001334   0x00001334   0x00000024   Code   RO         1357    .text.HT32F_DVB_LEDToggle  ht32_board.o
+    0x00001358   0x00001358   0x00000020   Code   RO          115    .text.HardFault_Handler  ht32f5xxxx_01_it.o
+    0x00001378   0x00001378   0x00000002   Code   RO          113    .text.NMI_Handler   ht32f5xxxx_01_it.o
+    0x0000137a   0x0000137a   0x00000002   Code   RO          119    .text.PendSV_Handler  ht32f5xxxx_01_it.o
+    0x0000137c   0x0000137c   0x00000002   Code   RO          117    .text.SVC_Handler   ht32f5xxxx_01_it.o
+    0x0000137e   0x0000137e   0x00000002   PAD
+    0x00001380   0x00001380   0x00000010   Code   RO          121    .text.SysTick_Handler  ht32f5xxxx_01_it.o
+    0x00001390   0x00001390   0x0000017c   Code   RO          152    .text.SystemInit    system_ht32f5xxxx_03.o
+    0x0000150c   0x0000150c   0x0000000a   Code   RO         1139    .text.USART_GetFlagStatus  ht32f5xxxx_usart.o
+    0x00001516   0x00001516   0x00000002   PAD
+    0x00001518   0x00001518   0x00000084   Code   RO         1131    .text.USART_Init    ht32f5xxxx_usart.o
+    0x0000159c   0x0000159c   0x00000006   Code   RO         1137    .text.USART_ReceiveData  ht32f5xxxx_usart.o
+    0x000015a2   0x000015a2   0x00000004   Code   RO         1135    .text.USART_SendData  ht32f5xxxx_usart.o
+    0x000015a6   0x000015a6   0x00000018   Code   RO         1147    .text.USART_TxRxCmd  ht32f5xxxx_usart.o
+    0x000015be   0x000015be   0x00000002   PAD
+    0x000015c0   0x000015c0   0x00000104   Code   RO           26    .text.extractMainData  main.o
+    0x000016c4   0x000016c4   0x00000090   Code   RO           20    .text.getRawGPS     main.o
+    0x00001754   0x00001754   0x000001bc   Code   RO            6    .text.loop          main.o
+    0x00001910   0x00001910   0x00000010   Code   RO            2    .text.main          main.o
+    0x00001920   0x00001920   0x000003b8   Code   RO            4    .text.setup         main.o
+    0x00001cd8   0x00001cd8   0x00000028   Code   RO         1776    i.__0sprintf        mc_p.l(printfa.o)
+    0x00001d00   0x00001d00   0x0000002e   Code   RO         1911    i.__ARM_clz         mf_p.l(depilogue.o)
+    0x00001d2e   0x00001d2e   0x00000002   PAD
+    0x00001d30   0x00001d30   0x0000000c   Code   RO         1872    i.__read_errno      mc_p.l(errno.o)
+    0x00001d3c   0x00001d3c   0x0000000e   Code   RO         1922    i.__scatterload_copy  mc_p.l(handlers.o)
+    0x00001d4a   0x00001d4a   0x00000002   Code   RO         1923    i.__scatterload_null  mc_p.l(handlers.o)
+    0x00001d4c   0x00001d4c   0x0000000e   Code   RO         1924    i.__scatterload_zeroinit  mc_p.l(handlers.o)
+    0x00001d5a   0x00001d5a   0x00000002   PAD
+    0x00001d5c   0x00001d5c   0x0000000c   Code   RO         1873    i.__set_errno       mc_p.l(errno.o)
+    0x00001d68   0x00001d68   0x00000174   Code   RO         1781    i._fp_digits        mc_p.l(printfa.o)
+    0x00001edc   0x00001edc   0x0000000e   Code   RO         1905    i._is_digit         mc_p.l(scanf_fp.o)
+    0x00001eea   0x00001eea   0x00000002   PAD
+    0x00001eec   0x00001eec   0x000006ec   Code   RO         1782    i._printf_core      mc_p.l(printfa.o)
+    0x000025d8   0x000025d8   0x00000020   Code   RO         1783    i._printf_post_padding  mc_p.l(printfa.o)
+    0x000025f8   0x000025f8   0x0000002c   Code   RO         1784    i._printf_pre_padding  mc_p.l(printfa.o)
+    0x00002624   0x00002624   0x0000000a   Code   RO         1786    i._sputc            mc_p.l(printfa.o)
+    0x0000262e   0x0000262e   0x0000002c   Code   RO         1509    i.atof              m_ps.l(atof.o)
+    0x0000265a   0x0000265a   0x00000002   PAD
+    0x0000265c   0x0000265c   0x0000006c   Code   RO         1803    i.malloc            mc_p.l(malloc.o)
+    0x000026c8   0x000026c8   0x00000040   Data   RO         1916    .constdata          mc_p.l(ctype_c.o)
+    0x00002708   0x00002708   0x00000018   Data   RO         1369    .rodata.GPIO_PORT   ht32_board.o
+    0x00002720   0x00002720   0x00000003   Data   RO         1372    .rodata.LED_AFIO_MODE  ht32_board.o
+    0x00002723   0x00002723   0x00000003   Data   RO         1370    .rodata.LED_GPIO_ID  ht32_board.o
+    0x00002726   0x00002726   0x00000006   Data   RO         1371    .rodata.LED_GPIO_PIN  ht32_board.o
+    0x0000272c   0x0000272c   0x00000024   Data   RO           90    .rodata.str1.1      main.o
+    0x00002750   0x00002750   0x00000020   Data   RO         1921    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_ZI (Exec base: 0x20000010, Load base: 0x000011e4, Size: 0x000002e8, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00002770, Size: 0x00000014, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000010        -       0x00000014   Zero   RW           90    .bss.BC660K_h_h     main.o
-    0x20000024        -       0x00000064   Zero   RW           94    .bss.GPS_raw        main.o
-    0x20000088        -       0x00000004   Zero   RW          117    .bss.HardFault_Handler.gIsContinue  ht32f5xxxx_01_it.o
-    0x2000008c        -       0x00000064   Zero   RW           91    .bss.data           main.o
-    0x200000f0        -       0x00000004   Zero   RW           92    .bss.utick          main.o
-    0x200000f4   0x000011e4   0x00000004   PAD
-    0x200000f8        -       0x00000000   Zero   RW          159    HEAP                startup_ht32f5xxxx_03.o
-    0x200000f8        -       0x00000200   Zero   RW          158    STACK               startup_ht32f5xxxx_03.o
+    0x20000000   0x00002770   0x00000004   Data   RW         1534    .data               mc_p.l(strtok.o)
+    0x20000004   0x00002774   0x00000004   Data   RW         1869    .data               mc_p.l(mvars.o)
+    0x20000008   0x00002778   0x00000004   Data   RW         1870    .data               mc_p.l(mvars.o)
+    0x2000000c   0x0000277c   0x00000004   Data   RW         1874    .data               mc_p.l(errno.o)
+    0x20000010   0x00002780   0x00000004   Data   RW          156    .data.SystemCoreClock  system_ht32f5xxxx_03.o
+
+
+    Execution Region ER_ZI (Exec base: 0x20000018, Load base: 0x00002784, Size: 0x000002f0, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000018        -       0x00000014   Zero   RW           94    .bss.BC660K_h_h     main.o
+    0x2000002c        -       0x00000064   Zero   RW          100    .bss.GPS_raw        main.o
+    0x20000090        -       0x00000004   Zero   RW          123    .bss.HardFault_Handler.gIsContinue  ht32f5xxxx_01_it.o
+    0x20000094        -       0x00000064   Zero   RW           95    .bss.data           main.o
+    0x200000f8        -       0x00000004   Zero   RW           96    .bss.latitude       main.o
+    0x200000fc        -       0x00000004   Zero   RW           97    .bss.longitude      main.o
+    0x20000100        -       0x00000004   Zero   RW           98    .bss.utick          main.o
+    0x20000104   0x00002784   0x00000004   PAD
+    0x20000108        -       0x00000000   Zero   RW          165    HEAP                startup_ht32f5xxxx_03.o
+    0x20000108        -       0x00000200   Zero   RW          164    STACK               startup_ht32f5xxxx_03.o
 
 
 ==============================================================================
@@ -3159,19 +3369,22 @@ Image component sizes
        212         20          0          0          0      17531   ht32f5xxxx_ckcu.o
        652          4          0          0          0      11372   ht32f5xxxx_gpio.o
        176         20          0          0          0      10208   ht32f5xxxx_usart.o
-      1408        116         27          0        224      41946   main.o
+      1816        140         36          0        232      43325   main.o
        356        238          0          0        512        724   startup_ht32f5xxxx_03.o
        380         16          0          4          0       3055   system_ht32f5xxxx_03.o
 
     ----------------------------------------------------------------------
-      3452        438         96          4        744      98445   Object Totals
+      3860        462        104          4        752      99824   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         6          0          1          0          4          0   (incl. Padding)
+         6          0          0          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
 
+        44          0          0          0          0         76   atof.o
+        68          0          0          0          0         76   _sgetc.o
+        36          4         64          0          0         60   ctype_c.o
          0          0          0          0          0          0   entry.o
          0          0          0          0          0          0   entry10a.o
          0          0          0          0          0          0   entry11a.o
@@ -3180,32 +3393,58 @@ Image component sizes
          0          0          0          0          0          0   entry7b.o
          0          0          0          0          0          0   entry8b.o
          8          4          0          0          0          0   entry9a.o
+        24         12          0          4          0        120   errno.o
         30          0          0          0          0          0   handlers.o
         36          8          0          0          0         68   init.o
+        14          0          0          0          0         68   isspace_c.o
+         0          0          0          0          0          0   iusefp.o
+        48          0          0          0          0         72   llmul.o
+        32          0          0          0          0         68   llshl.o
+        38          0          0          0          0         68   llsshr.o
+        34          0          0          0          0         68   llushr.o
        108         16          0          0          0         76   malloc.o
         36          0          0          0          0         60   memcpya.o
         36          0          0          0          0        100   memseta.o
          0          0          0          8          0          0   mvars.o
-       510          8          0          0          0        228   printf3.o
+      2270         94          0          0          0        472   printfa.o
+       898         14          0          0          0        184   scanf_fp.o
         28          0          0          0          0         68   strcmp.o
         18          0          0          0          0         60   strcpy.o
         14          0          0          0          0         60   strlen.o
         40          0          0          0          0         72   strstr.o
+       180         18          0          0          0        120   strtod.o
         72          4          0          4          0         72   strtok.o
         62          0          0          0          0         72   uidiv_div0.o
+        96          0          0          0          0         84   uldiv.o
+        40          2          0          0          0         68   cdrcmple.o
+        56          0          0          0          0         68   d2f.o
+       356          4          0          0          0        140   dadd.o
+       240          6          0          0          0         84   ddiv.o
+       236          0          0          0          0        216   depilogue.o
+        64         10          0          0          0         68   dfixul.o
+        28          6          0          0          0         68   dfltul.o
+       208          6          0          0          0         88   dmul.o
+        40          0          0          0          0         60   f2d.o
+       178          0          0          0          0        108   fadd.o
+       124          0          0          0          0         72   fdiv.o
+       130          0          0          0          0        144   fepilogue.o
+        50          0          0          0          0         60   ffixi.o
+        22          0          0          0          0         68   fflti.o
 
     ----------------------------------------------------------------------
-      1016         44          0         12          0        936   Library Totals
-         6          0          0          0          0          0   (incl. Padding)
+      6068        212         64         16          0       3556   Library Totals
+        14          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
 
-      1010         44          0         12          0        936   mc_p.l
+        44          0          0          0          0         76   m_ps.l
+      4238        178         64         16          0       2168   mc_p.l
+      1772         34          0          0          0       1312   mf_p.l
 
     ----------------------------------------------------------------------
-      1016         44          0         12          0        936   Library Totals
+      6068        212         64         16          0       3556   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -3214,15 +3453,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      4468        482         96         16        744      99017   Grand Totals
-      4468        482         96         16        744      99017   ELF Image Totals
-      4468        482         96         16          0          0   ROM Totals
+      9928        674        168         20        752     101600   Grand Totals
+      9928        674        168         20        752     101600   ELF Image Totals
+      9928        674        168         20          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4564 (   4.46kB)
-    Total RW  Size (RW Data + ZI Data)               760 (   0.74kB)
-    Total ROM Size (Code + RO Data + RW Data)       4580 (   4.47kB)
+    Total RO  Size (Code + RO Data)                10096 (   9.86kB)
+    Total RW  Size (RW Data + ZI Data)               772 (   0.75kB)
+    Total ROM Size (Code + RO Data + RW Data)      10116 (   9.88kB)
 
 ==============================================================================
 
