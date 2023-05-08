@@ -121,12 +121,15 @@ char *getStatusTypeString(enum StatusType status);
 /* UART ports */
 void UART0_GNSS_Configuration(void);
 void UART0_Receive(void);
+void UxART_Read_Block(uint8_t* data);
 
+/* USART0 ports */
 void USART0_MODULE_Configuration(void);
 void USART0_Send_Char(u16 Data);
 void USART0_Send(char * input_string);
 enum StatusType USART0_Receive(struct BC660K *self);
 
+/* USART1 ports */
 void USART1_DEBUG_Configuration(void);
 void USART1_Send_Char(u16 Data);
 void USART1_Send(char * input_string);
@@ -142,6 +145,7 @@ void Toggle_LED_3(void);
 /* Global variables ----------------------------------------------------------------------------------------*/
 struct BC660K BC660K_h_h;
 vu32 utick;
+void clear(uint8_t *input_string);
 
 /* Global functions ----------------------------------------------------------------------------------------*/
 
@@ -205,9 +209,22 @@ void setup(struct BC660K * self) {
 //		setClientCert_AT_QSSLCFG(self);
 //		setClientPrivateKey_AT_QSSLCFG(self);
 }
-
+	uint8_t data[100];
+	uint8_t* check = NULL;
+	uint8_t GPS_raw[100];
 void loop(struct BC660K * self) {
-	UART0_Receive();
+
+	while (check == NULL)
+	{
+		clear(GPS_raw);
+		UxART_Read_Block(GPS_raw);
+		check = strstr(GPS_raw, "$GNRMC");
+	}
+	strcpy(data, GPS_raw);
+	USART1_Send((char*) data);
+	
+	delay_ms(1000);
+//	UART0_Receive();
 		
 //		offEcho_ATE0(self);
 //		getIMEI_AT_CGSN(self);
@@ -287,6 +304,14 @@ void clearModuleBuffer(struct BC660K *self) {
 		self->module_buffer_index = 0;
 }
 
+void clear(uint8_t *input_string)
+{
+	uint16_t count = 0;
+	for (count = 0; count < 100; count++)
+	{
+		input_string[count] = 0;
+	}
+}
 enum StatusType checkModule_AT(struct BC660K *self) {
 		/* Initialize status */
 		enum StatusType output_status = STATUS_UNKNOWN;
@@ -1220,6 +1245,19 @@ void UART0_Receive(void) {
     USART1_Send_Char(uData);
     #endif
   }
+}
+
+void UxART_Read_Block(uint8_t  *data)
+{
+	uint8_t index = 0;
+	
+	do
+	{
+  /* Waits until the Rx FIFO/DR is not empty then get data from them                                        */
+  while (USART_GetFlagStatus(HT_UART0, USART_FLAG_RXDR) == RESET);
+	data[index] = (uint8_t)USART_ReceiveData(HT_UART0);
+	}
+	while ((data[index] != 0x0A) && (index++ != 99));
 }
 
 enum StatusType USART0_Receive(struct BC660K *self) {

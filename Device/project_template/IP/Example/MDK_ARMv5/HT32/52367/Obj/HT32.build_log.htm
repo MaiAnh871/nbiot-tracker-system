@@ -27,8 +27,34 @@ Project File Date:  04/24/2023
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'HT32'
+../main.c(293): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                check = strstr(GPS_raw, "$GNRMC");
+                               ^~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(270): note: passing argument to parameter here
+extern _ARMABI char *strstr(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+                                               ^
+../main.c(293): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                check = strstr(GPS_raw, "$GNRMC");
+                      ^ ~~~~~~~~~~~~~~~~~~~~~~~~~
+../main.c(295): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        strcpy(data, GPS_raw);
+               ^~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(77): note: passing argument to parameter here
+extern _ARMABI char *strcpy(char * __restrict /*s1*/, const char * __restrict /*s2*/) __attribute__((__nonnull__(1,2)));
+                                                    ^
+../main.c(295): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        strcpy(data, GPS_raw);
+                     ^~~~~~~
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(77): note: passing argument to parameter here
+extern _ARMABI char *strcpy(char * __restrict /*s1*/, const char * __restrict /*s2*/) __attribute__((__nonnull__(1,2)));
+                                                                                    ^
+4 warnings generated.
+compiling main.c...
+linking...
+Program Size: Code=3724 RO-data=68 RW-data=12 ZI-data=744  
+FromELF: creating hex file...
 After Build - User command #1: fromelf --bin -o ".\HT32\52367\Obj\HT32.axf.bin" ".\HT32\52367\Obj\HT32.axf"
-".\HT32\52367\Obj\HT32.axf" - 0 Error(s), 0 Warning(s).
+".\HT32\52367\Obj\HT32.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
