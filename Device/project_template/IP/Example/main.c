@@ -146,6 +146,12 @@ void Toggle_LED_3(void);
 struct BC660K BC660K_h_h;
 vu32 utick;
 void clear(uint8_t *input_string);
+bool getRawGPS(void);
+bool checkValidGPS(uint8_t *raw_GPS);
+void extractMainData(void);
+void updatePosition(void);
+float calculateDistance(void);
+
 
 /* Global functions ----------------------------------------------------------------------------------------*/
 
@@ -213,14 +219,7 @@ void setup(struct BC660K * self) {
 	uint8_t* check = NULL;
 	uint8_t GPS_raw[100];
 void loop(struct BC660K * self) {
-
-	while (check == NULL)
-	{
-		clear(GPS_raw);
-		UART0_Read_Block(GPS_raw);
-		check = strstr(GPS_raw, "$GNRMC");
-	}
-	strcpy(data, GPS_raw);
+	getRawGPS();
 	USART1_Send((char*) data);
 	
 	delay_ms(1000);
@@ -304,14 +303,6 @@ void clearModuleBuffer(struct BC660K *self) {
 		self->module_buffer_index = 0;
 }
 
-void clear(uint8_t *input_string)
-{
-	uint16_t count = 0;
-	for (count = 0; count < 100; count++)
-	{
-		input_string[count] = 0;
-	}
-}
 enum StatusType checkModule_AT(struct BC660K *self) {
 		/* Initialize status */
 		enum StatusType output_status = STATUS_UNKNOWN;
@@ -1259,6 +1250,36 @@ void UART0_Read_Block(uint8_t  *data)
 	}
 	while ((data[index] != 0x0A) && (index++ != 99));
 }
+
+void clear(uint8_t *input_string)
+{
+	uint16_t count = 0;
+	for (count = 0; count < 100; count++)
+	{
+		input_string[count] = 0;
+	}
+}
+
+bool getRawGPS(void)
+{
+	extern uint8_t data[100];
+	uint8_t* check = NULL;
+	uint8_t GPS_raw[100];
+	
+	while (check == NULL)
+	{
+		clear(GPS_raw);
+		UART0_Read_Block(GPS_raw);
+		check = strstr(GPS_raw, "$GNRMC");
+	}
+	strcpy(data, GPS_raw);
+	//return Check_valid_data(GPS_raw);
+	return 1;
+}
+bool checkValidGPS(uint8_t *raw_GPS);
+void extractMainData(void);
+void updatePosition(void);
+float calculateDistance(void);
 
 enum StatusType USART0_Receive(struct BC660K *self) {
 		enum StatusType output_status = STATUS_TIMEOUT;
