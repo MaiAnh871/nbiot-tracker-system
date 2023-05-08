@@ -145,16 +145,20 @@ void Toggle_LED_3(void);
 /* Global variables ----------------------------------------------------------------------------------------*/
 struct BC660K BC660K_h_h;
 vu32 utick;
-void clear(uint8_t *input_string);
-bool getRawGPS(void);
-bool checkValidGPS(uint8_t *raw_GPS);
-void extractMainData(void);
-void updatePosition(void);
-float calculateDistance(void);
+uint8_t data[100];
+uint8_t* check = NULL;
+uint8_t GPS_raw[100];
+
 
 
 /* Global functions ----------------------------------------------------------------------------------------*/
-
+void clear(uint8_t *input_string);
+bool getRawGPS(void);
+bool checkValidGPS(uint8_t *raw_GPS);
+void printBool(bool b);
+void extractMainData(void);
+void updatePosition(void);
+float calculateDistance(void);
 /********************************************************************************************************/
 /*
  * @brief  Main program.
@@ -215,12 +219,18 @@ void setup(struct BC660K * self) {
 //		setClientCert_AT_QSSLCFG(self);
 //		setClientPrivateKey_AT_QSSLCFG(self);
 }
-	uint8_t data[100];
-	uint8_t* check = NULL;
-	uint8_t GPS_raw[100];
+
+
+void printBool(bool b) {
+  char buf[6]; // enough to hold "false" or "true"
+  sprintf(buf, "%s\r\n", b ? "Valid\r\n" : "Invalid\r\n");
+  USART1_Send(buf);
+}
+
 void loop(struct BC660K * self) {
 	getRawGPS();
 	USART1_Send((char*) data);
+	printBool(getRawGPS());
 	
 	delay_ms(1000);
 //	UART0_Receive();
@@ -1273,10 +1283,26 @@ bool getRawGPS(void)
 		check = strstr(GPS_raw, "$GNRMC");
 	}
 	strcpy(data, GPS_raw);
-	//return Check_valid_data(GPS_raw);
-	return 1;
+	return checkValidGPS(GPS_raw);
 }
-bool checkValidGPS(uint8_t *raw_GPS);
+
+bool checkValidGPS(uint8_t *raw_GPS)
+{
+	bool valid = false;
+	uint8_t* check = NULL;
+	
+	check = strtok(GPS_raw, ",");
+	check = strtok(NULL, ",");
+	check = strtok(NULL, ",");
+	
+	if (strcmp(check, "A") == 0)
+	{
+		valid = true;
+	}
+	
+	return valid;
+}
+
 void extractMainData(void);
 void updatePosition(void);
 float calculateDistance(void);
