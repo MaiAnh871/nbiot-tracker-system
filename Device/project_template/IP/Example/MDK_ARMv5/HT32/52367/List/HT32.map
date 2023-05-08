@@ -66,9 +66,9 @@ Section Cross References
     main.o(.ARM.exidx.text.writeLog) refers to main.o(.text.writeLog) for [Anonymous Symbol]
     main.o(.text.clear) refers to memseta.o(.text) for __aeabi_memclr
     main.o(.ARM.exidx.text.clear) refers to main.o(.text.clear) for [Anonymous Symbol]
-    main.o(.text.UxART_Read_Block) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
-    main.o(.text.UxART_Read_Block) refers to ht32f5xxxx_usart.o(.text.USART_ReceiveData) for USART_ReceiveData
-    main.o(.ARM.exidx.text.UxART_Read_Block) refers to main.o(.text.UxART_Read_Block) for [Anonymous Symbol]
+    main.o(.text.UART0_Read_Block) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
+    main.o(.text.UART0_Read_Block) refers to ht32f5xxxx_usart.o(.text.USART_ReceiveData) for USART_ReceiveData
+    main.o(.ARM.exidx.text.UART0_Read_Block) refers to main.o(.text.UART0_Read_Block) for [Anonymous Symbol]
     main.o(.text.USART1_Send) refers to ht32f5xxxx_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
     main.o(.text.USART1_Send) refers to ht32f5xxxx_usart.o(.text.USART_SendData) for USART_SendData
     main.o(.text.USART1_Send) refers to strlen.o(.text) for strlen
@@ -1449,8 +1449,8 @@ Removing Unused input sections from the image.
     Removing main.o(.ARM.exidx.text.writeLog), (8 bytes).
     Removing main.o(.text.clear), (10 bytes).
     Removing main.o(.ARM.exidx.text.clear), (8 bytes).
-    Removing main.o(.text.UxART_Read_Block), (48 bytes).
-    Removing main.o(.ARM.exidx.text.UxART_Read_Block), (8 bytes).
+    Removing main.o(.text.UART0_Read_Block), (48 bytes).
+    Removing main.o(.ARM.exidx.text.UART0_Read_Block), (8 bytes).
     Removing main.o(.text.USART1_Send), (60 bytes).
     Removing main.o(.ARM.exidx.text.USART1_Send), (8 bytes).
     Removing main.o(.text.sendCommand), (752 bytes).

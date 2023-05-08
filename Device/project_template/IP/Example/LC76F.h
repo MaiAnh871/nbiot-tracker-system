@@ -10,7 +10,7 @@
 /* Private function prototypes -----------------------------------------------------------------------------*/
 void UART0_GNSS_Configuration(void);
 void UART0_Receive(void);
-void UxART_Read_Block(uint8_t  *GPS_data);
+void UART0_Read_Block(uint8_t  *GPS_data);
 void Get_Lat_Lon(void);
 void Update_Lat_Lon(void);
 float Calculate_Distance(void);

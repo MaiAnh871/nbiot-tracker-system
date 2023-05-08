@@ -69,3 +69,16 @@
 //  #endif
 //	//USART1_Send("hi");
 //}
+
+//void UART0_Read_Block(uint8_t  *data)
+//{
+//	uint8_t index = 0;
+//	
+//	do
+//	{
+//  /* Waits until the Rx FIFO/DR is not empty then get data from them                                        */
+//  while (USART_GetFlagStatus(HT_UART0, USART_FLAG_RXDR) == RESET);
+//	data[index] = (uint8_t)USART_ReceiveData(HT_UART0);
+//	}
+//	while ((data[index] != 0x0A) && (index++ != 99));
+//}
