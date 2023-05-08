@@ -121,7 +121,7 @@ char *getStatusTypeString(enum StatusType status);
 /* UART ports */
 void UART0_GNSS_Configuration(void);
 void UART0_Receive(void);
-void UxART_Read_Block(uint8_t* data);
+void UART0_Read_Block(uint8_t* data);
 
 /* USART0 ports */
 void USART0_MODULE_Configuration(void);
@@ -217,7 +217,7 @@ void loop(struct BC660K * self) {
 	while (check == NULL)
 	{
 		clear(GPS_raw);
-		UxART_Read_Block(GPS_raw);
+		UART0_Read_Block(GPS_raw);
 		check = strstr(GPS_raw, "$GNRMC");
 	}
 	strcpy(data, GPS_raw);
@@ -1247,7 +1247,7 @@ void UART0_Receive(void) {
   }
 }
 
-void UxART_Read_Block(uint8_t  *data)
+void UART0_Read_Block(uint8_t  *data)
 {
 	uint8_t index = 0;
 	
