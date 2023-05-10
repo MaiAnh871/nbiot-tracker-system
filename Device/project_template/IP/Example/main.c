@@ -36,6 +36,7 @@
 
 #include "string.h"
 
+#include <math.h>
 /** @addtogroup Project_Template Project Template
  * @{
  */
@@ -234,6 +235,7 @@ void loop(struct BC660K * self) {
 	extractMainData();
 	USART1_Send_Float(latitude);
 	USART1_Send_Float(longitude);
+	USART1_Send_Float(calculateDistance());
 	
 	
 	delay_ms(1000);
@@ -1364,7 +1366,26 @@ void updatePosition(void)
 	current_lat = latitude;
 	current_lon = longitude;
 }
-float calculateDistance(void);
+
+float calculateDistance(void)
+{
+	extern float latitude, current_lat;
+	extern float longitude, current_lon;
+	double theta1, theta2, delta_lat, delta_lon;
+	double a,c,d;
+	
+	theta1 = current_lat * PI / 180;
+	theta2 = latitude * PI / 180;
+	
+	delta_lat = (latitude - current_lat) * PI / 360;
+	delta_lon = (longitude - current_lon) * PI / 360;
+	
+	a = sin(delta_lat)*sin(delta_lat) + cos(theta1)*cos(theta2)*sin(delta_lon)*sin(delta_lon);
+	c = asin(sqrt(a));
+	d = 2*6378137*c;
+	
+	return d;
+}
 
 enum StatusType USART0_Receive(struct BC660K *self) {
 		enum StatusType output_status = STATUS_TIMEOUT;
