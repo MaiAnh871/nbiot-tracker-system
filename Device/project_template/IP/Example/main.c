@@ -150,6 +150,8 @@ uint8_t* check = NULL;
 uint8_t GPS_raw[100];
 float latitude;
 float longitude;
+float current_lat;
+float current_lon;
 
 
 /* Global functions ----------------------------------------------------------------------------------------*/
@@ -1355,7 +1357,13 @@ void USART1_Send_Float(float f) {
   USART1_Send(buffer); // send string over USART1
 }
 
-void updatePosition(void);
+void updatePosition(void)
+{
+	extern float latitude, current_lat;
+	extern float longitude, current_lon;
+	current_lat = latitude;
+	current_lon = longitude;
+}
 float calculateDistance(void);
 
 enum StatusType USART0_Receive(struct BC660K *self) {
