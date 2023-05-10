@@ -78,6 +78,7 @@ enum StatusType {
 /* Private constants ---------------------------------------------------------------------------------------*/
 const char *SUCCESS_COMMAND_SIGN[] = { "\r\n\r\n", "OK\r\n" };
 const char *ERROR_COMMAND_SIGN[] = { "ERROR" };
+#define PI 3,141592653589793238
 
 #define SUCCESS_COMMAND_SIGN_LENGTH sizeof(SUCCESS_COMMAND_SIGN) / sizeof(SUCCESS_COMMAND_SIGN[0])
 #define ERROR_COMMAND_SIGN_LENGTH sizeof(ERROR_COMMAND_SIGN) / sizeof(ERROR_COMMAND_SIGN[0])
@@ -233,20 +234,15 @@ void setup(struct BC660K * self) {
 //		setCACert_AT_QSSLCFG(self);
 //		setClientCert_AT_QSSLCFG(self);
 //		setClientPrivateKey_AT_QSSLCFG(self);
-		while (1) {
-		MC3416_Read_Accel(&Ax, &Ay, &Az);
-		printf("Ax = %d, Ay = %d, Az = %d\r\n", Ax, Ay, Az);
-		USART1_Send_Int16(Ax);
-			USART1_Send_Int16(Ay);
-			USART1_Send_Int16(Az);
-		delay_ms(2000);
-	}
 }
 
 
 
 
 void loop(struct BC660K * self) {
+	MC3416_Read_Accel(&Ax, &Ay, &Az);
+
+	
 	getRawGPS();
 	USART1_Send((char*) data);
 	printBool(getRawGPS());
@@ -254,11 +250,11 @@ void loop(struct BC660K * self) {
 	USART1_Send_Float(latitude);
 	USART1_Send_Float(longitude);
 	USART1_Send_Float(calculateDistance());
-	MC3416_Read_Accel(Ax, Ay, Az);
+	
+	printf("Ax = %d, Ay = %d, Az = %d\r\n", Ax, Ay, Az);
 	USART1_Send_Int16(Ax);
 	USART1_Send_Int16(Ay);
 	USART1_Send_Int16(Az);
-	
 	
 	delay_ms(1000);
 //	UART0_Receive();
