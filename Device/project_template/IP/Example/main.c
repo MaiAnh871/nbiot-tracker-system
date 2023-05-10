@@ -169,7 +169,7 @@ void extractMainData(void);
 void USART1_Send_Float(float f);
 void updatePosition(void);
 float calculateDistance(void);
-
+void packMsg(void);
 void USART1_Send_Int16(int16_t value);
 /********************************************************************************************************/
 /*
@@ -256,6 +256,7 @@ void loop(struct BC660K * self) {
 	USART1_Send_Int16(Ay);
 	USART1_Send_Int16(Az);
 	
+	packMsg();
 	delay_ms(1000);
 //	UART0_Receive();
 		
@@ -1403,6 +1404,13 @@ float calculateDistance(void)
 	d = 2*6378137*c;
 	
 	return d;
+}
+
+void packMsg()
+{
+	char buffer[120]; // adjust buffer size as needed
+  sprintf(buffer, "{\"message\":{\"time\":\"10-05-2023\",\"acce_x\":\"21.05\",\"acce_y\":\"22.22\",\"acce_z\":\"22.22\",\"lat\":\"21.05\",\"long\":\"21.22\"}}\r\n"); // convert float to string with 6 decimal places
+  USART1_Send(buffer); // send string over USART1
 }
 
 enum StatusType USART0_Receive(struct BC660K *self) {
