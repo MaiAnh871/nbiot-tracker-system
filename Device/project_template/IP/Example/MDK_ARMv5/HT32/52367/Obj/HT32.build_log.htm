@@ -27,94 +27,94 @@ Project File Date:  04/24/2023
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'HT32'
-../main.c(1362): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1384): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                 check = strstr(GPS_raw, "$GNRMC");
                                ^~~~~~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(270): note: passing argument to parameter here
 extern _ARMABI char *strstr(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
                                                ^
-../main.c(1362): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1384): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                 check = strstr(GPS_raw, "$GNRMC");
                       ^ ~~~~~~~~~~~~~~~~~~~~~~~~~
-../main.c(1364): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1386): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         strcpy(data, GPS_raw);
                ^~~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(77): note: passing argument to parameter here
 extern _ARMABI char *strcpy(char * __restrict /*s1*/, const char * __restrict /*s2*/) __attribute__((__nonnull__(1,2)));
                                                     ^
-../main.c(1364): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1386): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         strcpy(data, GPS_raw);
                      ^~~~~~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(77): note: passing argument to parameter here
 extern _ARMABI char *strcpy(char * __restrict /*s1*/, const char * __restrict /*s2*/) __attribute__((__nonnull__(1,2)));
                                                                                     ^
-../main.c(1373): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1395): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         check = strtok(GPS_raw, ",");
                        ^~~~~~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(280): note: passing argument to parameter here
 extern _ARMABI char *strtok(char * __restrict /*s1*/, const char * __restrict /*s2*/) __attribute__((__nonnull__(2)));
                                                     ^
-../main.c(1373): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1395): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         check = strtok(GPS_raw, ",");
               ^ ~~~~~~~~~~~~~~~~~~~~
-../main.c(1374): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1396): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         check = strtok(NULL, ",");
               ^ ~~~~~~~~~~~~~~~~~
-../main.c(1375): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1397): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         check = strtok(NULL, ",");
               ^ ~~~~~~~~~~~~~~~~~
-../main.c(1377): warning: passing 'uint8_t *' (aka 'unsigned char *') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1399): warning: passing 'uint8_t *' (aka 'unsigned char *') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         if (strcmp(check, "A") == 0)
                    ^~~~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(125): note: passing argument to parameter here
 extern _ARMABI int strcmp(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
                                              ^
-../main.c(1402): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1424): warning: passing 'uint8_t[100]' (aka 'unsigned char[100]') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         check = strtok(data, ",");
                        ^~~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(280): note: passing argument to parameter here
 extern _ARMABI char *strtok(char * __restrict /*s1*/, const char * __restrict /*s2*/) __attribute__((__nonnull__(2)));
                                                     ^
-../main.c(1402): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1424): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         check = strtok(data, ",");
               ^ ~~~~~~~~~~~~~~~~~
-../main.c(1403): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1425): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         check = strtok(NULL, ",");
               ^ ~~~~~~~~~~~~~~~~~
-../main.c(1404): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1426): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         check = strtok(NULL, ",");
               ^ ~~~~~~~~~~~~~~~~~
-../main.c(1406): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1428): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         check = strtok(NULL, ",");
               ^ ~~~~~~~~~~~~~~~~~
-../main.c(1407): warning: passing 'uint8_t *' (aka 'unsigned char *') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1429): warning: passing 'uint8_t *' (aka 'unsigned char *') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         a = atof(check);
                  ^~~~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h(158): note: passing argument to parameter here
 extern _ARMABI double atof(const char * /*nptr*/) __attribute__((__nonnull__(1)));
                                                 ^
-../main.c(1411): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1433): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         check = strtok(NULL, ",");
               ^ ~~~~~~~~~~~~~~~~~
-../main.c(1412): warning: passing 'uint8_t *' (aka 'unsigned char *') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1434): warning: passing 'uint8_t *' (aka 'unsigned char *') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         if (strcmp(check, "S") == 0)
                    ^~~~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(125): note: passing argument to parameter here
 extern _ARMABI int strcmp(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
                                              ^
-../main.c(1417): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1439): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         check = strtok(NULL, ",");
               ^ ~~~~~~~~~~~~~~~~~
-../main.c(1418): warning: passing 'uint8_t *' (aka 'unsigned char *') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1440): warning: passing 'uint8_t *' (aka 'unsigned char *') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         a = atof(check);
                  ^~~~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h(158): note: passing argument to parameter here
 extern _ARMABI double atof(const char * /*nptr*/) __attribute__((__nonnull__(1)));
                                                 ^
-../main.c(1422): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1444): warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         check = strtok(NULL, ",");
               ^ ~~~~~~~~~~~~~~~~~
-../main.c(1423): warning: passing 'uint8_t *' (aka 'unsigned char *') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+../main.c(1445): warning: passing 'uint8_t *' (aka 'unsigned char *') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
         if (strcmp(check, "S") == 0)
                    ^~~~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(125): note: passing argument to parameter here
@@ -123,7 +123,7 @@ extern _ARMABI int strcmp(const char * /*s1*/, const char * /*s2*/) __attribute_
 21 warnings generated.
 compiling main.c...
 linking...
-Program Size: Code=13456 RO-data=544 RW-data=20 ZI-data=760  
+Program Size: Code=8392 RO-data=76 RW-data=16 ZI-data=560  
 FromELF: creating hex file...
 After Build - User command #1: fromelf --bin -o ".\HT32\52367\Obj\HT32.axf.bin" ".\HT32\52367\Obj\HT32.axf"
 ".\HT32\52367\Obj\HT32.axf" - 0 Error(s), 21 Warning(s).
@@ -139,7 +139,7 @@ Package Vendor: Holtek
   C:/Users/Admin/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.44/ARM/INC/Holtek/HT32F5xxxx
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

@@ -37,6 +37,8 @@
 #include "string.h"
 
 #include <math.h>
+
+
 /** @addtogroup Project_Template Project Template
  * @{
  */
@@ -153,7 +155,9 @@ float latitude;
 float longitude;
 float current_lat;
 float current_lon;
-
+int16_t Ax = 0;
+int16_t Ay = 0;
+int16_t Az = 0;
 
 /* Global functions ----------------------------------------------------------------------------------------*/
 void clear(uint8_t *input_string);
@@ -164,6 +168,8 @@ void extractMainData(void);
 void USART1_Send_Float(float f);
 void updatePosition(void);
 float calculateDistance(void);
+
+void USART1_Send_Int16(int16_t value);
 /********************************************************************************************************/
 /*
  * @brief  Main program.
@@ -193,6 +199,10 @@ void setup(struct BC660K * self) {
   UART0_GNSS_Configuration();
   USART0_MODULE_Configuration();
   USART1_DEBUG_Configuration();
+	
+	/* Initialize I2C and Acce */
+	I2C_Configuration();
+	MC3416_Init();
 
   /* Initialize BC660K_handler */
   self->log_content = (char * ) malloc(LOG_CONTENT_SIZE * sizeof(char));
@@ -223,6 +233,14 @@ void setup(struct BC660K * self) {
 //		setCACert_AT_QSSLCFG(self);
 //		setClientCert_AT_QSSLCFG(self);
 //		setClientPrivateKey_AT_QSSLCFG(self);
+		while (1) {
+		MC3416_Read_Accel(&Ax, &Ay, &Az);
+		printf("Ax = %d, Ay = %d, Az = %d\r\n", Ax, Ay, Az);
+		USART1_Send_Int16(Ax);
+			USART1_Send_Int16(Ay);
+			USART1_Send_Int16(Az);
+		delay_ms(2000);
+	}
 }
 
 
@@ -236,6 +254,10 @@ void loop(struct BC660K * self) {
 	USART1_Send_Float(latitude);
 	USART1_Send_Float(longitude);
 	USART1_Send_Float(calculateDistance());
+	MC3416_Read_Accel(Ax, Ay, Az);
+	USART1_Send_Int16(Ax);
+	USART1_Send_Int16(Ay);
+	USART1_Send_Int16(Az);
 	
 	
 	delay_ms(1000);
@@ -1417,6 +1439,12 @@ enum StatusType USART0_Receive(struct BC660K *self) {
 		}
 		
 		return output_status;
+}
+
+void USART1_Send_Int16(int16_t value) {
+  char buffer[6]; // adjust buffer size as needed
+  sprintf(buffer, "%d\r\n", value); // convert uint16_t to string
+  USART1_Send(buffer); // send string over USART1
 }
 
 void USART1_Receive(void) {
