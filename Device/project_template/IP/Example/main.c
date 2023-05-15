@@ -53,7 +53,11 @@
 
 /* Settings ------------------------------------------------------------------------------------------------*/
 
+#define CA_CERT ""
+#define CLIENT_CERT ""
+#define CLIENT_KEY ""
 
+#define PI 3.14
 
 /* Private types -------------------------------------------------------------------------------------------*/
 struct BC660K {
@@ -1409,7 +1413,7 @@ float calculateDistance(void)
 void packMsg()
 {
 	char buffer[120]; // adjust buffer size as needed
-  sprintf(buffer, "{\"message\":{\"time\":\"10-05-2023\",\"acce_x\":\"21.05\",\"acce_y\":\"22.22\",\"acce_z\":\"22.22\",\"lat\":\"21.05\",\"long\":\"21.22\"}}\r\n"); // convert float to string with 6 decimal places
+  sprintf(buffer, "{\"message\":{\"time\":\"15-05-2023 15:11:35\",\"acce_x\":\"%hd\",\"acce_y\":\"%hd\",\"acce_z\":\"%hd\",\"lat\":\"%f\",\"long\":\"%f\"}}\r\n", Ax, Ay, Az, latitude, longitude); // convert float to string with 6 decimal places
   USART1_Send(buffer); // send string over USART1
 }
 
