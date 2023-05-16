@@ -231,13 +231,12 @@ void setup(struct BC660K * self) {
   sprintf(self -> log_content, "Setup successfully!\n");
   writeLog(self);
 	
-//		checkModule_AT(self);
-//		offEcho_ATE0(self);
-//		getIMEI_AT_CGSN(self);
-//		setAuthentication_AT_QSSLCFG(self);
-//		setCACert_AT_QSSLCFG(self);
-//		setClientCert_AT_QSSLCFG(self);
-//		setClientPrivateKey_AT_QSSLCFG(self);
+	checkModule_AT(self);
+	offEcho_ATE0(self);
+	setAuthentication_AT_QSSLCFG(self);
+	setCACert_AT_QSSLCFG(self);
+	setClientCert_AT_QSSLCFG(self);
+	setClientPrivateKey_AT_QSSLCFG(self);
 }
 
 
@@ -248,20 +247,20 @@ void loop(struct BC660K * self) {
 
 	
 	getRawGPS();
-	USART1_Send((char*) data);
-	printBool(getRawGPS());
+//	USART1_Send((char*) data);
+//	printBool(getRawGPS());
 	extractMainData();
-	USART1_Send_Float(latitude);
-	USART1_Send_Float(longitude);
-	USART1_Send_Float(calculateDistance());
+//	USART1_Send_Float(latitude);
+//	USART1_Send_Float(longitude);
+//	USART1_Send_Float(calculateDistance());
 	
-	printf("Ax = %d, Ay = %d, Az = %d\r\n", Ax, Ay, Az);
-	USART1_Send_Int16(Ax);
-	USART1_Send_Int16(Ay);
-	USART1_Send_Int16(Az);
+//	printf("Ax = %d, Ay = %d, Az = %d\r\n", Ax, Ay, Az);
+//	USART1_Send_Int16(Ax);
+//	USART1_Send_Int16(Ay);
+//	USART1_Send_Int16(Az);
 	
-	packMsg();
-	delay_ms(1000);
+
+
 //	UART0_Receive();
 		
 //		offEcho_ATE0(self);
@@ -275,14 +274,16 @@ void loop(struct BC660K * self) {
 //		getNetworkStatus_AT_QENG(self);
 //		checkModule_AT(self);
 //		closeMQTT_AT_QMTCLOSE(self);
-	
-//		wakeUpModule_AT_QSCLK(self);
-//		openMQTT_AT_QMTOPEN(self);
-//		connectClient_AT_QMTCONN(self);
-//		publishMessage_AT_QMTPUB(self);
-//		publishMessage_AT_QMTPUB(self);
-//		publishMessage_AT_QMTPUB(self);
-//		closeMQTT_AT_QMTCLOSE(self);
+
+	wakeUpModule_AT_QSCLK(self);
+	openMQTT_AT_QMTOPEN(self);
+	connectClient_AT_QMTCONN(self);
+	publishMessage_AT_QMTPUB(self);
+	publishMessage_AT_QMTPUB(self);
+	publishMessage_AT_QMTPUB(self);
+	closeMQTT_AT_QMTCLOSE(self);
+
+	delay_ms(1000);
 }
 	
 enum StatusType sendCommand(struct BC660K * self, u8 send_attempt, u32 command_timeout) {
@@ -627,7 +628,7 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTCONN=0,\"anhttm8client\"");
-		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS + 2000);
+		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS + 8000);
 		/* Actions with status */
 		switch(output_status){
 			
@@ -661,7 +662,7 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
 		
 		
 		/* Write Command */
-		sprintf(self->command, "AT+QMTPUB=0,0,0,0,\"tracker/data\",3");
+		sprintf(self->command, "AT+QMTPUB=0,0,0,0,\"tracker/data\",300");
 		sprintf(self->log_content, "\n=== SENDING <%s> ===\n", self->command);
 		writeLog(self);
 		clearModuleBuffer(self);
@@ -678,7 +679,8 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
 		writeLog(self);
 		clearModuleBuffer(self);
 		
-		sprintf(self->command, "hello");
+
+		sprintf(self->command, "{\"message\":{\"time\":\"15-05-2023 15:11:35\",\"acce_x\":\"%hd\",\"acce_y\":\"%hd\",\"acce_z\":\"%hd\",\"lat\":\"%f\",\"long\":\"%f\"}}", Ax, Ay, Az, latitude, longitude);
 		USART0_Send(self->command);
 		USART0_Send((char *)"\r\n");
 	
