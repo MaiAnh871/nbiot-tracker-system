@@ -45,6 +45,19 @@ async function confirmSignUp() {
   }
 }
 
+/* Auto sign in after sign up */
+function listenToAutoSignInEvent() {
+  Hub.listen('auth', ({ payload }) => {
+    const { event } = payload;
+    if (event === 'autoSignIn') {
+      const user = payload.data;
+      // assign user
+    } else if (event === 'autoSignIn_failure') {
+      // redirect to sign in page
+    }
+  })
+}
+
 export default function App() {
   return (
     <View style={styles.container}>
