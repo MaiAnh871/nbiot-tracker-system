@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Amplify, Auth } from 'aws-amplify';
 import awsconfig from './src/aws-exports';
 import { withAuthenticator } from 'aws-amplify-react-native';
+import Home from './Home';
 
 Amplify.configure(awsconfig);
 
@@ -80,7 +81,7 @@ async function signOut() {
 function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Home />
       <StatusBar style="auto" />
     </View>
   );
