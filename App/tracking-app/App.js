@@ -3,6 +3,27 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Amplify, Auth } from 'aws-amplify';
 import awsconfig from './src/aws-exports';
 
+async function signUp() {
+  try {
+    const { user } = await Auth.signUp({
+      username,
+      password,
+      attributes: {
+        email,          // optional
+        phone_number,   // optional - E.164 number convention
+        // other custom attributes 
+      },
+      autoSignIn: { // optional - enables auto sign in after user is confirmed
+        enabled: true,
+      }
+    });
+    console.log(user);
+  } catch (error) {
+    console.log('Error signing up:', error);
+  }
+}
+
+
 Amplify.configure(awsconfig);
 export default function App() {
   return (
