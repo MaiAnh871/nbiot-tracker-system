@@ -70,7 +70,7 @@ async function signIn() {
 /* Sign out */
 async function signOut() {
   try {
-    await Auth.signOut();
+    await Auth.signOut({ global: true });
   } catch (error) {
     console.log('error signing out: ', Error);
   }
