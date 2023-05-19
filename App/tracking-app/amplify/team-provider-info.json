@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-trackingapp-dev-10139-authRole",
+      "UnauthRoleArn": "arn:aws:iam::651307515661:role/amplify-trackingapp-dev-10139-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::651307515661:role/amplify-trackingapp-dev-10139-authRole",
+      "Region": "ap-northeast-2",
+      "DeploymentBucketName": "amplify-trackingapp-dev-10139-deployment",
+      "UnauthRoleName": "amplify-trackingapp-dev-10139-unauthRole",
+      "StackName": "amplify-trackingapp-dev-10139",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:651307515661:stack/amplify-trackingapp-dev-10139/36a7c200-f66f-11ed-88bc-02797cb4f448",
+      "AmplifyAppId": "d3plmlh60jrbuw"
+    }
+  }
+}
