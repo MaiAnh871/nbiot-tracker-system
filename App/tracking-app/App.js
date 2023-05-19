@@ -58,6 +58,16 @@ function listenToAutoSignInEvent() {
   })
 }
 
+/* Sign in */
+async function signIn() {
+  try {
+    const user = await Auth.signIn(username, password);
+  } catch (error) {
+    console.log('Error signing in', error);
+  }
+}
+
+
 export default function App() {
   return (
     <View style={styles.container}>
