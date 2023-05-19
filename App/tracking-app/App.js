@@ -3,6 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Amplify, Auth } from 'aws-amplify';
 import awsconfig from './src/aws-exports';
 
+Amplify.configure(awsconfig);
+
+/* Sign Up */
 async function signUp() {
   try {
     const { user } = await Auth.signUp({
@@ -23,8 +26,18 @@ async function signUp() {
   }
 }
 
+/* Re-send sign up confirmation code */
+async function resendConfirmationCode() {
+  try {
+    await Auth.resendSignUp(username);
+    console.log('Code resent successfully');
+  } catch (err) {
+    console.log('Error resending code: ', err);
+  }
+}
 
-Amplify.configure(awsconfig);
+
+
 export default function App() {
   return (
     <View style={styles.container}>
