@@ -67,6 +67,14 @@ async function signIn() {
   }
 }
 
+/* Sign out */
+async function signOut() {
+  try {
+    await Auth.signOut();
+  } catch (error) {
+    console.log('error signing out: ', Error);
+  }
+}
 
 export default function App() {
   return (
