@@ -59,5 +59,11 @@ const signUpConfig = {
   ],
 };
 
-const customTheme = {...AmplifyTheme}
+const customTheme = {
+  ...AmplifyTheme,
+  button: {
+    ...AmplifyTheme.button,
+    //backgroundColor: 'blue',
+    borderRadius: 10,
+  }}
 export default withAuthenticator(App, { signUpConfig, theme: customTheme });
