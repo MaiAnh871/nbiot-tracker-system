@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Amplify, Auth } from 'aws-amplify';
 import awsconfig from './src/aws-exports';
-import { withAuthenticator } from 'aws-amplify-react-native';
+import { withAuthenticator, AmplifyTheme } from 'aws-amplify-react-native';
 Amplify.configure(awsconfig);
 
 function App() {
@@ -59,4 +59,5 @@ const signUpConfig = {
   ],
 };
 
-export default withAuthenticator(App, { signUpConfig });
+const customTheme = {...AmplifyTheme}
+export default withAuthenticator(App, { signUpConfig, theme: customTheme });
