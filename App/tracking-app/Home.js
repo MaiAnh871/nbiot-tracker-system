@@ -13,35 +13,42 @@ const Home = () => {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerText}>Welcome!</Text>
-          <Pressable style={styles.button} onPress={() => signOut()}>
-            <Text style={styles.buttonText}>Sign out</Text>
-          </Pressable>
+          <Text style={styles.headerText}>DANH SÁCH PHƯƠNG TIỆN</Text>
         </View>
+        <Pressable style={styles.button} onPress={() => signOut()}>
+          <Text style={styles.buttonText}>Sign out</Text>
+        </Pressable>
       </View>
     );
   };
-  const styles = StyleSheet.create({
+
+const styles = StyleSheet.create({
     container: {
+      flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'flex-start', // Align items from top to bottom
       width: width,
-      paddingVertical: 20,
+      paddingTop: 10, // Add paddingTop to create space at the top
     },
     header: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
-      padding: 20,
+      paddingHorizontal: 20, // Update padding to only horizontal
+      paddingVertical: 20,
       width: width,
       alignItems: 'center',
+      marginTop: 10, // Add marginTop to move the header to the top
     },
     headerText: {
       fontSize: 28,
       fontWeight: 'bold',
     },
     button: {
+      position: 'absolute',
+      bottom: 20,
+      right: 20,
       backgroundColor: '#ff9900',
       padding: 10,
       borderRadius: 6,
@@ -51,4 +58,5 @@ const Home = () => {
       fontSize: 18,
     },
   });
-  export default Home;
+
+export default Home;
