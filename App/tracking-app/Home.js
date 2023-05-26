@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Dimensions, Image } from 'react-native';
 import { Auth } from 'aws-amplify';
 const { width } = Dimensions.get('window');
 
@@ -17,6 +17,9 @@ const Home = () => {
         </View>
         <Pressable style={styles.button} onPress={() => signOut()}>
           <Text style={styles.buttonText}>Sign out</Text>
+        </Pressable>
+        <Pressable style={styles.addButton}>
+          <Image source={require('./plus_icon.png')} style={styles.plusIcon} />
         </Pressable>
       </View>
     );
@@ -56,6 +59,18 @@ const styles = StyleSheet.create({
     buttonText: {
       color: '#fff',
       fontSize: 18,
+    },
+    addButton: {
+      position: 'absolute',
+      bottom: 20,
+      right: width / 2 - 20,
+      backgroundColor: '#ff9900',
+      padding: 10,
+      borderRadius: 6
+    },
+    plusIcon: {
+      width: 21, // Adjust the width to resize the image
+      height: 21, // Adjust the height to resize the image
     },
   });
 
