@@ -3,14 +3,26 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Amplify, Auth } from 'aws-amplify';
 import awsconfig from './src/aws-exports';
 import { withAuthenticator } from 'aws-amplify-react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import Home from './Home';
+import QRScanner from './QRScanner';
 
 Amplify.configure(awsconfig);
 
+const Stack = createStackNavigator();
+
 function App() {
+  
   return (
     <View style={styles.container}>
-      <Home />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="QRScanner" component={QRScanner} />
+        </Stack.Navigator>
+      </NavigationContainer>
       <StatusBar style="auto" />
     </View>
   );

@@ -1,8 +1,17 @@
 import { StyleSheet, Text, View, Pressable, Dimensions, Image } from 'react-native';
 import { Auth } from 'aws-amplify';
+import { useNavigation } from '@react-navigation/native';
+
 const { width } = Dimensions.get('window');
 
+
 const Home = () => {
+    const navigation = useNavigation();
+
+    const navigateToQRScanner = () => {
+      navigation.navigate('QRScanner');
+    };
+
     const signOut = async () => {
       try {
         await Auth.signOut({ global: true });
@@ -10,6 +19,7 @@ const Home = () => {
         console.log('Error signing out: ', error);
       }
     };
+
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -18,7 +28,7 @@ const Home = () => {
         <Pressable style={styles.button} onPress={() => signOut()}>
           <Text style={styles.buttonText}>Sign out</Text>
         </Pressable>
-        <Pressable style={styles.addButton}>
+        <Pressable style={styles.addButton} onPress={navigateToQRScanner}>
           <Image source={require('./plus_icon.png')} style={styles.plusIcon} />
         </Pressable>
       </View>
