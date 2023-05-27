@@ -28,18 +28,20 @@ const SignInScreen = () => {
     formState: {errors},
   } = useForm();
 
-  const onSignInPressed = async data => {
+  const onSignInPressed = async (data) => {
     if (loading) {
       return;
     }
 
     setLoading(true);
+
     try {
       const response = await Auth.signIn(data.username, data.password);
       console.log(response);
     } catch (e) {
       Alert.alert('Oops', e.message);
     }
+
     setLoading(false);
   };
 
@@ -81,6 +83,7 @@ const SignInScreen = () => {
           }}
         />
 
+        {/* Make Sign In button turn to Loading when it's in process */}
         <CustomButton
           text={loading ? 'Loading...' : 'Sign In'}
           onPress={handleSubmit(onSignInPressed)}
