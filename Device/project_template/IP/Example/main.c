@@ -57,8 +57,6 @@
 #define CLIENT_CERT ""
 #define CLIENT_KEY ""
 
-#define PI 3.14
-
 /* Private types -------------------------------------------------------------------------------------------*/
 struct BC660K {
   /* Debug */
@@ -82,7 +80,7 @@ enum StatusType {
 /* Private constants ---------------------------------------------------------------------------------------*/
 const char *SUCCESS_COMMAND_SIGN[] = { "\r\n\r\n", "OK\r\n" };
 const char *ERROR_COMMAND_SIGN[] = { "ERROR" };
-#define PI 3,141592653589793238
+#define PI 3.141592653589793238
 
 #define SUCCESS_COMMAND_SIGN_LENGTH sizeof(SUCCESS_COMMAND_SIGN) / sizeof(SUCCESS_COMMAND_SIGN[0])
 #define ERROR_COMMAND_SIGN_LENGTH sizeof(ERROR_COMMAND_SIGN) / sizeof(ERROR_COMMAND_SIGN[0])
@@ -98,6 +96,7 @@ const char *ERROR_COMMAND_SIGN[] = { "ERROR" };
 /* Private function prototypes -----------------------------------------------------------------------------*/
 static void delay_ms(u32 count);
 void setup(struct BC660K * self);
+void addCA(struct BC660K * self);
 void loop(struct BC660K * self);
 enum StatusType sendCommand(struct BC660K * self, u8 send_attempt, u32 command_timeout);
 void clearModuleBuffer(struct BC660K *self);
@@ -231,16 +230,18 @@ void setup(struct BC660K * self) {
   sprintf(self -> log_content, "Setup successfully!\n");
   writeLog(self);
 	
+	addCA(self);
+}
+
+void addCA(struct BC660K * self) {
 	checkModule_AT(self);
 	offEcho_ATE0(self);
 	setAuthentication_AT_QSSLCFG(self);
 	setCACert_AT_QSSLCFG(self);
 	setClientCert_AT_QSSLCFG(self);
 	setClientPrivateKey_AT_QSSLCFG(self);
+	enableSSL_AT_QMTCFG(self);
 }
-
-
-
 
 void loop(struct BC660K * self) {
 	MC3416_Read_Accel(&Ax, &Ay, &Az);
