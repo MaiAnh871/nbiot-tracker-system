@@ -9,11 +9,12 @@ import {useRoute} from '@react-navigation/native';
 import {Auth} from 'aws-amplify';
 
 const ConfirmEmailScreen = () => {
-  const route = useRoute();
+  const route = useRoute(); // Use this to get username from previous screen to this screen
   const {control, handleSubmit, watch} = useForm({
     defaultValues: {username: route?.params?.username},
   });
 
+  {/* Keep a username like a copy of a username*/}
   const username = watch('username');
 
   const navigation = useNavigation();
@@ -31,6 +32,9 @@ const ConfirmEmailScreen = () => {
     navigation.navigate('SignIn');
   };
 
+  {/* If we try to click resend, i will see an error oops, data is not defined 
+  because we do not have a data in the previous function received as a parameter
+  (it needs useForm and useRoute) -> watch the username filed*/}
   const onResendPress = async () => {
     try {
       await Auth.resendSignUp(username);

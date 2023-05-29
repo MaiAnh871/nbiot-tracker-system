@@ -15,6 +15,7 @@ const NewPasswordScreen = () => {
   const onSubmitPressed = async data => {
     try {
       await Auth.forgotPasswordSubmit(data.username, data.code, data.password);
+      Alert.alert('Success', 'Password changed successfully!');
       navigation.navigate('SignIn');
     } catch (e) {
       Alert.alert('Oops', e.message);
