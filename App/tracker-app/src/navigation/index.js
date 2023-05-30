@@ -26,12 +26,17 @@ function TabNavigation() {
 
             if (route.name === 'Home') {
               iconName = focused
-                ? 'ios-information-circle'
-                : 'ios-information-circle-outline';
+                ? 'home'
+                : 'home-outline';
             } else if (route.name === 'Profile') {
-              iconName = focused ? 'ios-list-box' : 'ios-list';
+              iconName = focused 
+                ? 'person' 
+                : 'person-outline';
+            } else if (route.name === 'Register Device') {
+              iconName = focused
+                ? 'add-circle'
+                : 'add-circle-outline';
             }
-
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
@@ -39,7 +44,7 @@ function TabNavigation() {
           tabBarInactiveTintColor: 'gray',
         })}
     >
-        <Tab.Screen name="Device List" component={HomeScreen} />
+        <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Register Device" component={RegisterDeviceScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
