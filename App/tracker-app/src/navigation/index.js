@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'; //useEffect to check when the component mounts
 import {View, ActivityIndicator} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
@@ -13,6 +14,18 @@ import RegisterDeviceScreen from '../screens/RegisterDeviceScreen';
 import {Auth, Hub} from 'aws-amplify';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+
+function TabNavigation() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="DeviceList" component={HomeScreen} />
+      <Tab.Screen name="RegisterDevice" component={RegisterDeviceScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+    </Tab.Navigator>
+  );
+}
 
 const Navigation = () => {
   const [user, setUser] = useState(undefined);
@@ -53,7 +66,7 @@ const Navigation = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         {user ? (
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Tab" component={TabNavigation} />
         ) : (
           <>
             <Stack.Screen name="SignIn" component={SignInScreen} />
