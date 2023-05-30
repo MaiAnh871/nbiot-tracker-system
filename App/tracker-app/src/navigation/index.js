@@ -45,9 +45,17 @@ function TabNavigation() {
         tabBarStyle: { height: 60},
       })}
     >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Register Device" component={RegisterDeviceScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen 
+        name="Home" 
+        component={HomeScreen} 
+        options={{
+          title: 'Device List',
+          headerTitleStyle: { fontSize: 28 },
+          headerStyle: {height: 55}
+        }
+      }/>
+      <Tab.Screen name="Register Device" component={RegisterDeviceScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
