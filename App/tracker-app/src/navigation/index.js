@@ -32,7 +32,7 @@ function TabNavigation() {
             iconName = focused 
               ? 'person' 
               : 'person-outline';
-          } else if (route.name === 'Register Device') {
+          } else if (route.name === 'Register New Device') {
             iconName = focused
               ? 'add-circle'
               : 'add-circle-outline';
@@ -54,7 +54,7 @@ function TabNavigation() {
           headerStyle: {height: 55}
         }
       }/>
-      <Tab.Screen name="Register Device" component={RegisterDeviceScreen} />
+      <Tab.Screen name="Register New Device" component={RegisterDeviceScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
