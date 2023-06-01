@@ -1,29 +1,37 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet } from 'react-native';
 import {Auth} from 'aws-amplify';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
-  const signOut = () => {
-    Auth.signOut();
+  const route = useRoute();
+  const { scannedData } = route.params || {};
+  const navigation = useNavigation();
+
+  const handleDataClick = (deviceId) => {
+    navigation.navigate(`device_${deviceId}`);
   };
 
   return (
-    <View style={{flex: 1}}>
-      <Text style={{fontSize: 24, alignSelf: 'center'}}>Device 1</Text>
-      <Text
-        onPress={signOut}
-        style={{
-          width: '100%',
-          textAlign: 'center',
-          color: 'red',
-          marginTop: 'auto',
-          marginVertical: 20,
-          fontSize: 20,
-        }}>
-        Sign out
-      </Text>
+    <View style={styles.container}>
+      {/* Render the scannedData if available */}
+      {scannedData && (
+        <View>
+          <Text>Scanned Data:</Text>
+          <Text>{JSON.stringify(scannedData)}</Text>
+        </View>
+      )}
+      {/* ... rest of the HomeScreen component */}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      flexDirection: 'column',
+      justifyContent: 'center'
+  }
+})
 
 export default HomeScreen;

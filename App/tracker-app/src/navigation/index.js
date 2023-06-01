@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import ConfirmEmailScreen from '../screens/ConfirmEmailScreen';
@@ -12,11 +13,11 @@ import NewPasswordScreen from '../screens/NewPasswordScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import RegisterDeviceScreen from '../screens/RegisterDeviceScreen';
-import DevicePositionScreen from '../screens/DevicePosition/DevicePositionScreen';
 import { Auth, Hub } from 'aws-amplify';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
 
 function TabNavigation() {
   return (
@@ -48,28 +49,13 @@ function TabNavigation() {
     >
       <Tab.Screen 
         name="Home" 
+        component={HomeScreen} 
         options={{
-          headerStyle: {height: 45},
-          headerTitleStyle: { fontSize: 25 }
+          title: 'Device List',
+          headerTitleStyle: { fontSize: 28 },
+          headerStyle: {height: 55}
         }
-      }>
-        {() => (
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{
-                title: 'Device List',
-                headerTitleStyle: { fontSize: 18 }
-              }}
-            />
-            <Stack.Screen
-              name="DevicePosition"
-              component={DevicePositionScreen}
-            />
-          </Stack.Navigator>
-        )}
-      </Tab.Screen>
+      }/>
       <Tab.Screen name="Register New Device" component={RegisterDeviceScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
