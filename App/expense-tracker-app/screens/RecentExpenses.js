@@ -1,7 +1,7 @@
 import { Text } from "react-native";
 
-function RecenExpenses() {
-    return <Text>RecenExpenses Screen</Text>
+function RecentExpenses() {
+    return <Text>RecentExpenses Screen</Text>
 }
 
-export default RecenExpenses;
+export default RecentExpenses;
