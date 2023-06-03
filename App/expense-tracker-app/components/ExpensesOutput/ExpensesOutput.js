@@ -1,77 +1,38 @@
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from 'react-native';
 
-import ExpensesSummary from "./ExpensesSummary";
-import ExpensesList from "./ExpensesList";
-import { GlobalStyles } from "../../constants/styles";
+import { GlobalStyles } from '../../constants/styles';
+import ExpensesList from './ExpensesList';
+import ExpensesSummary from './ExpensesSummary';
 
-const DUMMY_EXPENSES = [
-    {
-        id: 'e1',
-        description: 'A pair of shoes',
-        amount: 59.99,
-        date: new Date('2023-05-31')
-    },
-    {
-        id: 'e2',
-        description: 'A pair of trousers',
-        amount: 89.29,
-        date: new Date('2023-06-01')
-    },
-    {
-        id: 'e3',
-        description: 'Some bananas',
-        amount: 5.69,
-        date: new Date('2023-06-02')
-    },
-    {
-        id: 'e4',
-        description: 'A book',
-        amount: 14.49,
-        date: new Date('2023-06-03')
-    },
-    {
-        id: 'e5',
-        description: 'A dress',
-        amount: 34.89,
-        date: new Date('2023-06-03')
-    },
-    {
-        id: 'e5',
-        description: 'A dress',
-        amount: 34.89,
-        date: new Date('2023-06-03')
-    },
-    {
-        id: 'e5',
-        description: 'A dress',
-        amount: 34.89,
-        date: new Date('2023-06-03')
-    },
-    {
-        id: 'e5',
-        description: 'A dress',
-        amount: 34.89,
-        date: new Date('2023-06-03')
-    },
-];
+function ExpensesOutput({ expenses, expensesPeriod, fallbackText }) {
+  let content = <Text style={styles.infoText}>{fallbackText}</Text>;
 
-function ExpensesOutput({ expenses, expensesPeriod }) {
-    return (
-        <View style={styles.container}>
-            <ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod} />
-            <ExpensesList expenses={DUMMY_EXPENSES} />
-        </View>
-    );
+  if (expenses.length > 0) {
+    content = <ExpensesList expenses={expenses} />;
+  }
+
+  return (
+    <View style={styles.container}>
+      <ExpensesSummary expenses={expenses} periodName={expensesPeriod} />
+      {content}
+    </View>
+  );
 }
 
 export default ExpensesOutput;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingHorizontal: 24,
-        paddingTop: 24,
-        paddingBottom: 0,
-        backgroundColor: GlobalStyles.colors.primary700,
-    },
-})
+  container: {
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: 24,
+    paddingBottom: 0,
+    backgroundColor: GlobalStyles.colors.primary700,
+  },
+  infoText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 32,
+  },
+});
