@@ -36,7 +36,7 @@ const DUMMY_DEVICES = [
 function DevicesOutput({ devices }) {
     return (
         <View>
-            <DevicesList />
+            <DevicesList devices={DUMMY_DEVICES} />
         </View>
     );
 }

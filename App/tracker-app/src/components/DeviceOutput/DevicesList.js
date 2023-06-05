@@ -1,7 +1,21 @@
-import { FlatList } from "react-native";
+import { FlatList, Text } from "react-native";
 
-function DevicesList() {
-    return <FlatList />
+function renderDeviceItem(itemData) {
+    return (
+        <Text>
+            {itemData.item.deviceId}
+        </Text>
+    );
+}
+
+function DevicesList({ devices }) {
+    return (
+        <FlatList
+            data={devices}
+            renderItem={renderDeviceItem}
+            keyExtractor={(item) => item.id}
+        />
+    )
 }
 
 export default DevicesList;
