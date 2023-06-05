@@ -1,6 +1,7 @@
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 import DevicesList from "./DevicesList";
+import { GlobalStyles } from "../../constants/styles";
 
 const DUMMY_DEVICES = [
     {
@@ -35,10 +36,18 @@ const DUMMY_DEVICES = [
 
 function DevicesOutput({ devices }) {
     return (
-        <View>
+        <View style={styles.container}>
             <DevicesList devices={DUMMY_DEVICES} />
         </View>
     );
 }
 
 export default DevicesOutput;
+
+const styles = StyleSheet.create({
+    container: {
+        padding: 24,
+        backgroundColor: GlobalStyles.colors.tomato,
+        flex: 1,
+    }
+})
