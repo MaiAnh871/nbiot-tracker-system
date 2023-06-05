@@ -2,7 +2,7 @@ import { useContext, useLayoutEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 import { DevicesContext } from '../../store/device-context';
-import IconButton from '../../components/IconButton/IconButton';
+import IconButton from '../../components/UI/IconButton';
 import { GlobalStyles } from '../../constants/styles';
 
 function ManageDeviceScreen({ route }) {
