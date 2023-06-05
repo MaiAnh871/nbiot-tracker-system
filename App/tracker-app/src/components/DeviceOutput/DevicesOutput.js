@@ -32,6 +32,14 @@ const DUMMY_DEVICES = [
         id: 'd7',
         deviceId: '868754048212565'
     }, 
+    {
+        id: 'd8',
+        deviceId: '868754048214365'
+    }, 
+    {
+        id: 'd9',
+        deviceId: '868754048212565'
+    }, 
 ];
 
 function DevicesOutput({ devices }) {
@@ -46,7 +54,9 @@ export default DevicesOutput;
 
 const styles = StyleSheet.create({
     container: {
-        padding: 24,
+        paddingHorizontal: 24,
+        paddingTop: 24,
+        paddingBottom: 0,
         backgroundColor: GlobalStyles.colors.tomato,
         flex: 1,
     }

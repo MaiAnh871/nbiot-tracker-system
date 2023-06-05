@@ -1,10 +1,9 @@
 import { FlatList, Text } from "react-native";
+import DeviceItem from "./DeviceItem";
 
 function renderDeviceItem(itemData) {
     return (
-        <Text>
-            {itemData.item.deviceId}
-        </Text>
+        <DeviceItem {...itemData.item} />
     );
 }
 
