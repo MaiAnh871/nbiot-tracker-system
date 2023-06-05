@@ -3,8 +3,15 @@ import { useNavigation } from '@react-navigation/native';
 import { GlobalStyles } from "../../constants/styles";
 
 function DeviceItem({ deviceId }) {
+    function devicePressHandler() {
+
+    }
+    
     return (
-        <Pressable>
+        <Pressable
+            onPress={devicePressHandler}
+            style={({ pressed }) => pressed && styles.pressed}
+        >
             <View style={styles.deviceItem}>
                 <View>
                     <Text style={[styles.textBase, styles.description]}>
@@ -60,5 +67,8 @@ const styles = StyleSheet.create({
     id: {
         color: GlobalStyles.colors.primary500,
         fontWeight: 'bold'
+    },
+    pressed: {
+        opacity: 0.75
     }
 });
