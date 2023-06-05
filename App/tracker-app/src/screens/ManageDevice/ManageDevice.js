@@ -3,11 +3,15 @@ import { StyleSheet, View, Text } from 'react-native';
 
 import { DevicesContext } from '../../store/device-context';
 
-const ManageDeviceScreen = () => {
-  
+function ManageDeviceScreen({ route }) {
+    const manageDeviceId = route.params?.trackerId;
+
     return (
-        <Text>ManageDevice Screen</Text>
+        <View>
+            <Text>ManageDevice Screen</Text>
+            <Text>{manageDeviceId}</Text>
+        </View>
     );
   };
   
-  export default ManageDeviceScreen;
+export default ManageDeviceScreen;
