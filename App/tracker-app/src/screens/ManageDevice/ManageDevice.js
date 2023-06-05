@@ -1,29 +1,13 @@
 import { useContext, useLayoutEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 import { DevicesContext } from '../../store/device-context';
 
-const ManageDevice = () => {
-
-    const devicesCtx = useContext(DevicesContext);
+const ManageDeviceScreen = () => {
   
     return (
-      <View style={{flex: 1}}>
-        <Text style={{fontSize: 24, alignSelf: 'center'}}>Manage Device</Text>
-        <Text
-          onPress={signOut}
-          style={{
-            width: '100%',
-            textAlign: 'center',
-            color: 'red',
-            marginTop: 'auto',
-            marginVertical: 20,
-            fontSize: 20,
-          }}>
-          Sign out
-        </Text>
-      </View>
+        <Text>ManageDevice Screen</Text>
     );
   };
   
-  export default ManageDevice;
+  export default ManageDeviceScreen;

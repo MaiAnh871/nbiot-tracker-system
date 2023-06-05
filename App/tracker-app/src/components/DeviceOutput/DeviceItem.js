@@ -3,8 +3,10 @@ import { useNavigation } from '@react-navigation/native';
 import { GlobalStyles } from "../../constants/styles";
 
 function DeviceItem({ deviceId }) {
-    function devicePressHandler() {
+    const navigation = useNavigation();
 
+    function devicePressHandler() {
+        navigation.navigate('ManageDeviceScreen');
     }
     
     return (

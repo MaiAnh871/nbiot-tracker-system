@@ -14,10 +14,31 @@ import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import RegisterDeviceScreen from '../screens/RegisterDeviceScreen';
 import { Auth, Hub } from 'aws-amplify';
+import ManageDeviceScreen from '../screens/ManageDevice/ManageDevice';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+function HomeStack() {
+  return (
+    <Stack.Navigator initialRouteName='HomeScreen'>
+      <Stack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          title: 'Device List',
+          headerTitleStyle: { fontSize: 28 },
+          headerStyle: {height: 55}
+        }}
+      />
+      <Stack.Screen
+        name="ManageDeviceScreen"
+        component={ManageDeviceScreen}
+      />
+
+    </Stack.Navigator>
+  )
+}
 
 function TabNavigation() {
   return (
@@ -49,13 +70,8 @@ function TabNavigation() {
     >
       <Tab.Screen 
         name="Home" 
-        component={HomeScreen} 
-        options={{
-          title: 'Device List',
-          headerTitleStyle: { fontSize: 28 },
-          headerStyle: {height: 55}
-        }
-      }/>
+        component={HomeStack}
+      />
       <Tab.Screen name="Register New Device" component={RegisterDeviceScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
