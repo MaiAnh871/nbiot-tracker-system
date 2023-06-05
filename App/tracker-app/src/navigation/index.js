@@ -28,12 +28,16 @@ function HomeStack() {
         options={{
           title: 'Device List',
           headerTitleStyle: { fontSize: 28 },
-          headerStyle: {height: 55}
+          headerStyle: {height: 60}
         }}
       />
       <Stack.Screen
         name="ManageDeviceScreen"
         component={ManageDeviceScreen}
+        options={{
+          title: 'Manage Device',
+          presentation: 'modal'
+        }}
       />
 
     </Stack.Navigator>
@@ -71,9 +75,18 @@ function TabNavigation() {
       <Tab.Screen 
         name="Home" 
         component={HomeStack}
+        options={{
+          headerShown: false,
+        }}
       />
-      <Tab.Screen name="Register New Device" component={RegisterDeviceScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen 
+        name="Register New Device"
+        component={RegisterDeviceScreen}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+      />
     </Tab.Navigator>
   );
 }
