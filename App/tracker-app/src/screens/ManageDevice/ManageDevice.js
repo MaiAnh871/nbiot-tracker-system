@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect } from 'react';
+import { useContext } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 import { DevicesContext } from '../../store/devices-context';
@@ -19,6 +19,7 @@ function ManageDeviceScreen({ route, navigation }) {
         <View style={styles.container}>
             <Text>Manage Device Screen</Text>
             <Text>{manageDeviceId}</Text>
+            <Text>{manageId}</Text>
             <View style={styles.deleteContainer}>
                 <IconButton
                     icon="trash"
@@ -27,7 +28,6 @@ function ManageDeviceScreen({ route, navigation }) {
                     onPress={deleteDeviceHandler}
                 />
             </View>
-
         </View>
     );
   };

@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
-import {View, Text, StyleSheet, Button } from 'react-native';
+import { useState, useEffect, useContext } from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { DevicesContext } from '../../store/devices-context';
 
 export default function RegisterDeviceScreen() {
+  const devicesCtx = useContext(DevicesContext);
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -17,6 +19,7 @@ export default function RegisterDeviceScreen() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
+    devicesCtx.addDevice({deviceId: `${data}`});
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
 
