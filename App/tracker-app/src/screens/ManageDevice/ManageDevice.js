@@ -6,9 +6,12 @@ import IconButton from '../../components/UI/IconButton';
 import { GlobalStyles } from '../../constants/styles';
 
 function ManageDeviceScreen({ route, navigation }) {
-    const manageDeviceId = route.params?.trackerId;
+    const devicesCtx = useContext(DevicesContext);
+    const manageDeviceId = route.params?.routeDeviceId;
+    const manageId = route.params?.routeId;
 
     function deleteDeviceHandler() {
+        devicesCtx.deleteDevice(manageId);
         navigation.goBack();
     }
 

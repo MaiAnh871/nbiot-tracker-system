@@ -7,7 +7,8 @@ function DeviceItem({ id, deviceId }) {
 
     function devicePressHandler() {
         navigation.navigate('ManageDeviceScreen', {
-            trackerId: deviceId      
+            routeDeviceId: deviceId,
+            routeId: id
         });
     }
     

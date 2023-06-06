@@ -15,6 +15,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import RegisterDeviceScreen from '../screens/RegisterDeviceScreen';
 import { Auth, Hub } from 'aws-amplify';
 import ManageDeviceScreen from '../screens/ManageDevice/ManageDevice';
+import DevicesContextProvider from '../store/devices-context';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,6 +47,7 @@ function HomeStack() {
 
 function TabNavigation() {
   return (
+    <DevicesContextProvider>
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
@@ -88,6 +90,7 @@ function TabNavigation() {
         component={ProfileScreen}
       />
     </Tab.Navigator>
+    </DevicesContextProvider>
   );
 }
 

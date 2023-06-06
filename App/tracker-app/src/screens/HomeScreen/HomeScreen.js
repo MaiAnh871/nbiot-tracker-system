@@ -1,13 +1,14 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {Auth} from 'aws-amplify';
+import { useContext } from 'react';
 import DevicesOutput from '../../components/DeviceOutput/DevicesOutput';
+import { DevicesContext } from '../../store/devices-context';
 
-const HomeScreen = () => {
+function HomeScreen() {
+  const devicesCtx = useContext(DevicesContext);
 
   return (
-    <DevicesOutput />
-  );
-};
+    <DevicesOutput devices={devicesCtx.devices}/>
+  ) 
+}
 
 export default HomeScreen;

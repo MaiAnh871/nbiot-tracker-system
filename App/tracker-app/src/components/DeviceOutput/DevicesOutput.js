@@ -6,7 +6,7 @@ import { GlobalStyles } from "../../constants/styles";
 function DevicesOutput({ devices }) {
     return (
         <View style={styles.container}>
-            {/*<DevicesList devices={DUMMY_DEVICES} />*/}
+            <DevicesList devices={ devices } />
         </View>
     );
 }

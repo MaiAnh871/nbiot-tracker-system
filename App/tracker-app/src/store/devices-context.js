@@ -54,7 +54,7 @@ function devicesReducer(state, action) {
 
         case 'DELETE':
             return state.filter((device) => device.id !== action.payload);
-            
+
         default:
             return state;
     }
@@ -71,8 +71,14 @@ function DevicesContextProvider({ children }) {
         dispatch({ kind: 'DELETE', payload: id });
     }
 
+    const value = {
+        devices: devicesState,
+        addDevice: addDevice,
+        deleteDevice: deleteDevice,
+    };
+
     return (
-        <DevicesContext.Provider>
+        <DevicesContext.Provider value={value}>
             {children}
         </DevicesContext.Provider>
     )
