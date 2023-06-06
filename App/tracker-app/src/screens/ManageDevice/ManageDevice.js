@@ -4,6 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { DevicesContext } from '../../store/devices-context';
 import IconButton from '../../components/UI/IconButton';
 import { GlobalStyles } from '../../constants/styles';
+import Map from '../../components/Map/Map';
 
 function ManageDeviceScreen({ route, navigation }) {
     const devicesCtx = useContext(DevicesContext);
@@ -20,6 +21,7 @@ function ManageDeviceScreen({ route, navigation }) {
             <Text>Manage Device Screen</Text>
             <Text>{manageDeviceId}</Text>
             <Text>{manageId}</Text>
+            <Map />
             <View style={styles.deleteContainer}>
                 <IconButton
                     icon="trash"
