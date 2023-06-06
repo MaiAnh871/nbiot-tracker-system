@@ -1,15 +1,15 @@
 import { useContext, useLayoutEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-import { DevicesContext } from '../../store/device-context';
+import { DevicesContext } from '../../store/devices-context';
 import IconButton from '../../components/UI/IconButton';
 import { GlobalStyles } from '../../constants/styles';
 
-function ManageDeviceScreen({ route }) {
+function ManageDeviceScreen({ route, navigation }) {
     const manageDeviceId = route.params?.trackerId;
 
     function deleteDeviceHandler() {
-
+        navigation.goBack();
     }
 
     return (
