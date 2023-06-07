@@ -180,10 +180,14 @@ void USART1_Send_Int16(int16_t value);
  * @retval None
  ***********************************************************************************************************/
 int main(void) {
-  setup(&BC660K_h_h);
+//  setup(&BC660K_h_h);
+	LED_Init();
 
   while (1) {
-    loop(&BC660K_h_h);
+//    loop(&BC660K_h_h);
+		Toggle_LED_1();
+		Toggle_LED_2();
+		delay_ms(100);
   }
 }
 
@@ -1475,23 +1479,20 @@ void LED_Init() {
   HT32F_DVB_LEDInit(HT_LED1);
   HT32F_DVB_LEDInit(HT_LED2);
   HT32F_DVB_LEDInit(HT_LED3);
-  HT32F_DVB_LEDOn(HT_LED1);
+  HT32F_DVB_LEDOff(HT_LED1);
   HT32F_DVB_LEDOff(HT_LED2);
-  HT32F_DVB_LEDOn(HT_LED3);
+  HT32F_DVB_LEDOff(HT_LED3);
 }
 
 void Toggle_LED_1() {
-    delay_ms(100);
     HT32F_DVB_LEDToggle(HT_LED1);
 }
 
 void Toggle_LED_2() {
-    delay_ms(100);
     HT32F_DVB_LEDToggle(HT_LED2);
 }
 
 void Toggle_LED_3() {
-    delay_ms(100);
     HT32F_DVB_LEDToggle(HT_LED3);
 }
 
