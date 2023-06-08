@@ -1,63 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Amplify, PubSub } from 'aws-amplify';
-import { AWSIoTProvider } from '@aws-amplify/pubsub';
-import awsExports from './src/aws-exports';
-import { useEffect, useState } from 'react';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import Navigation from './src/navigation';
+import { Amplify } from 'aws-amplify';
+import awsconfig from './src/aws-exports';
+import MyMap from './src/components/Map/MyMap';
 
-Amplify.configure(awsExports);
+Amplify.configure(awsconfig);
 
-// Apply plugin with configuration
-Amplify.addPluggable(
-  new AWSIoTProvider({
-    aws_pubsub_region: 'ap-northeast-2',
-    aws_pubsub_endpoint:
-      'wss://a2ht7rbdkt6040-ats.iot.ap-northeast-2.amazonaws.com/mqtt'
-  })
-);
-
-export default function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    let subscription;
-    Amplify.PubSub.subscribe('tracker/data').subscribe({    
-      next: data => {        
-        console.log('Message received:', data.value.message);
-        setMessage(data.value.message);
-      },
-      error: error => console.error(error),    
-      close: () => console.log('Done'),  
-    });
-    return () => {
-      if (subscription) {
-        subscription.unsubscribe();
-      }
-    };
-  }, []);
-
+const App = () => {
   return (
-    <View style={styles.container}>
-      {
-        message && (
-          <View>
-            <Text>Hi </Text>
-            <Text>Latitude: {message.lat}</Text>
-            <Text>Longitude: {message.long}</Text>
-          </View>
-        )
-      }
-      <StatusBar style="auto" />
-    </View>
+    <MyMap />
   );
-}
-
+};
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#F9FBFC',
   },
 });
+
+export default App;
