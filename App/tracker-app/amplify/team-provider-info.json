@@ -16,5 +16,12 @@
         "trackerapp": {}
       }
     }
+  },
+  "newenvi": {
+    "categories": {
+      "auth": {
+        "trackerapp": {}
+      }
+    }
   }
 }
