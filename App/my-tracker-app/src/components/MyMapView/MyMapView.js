@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import { Amplify, PubSub } from 'aws-amplify';
-import { AWSIoTProvider } from '@aws-amplify/pubsub';
+import { Amplify, PubSub, Hub } from 'aws-amplify';
+import { AWSIoTProvider, CONNECTION_STATE_CHANGE, ConnectionState } from '@aws-amplify/pubsub';
 import { Marker, Polyline } from 'react-native-maps';
 import MapView from 'react-native-maps';
 import awsmobile from '../../aws-exports';
@@ -27,6 +27,16 @@ export default function MyMapView() {
 
     const [startLocation, setStartLocation] = useState(null);
     const [polylineCoords, setPolylineCoords] = useState([]);
+
+    Hub.listen('pubsub', (data) => {
+        const { payload } = data;
+        if (payload.event === CONNECTION_STATE_CHANGE) {
+            const connectionState = payload.data.connectionState;
+            console.log(connectionState);
+        }
+    });
+    
+
 
     const onRegionChange = newRegion => {
         setRegion(newRegion);

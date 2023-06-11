@@ -34,6 +34,6 @@ node_modules/
 # amplify-build-config.json
 # amplify-gradle-config.json
 # amplifytools.xcconfig
- .secret-*
+  .secret-*
 # **.sample
 #amplify-do-not-edit-end
