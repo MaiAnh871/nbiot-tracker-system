@@ -36,6 +36,13 @@ function MyMap() {
     };
   }, []);
 
+  {/*{
+    "message": {
+      "lat": "21.030332",
+      "long": "105.781966"
+      }
+    }*/}
+
   return (
     <View style={styles.container}>
       {
