@@ -174,21 +174,61 @@ void updatePosition(void);
 float calculateDistance(void);
 void packMsg(void);
 void USART1_Send_Int16(int16_t value);
+void task_1 (void *argument);
+void task_2 (void *argument);
 /********************************************************************************************************/
 /*
  * @brief  Main program.
  * @retval None
  ***********************************************************************************************************/
-int main(void) {
-//  setup(&BC660K_h_h);
-	LED_Init();
+//int main(void) {
+////  setup(&BC660K_h_h);
+//	LED_Init();
 
-  while (1) {
-//    loop(&BC660K_h_h);
-		Toggle_LED_1();
-		Toggle_LED_2();
+//  while (1) {
+////    loop(&BC660K_h_h);
+//		Toggle_LED_1();
+//		Toggle_LED_2();
+//		delay_ms(100);
+//  }
+//}
+
+/*
+  Application main thread: Initialize and start the application
+*/
+void task_1 (void *argument) {
+  while(1) {
+    // Application code
+    Toggle_LED_1();
 		delay_ms(100);
   }
+}
+
+void task_2 (void *argument) {
+  while(1) {
+    // Application code
+    Toggle_LED_2();
+		delay_ms(500);
+  }
+}
+/*
+  Main function: Initialize and start the kernel
+*/
+int main (void) {
+	LED_Init();
+  SystemCoreClockUpdate();
+ 
+  // Setup the Event Recorder (optionally)
+//  EvrFreeRTOSSetup(0);
+ 
+  // Create application main thread
+  xTaskCreate (task_1, "task_1", 64, NULL, 1, NULL);
+//	xTaskCreate (task_2, "task_2", 64, NULL, 1, NULL);
+	
+  // Start the kernel and execute the first thread
+  vTaskStartScheduler();
+ 
+  while(1);
 }
 
 /********************************************************************************************************/
