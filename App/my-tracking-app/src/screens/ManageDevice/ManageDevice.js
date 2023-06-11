@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { DevicesContext } from '../../store/devices-context';
 import IconButton from '../../components/UI/IconButton';
 import { GlobalStyles } from '../../constants/styles';
-import Map from '../../components/Map/Map';
+import Map from '../../components/Map';
 
 function ManageDeviceScreen({ route, navigation }) {
     const devicesCtx = useContext(DevicesContext);

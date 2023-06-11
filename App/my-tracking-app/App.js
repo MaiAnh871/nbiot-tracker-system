@@ -4,6 +4,7 @@ import Navigation from './src/navigation';
 import { Amplify } from 'aws-amplify';
 import awsconfig from './src/aws-exports';
 import MyMap from './src/components/MyMap';
+import Map from './src/components/Map';
 
 Amplify.configure(awsconfig);
 
@@ -12,6 +13,7 @@ const App = () => {
     // <SafeAreaView style={styles.root}>
     //   <Navigation />
     // </SafeAreaView>
+    // <MyMap />
     <MyMap />
   );
 };

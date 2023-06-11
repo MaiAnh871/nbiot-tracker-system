@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Amplify, PubSub } from 'aws-amplify';
 import { AWSIoTProvider } from '@aws-amplify/pubsub';
-import MapView from 'react-native-maps';
-import awsmobile from '../../aws-exports';
+import { MapView, Marker } from 'react-native-maps';
+import awsmobile from '../aws-exports';
 
 Amplify.configure(awsmobile);
 
@@ -15,7 +15,7 @@ Amplify.addPluggable(
     })
 );
 
-function Map() {
+export default function Map() {
     const [message, setMessage] = useState('');
     const [region, setRegion] = useState({
         latitude: 21.030212,
@@ -142,5 +142,3 @@ const styles = StyleSheet.create({
       height: '100%',
     },
 });
-
-export default Map;

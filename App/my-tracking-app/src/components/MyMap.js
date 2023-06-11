@@ -14,7 +14,7 @@ Amplify.addPluggable(
   })
 );
 
-PubSub.subscribe('myTopic').subscribe({
+PubSub.subscribe('tracker/data').subscribe({
   next: data => console.log('Message received', data),
   error: error => console.error(error),
   complete: () => console.log('Done'),
