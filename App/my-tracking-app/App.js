@@ -10,11 +10,11 @@ Amplify.configure(awsconfig);
 
 const App = () => {
   return (
-    // <SafeAreaView style={styles.root}>
-    //   <Navigation />
-    // </SafeAreaView>
+    <SafeAreaView style={styles.root}>
+      <Navigation />
+    </SafeAreaView>
     // <MyMap />
-    <MyMap />
+    //<MyMap />
   );
 };
 
