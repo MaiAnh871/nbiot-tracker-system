@@ -1,49 +1,47 @@
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\src\ht32f5xxxx_crc.c
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_crc.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\CMSIS\Include\core_cm0plus.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\CMSIS\Include\cmsis_version.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\CMSIS\Include\cmsis_compiler.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\CMSIS\Include\cmsis_armcc.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdio.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\ht32f5xxxx_conf.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_aes.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_adc.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_bftm.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_ckcu.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_cmp.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_crc.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_dac.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_div.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_ebi.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_exti.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_flash.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_gpio.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_tm_type.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_tm.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_i2c.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_i2s.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_mctm.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_pdma.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_pwrcu.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_rstcu.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_rtc.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_sci.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_spi.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_usart.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_usbd.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\ht32f5xxxx_01_usbdconf.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_usbdinit.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_retarget_usbdconf.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_wdt.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_cm0plus_misc.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_serial.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_div.h
-.\ht32\52367\obj\ht32f5xxxx_crc.o: ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h
+./ht32/52367/obj/ht32f5xxxx_crc.o: \
+  ..\..\..\..\library\HT32F5xxxx_Driver\src\ht32f5xxxx_crc.c \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_crc.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h \
+  ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h \
+  ..\..\..\..\library\CMSIS\Include\core_cm0plus.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  ..\..\..\..\library\CMSIS\Include\cmsis_version.h \
+  ..\..\..\..\library\CMSIS\Include\cmsis_compiler.h \
+  ..\..\..\..\library\CMSIS\Include\cmsis_armclang.h \
+  ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h ..\ht32f5xxxx_conf.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_aes.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_adc.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_bftm.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_ckcu.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_cmp.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_dac.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_div.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_ebi.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_exti.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_flash.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_gpio.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_tm_type.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_tm.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_i2c.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_i2s.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_mctm.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_pdma.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_pwrcu.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_rstcu.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_rtc.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_sci.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_spi.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_usart.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_usbd.h \
+  ..\ht32f5xxxx_01_usbdconf.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_usbdinit.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_retarget_usbdconf.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_wdt.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_cm0plus_misc.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_serial.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_div.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h
