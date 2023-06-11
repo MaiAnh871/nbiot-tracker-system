@@ -176,6 +176,8 @@ void packMsg(void);
 void USART1_Send_Int16(int16_t value);
 void task_1 (void *argument);
 void task_2 (void *argument);
+void task_3 (void *argument);
+void task_4 (void *argument);
 /********************************************************************************************************/
 /*
  * @brief  Main program.
@@ -200,7 +202,7 @@ void task_1 (void *argument) {
   while(1) {
     // Application code
     Toggle_LED_1();
-		delay_ms(100);
+		vTaskDelay(100);
   }
 }
 
@@ -208,7 +210,21 @@ void task_2 (void *argument) {
   while(1) {
     // Application code
     Toggle_LED_2();
-		delay_ms(500);
+		vTaskDelay(500);
+  }
+}
+
+void task_3 (void *argument) {
+  while(1) {
+    // Application code
+		vTaskDelay(100);
+  }
+}
+
+void task_4 (void *argument) {
+  while(1) {
+    // Application code
+		vTaskDelay(100);
   }
 }
 /*
@@ -222,8 +238,10 @@ int main (void) {
 //  EvrFreeRTOSSetup(0);
  
   // Create application main thread
-  xTaskCreate (task_1, "task_1", 64, NULL, 1, NULL);
-//	xTaskCreate (task_2, "task_2", 64, NULL, 1, NULL);
+  xTaskCreate (task_1, "task_1", 16, NULL, 2, NULL);
+	xTaskCreate (task_2, "task_2", 16, NULL, 2, NULL);
+	xTaskCreate (task_3, "task_3", 16, NULL, 2, NULL);
+	xTaskCreate (task_4, "task_4", 16, NULL, 2, NULL);
 	
   // Start the kernel and execute the first thread
   vTaskStartScheduler();
