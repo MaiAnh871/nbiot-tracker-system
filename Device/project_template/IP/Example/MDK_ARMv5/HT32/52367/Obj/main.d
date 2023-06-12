@@ -1,4 +1,4 @@
-./ht32/52367/obj/main.o: ..\main.c \
+./ht32/52367/obj/main.o: Core\main.c \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h \
   ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h \

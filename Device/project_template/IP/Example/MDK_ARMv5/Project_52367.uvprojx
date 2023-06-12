@@ -383,32 +383,57 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>User</GroupName>
+          <GroupName>Core</GroupName>
           <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>ht32f5xxxx_01_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\ht32f5xxxx_01_it.c</FilePath>
-            </File>
             <File>
               <FileName>BC660K.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BC660K.c</FilePath>
+              <FilePath>.\Core\BC660K.c</FilePath>
+            </File>
+            <File>
+              <FileName>BC660K.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\BC660K.h</FilePath>
+            </File>
+            <File>
+              <FileName>Board871.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\Board871.h</FilePath>
+            </File>
+            <File>
+              <FileName>Collections.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\Collections.h</FilePath>
             </File>
             <File>
               <FileName>LC76F.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\LC76F.c</FilePath>
+              <FilePath>.\Core\LC76F.c</FilePath>
+            </File>
+            <File>
+              <FileName>LC76F.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\LC76F.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\main.c</FilePath>
             </File>
             <File>
               <FileName>MC3416.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MC3416.c</FilePath>
+              <FilePath>.\Core\MC3416.c</FilePath>
+            </File>
+            <File>
+              <FileName>MC3416.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\MC3416.h</FilePath>
+            </File>
+            <File>
+              <FileName>Setting.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\Setting.h</FilePath>
             </File>
           </Files>
         </Group>

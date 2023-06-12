@@ -29,13 +29,9 @@
 
 /* Includes ------------------------------------------------------------------------------------------------*/
 #include "ht32.h"
-
 #include "ht32_board.h"
-
 #include "stdlib.h"
-
 #include "string.h"
-
 #include <math.h>
 
 
@@ -233,9 +229,6 @@ void task_4 (void *argument) {
 int main (void) {
 	LED_Init();
   SystemCoreClockUpdate();
- 
-  // Setup the Event Recorder (optionally)
-//  EvrFreeRTOSSetup(0);
  
   // Create application main thread
   xTaskCreate (task_1, "task_1", 16, NULL, 2, NULL);
