@@ -78,6 +78,13 @@ Client ID: 5ed3h3ht13utpu8ek60ttcd43q
     - My Identity pool ID: `ap-northeast-2:26b69494-e2fd-4660-a6ab-54318ee698e9`
 
 ## Attach your policy to your Amazon Cognito Identity
+You can retrieve the Cognito Identity Id of a logged in user with Auth Module:
+```js
+Auth.currentCredentials().then((info) => {
+  const cognitoIdentityId = info.identityId;
+});
+```
+Then, you need to send your Cognito Identity Id to the AWS backend and attach policy:
 ```bash
 aws iot attach-policy --policy-name 'real-time-tracker-iot-policy' --target 'ap-northeast-2:26b69494-e2fd-4660-a6ab-54318ee698e9'
 ```

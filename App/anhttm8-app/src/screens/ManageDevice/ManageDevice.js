@@ -22,7 +22,7 @@ function ManageDeviceScreen({ route, navigation }) {
             <Text>Manage Device Screen</Text>
             <Text>{manageDeviceId}</Text>
             <Text>{manageId}</Text>
-            <MyMap />
+            <MyMapView />
             <View style={styles.deleteContainer}>
                 <IconButton
                     icon="trash"

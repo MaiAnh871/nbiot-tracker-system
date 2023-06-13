@@ -10,7 +10,7 @@ Amplify.configure(awsmobile);
 
 Auth.currentCredentials().then((info) => {
   console.log("Current identity", info.identityId);
-  });
+});
 
 
 // Apply plugin with configuration

@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import { Amplify, PubSub, Hub } from 'aws-amplify';
+import { Amplify, PubSub, Hub, Auth } from 'aws-amplify';
 import { AWSIoTProvider, CONNECTION_STATE_CHANGE, ConnectionState } from '@aws-amplify/pubsub';
 import { Marker, Polyline } from 'react-native-maps';
 import MapView from 'react-native-maps';
 import awsmobile from '../../aws-exports';
 
 Amplify.configure(awsmobile);
+
+Auth.currentCredentials().then((info) => {
+    console.log("Current identity", info.identityId);
+});
 
 Amplify.addPluggable(
     new AWSIoTProvider({
