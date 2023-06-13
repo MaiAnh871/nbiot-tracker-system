@@ -12,7 +12,7 @@ struct MC3416 {
 
 
 /* Function prototypes */
-void MC3416_initialize(struct MC3416 *self);
+void MC3416_Initialize(struct MC3416 *self);
 void I2C_Configuration(void);
 void Read_Mem_Slave(I2C_AddressTypeDef Slave_Adr, uint8_t RegAddr, uint8_t* str_data);
 void Write_Mem_Slave(I2C_AddressTypeDef Slave_Adr, uint8_t RegAddr, uint8_t data);

@@ -21,6 +21,9 @@ void Toggle_LED_3() {
 	HT32F_DVB_LEDToggle(HT_LED3);
 }
 
-void setupBoard(struct Board871 *self) {
+void Board871_Initialize(struct Board871 *self){
 	LED_Init();
+	BC660K_Initialize(&self->bc660k);
+	LC76F_Initialize(&self->lc76f);
+	MC3416_Initialize(&self->mc3416);
 }

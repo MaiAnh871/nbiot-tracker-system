@@ -20,6 +20,7 @@ struct BC660K {
 
 
 /* Function prototypes */
-void BC660K_initialize(struct BC660K *self);
+void BC660K_Initialize(struct BC660K *self);
+void BC660K_USART0_Configuration(void);
 
 #endif /* BC660K_ */

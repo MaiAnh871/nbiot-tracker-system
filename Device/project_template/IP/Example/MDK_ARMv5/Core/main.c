@@ -48,7 +48,7 @@ void UART0_Receive(void);
 void UART0_Read_Block(uint8_t* data);
 
 /* USART0 ports */
-void USART0_MODULE_Configuration(void);
+/* CONTINUE MOVE TO BC660K */
 void USART0_Send_Char(u16 Data);
 void USART0_Send(char * input_string);
 enum StatusType USART0_Receive(struct BC660K *self);
@@ -1083,51 +1083,6 @@ void UART0_GNSS_Configuration(void) {
  * @brief  Configure the USART0
  * @retval None
  ***********************************************************************************************************/
-void USART0_MODULE_Configuration(void) {
-  CKCU_PeripClockConfig_TypeDef CKCUClock; // Set all the fields to zero, which means that no peripheral clocks are enabled by default.
-
-  {
-    /* Enable peripheral clock of AFIO, UxART                                                                 */
-    CKCUClock.Bit.AFIO = 1;
-    CKCUClock.Bit.PA = 1;
-    CKCUClock.Bit.USART0 = 1;
-    CKCU_PeripClockConfig(CKCUClock, ENABLE);
-  }
-
-  /* Turn on UxART Rx internal pull up resistor to prevent unknow state                                     */
-  GPIO_PullResistorConfig(HT_GPIOA, GPIO_PIN_3, GPIO_PR_UP);
-
-  /* Config AFIO mode as UxART function.                                                                    */
-  AFIO_GPxConfig(GPIO_PA, AFIO_PIN_2, AFIO_FUN_USART_UART);
-  AFIO_GPxConfig(GPIO_PA, AFIO_PIN_3, AFIO_FUN_USART_UART);
-
-  {
-    /* UxART configured as follow:
-          - BaudRate = 115200 baud
-          - Word Length = 8 Bits
-          - One Stop Bit
-          - None parity bit
-    */
-
-    /* !!! NOTICE !!!
-       Notice that the local variable (structure) did not have an initial value.
-       Please confirm that there are no missing members in the parameter settings below in this function.
-    */
-    USART_InitTypeDef USART_InitStructure = {
-      0
-    };
-    USART_InitStructure.USART_BaudRate = 115200;
-    USART_InitStructure.USART_WordLength = USART_WORDLENGTH_8B;
-    USART_InitStructure.USART_StopBits = USART_STOPBITS_1;
-    USART_InitStructure.USART_Parity = USART_PARITY_NO;
-    USART_InitStructure.USART_Mode = USART_MODE_NORMAL;
-    USART_Init(HT_USART0, & USART_InitStructure);
-  }
-
-  /* Enable UxART Tx and Rx function                                                                        */
-  USART_TxCmd(HT_USART0, ENABLE);
-  USART_RxCmd(HT_USART0, ENABLE);
-}
 
 /********************************************************************************************************/
 /*
@@ -1435,49 +1390,3 @@ void USART1_Receive(void) {
   }
 }
 
-#if(HT32_LIB_DEBUG == 1)
-/********************************************************************************************************/
-/*
- * @brief  Report both the error name of the source file and the source line number.
- * @param  filename: pointer to the source file name.
- * @param  uline: error line source number.
- * @retval None
- ***********************************************************************************************************/
-void assert_error(u8 * filename, u32 uline) {
-  /*
-     This function is called by IP library that the invalid parameters has been passed to the library API.
-     Debug message can be added here.
-     Example: printf("Parameter Error: file %s on line %d\r\n", filename, uline);
-  */
-
-  while (1) {}
-}
-#endif
-
-/* Private functions ---------------------------------------------------------------------------------------*/
-/********************************************************************************************************/
-/*
- * @brief  delay function
- * @param  count: delay count for loop
- * @retval None
- ***********************************************************************************************************/
-static void delay_ms(u32 ms) {
-  uint32_t i, j;
-  for (i = 0; i < ms; i++) {
-    for (j = 0; j < 33132; j++) {
-      __NOP();
-    }
-  }
-}
-
-/**
- * @}
- */
-
-/**
- * @}
- */
-
-/**
- * @}
- */

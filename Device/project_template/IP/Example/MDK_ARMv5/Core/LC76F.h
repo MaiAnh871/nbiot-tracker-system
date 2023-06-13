@@ -15,7 +15,7 @@ struct LC76F {
 
 
 /* Function prototypes */
-void LC76F_initialize(struct LC76F *self);
+void LC76F_Initialize(struct LC76F *self);
 void UART0_GNSS_Configuration(void);
 void UART0_Receive(void);
 void UART0_Read_Block(uint8_t  *GPS_data);

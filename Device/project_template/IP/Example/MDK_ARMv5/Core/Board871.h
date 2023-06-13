@@ -23,11 +23,11 @@ struct Board871 {
 
 
 /* Function prototypes */
-void LEDInit(void);
-void toggleLED1(void);
-void toggleLED2(void);
-void toggleLED3(void);
+void LED_Init(void);
+void Toggle_LED_1(void);
+void Toggle_LED_2(void);
+void Toggle_LED_3(void);
 
-void setupBoard(struct Board871 *self);
+void Board871_Initialize(struct Board871 *self);
 
 #endif /* BOARD871_ */
