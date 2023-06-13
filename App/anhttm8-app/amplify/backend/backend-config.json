@@ -1,1 +1,11 @@
-{}
+{
+  "auth": {
+    "anhttm8app": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  }
+}

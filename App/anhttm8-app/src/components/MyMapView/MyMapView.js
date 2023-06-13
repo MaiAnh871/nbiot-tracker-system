@@ -35,8 +35,6 @@ export default function MyMapView() {
             console.log(connectionState);
         }
     });
-    
-
 
     const onRegionChange = newRegion => {
         setRegion(newRegion);
