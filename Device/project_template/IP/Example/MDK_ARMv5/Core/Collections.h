@@ -1,0 +1,12 @@
+#ifndef COLLECTIONS_
+#define COLLECTIONS_
+
+enum StatusType {
+		STATUS_SUCCESS = 0,
+		STATUS_ERROR,
+		STATUS_TIMEOUT,
+		STATUS_BAD_PARAMETERS,
+		STATUS_UNKNOWN
+} StatusType;
+
+#endif /* COLLECTIONS_ */

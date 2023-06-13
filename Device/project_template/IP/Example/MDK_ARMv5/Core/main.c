@@ -1,96 +1,17 @@
-/********************************************************************************************************/
-/*
- * @file    IP/Example/main.c
- * @version $Rev:: 4869         $
- * @date    $Date:: 2020-08-05 #$
- * @brief   Main program.
- *************************************************************************************************************
- * @attention
- *
- * Firmware Disclaimer Information
- *
- * 1. The customer hereby acknowledges and agrees that the program technical documentation, including the
- *    code, which is supplied by Holtek Semiconductor Inc., (hereinafter referred to as "HOLTEK") is the
- *    proprietary and confidential intellectual property of HOLTEK, and is protected by copyright law and
- *    other intellectual property laws.
- *
- * 2. The customer hereby acknowledges and agrees that the program technical documentation, including the
- *    code, is confidential information belonging to HOLTEK, and must not be disclosed to any third parties
- *    other than HOLTEK and the customer.
- *
- * 3. The program technical documentation, including the code, is provided "as is" and for customer reference
- *    only. After delivery by HOLTEK, the customer shall use the program technical documentation, including
- *    the code, at their own risk. HOLTEK disclaims any expressed, implied or statutory warranties, including
- *    the warranties of merchantability, satisfactory quality and fitness for a particular purpose.
- *
- * <h2><center>Copyright (C) Holtek Semiconductor Inc. All rights reserved</center></h2>
- ************************************************************************************************************/
-// <<< Use Configuration Wizard in Context Menu >>>
-
-/* Includes ------------------------------------------------------------------------------------------------*/
+/* Includes */
 #include "ht32.h"
 #include "ht32_board.h"
 #include "stdlib.h"
 #include "string.h"
 #include <math.h>
 
-
-/** @addtogroup Project_Template Project Template
- * @{
- */
-
-/** @addtogroup IP_Examples IP
- * @{
- */
-
-/** @addtogroup Example
- * @{
- */
-
-/* Settings ------------------------------------------------------------------------------------------------*/
-
-#define CA_CERT ""
-#define CLIENT_CERT ""
-#define CLIENT_KEY ""
-
-/* Private types -------------------------------------------------------------------------------------------*/
-struct BC660K {
-  /* Debug */
-  char * log_content;
-	
-	/* Command */
-	vu32 command_timer;
-	char *command;
-	u16 module_buffer_index;
-	char *module_buffer;
-} BC660K;
-
-enum StatusType {
-		STATUS_SUCCESS = 0,
-		STATUS_ERROR,
-		STATUS_TIMEOUT,
-		STATUS_BAD_PARAMETERS,
-		STATUS_UNKNOWN
-} StatusType;
-
-/* Private constants ---------------------------------------------------------------------------------------*/
-const char *SUCCESS_COMMAND_SIGN[] = { "\r\n\r\n", "OK\r\n" };
-const char *ERROR_COMMAND_SIGN[] = { "ERROR" };
-#define PI 3.141592653589793238
-
-#define SUCCESS_COMMAND_SIGN_LENGTH sizeof(SUCCESS_COMMAND_SIGN) / sizeof(SUCCESS_COMMAND_SIGN[0])
-#define ERROR_COMMAND_SIGN_LENGTH sizeof(ERROR_COMMAND_SIGN) / sizeof(ERROR_COMMAND_SIGN[0])
-
-#define LOG_CONTENT_SIZE 1700
-#define SEND_ATTEMPT_DEFAULT 3
-#define COMMAND_TIMEOUT_DEFAULT_MS 2000
-#define COMMAND_SIZE 1700
-#define MODULE_BUFFER_SIZE 100
-#define SEND_COMMAND_DELAY_MS 500
+#include "Board871.h"
+#include "BC660K.h"
+#include "LC76F.h"
+#include "MC3416.h"
 
 
 /* Private function prototypes -----------------------------------------------------------------------------*/
-static void delay_ms(u32 count);
 void setup(struct BC660K * self);
 void addCA(struct BC660K * self);
 void loop(struct BC660K * self);
@@ -137,11 +58,6 @@ void USART1_DEBUG_Configuration(void);
 void USART1_Send_Char(u16 Data);
 void USART1_Send(char * input_string);
 void USART1_Receive(void);
-
-void LED_Init(void);
-void Toggle_LED_1(void);
-void Toggle_LED_2(void);
-void Toggle_LED_3(void);
 
 /* Private macro -------------------------------------------------------------------------------------------*/
 
@@ -227,7 +143,6 @@ void task_4 (void *argument) {
   Main function: Initialize and start the kernel
 */
 int main (void) {
-	LED_Init();
   SystemCoreClockUpdate();
  
   // Create application main thread
@@ -247,13 +162,7 @@ int main (void) {
  * @brief  Main program.
  * @retval None
  ***********************************************************************************************************/
-void setup(struct BC660K * self) {
-  /* Initialize system tick */
-  SysTick_Config(SystemCoreClock / 1000);
-	
-	/* Initialize LED */
-	LED_Init();
-
+void setup(struct BC660K * self) {	
   /* Initialize UART ports */
   UART0_GNSS_Configuration();
   USART0_MODULE_Configuration();
@@ -1524,27 +1433,6 @@ void USART1_Receive(void) {
     USART1_Send_Char(uData);
     #endif
   }
-}
-
-void LED_Init() {
-  HT32F_DVB_LEDInit(HT_LED1);
-  HT32F_DVB_LEDInit(HT_LED2);
-  HT32F_DVB_LEDInit(HT_LED3);
-  HT32F_DVB_LEDOff(HT_LED1);
-  HT32F_DVB_LEDOff(HT_LED2);
-  HT32F_DVB_LEDOff(HT_LED3);
-}
-
-void Toggle_LED_1() {
-    HT32F_DVB_LEDToggle(HT_LED1);
-}
-
-void Toggle_LED_2() {
-    HT32F_DVB_LEDToggle(HT_LED2);
-}
-
-void Toggle_LED_3() {
-    HT32F_DVB_LEDToggle(HT_LED3);
 }
 
 #if(HT32_LIB_DEBUG == 1)
