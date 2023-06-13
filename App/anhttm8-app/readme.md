@@ -99,5 +99,21 @@ const awsmobile = {
 export default awsmobile;
 ```
 
+## Setup Amplify Authentication
+**Amplify**. `anhttm8app`. **Set up Amplify Studio**. **Enable Amplify Studio.**
+After enable successfully, **Launch Studio**. **Enable Authentication**. **Reuse existing Amazon Cognito resources**.
+- Select a Cognito User Pool: `anhttm8-app-user-pool	ap-northeast-2_gYCGsRuof`
+Select an app client: `anhttm8-app-client	5ed3h3ht13utpu8ek60ttcd43q`
+- Select an Identity Pool: `anhttm8-app-identity-pool	ap-northeast-2:26b69494-e2fd-4660-a6ab-54318ee698e9`
+**Import**.
+
+## Config done. Run app.
+```bash
+npx expo start
+```
+
+
+
+
 
 
