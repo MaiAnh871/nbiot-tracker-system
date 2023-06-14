@@ -49,3 +49,48 @@ void BC660K_USART0_Configuration(void){
   USART_TxCmd(HT_USART0, ENABLE);
   USART_RxCmd(HT_USART0, ENABLE);
 }
+
+void BC660K_USART0_Send_Char(u16 Data) {
+  while (USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET);
+  USART_SendData(HT_USART0, Data);
+}
+
+void BC660K_USART0_Send(char * input_string) {
+  int i;
+  /* Send a buffer from UxART to terminal                                                                   */
+  for (i = 0; i < strlen(input_string); i++) {
+    BC660K_BC660K_USART0_Send_Char(input_string[i]);
+  }
+}
+
+enum StatusType USART0_Receive(struct BC660K *self) {
+		enum StatusType output_status = STATUS_TIMEOUT;
+		u16 uData;
+		u8 index;
+		char *ptr;
+
+		/* Waits until the Rx FIFO/DR is not empty then get data from them                                        */
+		if (USART_GetFlagStatus(HT_USART0, USART_FLAG_RXDR) == SET) {
+			uData = USART_ReceiveData(HT_USART0);
+			self->module_buffer[self->module_buffer_index] = uData;
+			self->module_buffer_index++;
+		}
+
+		for (index = 0; index < SUCCESS_COMMAND_SIGN_LENGTH; index++){
+				ptr = strstr(self->module_buffer, SUCCESS_COMMAND_SIGN[index]);
+				if (ptr) {
+						output_status = STATUS_SUCCESS;
+						return output_status;
+				}
+		}
+		
+		for (index = 0; index < ERROR_COMMAND_SIGN_LENGTH; index++){
+				ptr = strstr(self->module_buffer, ERROR_COMMAND_SIGN[index]);
+				if (ptr) {
+						output_status = STATUS_ERROR;
+						return output_status;
+				}
+		}
+		
+		return output_status;
+}

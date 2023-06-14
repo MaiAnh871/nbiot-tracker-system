@@ -47,12 +47,6 @@ void UART0_GNSS_Configuration(void);
 void UART0_Receive(void);
 void UART0_Read_Block(uint8_t* data);
 
-/* USART0 ports */
-/* CONTINUE MOVE TO BC660K */
-void USART0_Send_Char(u16 Data);
-void USART0_Send(char * input_string);
-enum StatusType USART0_Receive(struct BC660K *self);
-
 /* USART1 ports */
 void USART1_DEBUG_Configuration(void);
 void USART1_Send_Char(u16 Data);
@@ -275,8 +269,8 @@ enum StatusType sendCommand(struct BC660K * self, u8 send_attempt, u32 command_t
 				clearModuleBuffer(self);
 				
 				
-				USART0_Send(self->command);
-				USART0_Send((char *)"\r\n");
+				BC660K_USART0_Send(self->command);
+				BC660K_USART0_Send((char *)"\r\n");
 
 				self->command_timer = utick;
 				while(utick - self->command_timer <= command_timeout) {
@@ -632,8 +626,8 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
 		writeLog(self);
 		clearModuleBuffer(self);
 	
-		USART0_Send(self->command);
-		USART0_Send((char *)"\r\n");
+		BC660K_USART0_Send(self->command);
+		BC660K_USART0_Send((char *)"\r\n");
 
 		self->command_timer = utick;
 		while(utick - self->command_timer <= COMMAND_TIMEOUT_DEFAULT_MS) {
@@ -646,8 +640,8 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
 		
 
 		sprintf(self->command, "{\"message\":{\"time\":\"15-05-2023 15:11:35\",\"acce_x\":\"%hd\",\"acce_y\":\"%hd\",\"acce_z\":\"%hd\",\"lat\":\"%f\",\"long\":\"%f\"}}", Ax, Ay, Az, latitude, longitude);
-		USART0_Send(self->command);
-		USART0_Send((char *)"\r\n");
+		BC660K_USART0_Send(self->command);
+		BC660K_USART0_Send((char *)"\r\n");
 	
 		self->command_timer = utick;
 		while(utick - self->command_timer <= (COMMAND_TIMEOUT_DEFAULT_MS + 2000)) {
@@ -771,8 +765,8 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self)  {
 		writeLog(self);
 		clearModuleBuffer(self);
 	
-		USART0_Send(self->command);
-		USART0_Send((char *)"\r\n");
+		BC660K_USART0_Send(self->command);
+		BC660K_USART0_Send((char *)"\r\n");
 
 		self->command_timer = utick;
 		while(utick - self->command_timer <= COMMAND_TIMEOUT_DEFAULT_MS) {
@@ -784,10 +778,10 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self)  {
 		clearModuleBuffer(self);
 		
 		sprintf(self->command, CA_CERT);
-		USART0_Send(self->command);
-		USART0_Send((char *)"\r\n");
+		BC660K_USART0_Send(self->command);
+		BC660K_USART0_Send((char *)"\r\n");
 		delay_ms(100);
-		USART0_Send_Char(26);
+		BC660K_BC660K_USART0_Send_Char(26);
 	
 		self->command_timer = utick;
 		while(utick - self->command_timer <= (COMMAND_TIMEOUT_DEFAULT_MS + 2000)) {
@@ -841,8 +835,8 @@ enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self) {
 		writeLog(self);
 		clearModuleBuffer(self);
 	
-		USART0_Send(self->command);
-		USART0_Send((char *)"\r\n");
+		BC660K_USART0_Send(self->command);
+		BC660K_USART0_Send((char *)"\r\n");
 
 		self->command_timer = utick;
 		while(utick - self->command_timer <= COMMAND_TIMEOUT_DEFAULT_MS) {
@@ -854,10 +848,10 @@ enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self) {
 		clearModuleBuffer(self);
 		
 		sprintf(self->command, CLIENT_CERT);
-		USART0_Send(self->command);
-		USART0_Send((char *)"\r\n");
+		BC660K_USART0_Send(self->command);
+		BC660K_USART0_Send((char *)"\r\n");
 		delay_ms(100);
-		USART0_Send_Char(26);
+		BC660K_BC660K_USART0_Send_Char(26);
 	
 		self->command_timer = utick;
 		while(utick - self->command_timer <= (COMMAND_TIMEOUT_DEFAULT_MS + 2000)) {
@@ -911,8 +905,8 @@ enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self) {
 		writeLog(self);
 		clearModuleBuffer(self);
 	
-		USART0_Send(self->command);
-		USART0_Send((char *)"\r\n");
+		BC660K_USART0_Send(self->command);
+		BC660K_USART0_Send((char *)"\r\n");
 
 		self->command_timer = utick;
 		while(utick - self->command_timer <= COMMAND_TIMEOUT_DEFAULT_MS) {
@@ -924,10 +918,10 @@ enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self) {
 		clearModuleBuffer(self);
 		
 		sprintf(self->command, CLIENT_KEY);
-		USART0_Send(self->command);
-		USART0_Send((char *)"\r\n");
+		BC660K_USART0_Send(self->command);
+		BC660K_USART0_Send((char *)"\r\n");
 		delay_ms(100);
-		USART0_Send_Char(26);
+		BC660K_BC660K_USART0_Send_Char(26);
 	
 		self->command_timer = utick;
 		while(utick - self->command_timer <= (COMMAND_TIMEOUT_DEFAULT_MS + 2000)) {
@@ -1141,7 +1135,7 @@ void USART1_DEBUG_Configuration(void) {
  * @param  Data: the data to be transmitted.
  * @retval None
  ***********************************************************************************************************/
-void USART0_Send_Char(u16 Data) {
+void BC660K_BC660K_USART0_Send_Char(u16 Data) {
   while (USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET);
   USART_SendData(HT_USART0, Data);
 }
@@ -1162,11 +1156,11 @@ void USART1_Send_Char(u16 Data) {
  * @brief  UxART Tx Test.
  * @retval None
  ***********************************************************************************************************/
-void USART0_Send(char * input_string) {
+void BC660K_USART0_Send(char * input_string) {
   int i;
   /* Send a buffer from UxART to terminal                                                                   */
   for (i = 0; i < strlen(input_string); i++) {
-    USART0_Send_Char(input_string[i]);
+    BC660K_BC660K_USART0_Send_Char(input_string[i]);
   }
 
   /* Send to USART1 what sent to USART0 */
