@@ -22,7 +22,7 @@ function ManageDeviceScreen({ route, navigation }) {
             <Text>Manage Device Screen</Text>
             <Text>{manageDeviceId}</Text>
             <Text>{manageId}</Text>
-            <MyMapView />
+            <MyMapView manageDeviceId={manageDeviceId}/>
             <View style={styles.deleteContainer}>
                 <IconButton
                     icon="trash"
@@ -33,7 +33,7 @@ function ManageDeviceScreen({ route, navigation }) {
             </View>
         </View>
     );
-  };
+};
   
 export default ManageDeviceScreen;
 

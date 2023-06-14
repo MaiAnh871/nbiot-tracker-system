@@ -20,7 +20,7 @@ Amplify.addPluggable(
     })
 );
 
-export default function MyMapView() {
+export default function MyMapView({ manageDeviceId }) {
     const [message, setMessage] = useState('');
     const [region, setRegion] = useState({
         latitude: 21.030212,
@@ -46,7 +46,7 @@ export default function MyMapView() {
 
     useEffect(() => {
         let subscription;
-        Amplify.PubSub.subscribe('tracker/data').subscribe({    
+        Amplify.PubSub.subscribe(`anhttm8-tracker/${manageDeviceId}/message`).subscribe({    
             next: data => {      
             /*
             Type of message:
