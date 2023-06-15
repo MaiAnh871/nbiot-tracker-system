@@ -9,6 +9,8 @@
 #include "string.h"
 #include "stdbool.h"
 
+#include "Setting.h"
+#include "Collections.h"
 #include "BC660K.h"
 #include "LC76F.h"
 #include "MC3416.h"
@@ -16,6 +18,8 @@
 
 /* Struct initialization */
 struct Board871 {
+	char *board871_log_content;
+	
 	struct BC660K bc660k;
 	struct LC76F lc76f;
 	struct MC3416 mc3416;

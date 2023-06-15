@@ -15,8 +15,6 @@
 void setup(struct BC660K * self);
 void addCA(struct BC660K * self);
 void loop(struct BC660K * self);
-enum StatusType sendCommand(struct BC660K * self, u8 send_attempt, u32 command_timeout);
-void clearModuleBuffer(struct BC660K *self);
 
 /* AT Command functions */
 enum StatusType checkModule_AT(struct BC660K *self);
@@ -167,23 +165,6 @@ void setup(struct BC660K * self) {
 	MC3416_Init();
 
   /* Initialize BC660K_handler */
-  self->log_content = (char * ) malloc(LOG_CONTENT_SIZE * sizeof(char));
-  if (!self -> log_content) {
-    Toggle_LED_1();
-    while (1);
-  }
-	
-  self->command = (char * ) malloc(COMMAND_SIZE * sizeof(char));
-  if (!self -> command) {
-    Toggle_LED_1();
-    while (1);
-  }
-	
-  self->module_buffer = (char * ) malloc(MODULE_BUFFER_SIZE * sizeof(char));
-  if (!self -> module_buffer) {
-    Toggle_LED_1();
-    while (1);
-  }
 
   sprintf(self -> log_content, "Setup successfully!\n");
   writeLog(self);
@@ -243,63 +224,6 @@ void loop(struct BC660K * self) {
 	closeMQTT_AT_QMTCLOSE(self);
 
 	delay_ms(1000);
-}
-	
-enum StatusType sendCommand(struct BC660K * self, u8 send_attempt, u32 command_timeout) {
-		enum StatusType output_status = STATUS_UNKNOWN;
-		if (send_attempt <= 0) {
-				send_attempt = SEND_ATTEMPT_DEFAULT;
-		}
-		u8 count = send_attempt;
-		
-//		char *command;
-//		command = (char * ) malloc(COMMAND_SIZE * sizeof(char));
-//		if (!command) {
-//			Toggle_LED_1();
-//			while (1);
-//		}
-		
-//		strcpy(command, self->command);
-		
-		while (count--){
-				
-				sprintf(self->log_content, "\n=== SENDING <%s> | ATTEMPT %u/%u ===\n", self->command, (send_attempt-count), send_attempt);
-				writeLog(self);
-			
-				clearModuleBuffer(self);
-				
-				
-				BC660K_USART0_Send(self->command);
-				BC660K_USART0_Send((char *)"\r\n");
-
-				self->command_timer = utick;
-				while(utick - self->command_timer <= command_timeout) {
-						output_status = USART0_Receive(self);
-				}
-				
-				sprintf(self->log_content, "%s\n\n", self->module_buffer);
-				writeLog(self);
-				clearModuleBuffer(self);
-				sprintf(self->log_content, "Command status: %s\n", getStatusTypeString(output_status));
-				writeLog(self);
-				sprintf(self->log_content, "==========\n");
-				writeLog(self);
-				
-				delay_ms(SEND_COMMAND_DELAY_MS);
-				
-				if (output_status == STATUS_SUCCESS) {
-						break;
-				}
-		}
-		
-		return output_status;
-}
-
-void clearModuleBuffer(struct BC660K *self) {
-		for (self->module_buffer_index = 0; self->module_buffer_index < MODULE_BUFFER_SIZE; self->module_buffer_index++) {
-				self->module_buffer[self->module_buffer_index] = 0;
-		}
-		self->module_buffer_index = 0;
 }
 
 enum StatusType checkModule_AT(struct BC660K *self) {
@@ -634,7 +558,7 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
 				output_status = USART0_Receive(self);
 		}
 		
-		sprintf(self->log_content, "%s", self->module_buffer);
+		sprintf(self->log_content, "%s", self->receive_buffer);
 		writeLog(self);
 		clearModuleBuffer(self);
 		
@@ -648,7 +572,7 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
 				output_status = USART0_Receive(self);
 		}
 		
-		sprintf(self->log_content, "%s\n\n", self->module_buffer);
+		sprintf(self->log_content, "%s\n\n", self->receive_buffer);
 		writeLog(self);
 		clearModuleBuffer(self);
 		sprintf(self->log_content, "Command status: %s\n", getStatusTypeString(output_status));
@@ -773,7 +697,7 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self)  {
 				output_status = USART0_Receive(self);
 		}
 		
-		sprintf(self->log_content, "|%s|", self->module_buffer);
+		sprintf(self->log_content, "|%s|", self->receive_buffer);
 		writeLog(self);
 		clearModuleBuffer(self);
 		
@@ -788,7 +712,7 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self)  {
 				output_status = USART0_Receive(self);
 		}
 		
-		sprintf(self->log_content, "%s\n\n", self->module_buffer);
+		sprintf(self->log_content, "%s\n\n", self->receive_buffer);
 		writeLog(self);
 		clearModuleBuffer(self);
 		sprintf(self->log_content, "Command status: %s\n", getStatusTypeString(output_status));
@@ -843,7 +767,7 @@ enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self) {
 				output_status = USART0_Receive(self);
 		}
 		
-		sprintf(self->log_content, "%s", self->module_buffer);
+		sprintf(self->log_content, "%s", self->receive_buffer);
 		writeLog(self);
 		clearModuleBuffer(self);
 		
@@ -858,7 +782,7 @@ enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self) {
 				output_status = USART0_Receive(self);
 		}
 		
-		sprintf(self->log_content, "%s\n\n", self->module_buffer);
+		sprintf(self->log_content, "%s\n\n", self->receive_buffer);
 		writeLog(self);
 		clearModuleBuffer(self);
 		sprintf(self->log_content, "Command status: %s\n", getStatusTypeString(output_status));
@@ -913,7 +837,7 @@ enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self) {
 				output_status = USART0_Receive(self);
 		}
 		
-		sprintf(self->log_content, "%s", self->module_buffer);
+		sprintf(self->log_content, "%s", self->receive_buffer);
 		writeLog(self);
 		clearModuleBuffer(self);
 		
@@ -928,7 +852,7 @@ enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self) {
 				output_status = USART0_Receive(self);
 		}
 		
-		sprintf(self->log_content, "%s\n\n", self->module_buffer);
+		sprintf(self->log_content, "%s\n\n", self->receive_buffer);
 		writeLog(self);
 		clearModuleBuffer(self);
 		sprintf(self->log_content, "Command status: %s\n", getStatusTypeString(output_status));
@@ -1004,23 +928,6 @@ enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self) {
 /* Debug */
 void writeLog(struct BC660K * self) {
   USART1_Send(self -> log_content);
-}
-
-char *getStatusTypeString(enum StatusType status) {
-		switch(status) {
-			case STATUS_SUCCESS:
-					return "SUCCESS";
-			case STATUS_ERROR:
-					return "ERROR";
-			case STATUS_TIMEOUT:
-					return "TIMEOUT";
-			case STATUS_BAD_PARAMETERS:
-					return "PARAMETERS";
-			case STATUS_UNKNOWN:
-					return "UNKNOWN";
-			default:
-					return "UNSUPPORTED STATUS";
-		}
 }
 
 /*************************************************************************************************************
@@ -1129,43 +1036,12 @@ void USART1_DEBUG_Configuration(void) {
   USART_RxCmd(HT_USART1, ENABLE);
 }
 
-/********************************************************************************************************/
-/*
- * @brief  UxART0 Tx Send Byte.
- * @param  Data: the data to be transmitted.
- * @retval None
- ***********************************************************************************************************/
-void BC660K_BC660K_USART0_Send_Char(u16 Data) {
-  while (USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET);
-  USART_SendData(HT_USART0, Data);
-}
 
-/********************************************************************************************************/
-/*
- * @brief  UxART Tx Send Byte.
- * @param  Data: the data to be transmitted.
- * @retval None
- ***********************************************************************************************************/
 void USART1_Send_Char(u16 Data) {
   while (USART_GetFlagStatus(HT_USART1, USART_FLAG_TXC) == RESET);
   USART_SendData(HT_USART1, Data);
 }
 
-/********************************************************************************************************/
-/*
- * @brief  UxART Tx Test.
- * @retval None
- ***********************************************************************************************************/
-void BC660K_USART0_Send(char * input_string) {
-  int i;
-  /* Send a buffer from UxART to terminal                                                                   */
-  for (i = 0; i < strlen(input_string); i++) {
-    BC660K_BC660K_USART0_Send_Char(input_string[i]);
-  }
-
-  /* Send to USART1 what sent to USART0 */
-  USART1_Send(input_string);
-}
 
 /********************************************************************************************************/
 /*
@@ -1342,12 +1218,12 @@ enum StatusType USART0_Receive(struct BC660K *self) {
 		/* Waits until the Rx FIFO/DR is not empty then get data from them                                        */
 		if (USART_GetFlagStatus(HT_USART0, USART_FLAG_RXDR) == SET) {
 			uData = USART_ReceiveData(HT_USART0);
-			self->module_buffer[self->module_buffer_index] = uData;
-			self->module_buffer_index++;
+			self->receive_buffer[self->receive_buffer_index] = uData;
+			self->receive_buffer_index++;
 		}
 
 		for (index = 0; index < SUCCESS_COMMAND_SIGN_LENGTH; index++){
-				ptr = strstr(self->module_buffer, SUCCESS_COMMAND_SIGN[index]);
+				ptr = strstr(self->receive_buffer, SUCCESS_COMMAND_SIGN[index]);
 				if (ptr) {
 						output_status = STATUS_SUCCESS;
 						return output_status;
@@ -1355,7 +1231,7 @@ enum StatusType USART0_Receive(struct BC660K *self) {
 		}
 		
 		for (index = 0; index < ERROR_COMMAND_SIGN_LENGTH; index++){
-				ptr = strstr(self->module_buffer, ERROR_COMMAND_SIGN[index]);
+				ptr = strstr(self->receive_buffer, ERROR_COMMAND_SIGN[index]);
 				if (ptr) {
 						output_status = STATUS_ERROR;
 						return output_status;

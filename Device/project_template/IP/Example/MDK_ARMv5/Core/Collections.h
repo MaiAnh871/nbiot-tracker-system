@@ -9,4 +9,21 @@ enum StatusType {
 		STATUS_UNKNOWN
 } StatusType;
 
+char *getStatusTypeString(enum StatusType status) {
+		switch(status) {
+			case STATUS_SUCCESS:
+					return "SUCCESS";
+			case STATUS_ERROR:
+					return "ERROR";
+			case STATUS_TIMEOUT:
+					return "TIMEOUT";
+			case STATUS_BAD_PARAMETERS:
+					return "PARAMETERS";
+			case STATUS_UNKNOWN:
+					return "UNKNOWN";
+			default:
+					return "UNSUPPORTED STATUS";
+		}
+}
+
 #endif /* COLLECTIONS_ */

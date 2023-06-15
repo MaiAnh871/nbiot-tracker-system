@@ -7,7 +7,7 @@
 
 /* Struct declaration */
 struct MC3416 {
-	
+	char mc3416_log_content;
 } MC3416;
 
 

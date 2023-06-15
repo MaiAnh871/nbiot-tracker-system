@@ -10,7 +10,7 @@
 
 /* Struct declaration */
 struct LC76F {
-	
+	char *lc76f_log_content;
 } LC76F;
 
 
