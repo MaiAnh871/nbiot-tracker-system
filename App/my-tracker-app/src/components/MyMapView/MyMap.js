@@ -1,9 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Amplify, PubSub } from 'aws-amplify';
+import { Amplify, PubSub, Auth } from 'aws-amplify';
 import { AWSIoTProvider } from '@aws-amplify/pubsub';
 import awsmobile from '../../aws-exports';
+import { CONNECTION_STATE_CHANGE, ConnectionState } from '@aws-amplify/pubsub';
+import { Hub } from 'aws-amplify';
+
 Amplify.configure(awsmobile);
+
+Auth.currentCredentials().then((info) => {
+  const cognitoIdentityId = info.identityId;
+  console.log(cognitoIdentityId)
+});
 
 // Apply plugin with configuration
 Amplify.addPluggable(
@@ -18,6 +26,14 @@ PubSub.subscribe('tracker/data').subscribe({
   next: data => console.log('Message received', data),
   error: error => console.error(error),
   complete: () => console.log('Done'),
+});
+
+Hub.listen('pubsub', (data) => {
+  const { payload } = data;
+  if (payload.event === CONNECTION_STATE_CHANGE) {
+    const connectionState = payload.data.connectionState;
+    console.log(connectionState);
+  }
 });
 
 export default function MyMap() {
