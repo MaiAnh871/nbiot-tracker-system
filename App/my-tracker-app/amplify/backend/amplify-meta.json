@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-mytrackerapp-dev-224854-unauthRole",
       "StackName": "amplify-mytrackerapp-dev-224854",
       "StackId": "arn:aws:cloudformation:ap-northeast-2:651307515661:stack/amplify-mytrackerapp-dev-224854/79ff9890-086f-11ee-bf88-02832ea157b4",
-      "AmplifyAppId": "d2xi0gxg9gjirm"
+      "AmplifyAppId": "d2xi0gxg9gjirm",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-mytrackerapp-dev-224854-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     }
   },
   "function": {
@@ -28,7 +29,27 @@
           ]
         }
       ],
-      "lastPushTimeStamp": "2023-06-15T10:34:25.823Z"
+      "lastPushTimeStamp": "2023-06-15T15:39:56.509Z",
+      "lastBuildTimeStamp": "2023-06-15T15:36:35.227Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2023-06-15T15:36:35.271Z",
+      "distZipFilename": "userInfoDBTrigger5a887ffd-627439672f6642615773-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-mytrackerapp-dev-224854-deployment",
+        "s3Key": "amplify-builds/userInfoDBTrigger5a887ffd-627439672f6642615773-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mytrackerapp-dev-224854-deployment/amplify-cfn-templates/function/userInfoDBTrigger5a887ffd-cloudformation-template.json",
+        "logicalId": "functionuserInfoDBTrigger5a887ffd"
+      },
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::651307515661:role/userInfoDBLambdaRole5a887ffd-dev",
+        "Region": "ap-northeast-2",
+        "Arn": "arn:aws:lambda:ap-northeast-2:651307515661:function:userInfoDBTrigger5a887ffd-dev",
+        "Name": "userInfoDBTrigger5a887ffd-dev",
+        "LambdaExecutionRole": "userInfoDBLambdaRole5a887ffd-dev"
+      },
+      "lastPushDirHash": "DGWoq1LCPfM8RNbzIbbrJ2uzroc="
     },
     "userInfoLambda": {
       "build": true,
@@ -47,13 +68,48 @@
             "Arn": "TABLE_ARN"
           }
         }
-      ]
+      ],
+      "lastBuildTimeStamp": "2023-06-15T15:36:35.237Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2023-06-15T15:36:39.372Z",
+      "distZipFilename": "userInfoLambda-314d3668526a5a6f4358-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-mytrackerapp-dev-224854-deployment",
+        "s3Key": "amplify-builds/userInfoLambda-314d3668526a5a6f4358-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mytrackerapp-dev-224854-deployment/amplify-cfn-templates/function/userInfoLambda-cloudformation-template.json",
+        "logicalId": "functionuserInfoLambda"
+      },
+      "lastPushTimeStamp": "2023-06-15T15:39:56.509Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::651307515661:role/mytrackerappLambdaRole71030f20-dev",
+        "Region": "ap-northeast-2",
+        "Arn": "arn:aws:lambda:ap-northeast-2:651307515661:function:userInfoLambda-dev",
+        "Name": "userInfoLambda-dev",
+        "LambdaExecutionRole": "mytrackerappLambdaRole71030f20-dev"
+      },
+      "lastPushDirHash": "VbXTtvLLbLXO2zIhfZj66FGiGwE="
     }
   },
   "storage": {
     "userInfoDB": {
       "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mytrackerapp-dev-224854-deployment/amplify-cfn-templates/storage/userInfoDB-cloudformation-template.json",
+        "logicalId": "storageuserInfoDB"
+      },
+      "lastPushTimeStamp": "2023-06-15T15:39:56.509Z",
+      "output": {
+        "PartitionKeyName": "email",
+        "Region": "ap-northeast-2",
+        "Arn": "arn:aws:dynamodb:ap-northeast-2:651307515661:table/userInfoTable-dev",
+        "StreamArn": "arn:aws:dynamodb:ap-northeast-2:651307515661:table/userInfoTable-dev/stream/2023-06-15T15:36:57.085",
+        "PartitionKeyType": "S",
+        "Name": "userInfoTable-dev"
+      },
+      "lastPushDirHash": "RwghWVBAwjRX1WN1o8uUQzkWGHo="
     }
   },
   "auth": {
@@ -79,7 +135,22 @@
         "verificationMechanisms": [
           "EMAIL"
         ]
-      }
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mytrackerapp-dev-224854-deployment/amplify-cfn-templates/auth/mytrackerapp-cloudformation-template.json",
+        "logicalId": "authmytrackerapp"
+      },
+      "lastPushTimeStamp": "2023-06-15T15:39:56.509Z",
+      "output": {
+        "UserPoolId": "ap-northeast-2_Mf4uxcjL4",
+        "AppClientIDWeb": "3ica16jtohipck76fippcd0nb2",
+        "AppClientID": "7aj03l2n0t7va0tagc6guf4hc1",
+        "IdentityPoolId": "ap-northeast-2:2907f315-9d0e-4f4a-b794-5195c521c938",
+        "UserPoolArn": "arn:aws:cognito-idp:ap-northeast-2:651307515661:userpool/ap-northeast-2_Mf4uxcjL4",
+        "IdentityPoolName": "mytrackerapp_identitypool_00f86704__dev",
+        "UserPoolName": "mytrackerapp_userpool_00f86704"
+      },
+      "lastPushDirHash": "ZTQ9LjnUgWvpRe3cVWhVqAusN8o="
     }
   },
   "api": {
@@ -95,7 +166,18 @@
             "Arn"
           ]
         }
-      ]
+      ],
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mytrackerapp-dev-224854-deployment/amplify-cfn-templates/api/userInfo-cloudformation-template.json",
+        "logicalId": "apiuserInfo"
+      },
+      "lastPushTimeStamp": "2023-06-15T15:39:56.509Z",
+      "output": {
+        "ApiName": "userInfo",
+        "RootUrl": "https://io9ykjmjah.execute-api.ap-northeast-2.amazonaws.com/dev",
+        "ApiId": "io9ykjmjah"
+      },
+      "lastPushDirHash": "R+Fz9R1be3F7e3DW8ELJpgj8Ztw="
     }
   }
 }

@@ -1,0 +1,12 @@
+{
+  "resourceName": "userInfoDB",
+  "tableName": "userInfoTable",
+  "partitionKey": {
+    "fieldName": "email",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": [
+    "userInfoDBTrigger5a887ffd"
+  ]
+}
