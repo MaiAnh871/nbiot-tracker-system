@@ -2,12 +2,6 @@
 #define BOARD871_
 
 /* Includes */
-#include "ht32.h"
-#include "ht32_board.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
-#include "stdbool.h"
 
 #include "Setting.h"
 #include "Collections.h"
@@ -31,6 +25,10 @@ void LED_Init(void);
 void Toggle_LED_1(void);
 void Toggle_LED_2(void);
 void Toggle_LED_3(void);
+
+void Initialize_Log(struct Board871 *self);
+void Write_Char_Log(u16 character);
+void Write_String_Log(char *input_string);
 
 void Board871_Initialize(struct Board871 *self);
 

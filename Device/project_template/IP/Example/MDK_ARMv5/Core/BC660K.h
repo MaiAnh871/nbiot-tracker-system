@@ -11,6 +11,9 @@
 #include "Setting.h"
 #include "Collections.h"
 
+extern void Toggle_LED_1(void);
+extern void Toggle_LED_2(void);
+extern void Toggle_LED_3(void);
 
 /* Struct declaration */
 struct BC660K {

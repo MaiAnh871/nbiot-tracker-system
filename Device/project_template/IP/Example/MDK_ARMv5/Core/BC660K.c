@@ -71,7 +71,7 @@ void BC660K_USART0_Send(char *input_string) {
   int i;
   /* Send a buffer from UxART to terminal                                                                   */
   for (i = 0; i < strlen(input_string); i++) {
-    BC660K_BC660K_USART0_Send_Char(input_string[i]);
+    BC660K_USART0_Send_Char(input_string[i]);
   }
 }
 
@@ -126,9 +126,9 @@ enum StatusType BC660K_Send_Command(struct BC660K *self, u8 send_attempt, u32 co
 		while (count--){
 				
 				sprintf(self->bc660k_log_content, "\n=== SENDING <%s> | ATTEMPT %u/%u ===\n", self->command, (send_attempt-count), send_attempt);
-				writeLog(self);
-			
-				clearModuleBuffer(self);
+//				writeLog(self);
+//			
+//				clearModuleBuffer(self);
 				
 				
 				BC660K_USART0_Send(self->command);
@@ -136,18 +136,18 @@ enum StatusType BC660K_Send_Command(struct BC660K *self, u8 send_attempt, u32 co
 
 				self->command_timer = portNVIC_SYSTICK_CURRENT_VALUE_REG;
 				while(portNVIC_SYSTICK_CURRENT_VALUE_REG - self->command_timer <= command_timeout) {
-						output_status = USART0_Receive(self);
+//						output_status = USART0_Receive(self);
 				}
 				
 				sprintf(self->bc660k_log_content, "%s\n\n", self->receive_buffer);
-				writeLog(self);
-				clearModuleBuffer(self);
+//				writeLog(self);
+//				clearModuleBuffer(self);
 				sprintf(self->bc660k_log_content, "Command status: %s\n", getStatusTypeString(output_status));
-				writeLog(self);
+//				writeLog(self);
 				sprintf(self->bc660k_log_content, "==========\n");
-				writeLog(self);
+//				writeLog(self);
 				
-				delay_ms(BC660K_SEND_COMMAND_DELAY_MS);
+//				delay_ms(BC660K_SEND_COMMAND_DELAY_MS);
 				
 				if (output_status == STATUS_SUCCESS) {
 						break;
