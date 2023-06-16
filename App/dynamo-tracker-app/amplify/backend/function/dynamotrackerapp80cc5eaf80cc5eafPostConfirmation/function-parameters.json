@@ -1,0 +1,16 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "dynamotrackerapp80cc5eaf80cc5eaf",
+  "functionName": "dynamotrackerapp80cc5eaf80cc5eafPostConfirmation",
+  "resourceName": "dynamotrackerapp80cc5eaf80cc5eafPostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "C:\\snapshot\\repo\\build\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "dynamotrackerapp80cc5eaf80cc5eafPostConfirmation",
+  "skipEdit": true
+}

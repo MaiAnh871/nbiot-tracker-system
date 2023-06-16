@@ -1,0 +1,28 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-dynamotrackerapp-dev-224540-authRole",
+      "UnauthRoleArn": "arn:aws:iam::651307515661:role/amplify-dynamotrackerapp-dev-224540-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::651307515661:role/amplify-dynamotrackerapp-dev-224540-authRole",
+      "Region": "ap-northeast-2",
+      "DeploymentBucketName": "amplify-dynamotrackerapp-dev-224540-deployment",
+      "UnauthRoleName": "amplify-dynamotrackerapp-dev-224540-unauthRole",
+      "StackName": "amplify-dynamotrackerapp-dev-224540",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:651307515661:stack/amplify-dynamotrackerapp-dev-224540/daf6dc80-0c5c-11ee-85bc-021a1f741a48",
+      "AmplifyAppId": "d2rpwd7o05ug35",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-dynamotrackerapp-dev-224540-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "dynamotrackerapp80cc5eaf80cc5eaf": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "dynamotrackerapp80cc5eaf80cc5eafPostConfirmation": {
+          "deploymentBucketName": "amplify-dynamotrackerapp-dev-224540-deployment",
+          "s3Key": "amplify-builds/dynamotrackerapp80cc5eaf80cc5eafPostConfirmation-6e71636f544a4b535035-build.zip"
+        }
+      }
+    }
+  }
+}
