@@ -435,6 +435,11 @@
               <FileType>5</FileType>
               <FilePath>.\Core\Setting.h</FilePath>
             </File>
+            <File>
+              <FileName>Board871.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\Board871.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

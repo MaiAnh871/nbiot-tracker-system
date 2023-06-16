@@ -6,38 +6,31 @@
 #include <math.h>
 
 #include "Board871.h"
-#include "BC660K.h"
-#include "LC76F.h"
-#include "MC3416.h"
-
 
 /* Private function prototypes -----------------------------------------------------------------------------*/
-void setup(struct BC660K * self);
-void addCA(struct BC660K * self);
-void loop(struct BC660K * self);
+//void setup(struct BC660K * self);
+//void addCA(struct BC660K * self);
+//void loop(struct BC660K * self);
 
 /* AT Command functions */
-enum StatusType checkModule_AT(struct BC660K *self);
-enum StatusType offEcho_ATE0(struct BC660K *self);
-enum StatusType getIMEI_AT_CGSN(struct BC660K *self);
-enum StatusType getModelID_AT_CGMM(struct BC660K *self);
-enum StatusType checkNetworkRegister_AT_CEREG(struct BC660K *self);
-enum StatusType getNetworkStatus_AT_QENG(struct BC660K *self);
-enum StatusType setAuthentication_AT_QSSLCFG(struct BC660K *self);
-enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self);
-enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self);
-enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self);
-enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self);
-enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self);
-enum StatusType connectClient_AT_QMTCONN(struct BC660K *self);
-enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self);
-enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self);
-enum StatusType wakeUpModule_AT_QSCLK(struct BC660K *self);
+//enum StatusType checkModule_AT(struct BC660K *self);
+//enum StatusType offEcho_ATE0(struct BC660K *self);
+//enum StatusType getIMEI_AT_CGSN(struct BC660K *self);
+//enum StatusType getModelID_AT_CGMM(struct BC660K *self);
+//enum StatusType checkNetworkRegister_AT_CEREG(struct BC660K *self);
+//enum StatusType getNetworkStatus_AT_QENG(struct BC660K *self);
+//enum StatusType setAuthentication_AT_QSSLCFG(struct BC660K *self);
+//enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self);
+//enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self);
+//enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self);
+//enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self);
+//enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self);
+//enum StatusType connectClient_AT_QMTCONN(struct BC660K *self);
+//enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self);
+//enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self);
+//enum StatusType wakeUpModule_AT_QSCLK(struct BC660K *self);
 
 /* ==================== */
-
-/* Debug */
-char *getStatusTypeString(enum StatusType status);
 
 /* UART ports */
 void UART0_GNSS_Configuration(void);
@@ -48,7 +41,6 @@ void UART0_Read_Block(uint8_t* data);
 /* Private macro -------------------------------------------------------------------------------------------*/
 
 /* Global variables ----------------------------------------------------------------------------------------*/
-struct BC660K BC660K_h_h;
 vu32 utick;
 uint8_t data[100];
 uint8_t* check = NULL;
@@ -148,7 +140,7 @@ int main (void) {
  * @brief  Main program.
  * @retval None
  ***********************************************************************************************************/
-void setup(struct BC660K * self) {	
+//void setup(struct BC660K * self) {	
   /* Initialize UART ports */
 //  UART0_GNSS_Configuration();
 //  USART0_MODULE_Configuration();
@@ -164,19 +156,19 @@ void setup(struct BC660K * self) {
 //  writeLog(self);
 	
 //	addCA(self);
-}
+//}
 
-void addCA(struct BC660K * self) {
-	checkModule_AT(self);
-	offEcho_ATE0(self);
-	setAuthentication_AT_QSSLCFG(self);
-	setCACert_AT_QSSLCFG(self);
-	setClientCert_AT_QSSLCFG(self);
-	setClientPrivateKey_AT_QSSLCFG(self);
-	enableSSL_AT_QMTCFG(self);
-}
+//void addCA(struct BC660K * self) {
+//	checkModule_AT(self);
+//	offEcho_ATE0(self);
+//	setAuthentication_AT_QSSLCFG(self);
+//	setCACert_AT_QSSLCFG(self);
+//	setClientCert_AT_QSSLCFG(self);
+//	setClientPrivateKey_AT_QSSLCFG(self);
+//	enableSSL_AT_QMTCFG(self);
+//}
 
-void loop(struct BC660K * self) {
+//void loop(struct BC660K * self) {
 //	MC3416_Read_Accel(&Ax, &Ay, &Az);
 
 	
@@ -216,7 +208,7 @@ void loop(struct BC660K * self) {
 //	publishMessage_AT_QMTPUB(self);
 //	publishMessage_AT_QMTPUB(self);
 //	closeMQTT_AT_QMTCLOSE(self);
-}
+//}
 
 //enum StatusType checkModule_AT(struct BC660K *self) {
 //		/* Initialize status */

@@ -7,8 +7,8 @@
 
 
 /* Debugging */
-const char *SUCCESS_COMMAND_SIGN[] = { "\r\n\r\n", "OK\r\n" };
-const char *ERROR_COMMAND_SIGN[] = { "ERROR" };
+static const char *SUCCESS_COMMAND_SIGN[] = { "\r\n\r\n", "OK\r\n" };
+static const char *ERROR_COMMAND_SIGN[] = { "ERROR" };
 #define SUCCESS_COMMAND_SIGN_LENGTH sizeof(SUCCESS_COMMAND_SIGN) / sizeof(SUCCESS_COMMAND_SIGN[0])
 #define ERROR_COMMAND_SIGN_LENGTH sizeof(ERROR_COMMAND_SIGN) / sizeof(ERROR_COMMAND_SIGN[0])
 

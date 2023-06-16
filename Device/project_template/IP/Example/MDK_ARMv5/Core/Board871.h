@@ -2,6 +2,10 @@
 #define BOARD871_
 
 /* Includes */
+#include "ht32.h"
+#include "ht32_board.h"
+#include "stdlib.h"
+#include "string.h"
 
 #include "Setting.h"
 #include "Collections.h"
@@ -11,7 +15,7 @@
 
 
 /* Struct initialization */
-struct Board871 {
+static struct Board871 {
 	char *board871_log_content;
 	
 	struct BC660K bc660k;
@@ -30,6 +34,6 @@ void Initialize_Log(struct Board871 *self);
 void Write_Char_Log(u16 character);
 void Write_String_Log(char *input_string);
 
-void Board871_Initialize(struct Board871 *self);
+static void Board871_Initialize(struct Board871 *self);
 
 #endif /* BOARD871_ */

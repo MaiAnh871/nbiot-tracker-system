@@ -4,15 +4,18 @@
 /* Includes */
 #include "ht32.h"
 
+#include "Setting.h"
+#include "Collections.h"
 
 /* Struct declaration */
-struct MC3416 {
+static struct MC3416 {
 	char mc3416_log_content;
 } MC3416;
 
 
 /* Function prototypes */
-void MC3416_Initialize(struct MC3416 *self);
+static void MC3416_Initialize(struct MC3416 *self);
+
 void I2C_Configuration(void);
 void Read_Mem_Slave(I2C_AddressTypeDef Slave_Adr, uint8_t RegAddr, uint8_t* str_data);
 void Write_Mem_Slave(I2C_AddressTypeDef Slave_Adr, uint8_t RegAddr, uint8_t data);

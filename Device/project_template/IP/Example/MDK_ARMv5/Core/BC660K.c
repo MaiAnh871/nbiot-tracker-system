@@ -134,10 +134,10 @@ enum StatusType BC660K_Send_Command(struct BC660K *self, u8 send_attempt, u32 co
 				BC660K_USART0_Send(self->command);
 				BC660K_USART0_Send((char *)"\r\n");
 
-				self->command_timer = portNVIC_SYSTICK_CURRENT_VALUE_REG;
-				while(portNVIC_SYSTICK_CURRENT_VALUE_REG - self->command_timer <= command_timeout) {
-//						output_status = USART0_Receive(self);
-				}
+//				self->command_timer = portNVIC_SYSTICK_CURRENT_VALUE_REG;
+//				while(portNVIC_SYSTICK_CURRENT_VALUE_REG - self->command_timer <= command_timeout) {
+////						output_status = USART0_Receive(self);
+//				}
 				
 				sprintf(self->bc660k_log_content, "%s\n\n", self->receive_buffer);
 //				writeLog(self);

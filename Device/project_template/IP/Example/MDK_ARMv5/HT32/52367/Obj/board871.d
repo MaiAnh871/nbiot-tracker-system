@@ -1,9 +1,7 @@
-./ht32/52367/obj/bc660k.o: Core\BC660K.c Core\BC660K.h \
-  ..\..\..\..\utilities\ht32_board.h \
-  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h \
-  ..\..\..\..\utilities\HT32_Board\ht32f52367_sk.h \
+./ht32/52367/obj/board871.o: Core\Board871.c Core\Board871.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h \
   ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h \
   ..\..\..\..\library\CMSIS\Include\core_cm0plus.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
   ..\..\..\..\library\CMSIS\Include\cmsis_version.h \
@@ -46,6 +44,8 @@
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_serial.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_div.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h \
+  ..\..\..\..\utilities\ht32_board.h \
+  ..\..\..\..\utilities\HT32_Board\ht32f52367_sk.h \
   ..\..\..\..\utilities\common\i2c_eeprom.h \
   ..\..\..\..\utilities\common\spi_flash.h \
   ..\..\..\..\utilities\common\spi_lcd.h \
@@ -53,4 +53,5 @@
   ..\..\..\..\utilities\common\ebi_lcd.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h Core\Setting.h \
-  Core\Collections.h
+  Core\Collections.h Core\BC660K.h Core\LC76F.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h Core\MC3416.h

@@ -1,7 +1,7 @@
 #ifndef COLLECTIONS_
 #define COLLECTIONS_
 
-enum StatusType {
+static enum StatusType {
 		STATUS_SUCCESS = 0,
 		STATUS_ERROR,
 		STATUS_TIMEOUT,
@@ -9,7 +9,7 @@ enum StatusType {
 		STATUS_UNKNOWN
 } StatusType;
 
-char *getStatusTypeString(enum StatusType status) {
+static char *getStatusTypeString(enum StatusType status) {
 		switch(status) {
 			case STATUS_SUCCESS:
 					return "SUCCESS";

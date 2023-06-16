@@ -2,21 +2,20 @@
 #define BC660K_
 
 /* Includes */
-#include "ht32.h"
 #include "ht32_board.h"
 #include "stdlib.h"
 #include "string.h"
-#include "port.c"
 
 #include "Setting.h"
 #include "Collections.h"
 
+/* extern variables and functions */
 extern void Toggle_LED_1(void);
 extern void Toggle_LED_2(void);
 extern void Toggle_LED_3(void);
 
 /* Struct declaration */
-struct BC660K {
+static struct BC660K {
 	/* Debug */
   char * bc660k_log_content;
 	
@@ -29,7 +28,7 @@ struct BC660K {
 
 
 /* Function prototypes */
-void BC660K_Initialize(struct BC660K *self);
+static void BC660K_Initialize(struct BC660K *self);
 
 void BC660K_USART0_Configuration(void);
 void BC660K_USART0_Send_Char(u16 Data);

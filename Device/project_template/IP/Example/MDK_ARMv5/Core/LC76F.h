@@ -9,13 +9,14 @@
 
 
 /* Struct declaration */
-struct LC76F {
+static struct LC76F {
 	char *lc76f_log_content;
 } LC76F;
 
 
 /* Function prototypes */
-void LC76F_Initialize(struct LC76F *self);
+static void LC76F_Initialize(struct LC76F *self);
+
 void UART0_GNSS_Configuration(void);
 void UART0_Receive(void);
 void UART0_Read_Block(uint8_t  *GPS_data);

@@ -53,4 +53,6 @@
   ..\..\..\..\utilities\common\ebi_lcd.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h Core\Board871.h \
+  Core\Setting.h Core\Collections.h Core\BC660K.h Core\LC76F.h \
+  Core\MC3416.h
