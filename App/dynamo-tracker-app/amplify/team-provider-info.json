@@ -20,8 +20,11 @@
       "function": {
         "dynamotrackerapp80cc5eaf80cc5eafPostConfirmation": {
           "deploymentBucketName": "amplify-dynamotrackerapp-dev-224540-deployment",
-          "s3Key": "amplify-builds/dynamotrackerapp80cc5eaf80cc5eafPostConfirmation-6e71636f544a4b535035-build.zip"
+          "s3Key": "amplify-builds/dynamotrackerapp80cc5eaf80cc5eafPostConfirmation-49467a2f4970492b4e64-build.zip"
         }
+      },
+      "api": {
+        "dynamotrackerapp": {}
       }
     }
   }

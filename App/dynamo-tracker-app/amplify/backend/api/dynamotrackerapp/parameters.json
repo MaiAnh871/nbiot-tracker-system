@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "dynamotrackerapp",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authdynamotrackerapp80cc5eaf80cc5eaf",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

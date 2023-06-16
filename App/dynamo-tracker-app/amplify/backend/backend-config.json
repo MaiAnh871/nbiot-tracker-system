@@ -1,4 +1,30 @@
 {
+  "api": {
+    "dynamotrackerapp": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "dynamotrackerapp80cc5eaf80cc5eaf"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authdynamotrackerapp80cc5eaf80cc5eaf"
+            }
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
   "auth": {
     "dynamotrackerapp80cc5eaf80cc5eaf": {
       "customAuth": false,
