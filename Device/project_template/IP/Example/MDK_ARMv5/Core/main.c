@@ -57,10 +57,14 @@ int16_t Ay = 0;
 int16_t Az = 0;
 
 /* Global functions ----------------------------------------------------------------------------------------*/
+static void delay_ms(u32 ms);
 void LED_Init(void);
 void Toggle_LED_1(void);
 void Toggle_LED_2(void);
 
+
+void Error_Blinking_LED_1(void);
+void Connecting_Blinking_LED_2(void);
 void Initialize_Log(void);
 void Write_Char_Log(u16 character);
 void Write_String_Log(char * input_string);
@@ -82,6 +86,15 @@ void packMsg(void);
 void USART1_Send_Int16(int16_t value);
 
 
+static void delay_ms(u32 ms) {
+  uint32_t i, j;
+  for (i = 0; i < ms; i++) {
+    for (j = 0; j < 33132; j++) {
+      __NOP();
+    }
+  }
+}
+
 void LED_Init() {
   HT32F_DVB_LEDInit(HT_LED1);
   HT32F_DVB_LEDInit(HT_LED2);
@@ -89,6 +102,9 @@ void LED_Init() {
   HT32F_DVB_LEDOff(HT_LED1);
   HT32F_DVB_LEDOff(HT_LED2);
   HT32F_DVB_LEDOff(HT_LED3);
+	
+	Toggle_LED_1();
+	Toggle_LED_2();
 }
 
 void Toggle_LED_1() {
@@ -99,8 +115,15 @@ void Toggle_LED_2() {
   HT32F_DVB_LEDToggle(HT_LED2);
 }
 
-void Toggle_LED_3() {
-  HT32F_DVB_LEDToggle(HT_LED3);
+void Error_Blinking_LED_1(void) {
+	while (1) {
+		Toggle_LED_1();
+		delay_ms(200);
+	}
+}
+
+void Connecting_Blinking_LED_2(void) {
+	
 }
 
 void Initialize_Log(void) {
@@ -175,8 +198,6 @@ void task_2(void * argument) {
   while (1) {
     // Application code
     Toggle_LED_2();
-    //		sprintf(board871.board871_log_content, "%u\n", CURRENT_TICK);
-    //		Write_String_Log(board871.board871_log_content);
     vTaskDelay(500);
   }
 }
@@ -184,6 +205,8 @@ void task_2(void * argument) {
 void task_3(void * argument) {
   while (1) {
     // Application code
+//		sprintf(board871.board871_log_content, "%u\n", CURRENT_TICK);
+//		Write_String_Log(board871.board871_log_content);
     checkModule_AT( & board871.bc660k);
     vTaskDelay(1000);
   }
@@ -198,6 +221,9 @@ void task_4(void * argument) {
 
 int main(void) {
   SystemCoreClockUpdate();
+	
+	LED_Init();
+	Initialize_Log();
 
   Board871_Initialize( & board871);
 
@@ -206,7 +232,7 @@ int main(void) {
   xTaskCreate(task_2, "task_2", 64, NULL, 2, NULL);
   xTaskCreate(task_3, "task_3", 64, NULL, 2, NULL);
   xTaskCreate(task_4, "task_4", 64, NULL, 2, NULL);
-
+	
   // Start the kernel and execute the first thread
   vTaskStartScheduler();
 

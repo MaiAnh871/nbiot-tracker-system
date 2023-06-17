@@ -6,20 +6,17 @@ extern void BC660K_Initialize(struct BC660K * self) {
 
   self -> bc660k_log_content = (char * ) malloc(BC660K_LOG_CONTENT_SIZE * sizeof(char));
   if (!self -> bc660k_log_content) {
-    Toggle_LED_1();
-    while (1);
+	Error_Blinking_LED_1();
   }
 
   self -> command = (char * ) malloc(BC660K_COMMAND_SIZE * sizeof(char));
   if (!self -> command) {
-    Toggle_LED_1();
-    while (1);
+	Error_Blinking_LED_1();
   }
 
   self -> receive_buffer = (char * ) malloc(BC660K_RECEIVE_BUFFER_SIZE * sizeof(char));
   if (!self -> receive_buffer) {
-    Toggle_LED_1();
-    while (1);
+	Error_Blinking_LED_1();
   }
 }
 
@@ -121,41 +118,40 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
   }
   u8 count = send_attempt;
 
-  //		char *command;
-  //		command = (char * ) malloc(COMMAND_SIZE * sizeof(char));
-  //		if (!command) {
-  //			Toggle_LED_1();
-  //			while (1);
-  //		}
+	char *command;
+	command = (char * ) malloc(BC660K_COMMAND_SIZE * sizeof(char));
+	if (!command) {
+	Error_Blinking_LED_1();
+	}
 
-  //		strcpy(command, self->command);
+	strcpy(command, self->command);
 
   while (count--) {
 
     sprintf(self -> bc660k_log_content, "\n=== SENDING <%s> | ATTEMPT %u/%u ===\n", self -> command, (send_attempt - count), send_attempt);
-    //				writeLog(self);
-    //			
-    //				clearModuleBuffer(self);
+		Write_String_Log(self -> bc660k_log_content);
+	
+		BC660K_Clear_Receive_Buffer(self);
 
     BC660K_USART0_Send(self -> command);
     BC660K_USART0_Send((char * )
       "\r\n");
 
-    //				self->command_timer = portNVIC_SYSTICK_CURRENT_VALUE_REG;
-    //				while(portNVIC_SYSTICK_CURRENT_VALUE_REG - self->command_timer <= command_timeout) {
-    ////						output_status = USART0_Receive(self);
-    //				}
+		self->command_timer = CURRENT_TICK;
+		while(CURRENT_TICK - self->command_timer <= command_timeout) {
+				output_status = BC660K_USART0_Receive(self);
+		}
 
     sprintf(self -> bc660k_log_content, "%s\n\n", self -> receive_buffer);
-    //				writeLog(self);
-    //				clearModuleBuffer(self);
+		Write_String_Log(self -> bc660k_log_content);
+		BC660K_Clear_Receive_Buffer(self);
     sprintf(self -> bc660k_log_content, "Command status: %s\n", getStatusTypeString(output_status));
-    //				writeLog(self);
+		Write_String_Log(self -> bc660k_log_content);
     sprintf(self -> bc660k_log_content, "==========\n");
-    //				writeLog(self);
+		Write_String_Log(self -> bc660k_log_content);
 
-    //				delay_ms(BC660K_SEND_COMMAND_DELAY_MS);
-
+		vTaskDelay(BC660K_SEND_COMMAND_DELAY_MS);
+		
     if (output_status == STATUS_SUCCESS) {
       break;
     }

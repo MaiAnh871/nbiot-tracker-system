@@ -19,7 +19,7 @@ extern void Write_String_Log(char * input_string);
 
 /* Struct declaration */
 static struct MC3416 {
-  char mc3416_log_content;
+  char * mc3416_log_content;
 }
 MC3416;
 
