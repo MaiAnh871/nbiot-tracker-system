@@ -118,7 +118,9 @@ void task_3 (void *argument) {
 void task_4 (void *argument) {
   while(1) {
     // Application code
-		vTaskDelay(100);
+		sprintf(board871.board871_log_content, "%u\n", CURRENT_TICK);
+		Write_String_Log(board871.board871_log_content);
+		vTaskDelay(500);
   }
 }
 /*
