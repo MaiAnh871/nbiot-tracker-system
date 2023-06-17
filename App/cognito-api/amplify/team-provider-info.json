@@ -1,0 +1,31 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cognitoapi-dev-105909-authRole",
+      "UnauthRoleArn": "arn:aws:iam::651307515661:role/amplify-cognitoapi-dev-105909-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::651307515661:role/amplify-cognitoapi-dev-105909-authRole",
+      "Region": "ap-northeast-2",
+      "DeploymentBucketName": "amplify-cognitoapi-dev-105909-deployment",
+      "UnauthRoleName": "amplify-cognitoapi-dev-105909-unauthRole",
+      "StackName": "amplify-cognitoapi-dev-105909",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:651307515661:stack/amplify-cognitoapi-dev-105909/27f85620-0bfa-11ee-ab36-0679409f9f94",
+      "AmplifyAppId": "d37xn7n2aklfjw",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-cognitoapi-dev-105909-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "cognitoapifaf94b48faf94b48": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "cognitoapifaf94b48faf94b48PostConfirmation": {
+          "deploymentBucketName": "amplify-cognitoapi-dev-105909-deployment",
+          "s3Key": "amplify-builds/cognitoapifaf94b48faf94b48PostConfirmation-2f794630352b44493649-build.zip"
+        }
+      },
+      "api": {
+        "cognitoapi": {}
+      }
+    }
+  }
+}

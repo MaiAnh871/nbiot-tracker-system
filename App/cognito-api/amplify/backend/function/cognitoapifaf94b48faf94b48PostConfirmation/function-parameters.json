@@ -1,0 +1,16 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "cognitoapifaf94b48faf94b48",
+  "functionName": "cognitoapifaf94b48faf94b48PostConfirmation",
+  "resourceName": "cognitoapifaf94b48faf94b48PostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "C:\\snapshot\\repo\\build\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "cognitoapifaf94b48faf94b48PostConfirmation",
+  "skipEdit": true
+}

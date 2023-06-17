@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "auth": {
+      "anhttm8app": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "function": {
+      "anhttm8DynamoUserTriggereb23a35b": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "storage": {
+      "anhttm8DynamoUser": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "anhttm8Env",
+      "environmentVariableName": "anhttm8Env"
+    }
+  ]
+}

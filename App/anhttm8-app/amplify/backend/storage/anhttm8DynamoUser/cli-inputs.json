@@ -1,0 +1,12 @@
+{
+  "resourceName": "anhttm8DynamoUser",
+  "tableName": "anhttm8DynamoUser",
+  "partitionKey": {
+    "fieldName": "username",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": [
+    "anhttm8DynamoUserTriggereb23a35b"
+  ]
+}

@@ -7,5 +7,81 @@
       "service": "Cognito",
       "serviceType": "imported"
     }
+  },
+  "function": {
+    "anhttm8DynamoUserTriggereb23a35b": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "anhttm8DynamoUser"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "anhttm8lambdafunction": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "anhttm8DynamoUser"
+        },
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "anhttm8app"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "anhttm8DynamoUserTriggereb23a35b"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "anhttm8DynamoUser"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_anhttm8lambdafunction_anhttm8Env": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "anhttm8lambdafunction"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "anhttm8DynamoUser": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    }
   }
 }

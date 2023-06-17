@@ -10,6 +10,16 @@
       "StackName": "amplify-anhttm8app-dev-233255",
       "StackId": "arn:aws:cloudformation:ap-northeast-2:651307515661:stack/amplify-anhttm8app-dev-233255/cab13ee0-093e-11ee-bc18-02dc69b2ef6e",
       "AmplifyAppId": "d2tenpy1lnt40d"
+    },
+    "categories": {
+      "auth": {
+        "anhttm8app": {}
+      },
+      "function": {
+        "anhttm8lambdafunction": {
+          "anhttm8Env": "anhttm8Env"
+        }
+      }
     }
   }
 }
