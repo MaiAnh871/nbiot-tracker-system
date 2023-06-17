@@ -34,6 +34,6 @@ void Initialize_Log(struct Board871 *self);
 void Write_Char_Log(u16 character);
 void Write_String_Log(char *input_string);
 
-static void Board871_Initialize(struct Board871 *self);
+void Board871_Initialize(struct Board871 *self);
 
 #endif /* BOARD871_ */

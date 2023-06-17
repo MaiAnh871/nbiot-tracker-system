@@ -28,7 +28,7 @@ static struct BC660K {
 
 
 /* Function prototypes */
-static void BC660K_Initialize(struct BC660K *self);
+extern void BC660K_Initialize(struct BC660K *self);
 
 void BC660K_USART0_Configuration(void);
 void BC660K_USART0_Send_Char(u16 Data);

@@ -1,6 +1,6 @@
 #include "BC660K.h"
 
-void BC660K_Initialize(struct BC660K *self){
+extern void BC660K_Initialize(struct BC660K *self){
 	BC660K_USART0_Configuration();
 	
   self->command = (char *) malloc(BC660K_COMMAND_SIZE * sizeof(char));

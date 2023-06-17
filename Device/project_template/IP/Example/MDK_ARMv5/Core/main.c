@@ -41,6 +41,8 @@ void UART0_Read_Block(uint8_t* data);
 /* Private macro -------------------------------------------------------------------------------------------*/
 
 /* Global variables ----------------------------------------------------------------------------------------*/
+struct Board871 board871;
+
 vu32 utick;
 uint8_t data[100];
 uint8_t* check = NULL;
@@ -92,7 +94,7 @@ void task_1 (void *argument) {
   while(1) {
     // Application code
     Toggle_LED_1();
-		vTaskDelay(100);
+		vTaskDelay(1000);
   }
 }
 
@@ -122,7 +124,9 @@ void task_4 (void *argument) {
 */
 int main (void) {
   SystemCoreClockUpdate();
- 
+	
+	Board871_Initialize(&board871);
+	
   // Create application main thread
   xTaskCreate (task_1, "task_1", 16, NULL, 2, NULL);
 	xTaskCreate (task_2, "task_2", 16, NULL, 2, NULL);

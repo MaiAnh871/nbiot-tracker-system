@@ -15,7 +15,7 @@ static struct LC76F {
 
 
 /* Function prototypes */
-static void LC76F_Initialize(struct LC76F *self);
+extern void LC76F_Initialize(struct LC76F *self);
 
 void UART0_GNSS_Configuration(void);
 void UART0_Receive(void);
