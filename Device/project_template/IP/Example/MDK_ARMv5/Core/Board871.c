@@ -89,12 +89,7 @@ void Board871_Initialize(struct Board871 *self){
     Toggle_LED_1();
     while (1);
   }
-	
-	sprintf(self->board871_log_content, "hello\n");
-	Write_String_Log(self->board871_log_content);
-	
-	while(1);
-	
+
 	BC660K_Initialize(&self->bc660k);
 //	LC76F_Initialize(&self->lc76f);
 //	MC3416_Initialize(&self->mc3416);

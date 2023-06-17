@@ -6,6 +6,10 @@
 #define PI 3.141592653589793238
 
 
+/* System */
+#define CURRENT_TICK xTaskGetTickCount()
+
+
 /* Debugging */
 static const char *SUCCESS_COMMAND_SIGN[] = { "\r\n\r\n", "OK\r\n" };
 static const char *ERROR_COMMAND_SIGN[] = { "ERROR" };
