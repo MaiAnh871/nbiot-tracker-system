@@ -10,18 +10,18 @@ void LED_Init() {
 }
 
 void Toggle_LED_1() {
-	HT32F_DVB_LEDToggle(HT_LED1);
+  HT32F_DVB_LEDToggle(HT_LED1);
 }
 
 void Toggle_LED_2() {
-	HT32F_DVB_LEDToggle(HT_LED2);
+  HT32F_DVB_LEDToggle(HT_LED2);
 }
 
 void Toggle_LED_3() {
-	HT32F_DVB_LEDToggle(HT_LED3);
+  HT32F_DVB_LEDToggle(HT_LED3);
 }
 
-void Initialize_Log(struct Board871 *self) {
+void Initialize_Log(struct Board871 * self) {
   CKCU_PeripClockConfig_TypeDef CKCUClock; // Set all the fields to zero, which means that no peripheral clocks are enabled by default.
 
   {
@@ -80,17 +80,17 @@ void Write_String_Log(char * input_string) {
   }
 }
 
-void Board871_Initialize(struct Board871 *self){
-	LED_Init();
-	Initialize_Log(self);
-	
-  self->board871_log_content = (char *) malloc(BOARD871_LOG_CONTENT * sizeof(char));
-  if (!self->board871_log_content) {
+void Board871_Initialize(struct Board871 * self) {
+  LED_Init();
+  Initialize_Log(self);
+
+  self -> board871_log_content = (char * ) malloc(BOARD871_LOG_CONTENT * sizeof(char));
+  if (!self -> board871_log_content) {
     Toggle_LED_1();
     while (1);
   }
 
-	BC660K_Initialize(&self->bc660k);
-//	LC76F_Initialize(&self->lc76f);
-//	MC3416_Initialize(&self->mc3416);
+  BC660K_Initialize( & self -> bc660k);
+  //	LC76F_Initialize(&self->lc76f);
+  //	MC3416_Initialize(&self->mc3416);
 }

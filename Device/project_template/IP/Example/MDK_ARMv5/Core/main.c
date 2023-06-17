@@ -1,8 +1,11 @@
-/* Includes */
-#include "ht32.h"
+/* Includes */ #include "ht32.h"
+
 #include "ht32_board.h"
+
 #include "stdlib.h"
+
 #include "string.h"
+
 #include <math.h>
 
 #include "Board871.h"
@@ -35,8 +38,7 @@
 /* UART ports */
 void UART0_GNSS_Configuration(void);
 void UART0_Receive(void);
-void UART0_Read_Block(uint8_t* data);
-
+void UART0_Read_Block(uint8_t * data);
 
 /* Private macro -------------------------------------------------------------------------------------------*/
 
@@ -44,7 +46,7 @@ void UART0_Read_Block(uint8_t* data);
 struct Board871 board871;
 
 uint8_t data[100];
-uint8_t* check = NULL;
+uint8_t * check = NULL;
 uint8_t GPS_raw[100];
 float latitude;
 float longitude;
@@ -55,14 +57,14 @@ int16_t Ay = 0;
 int16_t Az = 0;
 
 /* Global functions ----------------------------------------------------------------------------------------*/
-void task_1 (void *argument);
-void task_2 (void *argument);
-void task_3 (void *argument);
-void task_4 (void *argument);
+void task_1(void * argument);
+void task_2(void * argument);
+void task_3(void * argument);
+void task_4(void * argument);
 
-void clear(uint8_t *input_string);
+void clear(uint8_t * input_string);
 bool getRawGPS(void);
-bool checkValidGPS(uint8_t *raw_GPS);
+bool checkValidGPS(uint8_t * raw_GPS);
 void printBool(bool b);
 void extractMainData(void);
 void USART1_Send_Float(float f);
@@ -71,59 +73,54 @@ float calculateDistance(void);
 void packMsg(void);
 void USART1_Send_Int16(int16_t value);
 
-
-void task_1 (void *argument) {
-  while(1) {
+void task_1(void * argument) {
+  while (1) {
     // Application code
     Toggle_LED_1();
-		vTaskDelay(1000);
+    vTaskDelay(1000);
   }
 }
 
-
-void task_2 (void *argument) {
-  while(1) {
+void task_2(void * argument) {
+  while (1) {
     // Application code
     Toggle_LED_2();
-		sprintf(board871.board871_log_content, "%u\n", CURRENT_TICK);
-		Write_String_Log(board871.board871_log_content);
-		vTaskDelay(500);
+    //		sprintf(board871.board871_log_content, "%u\n", CURRENT_TICK);
+    //		Write_String_Log(board871.board871_log_content);
+    vTaskDelay(500);
   }
 }
 
-
-void task_3 (void *argument) {
-  while(1) {
+void task_3(void * argument) {
+  while (1) {
     // Application code
-		checkModule_AT(&board871.bc660k);
-		vTaskDelay(1000);
+    checkModule_AT( & board871.bc660k);
+    vTaskDelay(1000);
   }
 }
 
-
-void task_4 (void *argument) {
-  while(1) {
+void task_4(void * argument) {
+  while (1) {
     // Application code
-		vTaskDelay(500);
+    vTaskDelay(500);
   }
 }
 
-
-int main (void) {
+int main(void) {
   SystemCoreClockUpdate();
-	
-	Board871_Initialize(&board871);
-	
+
+  Board871_Initialize( & board871);
+
   // Create application main thread
-  xTaskCreate (task_1, "task_1", 64, NULL, 2, NULL);
-	xTaskCreate (task_2, "task_2", 64, NULL, 2, NULL);
-	xTaskCreate (task_3, "task_3", 64, NULL, 2, NULL);
-	xTaskCreate (task_4, "task_4", 64, NULL, 2, NULL);
-	
+  xTaskCreate(task_1, "task_1", 64, NULL, 2, NULL);
+  xTaskCreate(task_2, "task_2", 64, NULL, 2, NULL);
+  xTaskCreate(task_3, "task_3", 64, NULL, 2, NULL);
+  xTaskCreate(task_4, "task_4", 64, NULL, 2, NULL);
+
   // Start the kernel and execute the first thread
   vTaskStartScheduler();
- 
-  while(1);
+
+  while (1);
 }
 
 /********************************************************************************************************/
@@ -132,20 +129,20 @@ int main (void) {
  * @retval None
  ***********************************************************************************************************/
 //void setup(struct BC660K * self) {	
-  /* Initialize UART ports */
+/* Initialize UART ports */
 //  UART0_GNSS_Configuration();
 //  USART0_MODULE_Configuration();
 //  USART1_DEBUG_Configuration();
 
-	/* Initialize I2C and Acce */
+/* Initialize I2C and Acce */
 //	I2C_Configuration();
 //	MC3416_Init();
 
-  /* Initialize BC660K_handler */
+/* Initialize BC660K_handler */
 
 //  sprintf(self -> log_content, "Setup successfully!\n");
 //  writeLog(self);
-	
+
 //	addCA(self);
 //}
 
@@ -162,7 +159,6 @@ int main (void) {
 //void loop(struct BC660K * self) {
 //	MC3416_Read_Accel(&Ax, &Ay, &Az);
 
-	
 //	getRawGPS();
 //	USART1_Send((char*) data);
 //	printBool(getRawGPS());
@@ -170,16 +166,14 @@ int main (void) {
 //	USART1_Send_Float(latitude);
 //	USART1_Send_Float(longitude);
 //	USART1_Send_Float(calculateDistance());
-	
+
 //	printf("Ax = %d, Ay = %d, Az = %d\r\n", Ax, Ay, Az);
 //	USART1_Send_Int16(Ax);
 //	USART1_Send_Int16(Ay);
 //	USART1_Send_Int16(Az);
-	
-
 
 //	UART0_Receive();
-		
+
 //		offEcho_ATE0(self);
 //		getIMEI_AT_CGSN(self);
 //		setAuthentication_AT_QSSLCFG(self);
@@ -898,7 +892,6 @@ int main (void) {
 //		
 //		return output_status;
 //}
-
 
 ///* Debug */
 //void writeLog(struct BC660K * self) {
