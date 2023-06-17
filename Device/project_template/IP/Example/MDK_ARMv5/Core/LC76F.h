@@ -11,6 +11,15 @@
 #include <math.h>
 
 
+/* Extern variables and functions */
+extern void LED_Init(void);
+extern void Toggle_LED_1(void);
+extern void Toggle_LED_2(void);
+
+extern void Initialize_Log(void);
+extern void Write_Char_Log(u16 character);
+extern void Write_String_Log(char * input_string);
+
 /* Struct declaration */
 static struct LC76F {
   char * lc76f_log_content;

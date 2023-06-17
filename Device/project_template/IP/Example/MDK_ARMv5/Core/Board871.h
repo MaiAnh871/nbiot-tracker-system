@@ -21,6 +21,15 @@
 #include "MC3416.h"
 
 
+/* Extern variables and functions */
+extern void LED_Init(void);
+extern void Toggle_LED_1(void);
+extern void Toggle_LED_2(void);
+
+extern void Initialize_Log(void);
+extern void Write_Char_Log(u16 character);
+extern void Write_String_Log(char * input_string);
+
 /* Struct initialization */
 static struct Board871 {
   char * board871_log_content;
@@ -32,15 +41,6 @@ static struct Board871 {
 Board871;
 
 /* Function prototypes */
-void LED_Init(void);
-void Toggle_LED_1(void);
-void Toggle_LED_2(void);
-void Toggle_LED_3(void);
-
-void Initialize_Log(struct Board871 * self);
-void Write_Char_Log(u16 character);
-void Write_String_Log(char * input_string);
-
 void Board871_Initialize(struct Board871 * self);
 
 #endif /* BOARD871_ */
