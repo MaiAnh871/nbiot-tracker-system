@@ -37,4 +37,6 @@ enum StatusType BC660K_USART0_Receive(struct BC660K *self);
 enum StatusType BC660K_Send_Command(struct BC660K *self, u8 send_attempt, u32 command_timeout);
 void BC660K_Clear_Receive_Buffer(struct BC660K *self);
 
+enum StatusType checkModule_AT(struct BC660K *self);
+
 #endif /* BC660K_ */

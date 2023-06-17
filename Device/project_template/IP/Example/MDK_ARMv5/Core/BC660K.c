@@ -1,7 +1,14 @@
 #include "BC660K.h"
 
+
 extern void BC660K_Initialize(struct BC660K *self){
 	BC660K_USART0_Configuration();
+	
+  self->bc660k_log_content = (char *) malloc(BC660K_LOG_CONTENT_SIZE * sizeof(char));
+  if (!self->bc660k_log_content) {
+    Toggle_LED_1();
+    while (1);
+  }
 	
   self->command = (char *) malloc(BC660K_COMMAND_SIZE * sizeof(char));
   if (!self -> command) {
@@ -15,6 +22,7 @@ extern void BC660K_Initialize(struct BC660K *self){
     while (1);
   }
 }
+
 
 void BC660K_USART0_Configuration(void){
   CKCU_PeripClockConfig_TypeDef CKCUClock; // Set all the fields to zero, which means that no peripheral clocks are enabled by default.
@@ -62,10 +70,12 @@ void BC660K_USART0_Configuration(void){
   USART_RxCmd(HT_USART0, ENABLE);
 }
 
+
 void BC660K_USART0_Send_Char(u16 Data) {
   while (USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET);
   USART_SendData(HT_USART0, Data);
 }
+
 
 void BC660K_USART0_Send(char *input_string) {
   int i;
@@ -74,6 +84,7 @@ void BC660K_USART0_Send(char *input_string) {
     BC660K_USART0_Send_Char(input_string[i]);
   }
 }
+
 
 enum StatusType BC660K_USART0_Receive(struct BC660K *self) {
 		enum StatusType output_status = STATUS_TIMEOUT;
@@ -106,6 +117,7 @@ enum StatusType BC660K_USART0_Receive(struct BC660K *self) {
 		
 		return output_status;
 }
+
 
 enum StatusType BC660K_Send_Command(struct BC660K *self, u8 send_attempt, u32 command_timeout) {
 		enum StatusType output_status = STATUS_UNKNOWN;
@@ -157,9 +169,46 @@ enum StatusType BC660K_Send_Command(struct BC660K *self, u8 send_attempt, u32 co
 		return output_status;
 }
 
+
 void BC660K_Clear_Receive_Buffer(struct BC660K *self) {
 		for (self->receive_buffer_index = 0; self->receive_buffer_index < BC660K_RECEIVE_BUFFER_SIZE; self->receive_buffer_index++) {
 				self->receive_buffer[self->receive_buffer_index] = 0;
 		}
 		self->receive_buffer_index = 0;
+}
+
+
+enum StatusType checkModule_AT(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		sprintf(self->command, "AT");
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
 }

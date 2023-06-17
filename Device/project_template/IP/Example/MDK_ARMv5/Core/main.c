@@ -43,7 +43,6 @@ void UART0_Read_Block(uint8_t* data);
 /* Global variables ----------------------------------------------------------------------------------------*/
 struct Board871 board871;
 
-vu32 utick;
 uint8_t data[100];
 uint8_t* check = NULL;
 uint8_t GPS_raw[100];
@@ -56,6 +55,11 @@ int16_t Ay = 0;
 int16_t Az = 0;
 
 /* Global functions ----------------------------------------------------------------------------------------*/
+void task_1 (void *argument);
+void task_2 (void *argument);
+void task_3 (void *argument);
+void task_4 (void *argument);
+
 void clear(uint8_t *input_string);
 bool getRawGPS(void);
 bool checkValidGPS(uint8_t *raw_GPS);
@@ -66,30 +70,8 @@ void updatePosition(void);
 float calculateDistance(void);
 void packMsg(void);
 void USART1_Send_Int16(int16_t value);
-void task_1 (void *argument);
-void task_2 (void *argument);
-void task_3 (void *argument);
-void task_4 (void *argument);
-/********************************************************************************************************/
-/*
- * @brief  Main program.
- * @retval None
- ***********************************************************************************************************/
-//int main(void) {
-////  setup(&BC660K_h_h);
-//	LED_Init();
 
-//  while (1) {
-////    loop(&BC660K_h_h);
-//		Toggle_LED_1();
-//		Toggle_LED_2();
-//		delay_ms(100);
-//  }
-//}
 
-/*
-  Application main thread: Initialize and start the application
-*/
 void task_1 (void *argument) {
   while(1) {
     // Application code
@@ -98,34 +80,35 @@ void task_1 (void *argument) {
   }
 }
 
+
 void task_2 (void *argument) {
   while(1) {
     // Application code
     Toggle_LED_2();
+		sprintf(board871.board871_log_content, "%u\n", CURRENT_TICK);
+		Write_String_Log(board871.board871_log_content);
 		vTaskDelay(500);
   }
 }
+
 
 void task_3 (void *argument) {
   while(1) {
     // Application code
-		sprintf(board871.board871_log_content, "%u\n", CURRENT_TICK);
-		Write_String_Log(board871.board871_log_content);
+		checkModule_AT(&board871.bc660k);
 		vTaskDelay(1000);
   }
 }
 
+
 void task_4 (void *argument) {
   while(1) {
     // Application code
-		sprintf(board871.board871_log_content, "%u\n", CURRENT_TICK);
-		Write_String_Log(board871.board871_log_content);
 		vTaskDelay(500);
   }
 }
-/*
-  Main function: Initialize and start the kernel
-*/
+
+
 int main (void) {
   SystemCoreClockUpdate();
 	
