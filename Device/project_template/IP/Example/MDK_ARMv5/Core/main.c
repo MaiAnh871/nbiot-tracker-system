@@ -63,8 +63,6 @@ bool getRawGPS(void);
 bool checkValidGPS(uint8_t * raw_GPS);
 void printBool(bool b);
 void extractMainData(void);
-void USART1_Send_Float(float f);
-void updatePosition(void);
 float calculateDistance(void);
 void packMsg(void);
 
@@ -222,15 +220,15 @@ int main(void) {
 }
 
 //void setup(struct BC660K * self) {	
-/* Initialize UART ports */
+///* Initialize UART ports */
 //  UART0_GNSS_Configuration();
 //  USART1_DEBUG_Configuration();
 
-/* Initialize I2C and Acce */
+///* Initialize I2C and Acce */
 //	I2C_Configuration();
 //	MC3416_Init();
 
-/* Initialize BC660K_handler */
+///* Initialize BC660K_handler */
 
 //  sprintf(self -> log_content, "Setup successfully!\n");
 //  writeLog(self);
@@ -266,17 +264,17 @@ int main(void) {
 
 //	UART0_Receive();
 
-//		offEcho_ATE0(self);
-//		getIMEI_AT_CGSN(self);
-//		setAuthentication_AT_QSSLCFG(self);
-//		setCACert_AT_QSSLCFG(self);
-//		setClientCert_AT_QSSLCFG(self);
-//		setClientPrivateKey_AT_QSSLCFG(self);
-//		getModelID_AT_CGMM(self);
-//		checkNetworkRegister_AT_CEREG(self);
-//		getNetworkStatus_AT_QENG(self);
-//		checkModule_AT(self);
-//		closeMQTT_AT_QMTCLOSE(self);
+//	offEcho_ATE0(self);
+//	getIMEI_AT_CGSN(self);
+//	setAuthentication_AT_QSSLCFG(self);
+//	setCACert_AT_QSSLCFG(self);
+//	setClientCert_AT_QSSLCFG(self);
+//	setClientPrivateKey_AT_QSSLCFG(self);
+//	getModelID_AT_CGMM(self);
+//	checkNetworkRegister_AT_CEREG(self);
+//	getNetworkStatus_AT_QENG(self);
+//	checkModule_AT(self);
+//	closeMQTT_AT_QMTCLOSE(self);
 
 //	wakeUpModule_AT_QSCLK(self);
 //	openMQTT_AT_QMTOPEN(self);
@@ -287,143 +285,6 @@ int main(void) {
 //	closeMQTT_AT_QMTCLOSE(self);
 //}
 
-//enum StatusType checkModule_AT(struct BC660K *self) {
-//		/* Initialize status */
-//		enum StatusType output_status = STATUS_UNKNOWN;
-//		
-//		/* Write Command */
-//		sprintf(self->command, "AT");
-//		output_status = sendCommand(self, SEND_ATTEMPT_DEFAULT, COMMAND_TIMEOUT_DEFAULT_MS);
-//	
-//		/* Actions with status */
-//		switch(output_status){
-//			
-//			case STATUS_SUCCESS:
-//					/* Do something */
-//					break;
-
-//			case STATUS_ERROR:
-//					/* Do something */
-//					break;
-//			
-//			case STATUS_TIMEOUT:
-//					/* Do something */
-//					break;
-//			
-//			case STATUS_BAD_PARAMETERS:
-//					/* Do something */
-//					break;
-//			
-//			default:
-//					/* Do something */
-//					break;
-//		}
-//		
-//		return output_status;
-//}
-
-
-///*************************************************************************************************************
-// * @brief  Configure the UART0 for GNSS
-// * @retval None
-// ***********************************************************************************************************/
-//void UART0_GNSS_Configuration(void) {
-//  CKCU_PeripClockConfig_TypeDef CKCUClock; // Set all the fields to zero, which means that no peripheral clocks are enabled by default.
-
-//  {
-//    /* Enable peripheral clock of AFIO, UxART                                                                 */
-//    CKCUClock.Bit.AFIO = 1;
-//    CKCUClock.Bit.PB = 1;
-//    CKCUClock.Bit.UART0 = 1;
-//    CKCU_PeripClockConfig(CKCUClock, ENABLE);
-//  }
-
-//  /* Turn on UxART Rx internal pull up resistor to prevent unknow state                                     */
-//  GPIO_PullResistorConfig(HT_GPIOB, GPIO_PIN_8, GPIO_PR_UP);
-
-//  /* Config AFIO mode as UxART function.                                                                    */
-//  AFIO_GPxConfig(GPIO_PB, AFIO_PIN_7, AFIO_FUN_USART_UART);
-//  AFIO_GPxConfig(GPIO_PB, AFIO_PIN_8, AFIO_FUN_USART_UART);
-
-//  {
-//    /* UxART configured as follow:
-//          - BaudRate = 115200 baud
-//          - Word Length = 8 Bits
-//          - One Stop Bit
-//          - None parity bit
-//    */
-
-//    /* !!! NOTICE !!!
-//       Notice that the local variable (structure) did not have an initial value.
-//       Please confirm that there are no missing members in the parameter settings below in this function.
-//    */
-//    USART_InitTypeDef USART_InitStructure = {
-//      0
-//    };
-//    USART_InitStructure.USART_BaudRate = 9600;
-//    USART_InitStructure.USART_WordLength = USART_WORDLENGTH_8B;
-//    USART_InitStructure.USART_StopBits = USART_STOPBITS_1;
-//    USART_InitStructure.USART_Parity = USART_PARITY_NO;
-//    USART_InitStructure.USART_Mode = USART_MODE_NORMAL;
-//    USART_Init(HT_UART0, & USART_InitStructure);
-//  }
-
-//  /* Enable UxART Tx and Rx function                                                                        */
-//  USART_TxCmd(HT_UART0, ENABLE);
-//  USART_RxCmd(HT_UART0, ENABLE);
-//}
-
-///*************************************************************************************************************
-// * @brief  Configure the USART0
-// * @retval None
-// ***********************************************************************************************************/
-
-///********************************************************************************************************/
-///*
-// * @brief  Configure the USART1
-// * @retval None
-// ***********************************************************************************************************/
-
-///********************************************************************************************************/
-///*
-// * @brief  UxART Tx Test.
-// * @retval None
-// ***********************************************************************************************************/
-
-//void UART0_Receive(void) {
-//  u16 uData;
-
-//  /* Waits until the Rx FIFO/DR is not empty then get data from them                                        */
-//  if (USART_GetFlagStatus(HT_UART0, USART_FLAG_RXDR) == SET) {
-//    uData = USART_ReceiveData(HT_UART0);
-
-//    #if 1 // Loop back Rx data to Tx for test
-//    USART1_Send_Char(uData);
-//    #endif
-//  }
-//}
-
-//void UART0_Read_Block(uint8_t  *data)
-//{
-//	uint8_t index = 0;
-//	
-//	do
-//	{
-//  /* Waits until the Rx FIFO/DR is not empty then get data from them                                        */
-//  while (USART_GetFlagStatus(HT_UART0, USART_FLAG_RXDR) == RESET);
-//	data[index] = (uint8_t)USART_ReceiveData(HT_UART0);
-//	}
-//	while ((data[index] != 0x0A) && (index++ != 99));
-//}
-
-//void clear(uint8_t *input_string)
-//{
-//	uint16_t count = 0;
-//	for (count = 0; count < 100; count++)
-//	{
-//		input_string[count] = 0;
-//	}
-//}
 
 //bool getRawGPS(void)
 //{
@@ -502,19 +363,6 @@ int main(void) {
 //	}
 //}
 
-//void USART1_Send_Float(float f) {
-//  char buffer[16]; // adjust buffer size as needed
-//  sprintf(buffer, "%.6f\r\n", f); // convert float to string with 6 decimal places
-//  USART1_Send(buffer); // send string over USART1
-//}
-
-//void updatePosition(void)
-//{
-//	extern float latitude, current_lat;
-//	extern float longitude, current_lon;
-//	current_lat = latitude;
-//	current_lon = longitude;
-//}
 
 //float calculateDistance(void)
 //{

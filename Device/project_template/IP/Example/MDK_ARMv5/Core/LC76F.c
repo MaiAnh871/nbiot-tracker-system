@@ -36,9 +36,7 @@ void LC76F_UART0_Configuration(void)
        Notice that the local variable (structure) did not have an initial value.
        Please confirm that there are no missing members in the parameter settings below in this function.
     */
-    USART_InitTypeDef USART_InitStructure = {
-      0
-    };
+    USART_InitTypeDef USART_InitStructure;
     USART_InitStructure.USART_BaudRate = 9600;
     USART_InitStructure.USART_WordLength = USART_WORDLENGTH_8B;
     USART_InitStructure.USART_StopBits = USART_STOPBITS_1;
@@ -62,9 +60,8 @@ void LC76F_UART0_Receive(void)
   uData = USART_ReceiveData(HT_UART0);
 
   #if 1 // Loop back Rx data to Tx for test
-  USART1_Send_Char(uData);
+  Write_Char_Log(uData);
   #endif
-	//USART1_Send("hi");
 }
 
 void LC76F_UART0_Read_Block(uint8_t  *data)
@@ -79,3 +76,19 @@ void LC76F_UART0_Read_Block(uint8_t  *data)
 	}
 	while ((data[index] != 0x0A) && (index++ != 99));
 }
+
+//bool getRawGPS(void)
+//{
+//	extern uint8_t data[100];
+//	uint8_t* check = NULL;
+//	uint8_t GPS_raw[100];
+//	
+//	while (check == NULL)
+//	{
+//		clear(GPS_raw);
+//		LC76F_UART0_Read_Block(GPS_raw);
+//		check = strstr(GPS_raw, "$GNRMC");
+//	}
+//	strcpy(data, GPS_raw);
+//	return checkValidGPS(GPS_raw);
+//}
