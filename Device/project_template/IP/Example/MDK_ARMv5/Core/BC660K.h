@@ -45,5 +45,20 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
 void BC660K_Clear_Receive_Buffer(struct BC660K * self);
 
 enum StatusType checkModule_AT(struct BC660K * self);
+enum StatusType offEcho_ATE0(struct BC660K *self);
+enum StatusType getIMEI_AT_CGSN(struct BC660K *self);
+enum StatusType getModelID_AT_CGMM(struct BC660K *self);
+enum StatusType checkNetworkRegister_AT_CEREG(struct BC660K *self);
+enum StatusType getNetworkStatus_AT_QENG(struct BC660K *self);
+enum StatusType setAuthentication_AT_QSSLCFG(struct BC660K *self);
+enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self);
+enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self);
+enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self);
+enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self);
+enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self);
+enum StatusType connectClient_AT_QMTCONN(struct BC660K *self);
+enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self);
+enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self);
+enum StatusType wakeUpModule_AT_QSCLK(struct BC660K *self);
 
 #endif /* BC660K_ */
