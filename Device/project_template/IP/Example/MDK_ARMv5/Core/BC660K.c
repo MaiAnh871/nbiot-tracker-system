@@ -523,7 +523,7 @@ enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self) {
 		sprintf(self->bc660k_log_content, "==========\n");
 		writeLog(self);
 		
-		delay_ms(SEND_COMMAND_DELAY_MS);
+		delay_ms(BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 		
 		/* Actions with status */
 		switch(output_status){
@@ -593,7 +593,7 @@ enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self) {
 		sprintf(self->bc660k_log_content, "==========\n");
 		writeLog(self);
 		
-		delay_ms(SEND_COMMAND_DELAY_MS);
+		delay_ms(BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 		
 		/* Actions with status */
 		switch(output_status){
@@ -767,7 +767,7 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
 		sprintf(self->bc660k_log_content, "==========\n");
 		writeLog(self);
 		
-		delay_ms(SEND_COMMAND_DELAY_MS);
+		delay_ms(BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 		
 		/* Actions with status */
 		switch(output_status){

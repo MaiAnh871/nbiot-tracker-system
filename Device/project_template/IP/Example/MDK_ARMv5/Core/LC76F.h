@@ -10,7 +10,6 @@
 
 #include <math.h>
 
-
 /* Extern variables and functions */
 extern void LED_Init(void);
 extern void Toggle_LED_1(void);
@@ -29,9 +28,9 @@ LC76F;
 /* Function prototypes */
 extern void LC76F_Initialize(struct LC76F * self);
 
-void UART0_GNSS_Configuration(void);
-void UART0_Receive(void);
-void UART0_Read_Block(uint8_t * GPS_data);
+void LC76F_UART0_Configuration(void);
+void LC76F_UART0_Receive(void);
+void g(uint8_t * GPS_data);
 void Get_Lat_Lon(void);
 void Update_Lat_Lon(void);
 float Calculate_Distance(void);

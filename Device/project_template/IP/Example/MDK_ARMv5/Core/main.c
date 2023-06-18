@@ -67,8 +67,6 @@ void USART1_Send_Float(float f);
 void updatePosition(void);
 float calculateDistance(void);
 void packMsg(void);
-void USART1_Send_Int16(int16_t value);
-
 
 static void delay_ms(u32 ms) {
   uint32_t i, j;
@@ -223,15 +221,9 @@ int main(void) {
   while (1);
 }
 
-/********************************************************************************************************/
-/*
- * @brief  Main program.
- * @retval None
- ***********************************************************************************************************/
 //void setup(struct BC660K * self) {	
 /* Initialize UART ports */
 //  UART0_GNSS_Configuration();
-//  USART0_MODULE_Configuration();
 //  USART1_DEBUG_Configuration();
 
 /* Initialize I2C and Acce */
@@ -330,17 +322,6 @@ int main(void) {
 //		return output_status;
 //}
 
-
-
-
-
-
-
-
-///* Debug */
-//void writeLog(struct BC660K * self) {
-//  USART1_Send(self -> log_content);
-//}
 
 ///*************************************************************************************************************
 // * @brief  Configure the UART0 for GNSS
@@ -559,43 +540,5 @@ int main(void) {
 //{
 //	char buffer[120]; // adjust buffer size as needed
 //  sprintf(buffer, "{\"message\":{\"time\":\"15-05-2023 15:11:35\",\"acce_x\":\"%hd\",\"acce_y\":\"%hd\",\"acce_z\":\"%hd\",\"lat\":\"%f\",\"long\":\"%f\"}}\r\n", Ax, Ay, Az, latitude, longitude); // convert float to string with 6 decimal places
-//  USART1_Send(buffer); // send string over USART1
-//}
-
-//enum StatusType USART0_Receive(struct BC660K *self) {
-//		enum StatusType output_status = STATUS_TIMEOUT;
-//		u16 uData;
-//		u8 index;
-//		char *ptr;
-
-//		/* Waits until the Rx FIFO/DR is not empty then get data from them                                        */
-//		if (USART_GetFlagStatus(HT_USART0, USART_FLAG_RXDR) == SET) {
-//			uData = USART_ReceiveData(HT_USART0);
-//			self->receive_buffer[self->receive_buffer_index] = uData;
-//			self->receive_buffer_index++;
-//		}
-
-//		for (index = 0; index < SUCCESS_COMMAND_SIGN_LENGTH; index++){
-//				ptr = strstr(self->receive_buffer, SUCCESS_COMMAND_SIGN[index]);
-//				if (ptr) {
-//						output_status = STATUS_SUCCESS;
-//						return output_status;
-//				}
-//		}
-//		
-//		for (index = 0; index < ERROR_COMMAND_SIGN_LENGTH; index++){
-//				ptr = strstr(self->receive_buffer, ERROR_COMMAND_SIGN[index]);
-//				if (ptr) {
-//						output_status = STATUS_ERROR;
-//						return output_status;
-//				}
-//		}
-//		
-//		return output_status;
-//}
-
-//void USART1_Send_Int16(int16_t value) {
-//  char buffer[6]; // adjust buffer size as needed
-//  sprintf(buffer, "%d\r\n", value); // convert uint16_t to string
 //  USART1_Send(buffer); // send string over USART1
 //}
