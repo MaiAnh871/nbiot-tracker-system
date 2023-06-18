@@ -58,13 +58,13 @@ void task_2(void * argument);
 void task_3(void * argument);
 void task_4(void * argument);
 
-void clear(uint8_t * input_string);
-bool getRawGPS(void);
-bool checkValidGPS(uint8_t * raw_GPS);
-void printBool(bool b);
-void extractMainData(void);
-float calculateDistance(void);
-void packMsg(void);
+//void clear(uint8_t * input_string);
+//bool getRawGPS(void);
+//bool checkValidGPS(uint8_t * raw_GPS);
+//void printBool(bool b);
+//void extractMainData(void);
+//float calculateDistance(void);
+//void packMsg(void);
 
 static void delay_ms(u32 ms) {
   uint32_t i, j;

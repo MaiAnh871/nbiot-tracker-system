@@ -3,6 +3,17 @@
 
 extern void LC76F_Initialize(struct LC76F * self) {
 	LC76F_UART0_Configuration();
+	
+  self -> lc76f_log_content = (char * ) malloc(LC76F_LOG_CONTENT_SIZE * sizeof(char));
+  if (!self -> lc76f_log_content) {
+		Error_Blinking_LED_1();
+  }
+	
+  self -> gps_data = (char * ) malloc(LC76F_GPS_DATA_SIZE * sizeof(char));
+  if (!self -> gps_data) {
+		Error_Blinking_LED_1();
+  }
+	
 }
 
 void LC76F_UART0_Configuration(void) 
@@ -64,7 +75,7 @@ void LC76F_UART0_Receive(void)
   #endif
 }
 
-void LC76F_UART0_Read_Block(uint8_t  *data)
+void LC76F_UART0_Read_Block(char *data)
 {
 	uint8_t index = 0;
 	
@@ -77,18 +88,17 @@ void LC76F_UART0_Read_Block(uint8_t  *data)
 	while ((data[index] != 0x0A) && (index++ != 99));
 }
 
-//bool getRawGPS(void)
-//{
-//	extern uint8_t data[100];
-//	uint8_t* check = NULL;
-//	uint8_t GPS_raw[100];
-//	
-//	while (check == NULL)
-//	{
-//		clear(GPS_raw);
-//		LC76F_UART0_Read_Block(GPS_raw);
-//		check = strstr(GPS_raw, "$GNRMC");
-//	}
-//	strcpy(data, GPS_raw);
+void getRawGPS(struct LC76F * self)
+{
+	char* check;
+	char raw_gps_data[LC76F_GPS_DATA_SIZE];
+	
+	while (!check)
+	{
+		clear(raw_gps_data);
+		LC76F_UART0_Read_Block(raw_gps_data);
+		check = strstr(raw_gps_data, "$GNRMC");
+	}
+	strcpy(self->gps_data, raw_gps_data);
 //	return checkValidGPS(GPS_raw);
-//}
+}

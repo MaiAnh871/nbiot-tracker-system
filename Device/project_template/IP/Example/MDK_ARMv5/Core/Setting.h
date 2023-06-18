@@ -39,6 +39,7 @@ const char * ERROR_COMMAND_SIGN[] = {
 
 /* LC76F settings */
 #define LC76F_LOG_CONTENT_SIZE 300
+#define LC76F_GPS_DATA_SIZE 100
 
 /* MC3416 settings */
 #define MC3416_LOG_CONTENT_SIZE 300

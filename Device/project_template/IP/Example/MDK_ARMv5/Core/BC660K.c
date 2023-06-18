@@ -6,17 +6,17 @@ extern void BC660K_Initialize(struct BC660K * self) {
 
   self -> bc660k_log_content = (char * ) malloc(BC660K_LOG_CONTENT_SIZE * sizeof(char));
   if (!self -> bc660k_log_content) {
-	Error_Blinking_LED_1();
+		Error_Blinking_LED_1();
   }
 
   self -> command = (char * ) malloc(BC660K_COMMAND_SIZE * sizeof(char));
   if (!self -> command) {
-	Error_Blinking_LED_1();
+		Error_Blinking_LED_1();
   }
 
   self -> receive_buffer = (char * ) malloc(BC660K_RECEIVE_BUFFER_SIZE * sizeof(char));
   if (!self -> receive_buffer) {
-	Error_Blinking_LED_1();
+		Error_Blinking_LED_1();
   }
 }
 
