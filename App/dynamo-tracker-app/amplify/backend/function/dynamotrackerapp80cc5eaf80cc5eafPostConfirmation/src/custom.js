@@ -1,7 +1,7 @@
-import { DynamoDB } from "aws-sdk";
-var ddb = new DynamoDB();
+var aws = require('aws-sdk');
+var ddb = new aws.DynamoDB();
 
-export async function handler(event, context) {
+async function handler(event, context) {
   let date = new Date();
 
   if (event.request.userAttributes.sub) {
@@ -33,3 +33,5 @@ export async function handler(event, context) {
     context.done(null, event)
   }
 };
+
+exports.handler = handler

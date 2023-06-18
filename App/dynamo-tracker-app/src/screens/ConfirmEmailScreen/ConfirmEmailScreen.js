@@ -21,7 +21,9 @@ const ConfirmEmailScreen = () => {
 
   const onConfirmPressed = async data => {
     try {
-      await Auth.confirmSignUp(data.username, data.code);
+      console.log("Start await auth confirm")
+      await Auth.confirmSignUp(data.username, data.code); // loi cai nay ha? // Khongggg, cai nay truoc chay bth, cho toi khi em them function trigger 
+      console.log("await auth.confirm done")
       navigation.navigate('SignIn');
     } catch (e) {
       Alert.alert('Oops', e.message);

@@ -28,6 +28,8 @@ exports.handler = async (event, context) => {
    * `await Promise.all(...)`. This would otherwise just be determined by the
    * order of names in the `MODULES` var.
    */
+  console.log("Start await Promise");
   await Promise.all(modules.map((module) => module.handler(event, context)));
+  console.log("End await Promise");
   return event;
 };
