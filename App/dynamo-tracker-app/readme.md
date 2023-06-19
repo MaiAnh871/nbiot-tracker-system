@@ -122,11 +122,3 @@ Select an app client: `anhttm8-app-client	5ed3h3ht13utpu8ek60ttcd43q`
 ```bash
 npx expo start
 ```
-
-
-
-
-
-
-
-
