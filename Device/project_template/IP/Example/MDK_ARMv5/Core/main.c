@@ -187,7 +187,7 @@ void task_3(void * argument) {
     // Application code
 //		sprintf(board871.board871_log_content, "%u\n", CURRENT_TICK);
 //		Write_String_Log(board871.board871_log_content);
-    checkModule_AT( & board871.bc660k);
+		Get_GPS_String(&board871.lc76f);
     vTaskDelay(1000);
   }
 }
@@ -283,40 +283,6 @@ int main(void) {
 //	publishMessage_AT_QMTPUB(self);
 //	publishMessage_AT_QMTPUB(self);
 //	closeMQTT_AT_QMTCLOSE(self);
-//}
-
-
-//bool getRawGPS(void)
-//{
-//	extern uint8_t data[100];
-//	uint8_t* check = NULL;
-//	uint8_t GPS_raw[100];
-//	
-//	while (check == NULL)
-//	{
-//		clear(GPS_raw);
-//		UART0_Read_Block(GPS_raw);
-//		check = strstr(GPS_raw, "$GNRMC");
-//	}
-//	strcpy(data, GPS_raw);
-//	return checkValidGPS(GPS_raw);
-//}
-
-//bool checkValidGPS(uint8_t *raw_GPS)
-//{
-//	bool valid = false;
-//	uint8_t* check = NULL;
-//	
-//	check = strtok(GPS_raw, ",");
-//	check = strtok(NULL, ",");
-//	check = strtok(NULL, ",");
-//	
-//	if (strcmp(check, "A") == 0)
-//	{
-//		valid = true;
-//	}
-//	
-//	return valid;
 //}
 
 //void printBool(bool b) 

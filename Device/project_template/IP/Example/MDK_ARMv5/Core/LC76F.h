@@ -24,7 +24,8 @@ extern void Write_String_Log(char * input_string);
 /* Struct declaration */
 static struct LC76F {
   char * lc76f_log_content;
-	char * gps_data;
+	char * raw_gps_string;
+	char * gps_string;
 }
 LC76F;
 
@@ -34,10 +35,11 @@ extern void LC76F_Initialize(struct LC76F * self);
 void LC76F_UART0_Configuration(void);
 void LC76F_UART0_Receive(void);
 void LC76F_UART0_Read_Block(char *data);
+void Clear_Raw_GPS_String(struct LC76F * self);
+void Clear_GPS_String(struct LC76F * self);
 
-void getRawGPS(struct LC76F * self);
-//void Get_Lat_Lon(void);
-//void Update_Lat_Lon(void);
+bool Get_GPS_String(struct LC76F * self);
+bool Check_Valid_GPS_String(char * gps_raw_string);
 //float Calculate_Distance(void);
 //bool Get_GPS_data(void);
 //bool Check_valid_data(uint8_t * GPS_data);
