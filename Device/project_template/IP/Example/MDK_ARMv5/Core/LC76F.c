@@ -117,6 +117,12 @@ bool Get_GPS_String(struct LC76F * self)
 		LC76F_UART0_Read_Block(self->raw_gps_string);
 		check = strstr(self->raw_gps_string, "$GNRMC");
 	}
+	
+	/* Sample raw GPS string */
+	sprintf(self->raw_gps_string, "$GPRMC,102739.000,A,3150.7825,N,11711.9369,E,0.00,303.62,111214,,,D*6A\r\n");
+	strcpy(self->lc76f_log_content, self->raw_gps_string);
+	Write_String_Log(self->lc76f_log_content);
+	
 	if (Check_Valid_GPS_String(self->raw_gps_string)) {
 		strcpy(self->gps_string, self->raw_gps_string);
 		return true;
