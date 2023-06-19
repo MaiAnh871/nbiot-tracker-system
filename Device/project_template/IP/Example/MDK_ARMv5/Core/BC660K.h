@@ -13,9 +13,8 @@
 #include "Collections.h"
 
 /* Extern variables and functions */
-extern void LED_Init(void);
-extern void Toggle_LED_1(void);
-extern void Toggle_LED_2(void);
+extern void Error_Blinking_LED_1(void);
+extern void Connecting_Blinking_LED_2(void);
 
 extern void Initialize_Log(void);
 extern void Write_Char_Log(u16 character);
