@@ -25,6 +25,9 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define CLIENT_CERT ""
 #define CLIENT_KEY ""
 
+/* Utilities settings */
+#define MAXIMUM_TOKEN_COUNT 15
+
 /* BOARD871 settings */
 #define BAUD_RATE_LOG 115200
 #define BOARD871_LOG_CONTENT 1700

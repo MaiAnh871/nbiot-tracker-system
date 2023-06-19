@@ -1,6 +1,9 @@
 #ifndef COLLECTIONS_
 #define COLLECTIONS_
 
+#include "stdbool.h"
+#include "stdint.h"
+
 static enum StatusType {
   STATUS_SUCCESS = 0,
     STATUS_ERROR,
@@ -26,5 +29,47 @@ static char * getStatusTypeString(enum StatusType status) {
     return "UNSUPPORTED STATUS";
   }
 }
+
+static enum ValueType
+{
+	/* bool */
+	VALUE_BOOL,
+
+	/* 1 byte */
+	VALUE_CHAR, VALUE_UNSIGNED_CHAR, VALUE_UINT8_T,
+
+	/* 2 bytes */
+	VALUE_SHORT, VALUE_UNSIGNED_SHORT, VALUE_UINT16_T,
+
+	/* 4 bytes */
+	VALUE_INT, VALUE_UINT32_T,
+
+	/* 4 or 8 bytes */
+	VALUE_LONG,
+
+	/* Decimal point */
+	VALUE_FLOAT,
+
+	/* String */
+	VALUE_CHAR_ARRAY
+
+} ValueType;
+
+// Union to store different types of values
+static union Value
+{
+	bool *bool_value;
+	char *char_value;
+	unsigned char *unsigned_char_value;
+	uint8_t *uint8_value;
+	short *short_value;
+	unsigned short *unsigned_short_value;
+	uint16_t *uint16_value;
+	int *int_value;
+	long *long_value;
+	uint32_t *uint32_value;
+	float *float_value;
+	char *char_array_value;
+} Value;
 
 #endif /* COLLECTIONS_ */
