@@ -32,6 +32,10 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define BAUD_RATE_LOG 115200
 #define BOARD871_LOG_CONTENT 1700
 #define KEY_MAX_LENGTH 30
+#define DEVICE_ID_LENGTH 18
+#define LATITUDE_LENGTH 9 		/* 'ddmm.mmmm' */
+#define LONGTITUDE_LENGTH 10	/* 'dddmm.mmmm' */
+#define CELL_ID_LENGTH 8 /* '00000000' - 'FFFFFFFF' */
 
 /* BC660K settings */
 #define BC660K_LOG_CONTENT_SIZE 500
