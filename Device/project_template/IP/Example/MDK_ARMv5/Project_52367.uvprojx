@@ -17,7 +17,7 @@
         <TargetCommonOption>
           <Device>HT32F52367</Device>
           <Vendor>Holtek</Vendor>
-          <PackID>Holtek.HT32_DFP.1.0.46</PackID>
+          <PackID>Holtek.HT32_DFP.1.0.44</PackID>
           <PackURL>https://mcu.holtek.com.tw/pack</PackURL>
           <Cpu>IROM(0x00000000-0x0003FBFF) IRAM(0x20000000-0x20007FFF) CLOCK(8000000) CPUTYPE("Cortex-M0+")</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -386,19 +386,9 @@
           <GroupName>Core</GroupName>
           <Files>
             <File>
-              <FileName>BC660K.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Core\BC660K.c</FilePath>
-            </File>
-            <File>
-              <FileName>BC660K.h</FileName>
+              <FileName>Setting.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Core\BC660K.h</FilePath>
-            </File>
-            <File>
-              <FileName>Board871.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Core\Board871.h</FilePath>
+              <FilePath>.\Core\Setting.h</FilePath>
             </File>
             <File>
               <FileName>Collections.h</FileName>
@@ -406,9 +396,24 @@
               <FilePath>.\Core\Collections.h</FilePath>
             </File>
             <File>
-              <FileName>LC76F.c</FileName>
+              <FileName>Board871.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\Board871.h</FilePath>
+            </File>
+            <File>
+              <FileName>Board871.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Core\LC76F.c</FilePath>
+              <FilePath>.\Core\Board871.c</FilePath>
+            </File>
+            <File>
+              <FileName>BC660K.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\BC660K.h</FilePath>
+            </File>
+            <File>
+              <FileName>BC660K.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\BC660K.c</FilePath>
             </File>
             <File>
               <FileName>LC76F.h</FileName>
@@ -416,14 +421,9 @@
               <FilePath>.\Core\LC76F.h</FilePath>
             </File>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>LC76F.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Core\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>MC3416.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Core\MC3416.c</FilePath>
+              <FilePath>.\Core\LC76F.c</FilePath>
             </File>
             <File>
               <FileName>MC3416.h</FileName>
@@ -431,14 +431,24 @@
               <FilePath>.\Core\MC3416.h</FilePath>
             </File>
             <File>
-              <FileName>Setting.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Core\Setting.h</FilePath>
+              <FileName>MC3416.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\MC3416.c</FilePath>
             </File>
             <File>
-              <FileName>Board871.c</FileName>
+              <FileName>Utilities.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\Utilities.h</FilePath>
+            </File>
+            <File>
+              <FileName>Utilities.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Core\Board871.c</FilePath>
+              <FilePath>.\Core\Utilities.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\main.c</FilePath>
             </File>
           </Files>
         </Group>
