@@ -29,7 +29,7 @@ static struct LC76F {
 LC76F;
 
 /* Function prototypes */
-extern void LC76F_Initialize(struct LC76F * self);
+void LC76F_Initialize(struct LC76F * self);
 
 void LC76F_UART0_Configuration(void);
 void LC76F_UART0_Receive(void);

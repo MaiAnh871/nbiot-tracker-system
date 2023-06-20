@@ -18,9 +18,6 @@ extern void Initialize_Log(void);
 extern void Write_Char_Log(u16 character);
 extern void Write_String_Log(char * input_string);
 
-enum ValueType;
-union Value;
-
 char** Tokenize_String(char *str, const char *delim,
 		char *num_tokens);
 
@@ -29,7 +26,5 @@ void removeSubstring(char *str, const char *sub);
 void removeChars(char *str, const char *sub);
 
 void floatToString(float num, char *str, unsigned char decimal_digit);
-
-char* castToString(union Value data, enum ValueType value_type);
 
 #endif /* UTILITIES_ */
