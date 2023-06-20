@@ -3,6 +3,7 @@
 
 #include "stdbool.h"
 #include "stdint.h"
+#include "Setting.h"
 
 static enum StatusType {
   STATUS_SUCCESS = 0,
@@ -71,5 +72,19 @@ static union Value
 	float *float_value;
 	char *char_array_value;
 } Value;
+
+// Struct to represent a key-value pair with a variable value datatype
+typedef struct Pair
+{
+	char key[KEY_MAX_LENGTH];
+	union Value value;
+	enum ValueType value_type;
+} Pair;
+
+typedef struct DataNode
+{
+	struct Pair pair;
+	struct DataNode *next;
+} DataNode;
 
 #endif /* COLLECTIONS_ */

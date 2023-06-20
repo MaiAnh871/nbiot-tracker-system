@@ -33,7 +33,11 @@ extern void Write_String_Log(char * input_string);
 
 /* Struct initialization */
 static struct Board871 {
+	/* Debug */
   char * board871_log_content;
+	
+	/* Data */
+	bool add_data_successfully;
 
   struct BC660K bc660k;
   struct LC76F lc76f;
@@ -43,5 +47,8 @@ Board871;
 
 /* Function prototypes */
 void Board871_Initialize(struct Board871 * self);
+
+void addData(struct Board871 * self, char key[], void *value,
+		enum ValueType value_type);
 
 #endif /* BOARD871_ */

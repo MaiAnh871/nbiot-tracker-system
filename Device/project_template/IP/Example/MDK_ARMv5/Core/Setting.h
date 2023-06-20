@@ -31,6 +31,7 @@ const char * ERROR_COMMAND_SIGN[] = {
 /* BOARD871 settings */
 #define BAUD_RATE_LOG 115200
 #define BOARD871_LOG_CONTENT 1700
+#define KEY_MAX_LENGTH 30
 
 /* BC660K settings */
 #define BC660K_LOG_CONTENT_SIZE 500
