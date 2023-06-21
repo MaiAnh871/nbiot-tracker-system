@@ -135,7 +135,10 @@ bool Check_Valid_GPS_String(char * gps_raw_string) {
 	bool valid = false;
 	char* check = NULL;
 	
-	check = strtok(gps_raw_string, ",");
+	char *temp;
+	strcpy(temp, gps_raw_string);
+	
+	check = strtok(temp, ",");
 	check = strtok(NULL, ",");
 	check = strtok(NULL, ",");
 	
