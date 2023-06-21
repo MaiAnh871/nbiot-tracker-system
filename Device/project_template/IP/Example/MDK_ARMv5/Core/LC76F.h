@@ -12,6 +12,10 @@
 
 #include "Setting.h"
 
+#include "Collections.h"
+
+#include "Utilities.h"
+
 /* Extern variables and functions */
 extern void Error_Blinking_LED_1(void);
 extern void Connecting_Blinking_LED_2(void);
@@ -36,9 +40,10 @@ void LC76F_UART0_Receive(void);
 void LC76F_UART0_Read_Block(char *data);
 void Clear_Raw_GPS_String(struct LC76F * self);
 void Clear_GPS_String(struct LC76F * self);
+bool Check_Valid_GPS_String(char * gps_raw_string);
 
 bool Get_GPS_String(struct LC76F * self);
-bool Check_Valid_GPS_String(char * gps_raw_string);
+bool Parse_GPS_Sring(struct LC76F * self);
 //float Calculate_Distance(void);
 //bool Get_GPS_data(void);
 //bool Check_valid_data(uint8_t * GPS_data);

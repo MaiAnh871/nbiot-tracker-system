@@ -188,6 +188,7 @@ void task_3(void * argument) {
 //		sprintf(board871.board871_log_content, "%u\n", CURRENT_TICK);
 //		Write_String_Log(board871.board871_log_content);
 		Get_GPS_String(&board871.lc76f);
+		Parse_GPS_Sring(&board871.lc76f);
     vTaskDelay(1000);
   }
 }

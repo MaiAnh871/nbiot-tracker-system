@@ -1,7 +1,7 @@
 #include "Utilities.h"
 
 char** Tokenize_String(char *str, const char *delim,
-		char *num_tokens)
+		unsigned char *num_tokens)
 {
 	/* ATTENTION: Need to free the pointer after usage */
 	/* Example:

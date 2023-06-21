@@ -19,7 +19,7 @@ extern void Write_Char_Log(u16 character);
 extern void Write_String_Log(char * input_string);
 
 char** Tokenize_String(char *str, const char *delim,
-		char *num_tokens);
+		unsigned char *num_tokens);
 
 void removeSubstring(char *str, const char *sub);
 
