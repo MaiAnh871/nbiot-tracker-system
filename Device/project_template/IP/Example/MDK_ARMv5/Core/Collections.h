@@ -59,6 +59,7 @@ static struct Node {
 	bool overspeed_alert;
 	uint16_t speed_limit;
 	struct Connection_Status connection_status;
+	struct Node *next_node;
 } Node;
 
 static struct Route {

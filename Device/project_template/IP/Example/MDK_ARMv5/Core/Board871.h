@@ -35,6 +35,8 @@ extern void Write_String_Log(char * input_string);
 static struct Board871 {
 	/* Debug */
   char * board871_log_content;
+	struct Route route;
+	struct Node *current_node;
 
   struct BC660K bc660k;
   struct LC76F lc76f;
