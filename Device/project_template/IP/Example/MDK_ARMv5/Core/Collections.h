@@ -46,17 +46,17 @@ static struct Connection_Status {
 	int8_t sinr;
 } Connection_Status;
 
-static enum Longtitude_Direction {
+static enum Longitude_Direction {
 	WEST = -1,
 	EAST = 1
-} Longtitude_Direction;
+} Longitude_Direction;
 
-static struct Longtitude {
+static struct Longitude {
 	uint8_t degree; 	/* 0 - 180 (standardized) */
 	uint8_t minute; 	/* 0 - 60 */
-	uint8_t second;		/* 0 - 60 */
-	enum Longtitude_Direction longtitude_direction;
-} Longtitude;
+	int second;		/* 0 - 9999 ~ 0 - 60 */
+	enum Longitude_Direction longitude_direction;
+} Longitude;
 
 static enum Latitude_Direction {
 	SOUTH = -1,
@@ -66,15 +66,16 @@ static enum Latitude_Direction {
 static struct Latitude {
 	uint8_t degree; 	/* 0 - 90 (standardized) */
 	uint8_t minute; 	/* 0 - 60 */
-	uint8_t second;		/* 0 - 60 */
+	int second;		/* 0 - 9999 ~ 0 - 60 */
 	enum Latitude_Direction latitude_direction;
 } Latitude;
 
 static struct Node {
+	bool valid;
 	struct Timestamp timestamp;
 	char device_id[DEVICE_ID_LENGTH];
 	struct Latitude latitude;
-	struct Longtitude longtitude;
+	struct Longitude longitude;
 	uint16_t speed; /* distance_last_node / time_interval_last_node */
 	double accel_x;
 	double accel_y;

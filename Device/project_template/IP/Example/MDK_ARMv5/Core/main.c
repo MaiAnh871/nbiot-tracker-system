@@ -209,10 +209,10 @@ int main(void) {
   Board871_Initialize( & board871);
 
   // Create application main thread
-  xTaskCreate(task_1, "task_1", 64, NULL, 2, NULL);
-  xTaskCreate(task_2, "task_2", 64, NULL, 2, NULL);
-  xTaskCreate(task_3, "task_3", 64, NULL, 2, NULL);
-  xTaskCreate(task_4, "task_4", 64, NULL, 2, NULL);
+  xTaskCreate(task_1, "task_1", 128, NULL, 2, NULL);
+  xTaskCreate(task_2, "task_2", 128, NULL, 2, NULL);
+  xTaskCreate(task_3, "task_3", 128, NULL, 2, NULL);
+  xTaskCreate(task_4, "task_4", 128, NULL, 2, NULL);
 	
   // Start the kernel and execute the first thread
   vTaskStartScheduler();

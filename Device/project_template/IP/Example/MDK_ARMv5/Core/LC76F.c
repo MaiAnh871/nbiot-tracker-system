@@ -126,6 +126,14 @@ bool Check_Valid_GPS_String(char * gps_raw_string) {
 	return valid;
 }
 
+void Clear_Temp(struct LC76F * self) {
+	int i;
+	for (i = 0; i < LC76F_TEMP_STRING_LENGTH; i++) {
+		self->temp[i] = 0;
+	}
+}
+
+
 bool Get_GPS_String(struct LC76F * self)
 {
 	char* check = NULL;
@@ -154,23 +162,59 @@ bool Get_GPS_String(struct LC76F * self)
 struct Node Parse_GPS_Sring(struct LC76F * self) {
 	uint8_t num_tokens;
 	char **token_array;
+	self->node.valid = FALSE;
 	
 	token_array = Tokenize_String(self->gps_string, ",", &num_tokens);
 	
-	char temp[10] = "";
-	slice(token_array[1], temp, 0, 2);
-	self->node.timestamp.hour = atoi(temp);
-	slice(token_array[1], temp, 2, 4);
-	self->node.timestamp.minute = atoi(temp);
-	slice(token_array[1], temp, 4, 6);
-	self->node.timestamp.second = atoi(temp);
-
+	/* Time */
+	Clear_Temp(self);
+	slice(token_array[1], self->temp, 0, 2);
+	self->node.timestamp.hour = atoi(self->temp);
+	Clear_Temp(self);
+	slice(token_array[1], self->temp, 2, 4);
+	self->node.timestamp.minute = atoi(self->temp);
+	Clear_Temp(self);
+	slice(token_array[1], self->temp, 4, 6);
+	self->node.timestamp.second = atoi(self->temp);
 	
-	sprintf(self->lc76f_log_content, "HOUR: %d\n", self->node.timestamp.hour);
+	/* Latitude */
+	Clear_Temp(self);
+	slice(token_array[3], self->temp, 0, 2);
+	self->node.latitude.degree = atoi(self->temp);
+	Clear_Temp(self);
+	slice(token_array[3], self->temp, 2, 4);
+	self->node.latitude.minute = atoi(self->temp);
+	Clear_Temp(self);
+	slice(token_array[3], self->temp, 5, 9);
+	self->node.latitude.second = atoi(self->temp);
+	
+	/* North-South */
+	slice(token_array[4], self->temp, 0, 1);
+	if (self->temp[0] == 'N'){
+		self->node.latitude.latitude_direction = NORTH;
+	} else if (self->temp[0] == 'S') {
+		self->node.latitude.latitude_direction = SOUTH;
+	} else {
+		return self->node;
+	}
+	
+		/* Longitude */
+	Clear_Temp(self);
+	slice(token_array[5], self->temp, 0, 3);
+	self->node.longitude.degree = atoi(self->temp);
+	Clear_Temp(self);
+	slice(token_array[5], self->temp, 3, 5);
+	self->node.longitude.minute = atoi(self->temp);
+	Clear_Temp(self);
+	Write_String_Log(self->temp);
+	slice(token_array[5], self->temp, 6, 10);
+	self->node.longitude.second = atoi(self->temp);
+	
+	sprintf(self->lc76f_log_content, "HOUR: %u\n", self->node.longitude.degree);
 	Write_String_Log(self->lc76f_log_content);
-	sprintf(self->lc76f_log_content, "MINUTE: %d\n", self->node.timestamp.minute);
+	sprintf(self->lc76f_log_content, "MINUTE: %u\n", self->node.longitude.minute);
 	Write_String_Log(self->lc76f_log_content);
-	sprintf(self->lc76f_log_content, "SECOND: %d\n", self->node.timestamp.second);
+	sprintf(self->lc76f_log_content, "SECOND: %u\n", self->node.longitude.second);
 	Write_String_Log(self->lc76f_log_content);
 	
 	int i;
