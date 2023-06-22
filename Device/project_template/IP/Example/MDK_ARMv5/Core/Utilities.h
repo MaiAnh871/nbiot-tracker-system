@@ -27,4 +27,6 @@ void removeChars(char *str, const char *sub);
 
 void floatToString(float num, char *str, unsigned char decimal_digit);
 
+void slice(const char* str, char* result, size_t start, size_t end);
+
 #endif /* UTILITIES_ */

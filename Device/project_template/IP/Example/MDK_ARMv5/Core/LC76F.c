@@ -151,23 +151,35 @@ bool Get_GPS_String(struct LC76F * self)
 	return false;
 }
 
-bool Parse_GPS_Sring(struct LC76F * self) {
-	bool check = true;
+struct Node Parse_GPS_Sring(struct LC76F * self) {
 	uint8_t num_tokens;
 	char **token_array;
 	
 	token_array = Tokenize_String(self->gps_string, ",", &num_tokens);
 	
-	sprintf(self->lc76f_log_content, "%u\n", num_tokens);
+	char temp[10] = "";
+	slice(token_array[1], temp, 0, 2);
+	self->node.timestamp.hour = atoi(temp);
+	slice(token_array[1], temp, 2, 4);
+	self->node.timestamp.minute = atoi(temp);
+	slice(token_array[1], temp, 4, 6);
+	self->node.timestamp.second = atoi(temp);
+
+	
+	sprintf(self->lc76f_log_content, "HOUR: %d\n", self->node.timestamp.hour);
+	Write_String_Log(self->lc76f_log_content);
+	sprintf(self->lc76f_log_content, "MINUTE: %d\n", self->node.timestamp.minute);
+	Write_String_Log(self->lc76f_log_content);
+	sprintf(self->lc76f_log_content, "SECOND: %d\n", self->node.timestamp.second);
 	Write_String_Log(self->lc76f_log_content);
 	
 	int i;
-	for (i = 0; i < num_tokens; i++) {
-		sprintf(self->lc76f_log_content, "%s\n", token_array[i]);
-		Write_String_Log(self->lc76f_log_content);
-	}
+//	for (i = 0; i < num_tokens; i++) {
+//		sprintf(self->lc76f_log_content, "%s\n", token_array[i]);
+//		Write_String_Log(self->lc76f_log_content);
+//	}
 	
 	free(token_array);
 	
-	return check;
+	return self->node;
 }

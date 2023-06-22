@@ -103,3 +103,9 @@ void floatToString(float num, char *str, unsigned char decimal_digit)
 	// Add null terminator
 	*str = '\0';
 }
+
+void slice(const char* str, char* result, size_t start, size_t end)
+{
+    strncpy(result, str + start, end - start);
+}
+

@@ -29,6 +29,7 @@ static struct LC76F {
   char * lc76f_log_content;
 	char * raw_gps_string;
 	char * gps_string;
+	struct Node node;
 }
 LC76F;
 
@@ -43,7 +44,7 @@ void Clear_GPS_String(struct LC76F * self);
 bool Check_Valid_GPS_String(char * gps_raw_string);
 
 bool Get_GPS_String(struct LC76F * self);
-bool Parse_GPS_Sring(struct LC76F * self);
+struct Node Parse_GPS_Sring(struct LC76F * self);
 //float Calculate_Distance(void);
 //bool Get_GPS_data(void);
 //bool Check_valid_data(uint8_t * GPS_data);
