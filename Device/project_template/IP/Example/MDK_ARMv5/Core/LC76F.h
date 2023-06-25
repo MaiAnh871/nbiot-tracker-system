@@ -27,6 +27,7 @@ extern void Write_String_Log(char * input_string);
 /* Struct declaration */
 static struct LC76F {
   char * lc76f_log_content;
+	
 	char * raw_gps_string;
 	char * gps_string;
 	struct Node node;

@@ -92,8 +92,10 @@ static struct Route {
 	struct Node *node;
 } Route;
 
-static struct Accelerator_Parameter {
-	
-} Accelerator_Parameter;
+static struct Accel {
+	int16_t Ax;
+	int16_t Ay;
+	int16_t Az;
+} Accel;
 
 #endif /* COLLECTIONS_ */

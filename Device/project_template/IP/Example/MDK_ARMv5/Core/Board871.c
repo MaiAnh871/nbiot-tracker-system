@@ -8,5 +8,5 @@ void Board871_Initialize(struct Board871 * self) {
 
   BC660K_Initialize( & self -> bc660k);
   LC76F_Initialize( & self->lc76f);
-  //	MC3416_Initialize(&self->mc3416);
+  MC3416_Initialize( & self->mc3416);
 }

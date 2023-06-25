@@ -20,7 +20,7 @@ extern void Write_String_Log(char * input_string);
 static struct MC3416 {
   char * mc3416_log_content;
 	
-	
+	struct Accel accel;
 }
 MC3416;
 

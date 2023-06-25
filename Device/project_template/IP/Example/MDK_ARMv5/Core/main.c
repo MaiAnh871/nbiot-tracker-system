@@ -196,9 +196,12 @@ void task_3(void * argument) {
 //		
 //		Parse_GPS_String(&board871.lc76f);
 		
+		MC3416_Read_Accel(&board871.mc3416.accel.Ax, &board871.mc3416.accel.Ay, &board871.mc3416.accel.Az);
 		
+		sprintf(board871.board871_log_content, "Ax: %d     Ay: %d     Az: %d\n", board871.mc3416.accel.Ax, board871.mc3416.accel.Ay, board871.mc3416.accel.Az);
+		Write_String_Log(board871.board871_log_content);
 		
-    vTaskDelay(1000);
+    vTaskDelay(100);
   }
 }
 
