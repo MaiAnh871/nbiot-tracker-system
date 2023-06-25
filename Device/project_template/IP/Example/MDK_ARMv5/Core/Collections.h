@@ -92,4 +92,8 @@ static struct Route {
 	struct Node *node;
 } Route;
 
+static struct Accelerator_Parameter {
+	
+} Accelerator_Parameter;
+
 #endif /* COLLECTIONS_ */

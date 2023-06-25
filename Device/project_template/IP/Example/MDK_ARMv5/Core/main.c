@@ -1,4 +1,5 @@
-/* Includes */ #include "ht32.h"
+/* Includes */ 
+#include "ht32.h"
 
 #include "ht32_board.h"
 
@@ -184,15 +185,19 @@ void task_2(void * argument) {
 
 void task_3(void * argument) {
   while (1) {
-    // Application code
+    /* Application code */
 //		sprintf(board871.board871_log_content, "%u\n", CURRENT_TICK);
 //		Write_String_Log(board871.board871_log_content);
-		if (!Get_GPS_String(&board871.lc76f)) {
-			vTaskDelay(1000);
-			continue;
-		}
 		
-		Parse_GPS_String(&board871.lc76f);
+//		if (!Get_GPS_String(&board871.lc76f)) {
+//			vTaskDelay(1000);
+//			continue;
+//		}
+//		
+//		Parse_GPS_String(&board871.lc76f);
+		
+		
+		
     vTaskDelay(1000);
   }
 }
