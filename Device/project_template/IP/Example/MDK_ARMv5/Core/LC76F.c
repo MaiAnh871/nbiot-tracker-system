@@ -147,8 +147,9 @@ bool Get_GPS_String(struct LC76F * self)
 	
 	/* Sample raw GPS string */
 	sprintf(self->raw_gps_string, "$GPRMC,102739.000,A,3150.7825,N,11711.9369,E,0.00,303.62,111214,,,D*6A\r\n");
+	Write_String_Log(self->raw_gps_string);
+	
 	strcpy(self->lc76f_log_content, self->raw_gps_string);
-//	Write_String_Log(self->lc76f_log_content);
 	
 	if (Check_Valid_GPS_String(self->raw_gps_string)) {
 		strcpy(self->gps_string, self->raw_gps_string);
@@ -159,10 +160,10 @@ bool Get_GPS_String(struct LC76F * self)
 	return false;
 }
 
-struct Node Parse_GPS_Sring(struct LC76F * self) {
+bool Parse_GPS_String(struct LC76F * self) {
 	uint8_t num_tokens;
 	char **token_array;
-	self->node.valid = FALSE;
+	self->node.valid = true;
 	
 	token_array = Tokenize_String(self->gps_string, ",", &num_tokens);
 	
@@ -195,10 +196,11 @@ struct Node Parse_GPS_Sring(struct LC76F * self) {
 	} else if (self->temp[0] == 'S') {
 		self->node.latitude.latitude_direction = SOUTH;
 	} else {
-		return self->node;
+		self->node.valid = false;
+		return self->node.valid;
 	}
 	
-		/* Longitude */
+	/* Longitude */
 	Clear_Temp(self);
 	slice(token_array[5], self->temp, 0, 3);
 	self->node.longitude.degree = atoi(self->temp);
@@ -210,14 +212,37 @@ struct Node Parse_GPS_Sring(struct LC76F * self) {
 	slice(token_array[5], self->temp, 6, 10);
 	self->node.longitude.second = atoi(self->temp);
 	
-	sprintf(self->lc76f_log_content, "HOUR: %u\n", self->node.longitude.degree);
-	Write_String_Log(self->lc76f_log_content);
-	sprintf(self->lc76f_log_content, "MINUTE: %u\n", self->node.longitude.minute);
-	Write_String_Log(self->lc76f_log_content);
-	sprintf(self->lc76f_log_content, "SECOND: %u\n", self->node.longitude.second);
-	Write_String_Log(self->lc76f_log_content);
+	/* East-West*/
+	slice(token_array[6], self->temp, 0, 1);
+	if (self->temp[0] == 'E'){
+		self->node.longitude.longitude_direction = EAST;
+	} else if (self->temp[0] == 'W') {
+		self->node.longitude.longitude_direction = WEST;
+	} else {
+		self->node.valid = false;
+		return self->node.valid;
+	}
 	
-	int i;
+	/* Date */
+	Clear_Temp(self);
+	slice(token_array[9], self->temp, 0, 2);
+	self->node.timestamp.day = atoi(self->temp);
+	Clear_Temp(self);
+	slice(token_array[9], self->temp, 2, 4);
+	self->node.timestamp.month = atoi(self->temp);
+	Clear_Temp(self);
+	Write_String_Log(self->temp);
+	slice(token_array[9], self->temp, 4, 6);
+	self->node.timestamp.year = atoi(self->temp);
+	
+//	sprintf(self->lc76f_log_content, "DAY: %u\n", self->node.timestamp.day);
+//	Write_String_Log(self->lc76f_log_content);
+//	sprintf(self->lc76f_log_content, "MONTH: %u\n", self->node.timestamp.month);
+//	Write_String_Log(self->lc76f_log_content);
+//	sprintf(self->lc76f_log_content, "YEAR: %u\n", self->node.timestamp.year);
+//	Write_String_Log(self->lc76f_log_content);
+	
+//	int i;
 //	for (i = 0; i < num_tokens; i++) {
 //		sprintf(self->lc76f_log_content, "%s\n", token_array[i]);
 //		Write_String_Log(self->lc76f_log_content);
@@ -225,5 +250,5 @@ struct Node Parse_GPS_Sring(struct LC76F * self) {
 	
 	free(token_array);
 	
-	return self->node;
+	return self->node.valid;
 }
