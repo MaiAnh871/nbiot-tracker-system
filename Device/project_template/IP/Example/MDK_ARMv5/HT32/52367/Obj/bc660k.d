@@ -53,4 +53,4 @@
   ..\..\..\..\utilities\common\ebi_lcd.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h Core\Setting.h \
-  Core\Collections.h
+  Core\Collections.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h

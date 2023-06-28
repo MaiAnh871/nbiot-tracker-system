@@ -89,19 +89,27 @@ void MC3416_Write_Mem_Slave(I2C_AddressTypeDef Slave_Adr, uint8_t RegAddr, uint8
 void MC3416_Init(void)
 {
 	uint8_t check = 0x00;
-	/* Wake up: all setting default */
+	/* STANDBY */
+	MC3416_Write_Mem_Slave(MC3416_ADDR, 0x07, 0x00);
+	
+	/* Change range and scale: 2G */
+	MC3416_Write_Mem_Slave(MC3416_ADDR, 0x20, 0x00);
+
+	/* WAKEUP */
 	MC3416_Write_Mem_Slave(MC3416_ADDR, 0x07, 0x01);
+
 	
 	while (check != 0x01)
 	{
 		MC3416_Read_Mem_Slave(MC3416_ADDR, 0x05, &check);
 	}
+	
 }
 
 void MC3416_Read_Accel(int16_t *Ax, int16_t *Ay, int16_t *Az)
 {
 	static uint8_t Rec_Data[6];
-	//MC3416_Read_Mem_Slave(MC3416_ADDR, 0x75, Rec_Data, 6);
+	/* Change range and scale */
 
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0E, &Rec_Data[0]);
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0D, &Rec_Data[1]);
@@ -113,4 +121,9 @@ void MC3416_Read_Accel(int16_t *Ax, int16_t *Ay, int16_t *Az)
 	*Ax = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]);
 	*Ay = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]);
 	*Az = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]);
+	
+	/* Offset and gain */
+	*Ax = *Ax + MC3416_OFFSET_AX;
+	*Ay = *Ay + MC3416_OFFSET_AY;
+	*Az = *Az + MC3416_OFFSET_AZ;
 }
