@@ -40,6 +40,12 @@ static struct Timestamp {
 	uint8_t second;
 } Timestamp;
 
+static struct Time {
+	uint8_t hour;
+	uint8_t minute;
+	uint8_t second;
+} Time;
+
 static struct Connection_Status {
 	int16_t rsrp;
 	char cell_id[CELL_ID_LENGTH];
@@ -84,6 +90,8 @@ static struct Node {
 	bool overspeed_alert;
 	uint16_t speed_limit;
 	struct Connection_Status connection_status;
+	struct Time send_data_interval;
+	struct Time alive_interval;
 	struct Node *next_node;
 } Node;
 
