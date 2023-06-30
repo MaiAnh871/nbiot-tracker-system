@@ -160,6 +160,7 @@ void Write_Char_Log(u16 character) {
 
 void Write_String_Log(char * input_string) {
   int i;
+	strcat(input_string, "\n");
   /* Send a buffer from UxART to terminal                                                                   */
   for (i = 0; i < strlen(input_string); i++) {
     Write_Char_Log(input_string[i]);
@@ -212,6 +213,8 @@ int main(void) {
 	Initialize_Log();
 
   Board871_Initialize( & board871);
+	
+	Print_Node(&board871, board871.current_node);
 
   // Create application main thread
   xTaskCreate(task_1, "task_1", 128, NULL, 2, NULL);

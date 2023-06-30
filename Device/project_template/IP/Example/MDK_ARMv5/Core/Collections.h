@@ -82,10 +82,10 @@ static struct Node {
 	char device_id[DEVICE_ID_LENGTH];
 	struct Latitude latitude;
 	struct Longitude longitude;
-	uint16_t speed; /* distance_last_node / time_interval_last_node */
-	double accel_x;
-	double accel_y;
-	double accel_z;
+	float speed; /* distance_last_node / time_interval_last_node */
+	float accel_x;
+	float accel_y;
+	float accel_z;
 	bool tilt_alert;
 	bool overspeed_alert;
 	uint16_t speed_limit;
@@ -96,7 +96,7 @@ static struct Node {
 } Node;
 
 static struct Route {
-	double total_length;
+	float total_length;
 	struct Node *node;
 } Route;
 
