@@ -20,7 +20,7 @@
       "function": {
         "myddbtracker2fb48a942fb48a94PostConfirmation": {
           "deploymentBucketName": "amplify-myddbtracker-dev-225309-deployment",
-          "s3Key": "amplify-builds/myddbtracker2fb48a942fb48a94PostConfirmation-744e78427268356f6476-build.zip"
+          "s3Key": "amplify-builds/myddbtracker2fb48a942fb48a94PostConfirmation-78614d622b615850446e-build.zip"
         }
       },
       "api": {
