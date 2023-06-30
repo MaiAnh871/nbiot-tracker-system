@@ -17,6 +17,7 @@ export const createUser = /* GraphQL */ `
           createdAt
           updatedAt
           userDevicesId
+          username
         }
         nextToken
       }
@@ -41,6 +42,7 @@ export const updateUser = /* GraphQL */ `
           createdAt
           updatedAt
           userDevicesId
+          username
         }
         nextToken
       }
@@ -65,6 +67,7 @@ export const deleteUser = /* GraphQL */ `
           createdAt
           updatedAt
           userDevicesId
+          username
         }
         nextToken
       }
@@ -115,6 +118,7 @@ export const createDevice = /* GraphQL */ `
       createdAt
       updatedAt
       userDevicesId
+      username
     }
   }
 `;
@@ -160,6 +164,7 @@ export const updateDevice = /* GraphQL */ `
       createdAt
       updatedAt
       userDevicesId
+      username
     }
   }
 `;
@@ -205,6 +210,7 @@ export const deleteDevice = /* GraphQL */ `
       createdAt
       updatedAt
       userDevicesId
+      username
     }
   }
 `;
@@ -231,6 +237,7 @@ export const createMessage = /* GraphQL */ `
         createdAt
         updatedAt
         userDevicesId
+        username
       }
       imei
       timestamp
@@ -273,6 +280,7 @@ export const updateMessage = /* GraphQL */ `
         createdAt
         updatedAt
         userDevicesId
+        username
       }
       imei
       timestamp
@@ -315,6 +323,7 @@ export const deleteMessage = /* GraphQL */ `
         createdAt
         updatedAt
         userDevicesId
+        username
       }
       imei
       timestamp

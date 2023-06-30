@@ -14,6 +14,7 @@ export const getUser = /* GraphQL */ `
           createdAt
           updatedAt
           userDevicesId
+          username
         }
         nextToken
       }
@@ -83,6 +84,7 @@ export const getDevice = /* GraphQL */ `
       createdAt
       updatedAt
       userDevicesId
+      username
     }
   }
 `;
@@ -109,6 +111,7 @@ export const listDevices = /* GraphQL */ `
         createdAt
         updatedAt
         userDevicesId
+        username
       }
       nextToken
     }
@@ -134,6 +137,7 @@ export const getMessage = /* GraphQL */ `
         createdAt
         updatedAt
         userDevicesId
+        username
       }
       imei
       timestamp
@@ -167,6 +171,7 @@ export const listMessages = /* GraphQL */ `
           createdAt
           updatedAt
           userDevicesId
+          username
         }
         imei
         timestamp
@@ -183,6 +188,38 @@ export const listMessages = /* GraphQL */ `
         createdAt
         updatedAt
         deviceMessagesId
+      }
+      nextToken
+    }
+  }
+`;
+export const userByUserName = /* GraphQL */ `
+  query UserByUserName(
+    $username: String!
+    $id: ModelIDKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByUserName(
+      username: $username
+      id: $id
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        username
+        email
+        name
+        devices {
+          nextToken
+        }
+        createdAt
+        updatedAt
       }
       nextToken
     }

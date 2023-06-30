@@ -17,6 +17,7 @@ export const onCreateUser = /* GraphQL */ `
           createdAt
           updatedAt
           userDevicesId
+          username
         }
         nextToken
       }
@@ -41,6 +42,7 @@ export const onUpdateUser = /* GraphQL */ `
           createdAt
           updatedAt
           userDevicesId
+          username
         }
         nextToken
       }
@@ -65,6 +67,7 @@ export const onDeleteUser = /* GraphQL */ `
           createdAt
           updatedAt
           userDevicesId
+          username
         }
         nextToken
       }
@@ -74,8 +77,11 @@ export const onDeleteUser = /* GraphQL */ `
   }
 `;
 export const onCreateDevice = /* GraphQL */ `
-  subscription OnCreateDevice($filter: ModelSubscriptionDeviceFilterInput) {
-    onCreateDevice(filter: $filter) {
+  subscription OnCreateDevice(
+    $filter: ModelSubscriptionDeviceFilterInput
+    $username: String
+  ) {
+    onCreateDevice(filter: $filter, username: $username) {
       id
       user {
         id
@@ -112,12 +118,16 @@ export const onCreateDevice = /* GraphQL */ `
       createdAt
       updatedAt
       userDevicesId
+      username
     }
   }
 `;
 export const onUpdateDevice = /* GraphQL */ `
-  subscription OnUpdateDevice($filter: ModelSubscriptionDeviceFilterInput) {
-    onUpdateDevice(filter: $filter) {
+  subscription OnUpdateDevice(
+    $filter: ModelSubscriptionDeviceFilterInput
+    $username: String
+  ) {
+    onUpdateDevice(filter: $filter, username: $username) {
       id
       user {
         id
@@ -154,12 +164,16 @@ export const onUpdateDevice = /* GraphQL */ `
       createdAt
       updatedAt
       userDevicesId
+      username
     }
   }
 `;
 export const onDeleteDevice = /* GraphQL */ `
-  subscription OnDeleteDevice($filter: ModelSubscriptionDeviceFilterInput) {
-    onDeleteDevice(filter: $filter) {
+  subscription OnDeleteDevice(
+    $filter: ModelSubscriptionDeviceFilterInput
+    $username: String
+  ) {
+    onDeleteDevice(filter: $filter, username: $username) {
       id
       user {
         id
@@ -196,6 +210,7 @@ export const onDeleteDevice = /* GraphQL */ `
       createdAt
       updatedAt
       userDevicesId
+      username
     }
   }
 `;
@@ -219,6 +234,7 @@ export const onCreateMessage = /* GraphQL */ `
         createdAt
         updatedAt
         userDevicesId
+        username
       }
       imei
       timestamp
@@ -258,6 +274,7 @@ export const onUpdateMessage = /* GraphQL */ `
         createdAt
         updatedAt
         userDevicesId
+        username
       }
       imei
       timestamp
@@ -297,6 +314,7 @@ export const onDeleteMessage = /* GraphQL */ `
         createdAt
         updatedAt
         userDevicesId
+        username
       }
       imei
       timestamp
