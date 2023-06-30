@@ -76,6 +76,13 @@ export const deleteUser = /* GraphQL */ `
     }
   }
 `;
+
+// mutation MyMutation {
+//   createDevice(input: {id: "", userDevicesId: ""}) {
+//     createdAt
+//     id
+//   }
+// }
 export const createDevice = /* GraphQL */ `
   mutation CreateDevice(
     $input: CreateDeviceInput!
