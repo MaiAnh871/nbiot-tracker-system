@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "myddbtracker",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authmyddbtracker2fb48a942fb48a94"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
+  }
+}

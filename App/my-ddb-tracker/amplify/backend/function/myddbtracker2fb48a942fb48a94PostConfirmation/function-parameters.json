@@ -1,0 +1,16 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "myddbtracker2fb48a942fb48a94",
+  "functionName": "myddbtracker2fb48a942fb48a94PostConfirmation",
+  "resourceName": "myddbtracker2fb48a942fb48a94PostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "C:\\snapshot\\repo\\build\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "myddbtracker2fb48a942fb48a94PostConfirmation",
+  "skipEdit": true
+}
