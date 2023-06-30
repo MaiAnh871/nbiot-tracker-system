@@ -170,37 +170,30 @@ void Write_String_Log(char * input_string) {
 void task_1(void * argument) {
   while (1) {
     // Application code
-    Toggle_LED_1();
-    vTaskDelay(1000);
+		if (!Get_GPS_String(&board871.lc76f)) {
+			continue;
+		}
+		
+		if (!Parse_GPS_String(&board871.lc76f, board871.current_node)) {
+			continue;
+		} else {
+//			Print_Node(&board871, board871.current_node);
+			vTaskDelay(1000);
+		}
   }
 }
 
 void task_2(void * argument) {
   while (1) {
     // Application code
-    Toggle_LED_2();
+		Toggle_LED_1();
     vTaskDelay(500);
   }
 }
 
 void task_3(void * argument) {
   while (1) {
-    /* Application code */
-//		sprintf(board871.board871_log_content, "%u\n", CURRENT_TICK);
-//		Write_String_Log(board871.board871_log_content);
-		
-//		if (!Get_GPS_String(&board871.lc76f)) {
-//			vTaskDelay(1000);
-//			continue;
-//		}
-//		
-//		Parse_GPS_String(&board871.lc76f);
-		
-		MC3416_Read_Accel(&board871.mc3416.accel.Ax, &board871.mc3416.accel.Ay, &board871.mc3416.accel.Az);
-		
-		sprintf(board871.board871_log_content, "Ax: %d     Ay: %d     Az: %d\n", board871.mc3416.accel.Ax, board871.mc3416.accel.Ay, board871.mc3416.accel.Az);
-		Write_String_Log(board871.board871_log_content);
-		
+    /* Application code */		
     vTaskDelay(100);
   }
 }

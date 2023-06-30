@@ -47,4 +47,8 @@ Board871;
 /* Function prototypes */
 void Board871_Initialize(struct Board871 * self);
 
+
+/* Debug */
+void Print_Node(struct Board871 * self, struct Node *input_node);
+
 #endif /* BOARD871_ */
