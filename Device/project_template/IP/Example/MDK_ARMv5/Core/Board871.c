@@ -37,11 +37,11 @@ void Create_New_Node(struct Board871 * self) {
 	self->current_node->longitude.second = 0;
 	self->current_node->longitude.longitude_direction = EAST;
 	
-	self->current_node->speed = 0.0;
+	self->current_node->speed = 0;
 	
-	self->current_node->accel_x = 0.0;
-	self->current_node->accel_y = 0.0;
-	self->current_node->accel_z = 0.0;
+	self->current_node->accel_x = 0;
+	self->current_node->accel_y = 0;
+	self->current_node->accel_z = 0;
 	
 	self->current_node->tilt_alert = false;
 	self->current_node->overspeed_alert = false;
@@ -115,19 +115,25 @@ void Print_Node(struct Board871 * self, struct Node *input_node) {
 		sprintf(temp, ",\"overspeed_alert\":false");
 	}
 	strcat(self->board871_log_content, temp);
-//	
-//	sprintf(temp, ",\"speed_limit\":%u", input_node->speed_limit);
-//	strcat(self->board871_log_content, temp);
 	
-//	sprintf(temp, "\"%s\"", input_node->connection_status.cell_id);
-//	strcat(self->board871_log_content, temp);
-//	
-//	sprintf(temp, ",\"send_data_interval\":{\"hour\":%u,\"minute\":%u,\"second\":%d}", input_node->send_data_interval.hour, input_node->send_data_interval.minute, input_node->send_data_interval.second);
-//	strcat(self->board871_log_content, temp);
-//	
-//	sprintf(temp, ",\"alive_interval\":{\"hour\":%u,\"minute\":%u,\"second\":%d}", input_node->alive_interval.hour, input_node->alive_interval.minute, input_node->alive_interval.second);
-//	strcat(self->board871_log_content, temp);
+	sprintf(temp, ",\"speed_limit\":%u", input_node->speed_limit);
+	strcat(self->board871_log_content, temp);
 	
+	sprintf(temp, ",connection_status:{\"cell_id\":\"%s\"}", input_node->connection_status.cell_id);
+	strcat(self->board871_log_content, temp);
+	
+	sprintf(temp, ",connection_status:{\"cell_id\":\"%d\"}", input_node->connection_status.rsrp);
+	strcat(self->board871_log_content, temp);
+	
+	sprintf(temp, ",connection_status:{\"cell_id\":\"%d\"}", input_node->connection_status.sinr);
+	strcat(self->board871_log_content, temp);
+	
+	sprintf(temp, ",\"send_data_interval\":{\"hour\":%u,\"minute\":%u,\"second\":%u}", input_node->send_data_interval.hour, input_node->send_data_interval.minute, input_node->send_data_interval.second);
+	strcat(self->board871_log_content, temp);
+	
+//	sprintf(temp, ",\"alive_interval\":{\"hour\":%u,\"minute\":%u,\"second\":%u}", input_node->alive_interval.hour, input_node->alive_interval.minute, input_node->alive_interval.second);
+//	strcat(self->board871_log_content, temp);
+//	
 	strcat(self->board871_log_content, "}");
 	
 	Write_String_Log(self->board871_log_content);
