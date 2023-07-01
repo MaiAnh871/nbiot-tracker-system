@@ -47,8 +47,8 @@ static struct Time {
 } Time;
 
 static struct Connection_Status {
-	int16_t rsrp;
 	char cell_id[CELL_ID_LENGTH];
+	int16_t rsrp;
 	int8_t sinr;
 } Connection_Status;
 
