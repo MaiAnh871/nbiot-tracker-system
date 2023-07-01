@@ -35,7 +35,7 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define DEVICE_ID_LENGTH 18
 #define LATITUDE_LENGTH 9 		/* 'ddmm.mmmm' */
 #define LONGTITUDE_LENGTH 10	/* 'dddmm.mmmm' */
-#define CELL_ID_LENGTH 8 /* '00000000' - 'FFFFFFFF' */
+#define CELL_ID_LENGTH 9 /* '00000000' - 'FFFFFFFF' */
 
 /* BC660K settings */
 #define BC660K_LOG_CONTENT_SIZE 500

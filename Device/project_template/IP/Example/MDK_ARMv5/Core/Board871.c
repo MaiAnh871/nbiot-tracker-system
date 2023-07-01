@@ -44,20 +44,11 @@ void Create_New_Node(struct Board871 * self) {
 	self->current_node->accel_z = 0;
 	
 	self->current_node->tilt_alert = false;
+	self->current_node->wheelie_alert = false;
 	self->current_node->overspeed_alert = false;
-	self->current_node->speed_limit = 0;
 	
 	self->current_node->connection_status.rsrp = 0;
 	sprintf(self->current_node->connection_status.cell_id, "%s", "00000000");
-	self->current_node->connection_status.sinr = 0;
-	
-	self->current_node->send_data_interval.hour = 0;
-	self->current_node->send_data_interval.minute = 0;
-	self->current_node->send_data_interval.second = 0;
-	
-	self->current_node->alive_interval.hour = 0;
-	self->current_node->alive_interval.minute = 0;
-	self->current_node->alive_interval.second = 0;
 	
 	self->current_node->next_node = NULL;
 }
@@ -70,42 +61,45 @@ void Print_Node(struct Board871 * self, struct Node *input_node) {
 	}
 	
 	char *temp;
-	temp = malloc(100 * sizeof(char));
+	temp = calloc(150, sizeof(char));
 	 
 	sprintf(self->board871_log_content, "{");
 	
-	if (input_node->valid) {
-		sprintf(temp, "\"valid\":true");
-	} else {
-		sprintf(temp, "\"valid\":false");
-	}
+	sprintf(temp, "\"timestamp\":%u:%u:%uT%u-%u-%u", input_node->timestamp.hour, input_node->timestamp.minute, input_node->timestamp.second, input_node->timestamp.day, input_node->timestamp.month, input_node->timestamp.year);
 	strcat(self->board871_log_content, temp);
 	
 	sprintf(temp, ",\"device_id\":\"%s\"", input_node->device_id);
 	strcat(self->board871_log_content, temp);
 	
-	sprintf(temp, ",\"latitude\":{\"degree\":%d,\"minute\":%d,\"second\":%d,\"direction\":%d}",input_node->latitude.degree, input_node->latitude.minute, input_node->latitude.second, input_node->latitude.latitude_direction);
+	sprintf(temp, ",\"latitude\":{\"degree\":%d,\"minute\":%d,\"second\":%d}",input_node->latitude.degree, input_node->latitude.minute, input_node->latitude.second);
 	strcat(self->board871_log_content, temp);
 	
-	sprintf(temp, ",\"longtitude\":{\"degree\":%d,\"minute\":%d,\"second\":%d,\"direction\":%d}",input_node->longitude.degree, input_node->longitude.minute, input_node->longitude.second, input_node->longitude.longitude_direction);
+	sprintf(temp, ",\"longtitude\":{\"degree\":%d,\"minute\":%d,\"second\":%d}",input_node->longitude.degree, input_node->longitude.minute, input_node->longitude.second);
 	strcat(self->board871_log_content, temp);
 	
-	sprintf(temp, ",\"speed\":%f", input_node->speed);
+	sprintf(temp, ",\"speed\":%u", (uint16_t) input_node->speed);
 	strcat(self->board871_log_content, temp);	
 
-	sprintf(temp, ",\"accel_x\":%f", input_node->accel_x);
+	sprintf(temp, ",\"accel_x\":%d", (int16_t) input_node->accel_x);
 	strcat(self->board871_log_content, temp);	
 
-	sprintf(temp, ",\"accel_y\":%f", input_node->accel_x);
+	sprintf(temp, ",\"accel_y\":%d", (int16_t) input_node->accel_x);
 	strcat(self->board871_log_content, temp);	
 
-	sprintf(temp, ",\"accel_z\":%f", input_node->accel_x);
+	sprintf(temp, ",\"accel_z\":%d", (int16_t) input_node->accel_x);
 	strcat(self->board871_log_content, temp);
 	
 	if (input_node->tilt_alert) {
 		sprintf(temp, ",\"tilt_alert\":true");
 	} else {
 		sprintf(temp, ",\"tilt_alert\":false");
+	}
+	strcat(self->board871_log_content, temp);
+	
+	if (input_node->wheelie_alert) {
+		sprintf(temp, ",\"wheelie_alert\":true");
+	} else {
+		sprintf(temp, ",\"wheelie_alert\":false");
 	}
 	strcat(self->board871_log_content, temp);
 	
@@ -116,25 +110,12 @@ void Print_Node(struct Board871 * self, struct Node *input_node) {
 	}
 	strcat(self->board871_log_content, temp);
 	
-	sprintf(temp, ",\"speed_limit\":%u", input_node->speed_limit);
+	sprintf(temp, ",\"connection_status\":{\"cell_id\":\"%s\",\"rsrp\":%d}", input_node->connection_status.cell_id, input_node->connection_status.rsrp);
 	strcat(self->board871_log_content, temp);
 	
-	sprintf(temp, ",connection_status:{\"cell_id\":\"%s\"}", input_node->connection_status.cell_id);
-	strcat(self->board871_log_content, temp);
-	
-	sprintf(temp, ",connection_status:{\"cell_id\":\"%d\"}", input_node->connection_status.rsrp);
-	strcat(self->board871_log_content, temp);
-	
-	sprintf(temp, ",connection_status:{\"cell_id\":\"%d\"}", input_node->connection_status.sinr);
-	strcat(self->board871_log_content, temp);
-	
-	sprintf(temp, ",\"send_data_interval\":{\"hour\":%u,\"minute\":%u,\"second\":%u}", input_node->send_data_interval.hour, input_node->send_data_interval.minute, input_node->send_data_interval.second);
-	strcat(self->board871_log_content, temp);
-	
-//	sprintf(temp, ",\"alive_interval\":{\"hour\":%u,\"minute\":%u,\"second\":%u}", input_node->alive_interval.hour, input_node->alive_interval.minute, input_node->alive_interval.second);
-//	strcat(self->board871_log_content, temp);
-//	
 	strcat(self->board871_log_content, "}");
-	
+		
 	Write_String_Log(self->board871_log_content);
+	
+	free(temp);
 }

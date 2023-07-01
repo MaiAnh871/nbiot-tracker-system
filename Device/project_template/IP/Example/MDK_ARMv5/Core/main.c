@@ -47,7 +47,6 @@ void LED_Init(void);
 void Toggle_LED_1(void);
 void Toggle_LED_2(void);
 
-
 void Error_Blinking_LED_1(void);
 void Connecting_Blinking_LED_2(void);
 void Initialize_Log(void);

@@ -49,7 +49,6 @@ static struct Time {
 static struct Connection_Status {
 	char cell_id[CELL_ID_LENGTH];
 	int16_t rsrp;
-	int8_t sinr;
 } Connection_Status;
 
 static enum Longitude_Direction {
@@ -87,11 +86,9 @@ static struct Node {
 	float accel_y;
 	float accel_z;
 	bool tilt_alert;
+	bool wheelie_alert;
 	bool overspeed_alert;
-	uint16_t speed_limit;
 	struct Connection_Status connection_status;
-	struct Time send_data_interval;
-	struct Time alive_interval;
 	struct Node *next_node;
 } Node;
 
