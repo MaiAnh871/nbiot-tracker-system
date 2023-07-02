@@ -2,11 +2,15 @@ import { useState, useEffect, useContext } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { DevicesContext } from '../../store/devices-context';
+import { useSelector } from 'react-redux';
 
 export default function RegisterDeviceScreen() {
   const devicesCtx = useContext(DevicesContext);
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const messages = useSelector(state => state.messages);
+
+  console.log(messages);
 
   useEffect(() => {
     const getBarCodeScannerPermissions = async () => {

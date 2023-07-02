@@ -16,6 +16,8 @@ import RegisterDeviceScreen from '../screens/RegisterDeviceScreen';
 import { Auth, Hub } from 'aws-amplify';
 import ManageDeviceScreen from '../screens/ManageDevice/ManageDevice';
 import DevicesContextProvider from '../store/devices-context';
+import { Provider } from 'react-redux';
+import store from '../redux/store';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -130,6 +132,7 @@ const Navigation = () => {
   }
 
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         {user ? (
@@ -148,6 +151,7 @@ const Navigation = () => {
         )}
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 };
 

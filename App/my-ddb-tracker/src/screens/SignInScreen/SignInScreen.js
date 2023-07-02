@@ -13,14 +13,17 @@ import Logo from '../../../assets/images/Logo_1.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
-import {useNavigation} from '@react-navigation/native';
-import {useForm, Controller} from 'react-hook-form';
-import {Auth} from 'aws-amplify';
+import { useNavigation } from '@react-navigation/native';
+import { useForm, Controller } from 'react-hook-form';
+import { Auth } from 'aws-amplify';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../../redux/reducer';
 
 const SignInScreen = () => {
   const {height} = useWindowDimensions();
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const {
     control,
@@ -38,6 +41,8 @@ const SignInScreen = () => {
     try {
       const response = await Auth.signIn(data.username, data.password);
       console.log(response);
+      dispatch(addUser());
+      console.log("Dispatch success");
     } catch (e) {
       Alert.alert('Oops', e.message);
     }
