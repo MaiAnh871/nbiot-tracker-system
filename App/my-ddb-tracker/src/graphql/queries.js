@@ -88,15 +88,6 @@ export const getDevice = /* GraphQL */ `
     }
   }
 `;
-
-// query MyQuery {
-//   listDevices {
-//     items {
-//       id
-//       username
-//     }
-//   }
-// }
 export const listDevices = /* GraphQL */ `
   query ListDevices(
     $filter: ModelDeviceFilterInput
@@ -202,14 +193,6 @@ export const listMessages = /* GraphQL */ `
     }
   }
 `;
-
-// query MyQuery {
-//   userByUserName(username: "anhttm") {
-//     items {
-//       id
-//     }
-//   }
-// }
 export const userByUserName = /* GraphQL */ `
   query UserByUserName(
     $username: String!

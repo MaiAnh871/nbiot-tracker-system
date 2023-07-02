@@ -41,7 +41,7 @@ const SignInScreen = () => {
     try {
       const response = await Auth.signIn(data.username, data.password);
       console.log(response);
-      dispatch(addUser());
+      dispatch(addUser(data.username));
       console.log("Dispatch success");
     } catch (e) {
       Alert.alert('Oops', e.message);

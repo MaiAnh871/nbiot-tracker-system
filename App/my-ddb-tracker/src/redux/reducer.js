@@ -1,12 +1,13 @@
 const ADD_USER = "ADD_USER";
 
-export const addUser = () => ({
-    type: ADD_USER
+export const addUser = (username) => ({
+    type: ADD_USER,
+    payload: username
 })
 
 // Initial state
 const initialState = {
-    messages: ["Test"]
+    messages: [""]
 }
 
 const rootReducer = (state=initialState, action) => {
@@ -14,8 +15,8 @@ const rootReducer = (state=initialState, action) => {
         case ADD_USER:
             return {
                 ...state,
-                messages: [...state.messages, "new"]
-            }
+                username: action.payload
+            };
 
         default: 
             return state

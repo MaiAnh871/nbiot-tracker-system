@@ -19,7 +19,7 @@ type Device @model
     { allow: groups, groups: ["Admin"] },
     { allow: owner, ownerField: "username", operations: [create, update, delete, read] }
   ]) {
-  id: ID!
+  id: String!
   user: User @belongsTo
   messages: [Message] @hasMany
 }
