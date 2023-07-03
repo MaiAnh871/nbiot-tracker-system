@@ -1,7 +1,8 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
+import { API, graphqlOperation } from 'aws-amplify';
+import { listDevices } from '../graphql/queries';
 
-
-const DUMMY_DEVICES = [
+const INIT_DEVICES = [
     {
         id: 'd1',
         deviceId: '861536030196001'
@@ -61,7 +62,21 @@ function devicesReducer(state, action) {
 }
 
 function DevicesContextProvider({ children }) {
-    const [devicesState, dispatch] = useReducer(devicesReducer, DUMMY_DEVICES);
+    const [ devicesState, dispatch ] = useReducer(devicesReducer, INIT_DEVICES);
+
+    // useEffect(() => {
+    //     async function fetchDevices() {
+    //         try {
+    //             const deviceData = await API.graphql(graphqlOperation(listDevices));
+    //             const devices = deviceData.data.listDevices.items;
+    //             console(devices);
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     }
+
+    //     fetchDevices();
+    // }, []);
 
     function addDevice(deviceData) {
         dispatch({ kind: 'ADD', payload: deviceData });
@@ -78,8 +93,8 @@ function DevicesContextProvider({ children }) {
     };
 
     return (
-        <DevicesContext.Provider value={value}>
-            {children}
+        <DevicesContext.Provider value={ value }>
+            { children }
         </DevicesContext.Provider>
     )
 }

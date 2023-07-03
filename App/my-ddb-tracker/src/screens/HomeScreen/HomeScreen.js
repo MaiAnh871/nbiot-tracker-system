@@ -7,7 +7,7 @@ function HomeScreen() {
   const devicesCtx = useContext(DevicesContext);
 
   return (
-    <DevicesOutput devices={devicesCtx.devices}/>
+    <DevicesOutput devices={ devicesCtx.devices }/>
   ) 
 }
 

@@ -19,18 +19,16 @@ function ManageDeviceScreen({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text>Manage Device Screen</Text>
-            <Text>{manageDeviceId}</Text>
-            <Text>{manageId}</Text>
+            <Text>Device ID: {manageDeviceId}</Text>
             <MyMapView manageDeviceId={manageDeviceId}/>
-            <View style={styles.deleteContainer}>
+            {/* <View style={styles.deleteContainer}>
                 <IconButton
                     icon="trash"
                     color="white"
                     size = {36}
                     onPress={deleteDeviceHandler}
                 />
-            </View>
+            </View> */}
         </View>
     );
 };
