@@ -8,7 +8,8 @@ type User @model
     { allow: owner, ownerField: "username", operations: [create, update, delete, read] }
   ]){
   id: ID!
-  username: String! @index(name: "byUsername", queryField: "userByUserName", sortKeyFields: ["id"])
+  username: String! 
+  # @index(name: "byUsername", queryField: "userByUserName", sortKeyFields: ["id"])
   email: String!
   name: String!
   devices: [Device] @hasMany
@@ -19,7 +20,8 @@ type Device @model
     { allow: groups, groups: ["Admin"] },
     { allow: owner, ownerField: "username", operations: [create, update, delete, read] }
   ]) {
-  id: String!
+  id: ID!
+  deviceIMEI: String!
   user: User @belongsTo
   messages: [Message] @hasMany
 }
@@ -38,5 +40,6 @@ type Message @model {
   cellID: String!
   rsrp: String!
   tilt_alert: Boolean!
+  wheelie_alert: Boolean!
   overspeed_alert: Boolean!
 }

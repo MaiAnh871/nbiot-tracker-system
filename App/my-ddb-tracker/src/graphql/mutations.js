@@ -14,6 +14,7 @@ export const createUser = /* GraphQL */ `
       devices {
         items {
           id
+          deviceIMEI
           createdAt
           updatedAt
           userDevicesId
@@ -39,6 +40,7 @@ export const updateUser = /* GraphQL */ `
       devices {
         items {
           id
+          deviceIMEI
           createdAt
           updatedAt
           userDevicesId
@@ -64,6 +66,7 @@ export const deleteUser = /* GraphQL */ `
       devices {
         items {
           id
+          deviceIMEI
           createdAt
           updatedAt
           userDevicesId
@@ -83,6 +86,7 @@ export const createDevice = /* GraphQL */ `
   ) {
     createDevice(input: $input, condition: $condition) {
       id
+      deviceIMEI
       user {
         id
         username
@@ -108,6 +112,7 @@ export const createDevice = /* GraphQL */ `
           cellID
           rsrp
           tilt_alert
+          wheelie_alert
           overspeed_alert
           createdAt
           updatedAt
@@ -129,6 +134,7 @@ export const updateDevice = /* GraphQL */ `
   ) {
     updateDevice(input: $input, condition: $condition) {
       id
+      deviceIMEI
       user {
         id
         username
@@ -154,6 +160,7 @@ export const updateDevice = /* GraphQL */ `
           cellID
           rsrp
           tilt_alert
+          wheelie_alert
           overspeed_alert
           createdAt
           updatedAt
@@ -175,6 +182,7 @@ export const deleteDevice = /* GraphQL */ `
   ) {
     deleteDevice(input: $input, condition: $condition) {
       id
+      deviceIMEI
       user {
         id
         username
@@ -200,6 +208,7 @@ export const deleteDevice = /* GraphQL */ `
           cellID
           rsrp
           tilt_alert
+          wheelie_alert
           overspeed_alert
           createdAt
           updatedAt
@@ -223,6 +232,7 @@ export const createMessage = /* GraphQL */ `
       id
       device {
         id
+        deviceIMEI
         user {
           id
           username
@@ -250,6 +260,7 @@ export const createMessage = /* GraphQL */ `
       cellID
       rsrp
       tilt_alert
+      wheelie_alert
       overspeed_alert
       createdAt
       updatedAt
@@ -266,6 +277,7 @@ export const updateMessage = /* GraphQL */ `
       id
       device {
         id
+        deviceIMEI
         user {
           id
           username
@@ -293,6 +305,7 @@ export const updateMessage = /* GraphQL */ `
       cellID
       rsrp
       tilt_alert
+      wheelie_alert
       overspeed_alert
       createdAt
       updatedAt
@@ -309,6 +322,7 @@ export const deleteMessage = /* GraphQL */ `
       id
       device {
         id
+        deviceIMEI
         user {
           id
           username
@@ -336,6 +350,7 @@ export const deleteMessage = /* GraphQL */ `
       cellID
       rsrp
       tilt_alert
+      wheelie_alert
       overspeed_alert
       createdAt
       updatedAt

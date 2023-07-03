@@ -33,15 +33,20 @@ export default function RegisterDeviceScreen() {
   // console.log(outputUser);
 
   deviceDetails = {
-    id: "12345", 
-    userDevicesId: "80a08d0a-279a-47ed-848a-a035ad485ce7"
+    deviceIMEI: "12345"
   }
 
-  const outputDevice = API.graphql({
-    query: mutations.createDevice,
-    variables: { input: deviceDetails }
+  // const outputDevice = API.graphql({
+  //   query: mutations.createDevice,
+  //   variables: { input: deviceDetails }
+  // })
+  // console.log(outputDevice);
+
+  const outputListDevice = API.graphql({
+    query: queries.listDevices
   })
-  console.log(outputDevice);
+
+  console.log(outputListDevice);
 
 
   useEffect(() => {

@@ -11,6 +11,7 @@ export const getUser = /* GraphQL */ `
       devices {
         items {
           id
+          deviceIMEI
           createdAt
           updatedAt
           userDevicesId
@@ -49,6 +50,7 @@ export const getDevice = /* GraphQL */ `
   query GetDevice($id: ID!) {
     getDevice(id: $id) {
       id
+      deviceIMEI
       user {
         id
         username
@@ -74,6 +76,7 @@ export const getDevice = /* GraphQL */ `
           cellID
           rsrp
           tilt_alert
+          wheelie_alert
           overspeed_alert
           createdAt
           updatedAt
@@ -97,6 +100,7 @@ export const listDevices = /* GraphQL */ `
     listDevices(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        deviceIMEI
         user {
           id
           username
@@ -123,6 +127,7 @@ export const getMessage = /* GraphQL */ `
       id
       device {
         id
+        deviceIMEI
         user {
           id
           username
@@ -150,6 +155,7 @@ export const getMessage = /* GraphQL */ `
       cellID
       rsrp
       tilt_alert
+      wheelie_alert
       overspeed_alert
       createdAt
       updatedAt
@@ -168,6 +174,7 @@ export const listMessages = /* GraphQL */ `
         id
         device {
           id
+          deviceIMEI
           createdAt
           updatedAt
           userDevicesId
@@ -184,42 +191,11 @@ export const listMessages = /* GraphQL */ `
         cellID
         rsrp
         tilt_alert
+        wheelie_alert
         overspeed_alert
         createdAt
         updatedAt
         deviceMessagesId
-      }
-      nextToken
-    }
-  }
-`;
-export const userByUserName = /* GraphQL */ `
-  query UserByUserName(
-    $username: String!
-    $id: ModelIDKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    userByUserName(
-      username: $username
-      id: $id
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        username
-        email
-        name
-        devices {
-          nextToken
-        }
-        createdAt
-        updatedAt
       }
       nextToken
     }
