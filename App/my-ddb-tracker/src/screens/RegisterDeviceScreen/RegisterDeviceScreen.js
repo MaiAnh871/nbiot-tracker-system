@@ -15,23 +15,6 @@ export default function RegisterDeviceScreen() {
   const reduxUsername = useSelector(state => state.username);
   console.log(reduxUsername);
 
-  const inputUsername = { 
-    username: 'anhttm',
-  };
-  
-  // const outputUsername = API.graphql({
-  //   query: queries.userByUserName,
-  //   variables: { username: 'anhttm'},
-  //   authMode: 'AMAZON_COGNITO_USER_POOLS'
-  // });
-  // console.log(outputUsername);
-
-  // const outputUser = API.graphql({
-  //   query: queries.getUser,
-  //   variables: { id: "80a08d0a-279a-47ed-848a-a035ad485ce7"}
-  // })
-  // console.log(outputUser);
-
   deviceDetails = {
     deviceIMEI: "12345"
   }
@@ -42,11 +25,11 @@ export default function RegisterDeviceScreen() {
   // })
   // console.log(outputDevice);
 
-  const outputListDevice = API.graphql({
-    query: queries.listDevices
-  })
+  // const outputListDevice = API.graphql({
+  //   query: queries.listDevices
+  // })
 
-  console.log(outputListDevice);
+  // console.log(outputListDevice);
 
 
   useEffect(() => {
@@ -61,6 +44,17 @@ export default function RegisterDeviceScreen() {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     devicesCtx.addDevice({deviceId: `${data}`});
+    const outputDevice = API.graphql({
+      query: mutations.createDevice,
+      variables: { input: {
+        deviceIMEI: `${data}`
+      }}
+    }).then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
 
