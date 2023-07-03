@@ -159,11 +159,11 @@ void Write_Char_Log(u16 character) {
 
 void Write_String_Log(char * input_string) {
   int i;
-	strcat(input_string, "\n");
   /* Send a buffer from UxART to terminal                                                                   */
   for (i = 0; i < strlen(input_string); i++) {
     Write_Char_Log(input_string[i]);
   }
+	Write_Char_Log('\n');
 }
 
 
@@ -171,15 +171,17 @@ void task_1(void * argument) {
   while (1) {
     // Application code
 		if (!Get_GPS_String(&board871.lc76f)) {
+			Write_String_Log("Cannot get GPS data!");
 			continue;
 		}
 		
 		if (!Parse_GPS_String(&board871.lc76f, board871.current_node)) {
 			continue;
 		} else {
-//			Print_Node(&board871, board871.current_node);
-			vTaskDelay(1000);
+			Print_Node(&board871, board871.current_node);
 		}
+		
+		vTaskDelay(1000);
   }
 }
 

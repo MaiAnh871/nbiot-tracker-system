@@ -61,7 +61,7 @@ void Print_Node(struct Board871 * self, struct Node *input_node) {
 	}
 	
 	char *temp;
-	temp = calloc(150, sizeof(char));
+	temp = calloc(100, sizeof(char));
 	 
 	sprintf(self->board871_log_content, "{");
 	
