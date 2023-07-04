@@ -6,6 +6,7 @@ import IconButton from '../../components/UI/IconButton';
 import { GlobalStyles } from '../../constants/styles';
 import MyMapView from '../../components/MyMapView/MyMapView';
 import MyMap from '../../components/MyMapView/MyMap';
+import { Ionicons } from '@expo/vector-icons';
 
 function ManageDeviceScreen({ route, navigation }) {
     const devicesCtx = useContext(DevicesContext);
@@ -24,11 +25,6 @@ function ManageDeviceScreen({ route, navigation }) {
     return (
         <View style={ styles.container }>
             {/* <Text>Device ID: {manageDeviceId}</Text> */}
-            <IconButton
-                color={ GlobalStyles.colors.tomato }
-                size={ 24 }
-                onPress={ configurePressHandler }
-            />
             <MyMapView manageDeviceId={manageDeviceId}/>
             {/* <View style={styles.deleteContainer}>
                 <IconButton

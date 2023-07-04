@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'; //useEffect to check when the component mounts
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -19,6 +19,7 @@ import DevicesContextProvider from '../store/devices-context';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 import ConfigurationDeviceScreen from '../screens/ConfigurationDeviceScreen/ConfigurationDeviceScreen';
+import HeaderButton from '../components/CustomButton/HeaderButton';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -38,14 +39,23 @@ function HomeStack() {
       <Stack.Screen
         name="ManageDeviceScreen"
         component={ManageDeviceScreen}
-        options={{
+        options={({ navigation }) => ({
           title: 'Manage Device',
           //presentation: 'modal',
-        }}
+          headerStyle: {
+            height: 100
+          },
+          headerRight: () => (
+            <HeaderButton
+              title='Config Here'
+              onPress={() => navigation.navigate('ConfigurationDeviceScreen')}
+            />
+          )
+        })}
       />
       <Stack.Screen
-        name="ConfigurationScreen"
-        component={ConfigurationDeviceScreen}
+        name="ConfigurationDeviceScreen"
+        component={ ConfigurationDeviceScreen }
         options={{
           title: 'Configuration',
         }}
