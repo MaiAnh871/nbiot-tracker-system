@@ -37,6 +37,7 @@ export default function MyMapView({ manageDeviceId }) {
         if (payload.event === CONNECTION_STATE_CHANGE) {
             const connectionState = payload.data.connectionState;
             console.log(connectionState);
+            console.log("Map Connected!")
         }
     });
 

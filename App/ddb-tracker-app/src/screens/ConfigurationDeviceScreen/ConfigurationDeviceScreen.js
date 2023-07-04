@@ -1,6 +1,28 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity, Text } from 'react-native';
 import { GlobalStyles } from '../../constants/styles';
+import { Amplify, Hub, PubSub } from 'aws-amplify';
+import { AWSIoTProvider, CONNECTION_STATE_CHANGE } from '@aws-amplify/pubsub';
+import awsmobile from '../../aws-exports';
+
+Amplify.configure(awsmobile);
+
+Amplify.addPluggable(
+  new AWSIoTProvider({
+    aws_pubsub_region: 'ap-northeast-2',
+    aws_pubsub_endpoint:
+      'wss://a2ht7rbdkt6040-ats.iot.ap-northeast-2.amazonaws.com/mqtt'
+  })
+);
+
+Hub.listen('pubsub', (data) => {
+  const { payload } = data;
+  if (payload.event === CONNECTION_STATE_CHANGE) {
+      const connectionState = payload.data.connectionState;
+      console.log(connectionState);
+      console.log("Config Connected!")
+  }
+});
 
 const ConfigurationDeviceScreen = () => {
   const [inputValue, setInputValue] = useState('');
@@ -15,6 +37,7 @@ const ConfigurationDeviceScreen = () => {
   };
 
   const valueHandler = (inputValue) => {
+    PubSub.publish('myTopic1', { msg: 'Hello to all subscribers!' });
     console.log(inputValue);
   } 
 
