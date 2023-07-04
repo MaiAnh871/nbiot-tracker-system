@@ -19,7 +19,7 @@ function ManageDeviceScreen({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text>Device ID: {manageDeviceId}</Text>
+            {/* <Text>Device ID: {manageDeviceId}</Text> */}
             <MyMapView manageDeviceId={manageDeviceId}/>
             {/* <View style={styles.deleteContainer}>
                 <IconButton
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        padding: 24,
+        padding: 0,
         backgroundColor: GlobalStyles.colors.tomato
     }
 })

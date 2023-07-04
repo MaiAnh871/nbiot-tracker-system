@@ -39,7 +39,7 @@ function HomeStack() {
         component={ManageDeviceScreen}
         options={{
           title: 'Manage Device',
-          presentation: 'modal'
+          //presentation: 'modal'
         }}
       />
 
