@@ -106,7 +106,7 @@ void MC3416_Init(void)
 	
 }
 
-void MC3416_Read_Accel(int16_t *Ax, int16_t *Ay, int16_t *Az)
+void MC3416_Read_Accel(struct MC3416 * self, struct Node *current_node)
 {
 	static uint8_t Rec_Data[6];
 	/* Change range and scale */
@@ -118,12 +118,7 @@ void MC3416_Read_Accel(int16_t *Ax, int16_t *Ay, int16_t *Az)
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x12, &Rec_Data[4]);
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x11, &Rec_Data[5]);
 	
-	*Ax = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]);
-	*Ay = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]);
-	*Az = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]);
-	
-	/* Offset and gain */
-	*Ax = *Ax + MC3416_OFFSET_AX;
-	*Ay = *Ay + MC3416_OFFSET_AY;
-	*Az = *Az + MC3416_OFFSET_AZ;
+	current_node->accel_x = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]) + MC3416_OFFSET_AX;
+	current_node->accel_y = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
+	current_node->accel_z = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]) + MC3416_OFFSET_AZ;
 }

@@ -169,10 +169,10 @@ void Write_String_Log(char * input_string) {
 
 void task_1(void * argument) {
   while (1) {
-//		uint32_t start_time;
-//		uint32_t end_time;
-//		
-//		start_time = CURRENT_TICK;
+		uint32_t start_time;
+		uint32_t end_time;
+		
+		start_time = CURRENT_TICK;
 
 		/* Application start */
 		
@@ -180,25 +180,54 @@ void task_1(void * argument) {
 		
 		/* Application end */
 		
-//		end_time = CURRENT_TICK;
-//		
-		//		sprintf(board871.board871_log_content, "Task 1 period: %u s", (end_time - start_time));
+		end_time = CURRENT_TICK;
+		
+//		sprintf(board871.board871_log_content, "Task 1 period: %u s", (end_time - start_time));
 //		Write_String_Log(board871.board871_log_content);
   }
 }
 
 void task_2(void * argument) {
   while (1) {
-    // Application code
-		Toggle_LED_1();
-    vTaskDelay(500);
+		uint32_t start_time;
+		uint32_t end_time;
+		
+		start_time = CURRENT_TICK;
+
+		/* Application start */
+		
+		Get_Accel_Data(&board871);
+		
+		vTaskDelay(996);
+		
+		/* Application end */
+		
+		end_time = CURRENT_TICK;
+		
+//		sprintf(board871.board871_log_content, "Task 2 period: %u s", (end_time - start_time));
+//		Write_String_Log(board871.board871_log_content);
   }
 }
 
 void task_3(void * argument) {
   while (1) {
-    /* Application code */		
-    vTaskDelay(100);
+		uint32_t start_time;
+		uint32_t end_time;
+		
+		start_time = CURRENT_TICK;
+
+		/* Application start */
+		
+		Print_Node(&board871, board871.current_node);
+		
+		vTaskDelay(933);
+		
+		/* Application end */
+		
+		end_time = CURRENT_TICK;
+		
+//		sprintf(board871.board871_log_content, "Task 3 period: %u s", (end_time - start_time));
+//		Write_String_Log(board871.board871_log_content);
   }
 }
 

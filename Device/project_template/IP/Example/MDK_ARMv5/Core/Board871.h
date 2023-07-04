@@ -49,6 +49,7 @@ void Board871_Initialize(struct Board871 * self);
 
 void Create_New_Node(struct Board871 * self);
 void Get_GPS_Data(struct Board871 * self);
+void Get_Accel_Data(struct Board871 * self);
 
 /* Debug */
 void Print_Node(struct Board871 * self, struct Node *input_node);

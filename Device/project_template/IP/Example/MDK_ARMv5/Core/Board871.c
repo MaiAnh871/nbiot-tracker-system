@@ -61,9 +61,11 @@ void Get_GPS_Data(struct Board871 * self) {
 	
 	if (!Parse_GPS_String(&self->lc76f, self->current_node)) {
 		return;
-	} else {
-		Print_Node(self, self->current_node);
 	}
+}
+
+void Get_Accel_Data(struct Board871 * self) {
+	MC3416_Read_Accel(&self->mc3416, self->current_node);
 }
 
 /* Debug */
@@ -96,10 +98,10 @@ void Print_Node(struct Board871 * self, struct Node *input_node) {
 	sprintf(temp, ",\"accel_x\":%d", (int16_t) input_node->accel_x);
 	strcat(self->board871_log_content, temp);	
 
-	sprintf(temp, ",\"accel_y\":%d", (int16_t) input_node->accel_x);
+	sprintf(temp, ",\"accel_y\":%d", (int16_t) input_node->accel_y);
 	strcat(self->board871_log_content, temp);	
 
-	sprintf(temp, ",\"accel_z\":%d", (int16_t) input_node->accel_x);
+	sprintf(temp, ",\"accel_z\":%d", (int16_t) input_node->accel_z);
 	strcat(self->board871_log_content, temp);
 	
 	if (input_node->tilt_alert) {

@@ -150,7 +150,10 @@ bool Get_GPS_String(struct LC76F * self)
 	}
 		
 	/* Sample raw GPS string */
-//	sprintf(self->raw_gps_string, "$GNRMC,045910.817,A,2101.799402,N,10546.931885,E,0.00,0.00,040723,,,A,V*04\r\n");
+	if (FAKE_GPS_STRING) {
+		Write_String_Log("Using fake GPS string!");
+		sprintf(self->raw_gps_string, "$GNRMC,045910.817,A,2101.799402,N,10546.931885,E,0.00,0.00,040723,,,A,V*04\r\n");
+	}
 	
 	if (Check_Valid_GPS_String(self)) {
 		strcpy(self->gps_string, self->raw_gps_string);
