@@ -1,13 +1,13 @@
 {
   "api": {
-    "myddbtracker": {
+    "ddbtrackerapp": {
       "dependsOn": [
         {
           "attributes": [
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "myddbtracker2fb48a942fb48a94"
+          "resourceName": "ddbtrackerapp49d3e19449d3e194"
         }
       ],
       "output": {
@@ -16,7 +16,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authmyddbtracker2fb48a942fb48a94"
+              "userPoolId": "authddbtrackerapp49d3e19449d3e194"
             }
           }
         }
@@ -26,7 +26,7 @@
     }
   },
   "auth": {
-    "myddbtracker2fb48a942fb48a94": {
+    "ddbtrackerapp49d3e19449d3e194": {
       "customAuth": false,
       "dependsOn": [
         {
@@ -35,7 +35,7 @@
             "Name"
           ],
           "category": "function",
-          "resourceName": "myddbtracker2fb48a942fb48a94PostConfirmation",
+          "resourceName": "ddbtrackerapp49d3e19449d3e194PostConfirmation",
           "triggerProvider": "Cognito"
         }
       ],
@@ -59,29 +59,31 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
-    },
-    "userPoolGroups": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "UserPoolId",
-            "AppClientIDWeb",
-            "AppClientID",
-            "IdentityPoolId"
-          ],
-          "category": "auth",
-          "resourceName": "myddbtracker2fb48a942fb48a94"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "Cognito-UserPool-Groups"
     }
   },
   "function": {
-    "myddbtracker2fb48a942fb48a94PostConfirmation": {
+    "ddbtrackerapp49d3e19449d3e194PostConfirmation": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_ddbtrackerapp49d3e19449d3e194PostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ddbtrackerapp49d3e19449d3e194PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_ddbtrackerapp49d3e19449d3e194PostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ddbtrackerapp49d3e19449d3e194PostConfirmation"
+        }
+      ]
     }
   }
 }

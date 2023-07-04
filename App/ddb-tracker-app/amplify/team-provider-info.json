@@ -1,0 +1,30 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ddbtrackerapp-dev-151224-authRole",
+      "UnauthRoleArn": "arn:aws:iam::651307515661:role/amplify-ddbtrackerapp-dev-151224-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::651307515661:role/amplify-ddbtrackerapp-dev-151224-authRole",
+      "Region": "ap-northeast-2",
+      "DeploymentBucketName": "amplify-ddbtrackerapp-dev-151224-deployment",
+      "UnauthRoleName": "amplify-ddbtrackerapp-dev-151224-unauthRole",
+      "StackName": "amplify-ddbtrackerapp-dev-151224",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:651307515661:stack/amplify-ddbtrackerapp-dev-151224/85869ee0-1a42-11ee-874c-0621ee011464",
+      "AmplifyAppId": "d27zqeplbbugcw",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-ddbtrackerapp-dev-151224-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "ddbtrackerapp49d3e19449d3e194": {}
+      },
+      "function": {
+        "ddbtrackerapp49d3e19449d3e194PostConfirmation": {
+          "deploymentBucketName": "amplify-ddbtrackerapp-dev-151224-deployment",
+          "s3Key": "amplify-builds/ddbtrackerapp49d3e19449d3e194PostConfirmation-553966434a6c50724f53-build.zip"
+        }
+      },
+      "api": {
+        "ddbtrackerapp": {}
+      }
+    }
+  }
+}

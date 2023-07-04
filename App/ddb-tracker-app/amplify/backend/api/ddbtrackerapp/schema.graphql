@@ -1,0 +1,49 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+# input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type User @model
+  @auth(rules: [
+    # { allow: groups, groups: ["Admin"] },
+    { allow: owner, 
+    # ownerField: "username", 
+    operations: [create, update, delete, read] }
+  ]){
+  id: ID!
+  username: String! 
+  # @index(name: "byUsername", queryField: "userByUserName", sortKeyFields: ["id"])
+  email: String!
+  name: String!
+  devices: [Device] @hasMany
+}
+
+type Device @model
+  @auth(rules: [
+    #{ allow: groups, groups: ["Admin"] },
+    { allow: owner, 
+    #ownerField: "username", 
+    operations: [create, update, delete, read] }
+  ]) {
+  id: ID!
+  deviceIMEI: String!
+  user: User @belongsTo
+  messages: [Message] @hasMany
+}
+
+type Message @model {
+  id: ID!
+  device: Device @belongsTo
+  imei: String!
+  timestamp: String!
+  latitude: String!
+  longitude: String!
+  speed: String!
+  acceX: String!
+  acceY: String!
+  acceZ: String!
+  cellID: String!
+  rsrp: String!
+  tilt_alert: Boolean!
+  wheelie_alert: Boolean!
+  overspeed_alert: Boolean!
+}
