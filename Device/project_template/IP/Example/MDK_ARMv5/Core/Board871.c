@@ -53,6 +53,19 @@ void Create_New_Node(struct Board871 * self) {
 	self->current_node->next_node = NULL;
 }
 
+void Get_GPS_Data(struct Board871 * self) {
+	if (!Get_GPS_String(&self->lc76f)) {
+		Write_String_Log("Cannot get GPS data!");
+		return;
+	}
+	
+	if (!Parse_GPS_String(&self->lc76f, self->current_node)) {
+		return;
+	} else {
+		Print_Node(self, self->current_node);
+	}
+}
+
 /* Debug */
 void Print_Node(struct Board871 * self, struct Node *input_node) {
 	if (!input_node) {
@@ -65,7 +78,7 @@ void Print_Node(struct Board871 * self, struct Node *input_node) {
 	 
 	sprintf(self->board871_log_content, "{");
 	
-	sprintf(temp, "\"timestamp\":%u:%u:%uT%u-%u-%u", input_node->timestamp.hour, input_node->timestamp.minute, input_node->timestamp.second, input_node->timestamp.day, input_node->timestamp.month, input_node->timestamp.year);
+	sprintf(temp, "\"timestamp\":\"%u:%u:%uT%u-%u-%u\"", input_node->timestamp.hour, input_node->timestamp.minute, input_node->timestamp.second, input_node->timestamp.day, input_node->timestamp.month, input_node->timestamp.year);
 	strcat(self->board871_log_content, temp);
 	
 	sprintf(temp, ",\"device_id\":\"%s\"", input_node->device_id);

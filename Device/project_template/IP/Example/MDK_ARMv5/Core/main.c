@@ -169,19 +169,21 @@ void Write_String_Log(char * input_string) {
 
 void task_1(void * argument) {
   while (1) {
-    // Application code
-		if (!Get_GPS_String(&board871.lc76f)) {
-			Write_String_Log("Cannot get GPS data!");
-			continue;
-		}
+//		uint32_t start_time;
+//		uint32_t end_time;
+//		
+//		start_time = CURRENT_TICK;
+
+		/* Application start */
 		
-		if (!Parse_GPS_String(&board871.lc76f, board871.current_node)) {
-			continue;
-		} else {
-			Print_Node(&board871, board871.current_node);
-		}
+		Get_GPS_Data(&board871);
 		
-		vTaskDelay(1000);
+		/* Application end */
+		
+//		end_time = CURRENT_TICK;
+//		
+		//		sprintf(board871.board871_log_content, "Task 1 period: %u s", (end_time - start_time));
+//		Write_String_Log(board871.board871_log_content);
   }
 }
 

@@ -30,7 +30,7 @@ static struct LC76F {
 	
 	char * raw_gps_string;
 	char * gps_string;
-	char temp[LC76F_TEMP_STRING_LENGTH];
+	char * temp;
 }
 LC76F;
 
@@ -40,11 +40,11 @@ void LC76F_Initialize(struct LC76F * self);
 void LC76F_UART0_Configuration(void);
 void LC76F_UART0_Receive(void);
 void LC76F_UART0_Read_Block(char *data);
+
 void Clear_Raw_GPS_String(struct LC76F * self);
 void Clear_GPS_String(struct LC76F * self);
-bool Check_Valid_GPS_String(char * gps_raw_string);
+bool Check_Valid_GPS_String(struct LC76F * self);
 void Clear_Temp(struct LC76F * self);
-
 bool Get_GPS_String(struct LC76F * self);
 bool Parse_GPS_String(struct LC76F * self, struct Node *current_node);
 //float Calculate_Distance(void);

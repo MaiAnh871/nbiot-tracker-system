@@ -18,6 +18,11 @@ extern void LC76F_Initialize(struct LC76F * self) {
   if (!self -> gps_string) {
 		Error_Blinking_LED_1();
   }
+	
+  self -> temp = (char * ) malloc(LC76F_GPS_DATA_SIZE * sizeof(char));
+  if (!self -> temp) {
+		Error_Blinking_LED_1();
+  }
 }
 
 void LC76F_UART0_Configuration(void) 
@@ -107,14 +112,13 @@ void Clear_GPS_String(struct LC76F * self) {
 	}
 }
 
-bool Check_Valid_GPS_String(char * gps_raw_string) {
+bool Check_Valid_GPS_String(struct LC76F * self) {
 	bool valid = false;
 	char* check = NULL;
+
+	strcpy(self->temp, self->raw_gps_string);
 	
-	char *temp;
-	strcpy(temp, gps_raw_string);
-	
-	check = strtok(temp, ",");
+	check = strtok(self->temp, ",");
 	check = strtok(NULL, ",");
 	check = strtok(NULL, ",");
 	
@@ -122,7 +126,7 @@ bool Check_Valid_GPS_String(char * gps_raw_string) {
 	{
 		valid = true;
 	}
-	
+
 	return valid;
 }
 
@@ -144,13 +148,12 @@ bool Get_GPS_String(struct LC76F * self)
 		LC76F_UART0_Read_Block(self->raw_gps_string);
 		check = strstr(self->raw_gps_string, "$GNRMC");
 	}
-	
-	/* Sample raw GPS string */
-	sprintf(self->raw_gps_string, "$GPRMC,102739.000,A,3150.7825,N,11711.9369,E,0.00,303.62,111214,,,D*6A\r\n");
-	
-	if (Check_Valid_GPS_String(self->raw_gps_string)) {
-		strcpy(self->gps_string, self->raw_gps_string);
 		
+	/* Sample raw GPS string */
+//	sprintf(self->raw_gps_string, "$GNRMC,045910.817,A,2101.799402,N,10546.931885,E,0.00,0.00,040723,,,A,V*04\r\n");
+	
+	if (Check_Valid_GPS_String(self)) {
+		strcpy(self->gps_string, self->raw_gps_string);
 //		strcpy(self->lc76f_log_content, self->raw_gps_string);
 //		Write_String_Log(self->gps_string);
 		return true;
