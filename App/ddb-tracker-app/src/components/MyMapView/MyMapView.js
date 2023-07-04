@@ -76,8 +76,8 @@ export default function MyMapView({ manageDeviceId }) {
             setRegion({
                 latitude: parseFloat(message.lat),
                 longitude: parseFloat(message.long),
-                latitudeDelta: 0.001922,
-                longitudeDelta: 0.001421
+                latitudeDelta: 0.021922,
+                longitudeDelta: 0.021421
             });
     
             const newCoords = [

@@ -18,6 +18,7 @@ import ManageDeviceScreen from '../screens/ManageDevice/ManageDevice';
 import DevicesContextProvider from '../store/devices-context';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
+import ConfigurationDeviceScreen from '../screens/ConfigurationDeviceScreen/ConfigurationDeviceScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -39,7 +40,14 @@ function HomeStack() {
         component={ManageDeviceScreen}
         options={{
           title: 'Manage Device',
-          //presentation: 'modal'
+          //presentation: 'modal',
+        }}
+      />
+      <Stack.Screen
+        name="ConfigurationScreen"
+        component={ConfigurationDeviceScreen}
+        options={{
+          title: 'Configuration',
         }}
       />
 

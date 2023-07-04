@@ -12,14 +12,23 @@ function ManageDeviceScreen({ route, navigation }) {
     const manageDeviceId = route.params?.routeDeviceId;
     const manageId = route.params?.routeId;
 
+    function configurePressHandler() {
+        navigation.navigate('ConfigurationScreen');
+    }
+
     function deleteDeviceHandler() {
         devicesCtx.deleteDevice(manageId);
         navigation.goBack();
     }
 
     return (
-        <View style={styles.container}>
+        <View style={ styles.container }>
             {/* <Text>Device ID: {manageDeviceId}</Text> */}
+            <IconButton
+                color={ GlobalStyles.colors.tomato }
+                size={ 24 }
+                onPress={ configurePressHandler }
+            />
             <MyMapView manageDeviceId={manageDeviceId}/>
             {/* <View style={styles.deleteContainer}>
                 <IconButton
