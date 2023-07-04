@@ -37,7 +37,7 @@ const ConfigurationDeviceScreen = () => {
   };
 
   const valueHandler = (inputValue) => {
-    PubSub.publish('myTopic1', { msg: 'Hello to all subscribers!' });
+    PubSub.publish('myTopic1', { msg: `${inputValue}` });
     console.log(inputValue);
   } 
 
