@@ -3,8 +3,8 @@ import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 const HeaderButton = ({ title, onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.button}>
-      <Text style={styles.text}>{title}</Text>
+    <TouchableOpacity onPress={ onPress } style={styles.button}>
+      <Text style={ styles.text }>{ title }</Text>
     </TouchableOpacity>
   );
 };

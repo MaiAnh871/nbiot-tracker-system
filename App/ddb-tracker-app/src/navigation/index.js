@@ -14,7 +14,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import RegisterDeviceScreen from '../screens/RegisterDeviceScreen';
 import { Auth, Hub } from 'aws-amplify';
-import ManageDeviceScreen from '../screens/ManageDevice/ManageDevice';
+import ManageDeviceScreen from '../screens/ManageDeviceScreen/ManageDeviceScreen';
 import DevicesContextProvider from '../store/devices-context';
 import { Provider } from 'react-redux';
 import store from '../redux/store';

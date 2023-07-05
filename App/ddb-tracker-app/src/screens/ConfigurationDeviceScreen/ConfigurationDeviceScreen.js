@@ -4,6 +4,7 @@ import { GlobalStyles } from '../../constants/styles';
 import { Amplify, Hub, PubSub } from 'aws-amplify';
 import { AWSIoTProvider, CONNECTION_STATE_CHANGE } from '@aws-amplify/pubsub';
 import awsmobile from '../../aws-exports';
+import { useSelector } from 'react-redux';
 
 Amplify.configure(awsmobile);
 
@@ -26,6 +27,8 @@ Hub.listen('pubsub', (data) => {
 
 const ConfigurationDeviceScreen = () => {
   const [inputValue, setInputValue] = useState('');
+  const reduxDeviceID = useSelector(state => state.deviceID);
+  console.log(reduxDeviceID);
 
   const handleInputChange = (text) => {
     setInputValue(text);

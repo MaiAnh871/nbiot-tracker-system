@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 import { DevicesContext } from '../../store/devices-context';
@@ -7,33 +7,27 @@ import { GlobalStyles } from '../../constants/styles';
 import MyMapView from '../../components/MyMapView/MyMapView';
 import MyMap from '../../components/MyMapView/MyMap';
 import { Ionicons } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux';
+import { addDeviceID } from '../../redux/reducer';
 
 function ManageDeviceScreen({ route, navigation }) {
+    const dispatch = useDispatch();
     const devicesCtx = useContext(DevicesContext);
     const manageDeviceId = route.params?.routeDeviceId;
     const manageId = route.params?.routeId;
-
-    function configurePressHandler() {
-        navigation.navigate('ConfigurationScreen');
-    }
 
     function deleteDeviceHandler() {
         devicesCtx.deleteDevice(manageId);
         navigation.goBack();
     }
 
+    useEffect(() => {
+        dispatch(addDeviceID(manageDeviceId))
+    }, [dispatch])
+
     return (
         <View style={ styles.container }>
-            {/* <Text>Device ID: {manageDeviceId}</Text> */}
             <MyMapView manageDeviceId={manageDeviceId}/>
-            {/* <View style={styles.deleteContainer}>
-                <IconButton
-                    icon="trash"
-                    color="white"
-                    size = {36}
-                    onPress={deleteDeviceHandler}
-                />
-            </View> */}
         </View>
     );
 };
