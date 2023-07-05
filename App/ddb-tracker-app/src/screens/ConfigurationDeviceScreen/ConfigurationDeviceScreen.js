@@ -40,7 +40,7 @@ const ConfigurationDeviceScreen = () => {
   };
 
   const valueHandler = (inputValue) => {
-    PubSub.publish('myTopic1', { msg: `${inputValue}` });
+    PubSub.publish(`anhttm8-tracker/${reduxDeviceID}/config`, { periodValue: `${inputValue}` });
     console.log(inputValue);
   } 
 
