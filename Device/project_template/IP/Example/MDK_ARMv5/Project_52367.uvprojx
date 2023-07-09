@@ -10,13 +10,14 @@
       <TargetName>HT32</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pArmCC>6190000::V6.19::ARMCLANG</pArmCC>
       <pCCUsed>6190000::V6.19::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>HT32F52367</Device>
           <Vendor>Holtek</Vendor>
-          <PackID>Holtek.HT32_DFP.1.0.44</PackID>
+          <PackID>Holtek.HT32_DFP.1.0.46</PackID>
           <PackURL>https://mcu.holtek.com.tw/pack</PackURL>
           <Cpu>IROM(0x00000000-0x0003FBFF) IRAM(0x20000000-0x20007FFF) CLOCK(8000000) CPUTYPE("Cortex-M0+")</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -382,32 +383,72 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>User</GroupName>
+          <GroupName>Core</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\main.c</FilePath>
+              <FileName>Setting.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\Setting.h</FilePath>
             </File>
             <File>
-              <FileName>ht32f5xxxx_01_it.c</FileName>
+              <FileName>Collections.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\Collections.h</FilePath>
+            </File>
+            <File>
+              <FileName>Board871.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\Board871.h</FilePath>
+            </File>
+            <File>
+              <FileName>Board871.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\ht32f5xxxx_01_it.c</FilePath>
+              <FilePath>.\Core\Board871.c</FilePath>
+            </File>
+            <File>
+              <FileName>BC660K.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\BC660K.h</FilePath>
             </File>
             <File>
               <FileName>BC660K.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BC660K.c</FilePath>
+              <FilePath>.\Core\BC660K.c</FilePath>
+            </File>
+            <File>
+              <FileName>LC76F.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\LC76F.h</FilePath>
             </File>
             <File>
               <FileName>LC76F.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\LC76F.c</FilePath>
+              <FilePath>.\Core\LC76F.c</FilePath>
+            </File>
+            <File>
+              <FileName>MC3416.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\MC3416.h</FilePath>
             </File>
             <File>
               <FileName>MC3416.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MC3416.c</FilePath>
+              <FilePath>.\Core\MC3416.c</FilePath>
+            </File>
+            <File>
+              <FileName>Utilities.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Core\Utilities.h</FilePath>
+            </File>
+            <File>
+              <FileName>Utilities.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\Utilities.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -661,14 +702,72 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
+        </Group>
+        <Group>
+          <GroupName>::RTOS</GroupName>
+        </Group>
       </Groups>
     </Target>
   </Targets>
 
   <RTE>
     <apis/>
-    <components/>
-    <files/>
+    <components>
+      <component Cbundle="FreeRTOS" Cclass="RTOS" Cgroup="Config" Cvariant="FreeRTOS" Cvendor="ARM" Cversion="10.5.1" condition="FreeRTOS Config Native">
+        <package name="CMSIS-FreeRTOS" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="ARM" version="10.5.1"/>
+        <targetInfos>
+          <targetInfo name="HT32"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="FreeRTOS" Cclass="RTOS" Cgroup="Core" Cvariant="Cortex-M" Cvendor="ARM" Cversion="10.5.1" condition="FreeRTOS Core CM">
+        <package name="CMSIS-FreeRTOS" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="ARM" version="10.5.1"/>
+        <targetInfos>
+          <targetInfo name="HT32"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="FreeRTOS" Cclass="RTOS" Cgroup="Heap" Cvariant="Heap_4" Cvendor="ARM" Cversion="10.5.1" condition="FreeRTOS Heap">
+        <package name="CMSIS-FreeRTOS" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="ARM" version="10.5.1"/>
+        <targetInfos>
+          <targetInfo name="HT32"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="FreeRTOS" Cclass="RTOS" Cgroup="Timers" Cvendor="ARM" Cversion="10.5.1" condition="FreeRTOS Timers">
+        <package name="CMSIS-FreeRTOS" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="ARM" version="10.5.1"/>
+        <targetInfos>
+          <targetInfo name="HT32"/>
+        </targetInfos>
+      </component>
+      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.6.0" condition="ARMv6_7_8-M Device">
+        <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
+        <targetInfos>
+          <targetInfo name="HT32"/>
+        </targetInfos>
+      </component>
+    </components>
+    <files>
+      <file attr="config" category="source" condition="HT32F52357_67" name="ARM\Startup\Holtek\HT32F5xxxx\startup_ht32f52357_67.s" version="1.2.3">
+        <instance index="0" removed="1">RTE\Device\HT32F52367\startup_ht32f52357_67.s</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Holtek" Cversion="1.0.1" condition="HT32Fxxxx CMSIS"/>
+        <package name="HT32_DFP" schemaVersion="1.2" url="https://mcu.holtek.com.tw/pack" vendor="Holtek" version="1.0.46"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="source" condition="HT32F52357_67" name="ARM\Startup\Holtek\HT32F5xxxx\system_ht32f5xxxx_03.c" version="1.2.5">
+        <instance index="0" removed="1">RTE\Device\HT32F52367\system_ht32f5xxxx_03.c</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Holtek" Cversion="1.0.1" condition="HT32Fxxxx CMSIS"/>
+        <package name="HT32_DFP" schemaVersion="1.2" url="https://mcu.holtek.com.tw/pack" vendor="Holtek" version="1.0.46"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" condition="CoreM" name="Config\ARMCM\FreeRTOSConfig.h" version="10.4.0">
+        <instance index="0">RTE\RTOS\FreeRTOSConfig.h</instance>
+        <component Cbundle="FreeRTOS" Cclass="RTOS" Cgroup="Config" Cvariant="FreeRTOS" Cvendor="ARM" Cversion="10.5.1" condition="FreeRTOS Config Native"/>
+        <package name="CMSIS-FreeRTOS" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="ARM" version="10.5.1"/>
+        <targetInfos>
+          <targetInfo name="HT32"/>
+        </targetInfos>
+      </file>
+    </files>
   </RTE>
 
   <LayerInfo>

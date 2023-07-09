@@ -1,4 +1,4 @@
-./ht32/52367/obj/mc3416.o: ..\MC3416.c ..\MC3416.h \
+./ht32/52367/obj/mc3416.o: Core\MC3416.c Core\MC3416.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h \
   ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h \
@@ -43,4 +43,5 @@
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_cm0plus_misc.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_serial.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_div.h \
-  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h Core\Setting.h \
+  Core\Collections.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h
