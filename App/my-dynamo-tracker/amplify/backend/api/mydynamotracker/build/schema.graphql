@@ -1,0 +1,375 @@
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  devices(filter: ModelDeviceFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelDeviceConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Device {
+  id: ID!
+  deviceId: String!
+  user: User
+  dataMsg(filter: ModelDataMessageFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelDataMessageConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  userDevicesId: ID
+}
+
+type DataMessage {
+  id: ID!
+  device: Device
+  timestamp: String!
+  latitude: String!
+  longitude: String!
+  acceX: String!
+  acceY: String!
+  acceZ: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  deviceDataMsgId: ID
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelUserConnection {
+  items: [User]!
+  nextToken: String
+}
+
+input ModelUserFilterInput {
+  id: ModelIDInput
+  username: ModelStringInput
+  email: ModelStringInput
+  and: [ModelUserFilterInput]
+  or: [ModelUserFilterInput]
+  not: ModelUserFilterInput
+}
+
+type Query {
+  getUser(id: ID!): User
+  listUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String): ModelUserConnection
+  getDevice(id: ID!): Device
+  listDevices(filter: ModelDeviceFilterInput, limit: Int, nextToken: String): ModelDeviceConnection
+  getDataMessage(id: ID!): DataMessage
+  listDataMessages(filter: ModelDataMessageFilterInput, limit: Int, nextToken: String): ModelDataMessageConnection
+}
+
+input ModelUserConditionInput {
+  username: ModelStringInput
+  email: ModelStringInput
+  and: [ModelUserConditionInput]
+  or: [ModelUserConditionInput]
+  not: ModelUserConditionInput
+}
+
+input CreateUserInput {
+  id: ID
+  username: String!
+  email: String!
+}
+
+input UpdateUserInput {
+  id: ID!
+  username: String
+  email: String
+}
+
+input DeleteUserInput {
+  id: ID!
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!, condition: ModelUserConditionInput): User
+  updateUser(input: UpdateUserInput!, condition: ModelUserConditionInput): User
+  deleteUser(input: DeleteUserInput!, condition: ModelUserConditionInput): User
+  createDevice(input: CreateDeviceInput!, condition: ModelDeviceConditionInput): Device
+  updateDevice(input: UpdateDeviceInput!, condition: ModelDeviceConditionInput): Device
+  deleteDevice(input: DeleteDeviceInput!, condition: ModelDeviceConditionInput): Device
+  createDataMessage(input: CreateDataMessageInput!, condition: ModelDataMessageConditionInput): DataMessage
+  updateDataMessage(input: UpdateDataMessageInput!, condition: ModelDataMessageConditionInput): DataMessage
+  deleteDataMessage(input: DeleteDataMessageInput!, condition: ModelDataMessageConditionInput): DataMessage
+}
+
+input ModelSubscriptionUserFilterInput {
+  id: ModelSubscriptionIDInput
+  email: ModelSubscriptionStringInput
+  and: [ModelSubscriptionUserFilterInput]
+  or: [ModelSubscriptionUserFilterInput]
+}
+
+type Subscription {
+  onCreateUser(filter: ModelSubscriptionUserFilterInput, username: String): User @aws_subscribe(mutations: ["createUser"])
+  onUpdateUser(filter: ModelSubscriptionUserFilterInput, username: String): User @aws_subscribe(mutations: ["updateUser"])
+  onDeleteUser(filter: ModelSubscriptionUserFilterInput, username: String): User @aws_subscribe(mutations: ["deleteUser"])
+  onCreateDevice(filter: ModelSubscriptionDeviceFilterInput): Device @aws_subscribe(mutations: ["createDevice"])
+  onUpdateDevice(filter: ModelSubscriptionDeviceFilterInput): Device @aws_subscribe(mutations: ["updateDevice"])
+  onDeleteDevice(filter: ModelSubscriptionDeviceFilterInput): Device @aws_subscribe(mutations: ["deleteDevice"])
+  onCreateDataMessage(filter: ModelSubscriptionDataMessageFilterInput): DataMessage @aws_subscribe(mutations: ["createDataMessage"])
+  onUpdateDataMessage(filter: ModelSubscriptionDataMessageFilterInput): DataMessage @aws_subscribe(mutations: ["updateDataMessage"])
+  onDeleteDataMessage(filter: ModelSubscriptionDataMessageFilterInput): DataMessage @aws_subscribe(mutations: ["deleteDataMessage"])
+}
+
+type ModelDeviceConnection {
+  items: [Device]!
+  nextToken: String
+}
+
+input ModelDeviceFilterInput {
+  id: ModelIDInput
+  deviceId: ModelStringInput
+  and: [ModelDeviceFilterInput]
+  or: [ModelDeviceFilterInput]
+  not: ModelDeviceFilterInput
+  userDevicesId: ModelIDInput
+}
+
+input ModelDeviceConditionInput {
+  deviceId: ModelStringInput
+  and: [ModelDeviceConditionInput]
+  or: [ModelDeviceConditionInput]
+  not: ModelDeviceConditionInput
+  userDevicesId: ModelIDInput
+}
+
+input CreateDeviceInput {
+  id: ID
+  deviceId: String!
+  userDevicesId: ID
+}
+
+input UpdateDeviceInput {
+  id: ID!
+  deviceId: String
+  userDevicesId: ID
+}
+
+input DeleteDeviceInput {
+  id: ID!
+}
+
+input ModelSubscriptionDeviceFilterInput {
+  id: ModelSubscriptionIDInput
+  deviceId: ModelSubscriptionStringInput
+  and: [ModelSubscriptionDeviceFilterInput]
+  or: [ModelSubscriptionDeviceFilterInput]
+}
+
+type ModelDataMessageConnection {
+  items: [DataMessage]!
+  nextToken: String
+}
+
+input ModelDataMessageFilterInput {
+  id: ModelIDInput
+  timestamp: ModelStringInput
+  latitude: ModelStringInput
+  longitude: ModelStringInput
+  acceX: ModelStringInput
+  acceY: ModelStringInput
+  acceZ: ModelStringInput
+  and: [ModelDataMessageFilterInput]
+  or: [ModelDataMessageFilterInput]
+  not: ModelDataMessageFilterInput
+  deviceDataMsgId: ModelIDInput
+}
+
+input ModelDataMessageConditionInput {
+  timestamp: ModelStringInput
+  latitude: ModelStringInput
+  longitude: ModelStringInput
+  acceX: ModelStringInput
+  acceY: ModelStringInput
+  acceZ: ModelStringInput
+  and: [ModelDataMessageConditionInput]
+  or: [ModelDataMessageConditionInput]
+  not: ModelDataMessageConditionInput
+  deviceDataMsgId: ModelIDInput
+}
+
+input CreateDataMessageInput {
+  id: ID
+  timestamp: String!
+  latitude: String!
+  longitude: String!
+  acceX: String!
+  acceY: String!
+  acceZ: String!
+  deviceDataMsgId: ID
+}
+
+input UpdateDataMessageInput {
+  id: ID!
+  timestamp: String
+  latitude: String
+  longitude: String
+  acceX: String
+  acceY: String
+  acceZ: String
+  deviceDataMsgId: ID
+}
+
+input DeleteDataMessageInput {
+  id: ID!
+}
+
+input ModelSubscriptionDataMessageFilterInput {
+  id: ModelSubscriptionIDInput
+  timestamp: ModelSubscriptionStringInput
+  latitude: ModelSubscriptionStringInput
+  longitude: ModelSubscriptionStringInput
+  acceX: ModelSubscriptionStringInput
+  acceY: ModelSubscriptionStringInput
+  acceZ: ModelSubscriptionStringInput
+  and: [ModelSubscriptionDataMessageFilterInput]
+  or: [ModelSubscriptionDataMessageFilterInput]
+}

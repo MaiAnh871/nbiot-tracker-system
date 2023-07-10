@@ -1,0 +1,154 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mydynamotracker-dev-154645-authRole",
+      "UnauthRoleArn": "arn:aws:iam::651307515661:role/amplify-mydynamotracker-dev-154645-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::651307515661:role/amplify-mydynamotracker-dev-154645-authRole",
+      "Region": "ap-northeast-2",
+      "DeploymentBucketName": "amplify-mydynamotracker-dev-154645-deployment",
+      "UnauthRoleName": "amplify-mydynamotracker-dev-154645-unauthRole",
+      "StackName": "amplify-mydynamotracker-dev-154645",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:651307515661:stack/amplify-mydynamotracker-dev-154645/28e7dff0-1010-11ee-bebc-0a66bb38456a",
+      "AmplifyAppId": "d3q51vwmts1st7",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-mydynamotracker-dev-154645-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    }
+  },
+  "auth": {
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "mydynamotrackerresource",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ],
+      "lastPushTimeStamp": "2023-06-22T15:34:28.975Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mydynamotracker-dev-154645-deployment/amplify-cfn-templates/auth/userPoolGroups-cloudformation-template.json",
+        "logicalId": "authuserPoolGroups"
+      },
+      "output": {
+        "AdminGroupRole": "arn:aws:iam::651307515661:role/ap-northeast-2_zdxjUbAPq-AdminGroupRole"
+      },
+      "lastPushDirHash": "5G4uAlMxN8rsFD1jyeLTya9ahFM="
+    },
+    "mydynamotrackerresource": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "mydynamotrackerresourcePostConfirmation",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mydynamotracker-dev-154645-deployment/amplify-cfn-templates/auth/mydynamotrackerresource-cloudformation-template.json",
+        "logicalId": "authmydynamotrackerresource"
+      },
+      "lastPushTimeStamp": "2023-06-22T15:34:28.977Z",
+      "output": {
+        "UserPoolId": "ap-northeast-2_zdxjUbAPq",
+        "AppClientIDWeb": "6dpp5lcbn3ifl6uagq3gg516vm",
+        "AppClientID": "7dqfcsijfsi0s22hbg03e0hioc",
+        "IdentityPoolId": "ap-northeast-2:4bbae28a-13b1-437b-a78a-df9a0170fd5d",
+        "UserPoolArn": "arn:aws:cognito-idp:ap-northeast-2:651307515661:userpool/ap-northeast-2_zdxjUbAPq",
+        "IdentityPoolName": "mydynamotrackeridentitypool__dev",
+        "UserPoolName": "mydynamotrackeruserpool"
+      },
+      "lastPushDirHash": "g2lUVVMyoAR9sJ9OhDzZ46jZ4tA="
+    }
+  },
+  "function": {
+    "mydynamotrackerresourcePostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2023-06-22T15:29:48.757Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2023-06-22T15:29:50.676Z",
+      "distZipFilename": "mydynamotrackerresourcePostConfirmation-6e6b47432f3770774f70-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-mydynamotracker-dev-154645-deployment",
+        "s3Key": "amplify-builds/mydynamotrackerresourcePostConfirmation-6e6b47432f3770774f70-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mydynamotracker-dev-154645-deployment/amplify-cfn-templates/function/mydynamotrackerresourcePostConfirmation-cloudformation-template.json",
+        "logicalId": "functionmydynamotrackerresourcePostConfirmation"
+      },
+      "lastPushTimeStamp": "2023-06-22T15:34:31.202Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::651307515661:role/mydynamotrackerresourcePostConfirmation-dev",
+        "Region": "ap-northeast-2",
+        "Arn": "arn:aws:lambda:ap-northeast-2:651307515661:function:mydynamotrackerresourcePostConfirmation-dev",
+        "Name": "mydynamotrackerresourcePostConfirmation-dev",
+        "LambdaExecutionRole": "mydynamotrackerresourcePostConfirmation-dev"
+      },
+      "lastPushDirHash": "zHbDilkSFdqCm3dyBYa1S1CsE1U="
+    }
+  },
+  "api": {
+    "mydynamotracker": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "mydynamotrackerresource",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authmydynamotrackerresource"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "pva26dyhljbhvd6f7ol4u5d3ee",
+        "GraphQLAPIEndpointOutput": "https://fhrx2pbwxvhzfickxbhyq6a6xq.appsync-api.ap-northeast-2.amazonaws.com/graphql"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mydynamotracker-dev-154645-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apimydynamotracker"
+      },
+      "lastPushTimeStamp": "2023-06-22T15:34:31.202Z",
+      "lastPushDirHash": "4P8O26lxN+KCsJIZdVflaCRfAc8="
+    }
+  }
+}

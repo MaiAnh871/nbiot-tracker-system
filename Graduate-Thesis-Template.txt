@@ -1,0 +1,25 @@
+Hệ thống: Device - Cloud - App
+
+I. Đặt vấn đề
+II. Cơ sở lý thuyết
+1. Công nghệ NB-IoT
+2. Giao thức mạng NB-IoT
+3. Cơ sở lý thuyết liên quan tới Device (UART, I2C,...)
+4. Cơ sở lý thuyết liên quan tới Cloud (Broker, DB,...)
+5. Cơ sở lý thuyết liên quan tới App 
+III. Phân tích và thiết kế hệ thống (SPEC)
+1. Mô hình tổng quan
+2. Phân tích thiết kế khối Device
+3. ... khối CLoud 
+4. ... khối App (Phân tích hướng đối tượng - Mô hình MVC? MVVM?, thiết kế cơ sở dữ liệu)
+IV. Triển khai hệ thống
+1. Device (Flow hoạt động)
+2. Cloud (Các dịch vụ..., độ tin cậy)
+3. App (Flow hoạt động)
+V. Kiểm thử đánh giá
+1. Xây dựng các kịch bản đánh giá
+- Test Device các chỉ tiêu về mạng
+- Đáp ứng hệ thống (Thời gian phản hồi, các metrics đánh giá, số lượng thiết bị gửi bản tin lên, số app quản lý được, bảo mật)
+- App: độ trễ phản hồi, các chức năng của App
+2. Đánh giá
+VI. Kết luận
