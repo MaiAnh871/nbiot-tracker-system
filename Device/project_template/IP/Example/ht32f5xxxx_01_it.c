@@ -93,26 +93,26 @@ void HardFault_Handler(void)
  * @brief   This function handles SVCall exception.
  * @retval  None
  ************************************************************************************************************/
-void SVC_Handler(void)
-{
-}
+//void SVC_Handler(void)
+//{
+//}
 
 /*********************************************************************************************************//**
  * @brief   This function handles PendSVC exception.
  * @retval  None
  ************************************************************************************************************/
-void PendSV_Handler(void)
-{
-}
+//void PendSV_Handler(void)
+//{
+//}
 
 /*********************************************************************************************************//**
  * @brief   This function handles SysTick Handler.
  * @retval  None
  ************************************************************************************************************/
-void SysTick_Handler(void)
-{
-	utick += 1;
-}
+//void SysTick_Handler(void)
+//{
+//	utick += 1;
+//}
 
 /*********************************************************************************************************//**
  * @brief   This function handles LVD & BOD interrupt.

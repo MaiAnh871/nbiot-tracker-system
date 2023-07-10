@@ -1,9 +1,10 @@
 --cpu Cortex-M0+
-".\ht32\52367\obj\main.o"
-".\ht32\52367\obj\ht32f5xxxx_01_it.o"
+".\ht32\52367\obj\board871.o"
 ".\ht32\52367\obj\bc660k.o"
 ".\ht32\52367\obj\lc76f.o"
 ".\ht32\52367\obj\mc3416.o"
+".\ht32\52367\obj\utilities.o"
+".\ht32\52367\obj\main.o"
 ".\ht32\52367\obj\ht32_op.o"
 ".\ht32\52367\obj\system_ht32f5xxxx_03.o"
 ".\ht32\52367\obj\startup_ht32f5xxxx_03.o"
@@ -40,6 +41,13 @@
 ".\ht32\52367\obj\ebi_lcd.o"
 ".\ht32\52367\obj\i2c_eeprom.o"
 ".\ht32\52367\obj\spi_flash.o"
+".\ht32\52367\obj\freertos_evr.o"
+".\ht32\52367\obj\list.o"
+".\ht32\52367\obj\port.o"
+".\ht32\52367\obj\heap_4.o"
+".\ht32\52367\obj\queue.o"
+".\ht32\52367\obj\tasks.o"
+".\ht32\52367\obj\timers.o"
 --library_type=microlib --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict
 --entry Reset_Handler --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

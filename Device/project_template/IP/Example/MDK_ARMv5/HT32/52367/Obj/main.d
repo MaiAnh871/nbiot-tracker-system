@@ -1,4 +1,4 @@
-./ht32/52367/obj/main.o: ..\main.c \
+./ht32/52367/obj/main.o: Core\main.c \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h \
   ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h \
@@ -53,4 +53,7 @@
   ..\..\..\..\utilities\common\ebi_lcd.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h Core\Board871.h \
+  Core\Setting.h Core\Collections.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h Core\Utilities.h \
+  Core\BC660K.h Core\LC76F.h Core\MC3416.h
