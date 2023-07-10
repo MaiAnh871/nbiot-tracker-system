@@ -22,11 +22,6 @@ const char * ERROR_COMMAND_SIGN[] = {
 
 #define FAKE_GPS_STRING true
 
-/* CA */
-#define CA_CERT ""
-#define CLIENT_CERT ""
-#define CLIENT_KEY ""
-
 /* Utilities settings */
 #define MAXIMUM_TOKEN_COUNT 15
 

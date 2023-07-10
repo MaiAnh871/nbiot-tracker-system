@@ -8,6 +8,8 @@
 
 #include "string.h"
 
+#include "SSL_param.h"
+
 #include "Setting.h"
 
 #include "Collections.h"
