@@ -234,6 +234,13 @@ void task_3(void * argument) {
 void task_4(void * argument) {
   while (1) {
     // Application code
+		wakeUpModule_AT_QSCLK(&board871.bc660k);
+		openMQTT_AT_QMTOPEN(&board871.bc660k);
+		connectClient_AT_QMTCONN(&board871.bc660k);
+		publishMessage_AT_QMTPUB(&board871.bc660k);
+		publishMessage_AT_QMTPUB(&board871.bc660k);
+		publishMessage_AT_QMTPUB(&board871.bc660k);
+		closeMQTT_AT_QMTCLOSE(&board871.bc660k);
 		
     vTaskDelay(500);
   }
