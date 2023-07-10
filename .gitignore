@@ -1,0 +1,8 @@
+
+App/blog-app/node_modules/
+
+App/my-dynamo-tracker/node_modules/
+
+App/to-do-app/node_modules/
+
+App/blog-app/amplify/#current-cloud-backend/amplify-meta.json

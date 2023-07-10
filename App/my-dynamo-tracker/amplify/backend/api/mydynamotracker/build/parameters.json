@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "mydynamotracker",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authmydynamotrackerresource",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "amplify-mydynamotracker-dev-154645-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/24b0ebbf258e1df4cee4e44ba1e88d14f926b07b"
+}
