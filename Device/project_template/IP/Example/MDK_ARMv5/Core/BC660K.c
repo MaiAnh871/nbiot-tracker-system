@@ -128,7 +128,7 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
 
   while (count--) {
 
-    sprintf(self -> bc660k_log_content, "\n=== SENDING <%s> | ATTEMPT %u/%u ===\n", self -> command, (send_attempt - count), send_attempt);
+    sprintf(self -> bc660k_log_content, "\n=== SENDING <%s> | ATTEMPT %u/%u ===", self -> command, (send_attempt - count), send_attempt);
 		Write_String_Log(self -> bc660k_log_content);
 	
 		BC660K_Clear_Receive_Buffer(self);
@@ -136,13 +136,15 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
     BC660K_USART0_Send(self -> command);
     BC660K_USART0_Send((char * )
       "\r\n");
+		
+		Write_String_Log(self -> command);
 
 		self->command_timer = CURRENT_TICK;
 		while(CURRENT_TICK - self->command_timer <= command_timeout) {
 				output_status = BC660K_USART0_Receive(self);
 		}
 
-    sprintf(self -> bc660k_log_content, "%s\n\n", self -> receive_buffer);
+    sprintf(self -> bc660k_log_content, "%s", self -> receive_buffer);
 		Write_String_Log(self -> bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
     sprintf(self -> bc660k_log_content, "Command status: %s\n", getStatusTypeString(output_status));

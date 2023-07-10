@@ -166,7 +166,6 @@ void Write_String_Log(char * input_string) {
 	Write_Char_Log('\n');
 }
 
-
 void task_1(void * argument) {
   while (1) {
 		uint32_t start_time;
@@ -232,16 +231,27 @@ void task_3(void * argument) {
 }
 
 void task_4(void * argument) {
+	checkModule_AT(&board871.bc660k);
+	offEcho_ATE0(&board871.bc660k);
+	
+	// Set CA Cert
+	setAuthentication_AT_QSSLCFG(&board871.bc660k);
+	setCACert_AT_QSSLCFG(&board871.bc660k);
+  setClientCert_AT_QSSLCFG(&board871.bc660k);
+  setClientPrivateKey_AT_QSSLCFG(&board871.bc660k);
+  enableSSL_AT_QMTCFG(&board871.bc660k);
+	
   while (1) {
     // Application code
 		wakeUpModule_AT_QSCLK(&board871.bc660k);
+		checkNetworkRegister_AT_CEREG(&board871.bc660k);
 		openMQTT_AT_QMTOPEN(&board871.bc660k);
 		connectClient_AT_QMTCONN(&board871.bc660k);
 		publishMessage_AT_QMTPUB(&board871.bc660k);
 		publishMessage_AT_QMTPUB(&board871.bc660k);
 		publishMessage_AT_QMTPUB(&board871.bc660k);
 		closeMQTT_AT_QMTCLOSE(&board871.bc660k);
-		
+
     vTaskDelay(500);
   }
 }

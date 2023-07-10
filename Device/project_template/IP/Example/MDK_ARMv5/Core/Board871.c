@@ -11,17 +11,6 @@ void Board871_Initialize(struct Board871 * self) {
   BC660K_Initialize(&self->bc660k);
   LC76F_Initialize(&self->lc76f);
   MC3416_Initialize(&self->mc3416);
-	
-	checkModule_AT(&self->bc660k);
-	offEcho_ATE0(&self->bc660k);
-	
-	// Set CA Cert
-	setAuthentication_AT_QSSLCFG(&self->bc660k);
-	setCACert_AT_QSSLCFG(&self->bc660k);
-  setClientCert_AT_QSSLCFG(&self->bc660k);
-  setClientPrivateKey_AT_QSSLCFG(&self->bc660k);
-  enableSSL_AT_QMTCFG(&self->bc660k);
-	
 }
 
 void Create_New_Node(struct Board871 * self) {

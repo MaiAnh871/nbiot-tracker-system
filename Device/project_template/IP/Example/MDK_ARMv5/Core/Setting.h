@@ -20,7 +20,7 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define SUCCESS_COMMAND_SIGN_LENGTH sizeof(SUCCESS_COMMAND_SIGN) / sizeof(SUCCESS_COMMAND_SIGN[0])
 #define ERROR_COMMAND_SIGN_LENGTH sizeof(ERROR_COMMAND_SIGN) / sizeof(ERROR_COMMAND_SIGN[0])
 
-#define FAKE_GPS_STRING true
+#define FAKE_GPS_STRING false
 
 /* Utilities settings */
 #define MAXIMUM_TOKEN_COUNT 15
