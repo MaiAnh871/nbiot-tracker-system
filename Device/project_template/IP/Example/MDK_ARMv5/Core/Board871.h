@@ -10,6 +10,8 @@
 
 #include "string.h"
 
+#include "time.h"
+
 #include "Setting.h"
 
 #include "Collections.h"
@@ -58,7 +60,8 @@ void Get_Accel_Data(struct Board871 * self);
 
 float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign);
 float Degree_To_Rad(float degree);
-void Calculate_Speed(struct Board871 * self);
+float Calculate_Distance(struct Board871 * self);
+uint32_t Calculate_Time(struct Board871 * self);
 
 /* Debug */
 void Print_Node(struct Board871 * self, struct Node *input_node);

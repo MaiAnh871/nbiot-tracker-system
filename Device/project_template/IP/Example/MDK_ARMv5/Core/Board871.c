@@ -62,6 +62,7 @@ void Validate_Node(struct Board871 *self) {
 	if (!self->current_node) {
 		Create_New_Node(self);
 		self->measure = true;
+		Write_String_Log("Current Node is Null!");
 		return;
 	}
 	
@@ -79,6 +80,19 @@ void Validate_Node(struct Board871 *self) {
 	}
 	
 	/* Calculate speed then decide */
+	float distance = Calculate_Distance(self);
+	uint32_t time_interval = Calculate_Time(self);
+	
+	if (time_interval == 0) {
+		self->measure = true;
+		return;
+	}
+	
+	float speed = distance / (float) time_interval;
+	sprintf(self->board871_log_content, "Speed: %f", speed);
+	Write_String_Log(self->board871_log_content);
+	
+//	if (speed <= 0.1 
 }
 
 void Add_Node(struct Board871 *self, struct Node *input_node) {
@@ -119,6 +133,7 @@ void Get_Accel_Data(struct Board871 * self) {
 	}
 	
 	MC3416_Read_Accel(&self->mc3416, self->current_node);
+	vTaskDelay(1000);
 }
 
 float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign) {
@@ -130,7 +145,7 @@ float Degree_To_Rad(float degree) {
     return degree * PI / 180.0;
 }
 
-void Calculate_Speed(struct Board871 * self) {
+float Calculate_Distance(struct Board871 * self) {
 	float lat_1 = Degree_To_Rad(DMS_To_Decimal(self->previous_node->latitude.degree, self->previous_node->latitude.minute, self->previous_node->latitude.second, self->previous_node->latitude.latitude_direction));
 	float lon_1 = Degree_To_Rad(DMS_To_Decimal(self->previous_node->longitude.degree, self->previous_node->longitude.minute, self->previous_node->longitude.second, self->previous_node->longitude.longitude_direction));
 	float lat_2 = Degree_To_Rad(DMS_To_Decimal(self->current_node->latitude.degree, self->current_node->latitude.minute, self->current_node->latitude.second, self->current_node->latitude.latitude_direction));
@@ -144,10 +159,39 @@ void Calculate_Speed(struct Board871 * self) {
 	float a, b, c;
 	a = sin(dlat / 2) * sin(dlat / 2) + cos(lat_1) * cos(lat_2) * sin(dlon / 2) * sin(dlon / 2);
 	c = 2 * atan2(sqrt(a), sqrt(1 - a));
-	self->current_node->speed = EARTH_RADIUS * c;
+	return (float) (EARTH_RADIUS * c);
 }
 
+uint32_t Calculate_Time(struct Board871 * self) {
+	struct Timestamp timestamp_1 = self->previous_node->timestamp;
+	struct Timestamp timestamp_2 = self->current_node->timestamp;
+	
+	struct tm start_time;
+	start_time.tm_hour = timestamp_1.hour;    // Hour (0-23)
+	start_time.tm_min = timestamp_1.minute;     // Minute (0-59)
+	start_time.tm_sec = timestamp_1.second;     // Second (0-59)
+	start_time.tm_mday = timestamp_1.day;    // Day of the month (1-31)
+	start_time.tm_mon = timestamp_1.month;      // Month (0-11, January = 0)
+	start_time.tm_year = timestamp_1.year + 2000 - 1900;   // Year since 1900
 
+	// Define the second timestamp
+	struct tm end_time;
+	end_time.tm_hour = timestamp_2.hour;      // Hour (0-23)
+	end_time.tm_min = timestamp_2.minute;       // Minute (0-59)
+	end_time.tm_sec = timestamp_2.second;       // Second (0-59)
+	end_time.tm_mday = timestamp_2.day;      // Day of the month (1-31)
+	end_time.tm_mon = timestamp_2.month;        // Month (0-11, January = 0)
+	end_time.tm_year = timestamp_2.year + 2000 - 1900;     // Year since 1900
+	
+	// Convert the timestamps to time_t values
+	time_t start_t = mktime(&start_time);
+	time_t end_t = mktime(&end_time);
+
+	// Calculate the time interval in seconds
+	time_t interval = end_t - start_t;
+
+	return interval;
+}
 
 /* Debug */
 void Print_Node(struct Board871 * self, struct Node *input_node) {
