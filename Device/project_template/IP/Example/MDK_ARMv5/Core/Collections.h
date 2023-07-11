@@ -59,7 +59,7 @@ static enum Longitude_Direction {
 static struct Longitude {
 	uint8_t degree; 	/* 0 - 180 (standardized) */
 	uint8_t minute; 	/* 0 - 60 */
-	int second;		/* 0 - 9999 ~ 0 - 60 */
+	uint16_t second;		/* 0 - 9999 ~ 0 - 60 */
 	enum Longitude_Direction longitude_direction;
 } Longitude;
 
@@ -71,7 +71,7 @@ static enum Latitude_Direction {
 static struct Latitude {
 	uint8_t degree; 	/* 0 - 90 (standardized) */
 	uint8_t minute; 	/* 0 - 60 */
-	int second;		/* 0 - 9999 ~ 0 - 60 */
+	uint16_t second;		/* 0 - 9999 ~ 0 - 60 */
 	enum Latitude_Direction latitude_direction;
 } Latitude;
 

@@ -11,6 +11,8 @@ void Board871_Initialize(struct Board871 * self) {
   BC660K_Initialize(&self->bc660k);
   LC76F_Initialize(&self->lc76f);
   MC3416_Initialize(&self->mc3416);
+	
+	self->measure = true;
 }
 
 void Create_New_Node(struct Board871 * self) {
@@ -53,7 +55,54 @@ void Create_New_Node(struct Board871 * self) {
 	self->current_node->next_node = NULL;
 }
 
+void Validate_Node(struct Board871 *self) {
+	self->measure = false;
+	vTaskDelay(10);
+	
+	if (!self->current_node) {
+		Create_New_Node(self);
+		self->measure = true;
+		return;
+	}
+	
+	if (!self->current_node->valid) {
+		self->measure = true;
+		return;
+	}
+	
+	if (!self->previous_node) {
+		self->previous_node = self->current_node;
+		Add_Node(self, self->previous_node);
+		Create_New_Node(self);
+		self->measure = true;
+		return;
+	}
+	
+	/* Calculate speed then decide */
+}
+
+void Add_Node(struct Board871 *self, struct Node *input_node) {
+	if (!input_node || !input_node->valid) {
+		return;
+	}
+	
+	if (!self->route.node) {
+		self->route.node = input_node;
+	} else {
+		struct Node *ptr = self->route.node;
+		while (ptr->next_node) {
+			ptr = ptr->next_node;
+		}
+		ptr->next_node = input_node;
+	}
+}
+
+
 void Get_GPS_Data(struct Board871 * self) {
+	if (!self->measure) {
+		return;
+	}
+	
 	if (!Get_GPS_String(&self->lc76f)) {
 		Write_String_Log("Cannot get GPS data!");
 		return;
@@ -65,8 +114,40 @@ void Get_GPS_Data(struct Board871 * self) {
 }
 
 void Get_Accel_Data(struct Board871 * self) {
+	if (!self->measure) {
+		return;
+	}
+	
 	MC3416_Read_Accel(&self->mc3416, self->current_node);
 }
+
+float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign) {
+	float output = sign * ((float) degree + (float) minute / (60000.0) + (float) second / 60.0);
+	return output;
+}
+
+float Degree_To_Rad(float degree) {
+    return degree * PI / 180.0;
+}
+
+void Calculate_Speed(struct Board871 * self) {
+	float lat_1 = Degree_To_Rad(DMS_To_Decimal(self->previous_node->latitude.degree, self->previous_node->latitude.minute, self->previous_node->latitude.second, self->previous_node->latitude.latitude_direction));
+	float lon_1 = Degree_To_Rad(DMS_To_Decimal(self->previous_node->longitude.degree, self->previous_node->longitude.minute, self->previous_node->longitude.second, self->previous_node->longitude.longitude_direction));
+	float lat_2 = Degree_To_Rad(DMS_To_Decimal(self->current_node->latitude.degree, self->current_node->latitude.minute, self->current_node->latitude.second, self->current_node->latitude.latitude_direction));
+	float lon_2 = Degree_To_Rad(DMS_To_Decimal(self->current_node->longitude.degree, self->current_node->longitude.minute, self->current_node->longitude.second, self->current_node->longitude.longitude_direction));
+								
+	// Calculate differences between the coordinates
+	float dlat = lat_2 - lat_1;
+	float dlon = lon_2 - lon_1;
+	
+	// Apply Haversine formula
+	float a, b, c;
+	a = sin(dlat / 2) * sin(dlat / 2) + cos(lat_1) * cos(lat_2) * sin(dlon / 2) * sin(dlon / 2);
+	c = 2 * atan2(sqrt(a), sqrt(1 - a));
+	self->current_node->speed = EARTH_RADIUS * c;
+}
+
+
 
 /* Debug */
 void Print_Node(struct Board871 * self, struct Node *input_node) {

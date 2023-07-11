@@ -150,7 +150,7 @@ bool Get_GPS_String(struct LC76F * self)
 	}
 		
 	/* Sample raw GPS string */
-	if (FAKE_GPS_STRING) {
+	if (TEST_GPS_STRING) {
 		Write_String_Log("Using fake GPS string!");
 		sprintf(self->raw_gps_string, "$GNRMC,045910.817,A,2101.799402,N,10546.931885,E,0.00,0.00,040723,,,A,V*04\r\n");
 	}
@@ -173,8 +173,6 @@ bool Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 	
 	uint8_t num_tokens;
 	char **token_array;
-	
-	current_node->valid = true;
 	
 	token_array = Tokenize_String(self->gps_string, ",", &num_tokens);
 	
@@ -260,6 +258,8 @@ bool Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 //	}
 	
 	free(token_array);
+	
+	current_node->valid = true;
 	
 	return current_node->valid;
 }

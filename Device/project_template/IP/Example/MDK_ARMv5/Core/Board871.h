@@ -34,8 +34,10 @@ extern void Write_String_Log(char * input_string);
 /* Struct initialization */
 static struct Board871 {
 	/* Debug */
+	bool measure;
   char * board871_log_content;
 	struct Route route;
+	struct Node *previous_node;
 	struct Node *current_node;
 
   struct BC660K bc660k;
@@ -48,8 +50,15 @@ Board871;
 void Board871_Initialize(struct Board871 * self);
 
 void Create_New_Node(struct Board871 * self);
+void Validate_Node(struct Board871 *self);
+void Add_Node(struct Board871 *self, struct Node *input_node);
+
 void Get_GPS_Data(struct Board871 * self);
 void Get_Accel_Data(struct Board871 * self);
+
+float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign);
+float Degree_To_Rad(float degree);
+void Calculate_Speed(struct Board871 * self);
 
 /* Debug */
 void Print_Node(struct Board871 * self, struct Node *input_node);

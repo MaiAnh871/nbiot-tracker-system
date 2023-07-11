@@ -1,8 +1,19 @@
 #ifndef SETTINGS_
 #define SETTINGS_
 
+/* Testing */
+// Uncomment the following line for testing
+//#define TEST_ENABLE
+
+#ifdef TEST_ENABLE
+	#define TEST_GPS_STRING false
+#else
+	#define TEST_GPS_STRING false
+#endif
+
 /* Math */
 #define PI 3.141592653589793238
+#define EARTH_RADIUS 6378160.0 // m
 
 /* System */
 #define CURRENT_TICK xTaskGetTickCount()
@@ -19,8 +30,6 @@ const char * ERROR_COMMAND_SIGN[] = {
 };
 #define SUCCESS_COMMAND_SIGN_LENGTH sizeof(SUCCESS_COMMAND_SIGN) / sizeof(SUCCESS_COMMAND_SIGN[0])
 #define ERROR_COMMAND_SIGN_LENGTH sizeof(ERROR_COMMAND_SIGN) / sizeof(ERROR_COMMAND_SIGN[0])
-
-#define FAKE_GPS_STRING false
 
 /* Utilities settings */
 #define MAXIMUM_TOKEN_COUNT 15
