@@ -174,8 +174,8 @@ void task_1(void * argument) {
 		start_time = CURRENT_TICK;
 
 		/* Application start */
-		
 		Get_GPS_Data(&board871);
+		vTaskDelay(1);
 		
 		/* Application end */
 		
@@ -218,6 +218,7 @@ void task_3(void * argument) {
 		/* Application start */
 		
 		Validate_Node(&board871);
+		vTaskDelay(VALIDATE_PERIOD);
 		
 		/* Application end */
 		

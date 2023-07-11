@@ -93,7 +93,7 @@ static struct Node {
 } Node;
 
 static struct Route {
-	float total_length;
+	uint16_t total_length;
 	struct Node *node;
 } Route;
 

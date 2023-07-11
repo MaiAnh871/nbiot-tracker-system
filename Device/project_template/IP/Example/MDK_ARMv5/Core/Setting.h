@@ -6,7 +6,7 @@
 //#define TEST_ENABLE
 
 #ifdef TEST_ENABLE
-	#define TEST_GPS_STRING false
+	#define TEST_GPS_STRING true
 #else
 	#define TEST_GPS_STRING false
 #endif
@@ -42,6 +42,10 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define LATITUDE_LENGTH 9 		/* 'ddmm.mmmm' */
 #define LONGTITUDE_LENGTH 10	/* 'dddmm.mmmm' */
 #define CELL_ID_LENGTH 9 /* '00000000' - 'FFFFFFFF' */
+
+#define VALIDATE_PERIOD 5000 // ms
+#define MIN_SPEED 1 // m/s
+#define SLOW_COUNTER 3
 
 /* BC660K settings */
 #define BC660K_LOG_CONTENT_SIZE 500

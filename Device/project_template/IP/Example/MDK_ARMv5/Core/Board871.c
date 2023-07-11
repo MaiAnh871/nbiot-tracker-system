@@ -13,6 +13,8 @@ void Board871_Initialize(struct Board871 * self) {
   MC3416_Initialize(&self->mc3416);
 	
 	self->measure = true;
+	self->slow = 0;
+	self->route.total_length = 0;
 }
 
 void Create_New_Node(struct Board871 * self) {
@@ -92,7 +94,23 @@ void Validate_Node(struct Board871 *self) {
 	sprintf(self->board871_log_content, "Speed: %f", speed);
 	Write_String_Log(self->board871_log_content);
 	
-//	if (speed <= 0.1 
+	if (speed <= MIN_SPEED) {
+		self->slow++;
+	} else {
+		self->slow = 0;
+	}
+	
+	if (self->slow >= SLOW_COUNTER) {
+		self->slow = SLOW_COUNTER;
+		self->current_node->valid = false;
+		self->measure = true;
+		return;
+	}
+	
+	self->previous_node = self->current_node;
+	Create_New_Node(self);
+	Add_Node(self, self->previous_node);
+	self->measure = true;
 }
 
 void Add_Node(struct Board871 *self, struct Node *input_node) {
@@ -109,6 +127,7 @@ void Add_Node(struct Board871 *self, struct Node *input_node) {
 		}
 		ptr->next_node = input_node;
 	}
+	self->route.total_length++;
 }
 
 
@@ -205,7 +224,14 @@ void Print_Node(struct Board871 * self, struct Node *input_node) {
 	 
 	sprintf(self->board871_log_content, "{");
 	
-	sprintf(temp, "\"timestamp\":\"%u:%u:%uT%u-%u-%u\"", input_node->timestamp.hour, input_node->timestamp.minute, input_node->timestamp.second, input_node->timestamp.day, input_node->timestamp.month, input_node->timestamp.year);
+	if (input_node->valid) {
+		sprintf(temp, "\"valid\":true");
+	} else {
+		sprintf(temp, "\"valid\":false");
+	}
+	strcat(self->board871_log_content, temp);
+	
+	sprintf(temp, ",\"timestamp\":\"%u:%u:%uT%u-%u-%u\"", input_node->timestamp.hour, input_node->timestamp.minute, input_node->timestamp.second, input_node->timestamp.day, input_node->timestamp.month, input_node->timestamp.year);
 	strcat(self->board871_log_content, temp);
 	
 	sprintf(temp, ",\"device_id\":\"%s\"", input_node->device_id);
