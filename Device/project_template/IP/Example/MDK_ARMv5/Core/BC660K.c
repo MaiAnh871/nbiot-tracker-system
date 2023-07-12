@@ -130,8 +130,6 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
 
     sprintf(self -> bc660k_log_content, "\n=== SENDING <%s> | ATTEMPT %u/%u ===", self -> command, (send_attempt - count), send_attempt);
 		Write_String_Log(self -> bc660k_log_content);
-	
-		BC660K_Clear_Receive_Buffer(self);
 
     BC660K_USART0_Send(self -> command);
     BC660K_USART0_Send((char * )
@@ -140,13 +138,13 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
 		Write_String_Log(self -> command);
 
 		self->command_timer = CURRENT_TICK;
+		BC660K_Clear_Receive_Buffer(self);
 		while(CURRENT_TICK - self->command_timer <= command_timeout) {
 				output_status = BC660K_USART0_Receive(self);
 		}
 
     sprintf(self -> bc660k_log_content, "%s", self -> receive_buffer);
 		Write_String_Log(self -> bc660k_log_content);
-		BC660K_Clear_Receive_Buffer(self);
     sprintf(self -> bc660k_log_content, "Command status: %s", getStatusTypeString(output_status));
 		Write_String_Log(self -> bc660k_log_content);
     sprintf(self -> bc660k_log_content, "==========");
@@ -320,9 +318,18 @@ enum StatusType checkNetworkRegister_AT_CEREG(struct BC660K *self) {
 		/* Actions with status */
 		switch(output_status){
 			
-			case STATUS_SUCCESS:
+			case STATUS_SUCCESS: {
 					/* Do something */
+					uint8_t token_num;
+					char ** token = Tokenize_String(self->receive_buffer, ",", &token_num);
+					char *ptr = strstr(token[0], "+CEREG");
+					if (ptr) {
+						self->stat = atoi(token[1]);
+						sprintf(self->bc660k_log_content, "STAT: %u", self->stat);
+						Write_String_Log(self->bc660k_log_content);
+					}
 					break;
+			}
 
 			case STATUS_ERROR:
 					/* Do something */
@@ -436,11 +443,11 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self)  {
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
 		
-		vTaskDelay(1000);
+		vTaskDelay(1);
 		sprintf(self->command, CA_CERT);
 		BC660K_USART0_Send(self->command);
 		BC660K_USART0_Send((char *)"\r\n");
-		vTaskDelay(10);
+		vTaskDelay(1);
 		BC660K_USART0_Send_Char(26);
 	
 		self->command_timer = CURRENT_TICK;
@@ -507,11 +514,11 @@ enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self) {
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
 		
-		vTaskDelay(1000);
+		vTaskDelay(1);
 		sprintf(self->command, CLIENT_CERT);
 		BC660K_USART0_Send(self->command);
 		BC660K_USART0_Send((char *)"\r\n");
-		vTaskDelay(10);
+		vTaskDelay(1);
 		BC660K_USART0_Send_Char(26);
 	
 		self->command_timer = CURRENT_TICK;
@@ -668,7 +675,7 @@ enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTOPEN=0,\"a2ht7rbdkt6040-ats.iot.ap-northeast-2.amazonaws.com\",8883");
-		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 9000);
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 20000);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -903,11 +910,13 @@ void Connection_Flow(struct BC660K *self) {
 			continue;
 		}
 		
-		if (openMQTT_AT_QMTOPEN(self) != STATUS_SUCCESS) {
+		stage = 1;
+	}
+	
+	while (stage == 1) {
+		if (checkNetworkRegister_AT_CEREG(self) != STATUS_SUCCESS) {
 			continue;
 		}
-		
-		stage = 1;
 	}
 
 }

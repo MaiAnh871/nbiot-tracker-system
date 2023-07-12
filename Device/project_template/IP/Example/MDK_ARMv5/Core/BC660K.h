@@ -8,11 +8,15 @@
 
 #include "string.h"
 
+#include "stdint.h"
+
 #include "SSL_param.h"
 
 #include "Setting.h"
 
 #include "Collections.h"
+
+#include "Utilities.h"
 
 /* Extern variables and functions */
 extern void Error_Blinking_LED_1(void);
@@ -32,6 +36,7 @@ static struct BC660K {
   char * command;
   char * receive_buffer;
   u16 receive_buffer_index;
+	uint8_t stat;
 }
 BC660K;
 
