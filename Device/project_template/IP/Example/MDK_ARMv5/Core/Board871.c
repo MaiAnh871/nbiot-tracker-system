@@ -91,10 +91,10 @@ void Validate_Node(struct Board871 *self) {
 	}
 	
 	float speed = distance / (float) time_interval;
-	sprintf(self->board871_log_content, "Speed: %f", speed);
+	sprintf(self->board871_log_content, "Speed: %f, Distance = %f, Time interval = %f", speed, distance, (float) time_interval);
 	Write_String_Log(self->board871_log_content);
 	
-	if (speed <= MIN_SPEED) {
+	if (speed < MIN_SPEED) {
 		self->slow++;
 	} else {
 		self->slow = 0;
@@ -110,6 +110,9 @@ void Validate_Node(struct Board871 *self) {
 	self->previous_node = self->current_node;
 	Create_New_Node(self);
 	Add_Node(self, self->previous_node);
+	Print_Node(self, self->previous_node);
+	sprintf(self->board871_log_content, "TOTAL NODE: %u", self->route.total_length);
+	Write_String_Log(self->board871_log_content);
 	self->measure = true;
 }
 
@@ -156,7 +159,7 @@ void Get_Accel_Data(struct Board871 * self) {
 }
 
 float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign) {
-	float output = sign * ((float) degree + (float) minute / (60000.0) + (float) second / 60.0);
+	float output = sign * ((float) degree + (float) minute / (60.0) + (float) second / 600000.0);
 	return output;
 }
 
@@ -237,10 +240,10 @@ void Print_Node(struct Board871 * self, struct Node *input_node) {
 	sprintf(temp, ",\"device_id\":\"%s\"", input_node->device_id);
 	strcat(self->board871_log_content, temp);
 	
-	sprintf(temp, ",\"latitude\":{\"degree\":%d,\"minute\":%d,\"second\":%d}",input_node->latitude.degree, input_node->latitude.minute, input_node->latitude.second);
+	sprintf(temp, ",\"latitude\":%f", DMS_To_Decimal(input_node->latitude.degree, input_node->latitude.minute, input_node->latitude.second, input_node->latitude.latitude_direction));
 	strcat(self->board871_log_content, temp);
 	
-	sprintf(temp, ",\"longtitude\":{\"degree\":%d,\"minute\":%d,\"second\":%d}",input_node->longitude.degree, input_node->longitude.minute, input_node->longitude.second);
+	sprintf(temp, ",\"longitude\":%f",DMS_To_Decimal(input_node->longitude.degree, input_node->longitude.minute, input_node->longitude.second, input_node->longitude.longitude_direction));
 	strcat(self->board871_log_content, temp);
 	
 	sprintf(temp, ",\"speed\":%u", (uint16_t) input_node->speed);

@@ -44,7 +44,7 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define CELL_ID_LENGTH 9 /* '00000000' - 'FFFFFFFF' */
 
 #define VALIDATE_PERIOD 5000 // ms
-#define MIN_SPEED 1 // m/s
+#define MIN_SPEED 0.1 // m/s
 #define SLOW_COUNTER 3
 
 /* BC660K settings */
