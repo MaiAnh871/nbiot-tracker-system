@@ -274,9 +274,9 @@ int main(void) {
 //	Print_Node(&board871, board871.current_node);
 
   // Create application main thread
-  xTaskCreate(task_1, "task_1", 256, NULL, 2, NULL);
-  xTaskCreate(task_2, "task_2", 256, NULL, 2, NULL);
-  xTaskCreate(task_3, "task_3", 256, NULL, 2, NULL);
+//  xTaskCreate(task_1, "task_1", 256, NULL, 2, NULL);
+//  xTaskCreate(task_2, "task_2", 256, NULL, 2, NULL);
+//  xTaskCreate(task_3, "task_3", 256, NULL, 2, NULL);
   xTaskCreate(task_4, "task_4", 256, NULL, 2, NULL);
 	
   // Start the kernel and execute the first thread
