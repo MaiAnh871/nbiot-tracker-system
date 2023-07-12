@@ -432,7 +432,7 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self)  {
 				output_status = BC660K_USART0_Receive(self);
 		}
 		
-		sprintf(self->bc660k_log_content, "|%s|", self->receive_buffer);
+		sprintf(self->bc660k_log_content, "%s", self->receive_buffer);
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
 		
@@ -866,4 +866,40 @@ enum StatusType wakeUpModule_AT_QSCLK(struct BC660K *self) {
 		}
 		
 		return output_status;
+}
+
+void Connection_Flow(struct BC660K *self) {
+	uint8_t stage = 0;
+	/* Initial stage */
+	while (stage == 0) {
+		if (checkModule_AT(self) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (offEcho_ATE0(self) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (setAuthentication_AT_QSSLCFG(self) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (setCACert_AT_QSSLCFG(self) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (setClientCert_AT_QSSLCFG(self) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (setClientPrivateKey_AT_QSSLCFG(self) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (enableSSL_AT_QMTCFG(self) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		stage = 1;
+	}
 }

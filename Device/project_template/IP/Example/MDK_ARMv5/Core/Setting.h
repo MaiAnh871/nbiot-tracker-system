@@ -7,8 +7,10 @@
 
 #ifdef TEST_ENABLE
 	#define TEST_GPS_STRING true
+	#define TEST_NODE_DATA true
 #else
 	#define TEST_GPS_STRING false
+	#define TEST_NODE_DATA false
 #endif
 
 /* Math */

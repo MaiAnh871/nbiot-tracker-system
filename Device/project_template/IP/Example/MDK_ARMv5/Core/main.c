@@ -230,29 +230,37 @@ void task_3(void * argument) {
 }
 
 void task_4(void * argument) {
-	checkModule_AT(&board871.bc660k);
-	offEcho_ATE0(&board871.bc660k);
-	
-	// Set CA Cert
-	setAuthentication_AT_QSSLCFG(&board871.bc660k);
-	setCACert_AT_QSSLCFG(&board871.bc660k);
-  setClientCert_AT_QSSLCFG(&board871.bc660k);
-  setClientPrivateKey_AT_QSSLCFG(&board871.bc660k);
-  enableSSL_AT_QMTCFG(&board871.bc660k);
-	
   while (1) {
-    // Application code
-		wakeUpModule_AT_QSCLK(&board871.bc660k);
-		checkNetworkRegister_AT_CEREG(&board871.bc660k);
-		openMQTT_AT_QMTOPEN(&board871.bc660k);
-		connectClient_AT_QMTCONN(&board871.bc660k);
-		publishMessage_AT_QMTPUB(&board871.bc660k);
-		publishMessage_AT_QMTPUB(&board871.bc660k);
-		publishMessage_AT_QMTPUB(&board871.bc660k);
-		closeMQTT_AT_QMTCLOSE(&board871.bc660k);
+		uint32_t start_time;
+		uint32_t end_time;
+		
+		start_time = CURRENT_TICK;
 
-    vTaskDelay(500);
+		/* Application start */
+
+		Connection_Flow(&board871.bc660k);
+
+		/* Application end */
+		
+		end_time = CURRENT_TICK;
+		
+//		sprintf(board871.board871_log_content, "Task 3 period: %u s", (end_time - start_time));
+//		Write_String_Log(board871.board871_log_content);
   }
+	
+//  while (1) {
+//    // Application code
+//		wakeUpModule_AT_QSCLK(&board871.bc660k);
+//		checkNetworkRegister_AT_CEREG(&board871.bc660k);
+//		openMQTT_AT_QMTOPEN(&board871.bc660k);
+//		connectClient_AT_QMTCONN(&board871.bc660k);
+//		publishMessage_AT_QMTPUB(&board871.bc660k);
+//		publishMessage_AT_QMTPUB(&board871.bc660k);
+//		publishMessage_AT_QMTPUB(&board871.bc660k);
+//		closeMQTT_AT_QMTCLOSE(&board871.bc660k);
+
+//    vTaskDelay(500);
+//  }
 }
 
 int main(void) {
@@ -269,7 +277,7 @@ int main(void) {
   xTaskCreate(task_1, "task_1", 256, NULL, 2, NULL);
   xTaskCreate(task_2, "task_2", 256, NULL, 2, NULL);
   xTaskCreate(task_3, "task_3", 256, NULL, 2, NULL);
-//  xTaskCreate(task_4, "task_4", 256, NULL, 2, NULL);
+  xTaskCreate(task_4, "task_4", 256, NULL, 2, NULL);
 	
   // Start the kernel and execute the first thread
   vTaskStartScheduler();

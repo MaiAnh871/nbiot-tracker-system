@@ -62,4 +62,6 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self);
 enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self);
 enum StatusType wakeUpModule_AT_QSCLK(struct BC660K *self);
 
+void Connection_Flow(struct BC660K *self);
+
 #endif /* BC660K_ */

@@ -96,8 +96,8 @@ void Validate_Node(struct Board871 *self) {
 	}
 	
 	float speed = distance / (float) time_interval;
-	sprintf(self->board871_log_content, "Speed: %f, Distance = %f, Time interval = %f", speed, distance, (float) time_interval);
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "Speed: %f, Distance = %f, Time interval = %f", speed, distance, (float) time_interval);
+//	Write_String_Log(self->board871_log_content);
 	
 	if (speed < MIN_SPEED) {
 		self->slow++;
@@ -115,9 +115,12 @@ void Validate_Node(struct Board871 *self) {
 	self->previous_node = self->current_node;
 	Create_New_Node(self);
 	Add_Node(self, self->previous_node);
-	Print_Node(self, self->previous_node);
-	sprintf(self->board871_log_content, "TOTAL NODE: %u", self->route.total_length);
-	Write_String_Log(self->board871_log_content);
+	
+	if (TEST_NODE_DATA) {
+		Print_Node(self, self->previous_node);
+		sprintf(self->board871_log_content, "TOTAL NODE: %u", self->route.total_length);
+		Write_String_Log(self->board871_log_content);
+	}
 	self->measure = true;
 }
 
