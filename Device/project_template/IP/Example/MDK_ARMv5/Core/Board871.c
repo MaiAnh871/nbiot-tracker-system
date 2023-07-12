@@ -6,6 +6,11 @@ void Board871_Initialize(struct Board871 * self) {
 		Error_Blinking_LED_1();
   }
 	
+  self -> data_string = (char * ) malloc(DATA_NODE_STRING_LENGTH * sizeof(char));
+  if (!self -> data_string) {
+		Error_Blinking_LED_1();
+  }
+	
 	Create_New_Node(self);
 
   BC660K_Initialize(&self->bc660k);
@@ -158,6 +163,77 @@ void Get_Accel_Data(struct Board871 * self) {
 	vTaskDelay(1000);
 }
 
+void Pack_Node_Data(struct Board871 * self, struct Node *input_node) {
+	if (!input_node) {
+		Write_String_Log("Input node is NULL!\n");
+		return;
+	}
+	
+	char *temp;
+	temp = calloc(100, sizeof(char));
+	 
+	sprintf(self->data_string, "{");
+	
+	if (input_node->valid) {
+		sprintf(temp, "\"valid\":true");
+	} else {
+		sprintf(temp, "\"valid\":false");
+	}
+	strcat(self->data_string, temp);
+	
+	sprintf(temp, ",\"timestamp\":\"%u:%u:%uT%u-%u-%u\"", input_node->timestamp.hour, input_node->timestamp.minute, input_node->timestamp.second, input_node->timestamp.day, input_node->timestamp.month, input_node->timestamp.year);
+	strcat(self->data_string, temp);
+	
+	sprintf(temp, ",\"device_id\":\"%s\"", input_node->device_id);
+	strcat(self->data_string, temp);
+	
+	sprintf(temp, ",\"latitude\":%f", DMS_To_Decimal(input_node->latitude.degree, input_node->latitude.minute, input_node->latitude.second, input_node->latitude.latitude_direction));
+	strcat(self->data_string, temp);
+	
+	sprintf(temp, ",\"longitude\":%f",DMS_To_Decimal(input_node->longitude.degree, input_node->longitude.minute, input_node->longitude.second, input_node->longitude.longitude_direction));
+	strcat(self->data_string, temp);
+	
+	sprintf(temp, ",\"speed\":%u", (uint16_t) input_node->speed);
+	strcat(self->data_string, temp);	
+
+	sprintf(temp, ",\"accel_x\":%d", (int16_t) input_node->accel_x);
+	strcat(self->data_string, temp);	
+
+	sprintf(temp, ",\"accel_y\":%d", (int16_t) input_node->accel_y);
+	strcat(self->data_string, temp);	
+
+	sprintf(temp, ",\"accel_z\":%d", (int16_t) input_node->accel_z);
+	strcat(self->data_string, temp);
+	
+	if (input_node->tilt_alert) {
+		sprintf(temp, ",\"tilt_alert\":true");
+	} else {
+		sprintf(temp, ",\"tilt_alert\":false");
+	}
+	strcat(self->data_string, temp);
+	
+	if (input_node->wheelie_alert) {
+		sprintf(temp, ",\"wheelie_alert\":true");
+	} else {
+		sprintf(temp, ",\"wheelie_alert\":false");
+	}
+	strcat(self->data_string, temp);
+	
+	if (input_node->overspeed_alert) {
+		sprintf(temp, ",\"overspeed_alert\":true");
+	} else {
+		sprintf(temp, ",\"overspeed_alert\":false");
+	}
+	strcat(self->data_string, temp);
+	
+	sprintf(temp, ",\"connection_status\":{\"cell_id\":\"%s\",\"rsrp\":%d}", input_node->connection_status.cell_id, input_node->connection_status.rsrp);
+	strcat(self->data_string, temp);
+	
+	strcat(self->data_string, "}");
+	
+	free(temp);
+}
+
 float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign) {
 	float output = sign * ((float) degree + (float) minute / (60.0) + (float) second / 600000.0);
 	return output;
@@ -222,69 +298,7 @@ void Print_Node(struct Board871 * self, struct Node *input_node) {
 		return;
 	}
 	
-	char *temp;
-	temp = calloc(100, sizeof(char));
-	 
-	sprintf(self->board871_log_content, "{");
-	
-	if (input_node->valid) {
-		sprintf(temp, "\"valid\":true");
-	} else {
-		sprintf(temp, "\"valid\":false");
-	}
-	strcat(self->board871_log_content, temp);
-	
-	sprintf(temp, ",\"timestamp\":\"%u:%u:%uT%u-%u-%u\"", input_node->timestamp.hour, input_node->timestamp.minute, input_node->timestamp.second, input_node->timestamp.day, input_node->timestamp.month, input_node->timestamp.year);
-	strcat(self->board871_log_content, temp);
-	
-	sprintf(temp, ",\"device_id\":\"%s\"", input_node->device_id);
-	strcat(self->board871_log_content, temp);
-	
-	sprintf(temp, ",\"latitude\":%f", DMS_To_Decimal(input_node->latitude.degree, input_node->latitude.minute, input_node->latitude.second, input_node->latitude.latitude_direction));
-	strcat(self->board871_log_content, temp);
-	
-	sprintf(temp, ",\"longitude\":%f",DMS_To_Decimal(input_node->longitude.degree, input_node->longitude.minute, input_node->longitude.second, input_node->longitude.longitude_direction));
-	strcat(self->board871_log_content, temp);
-	
-	sprintf(temp, ",\"speed\":%u", (uint16_t) input_node->speed);
-	strcat(self->board871_log_content, temp);	
-
-	sprintf(temp, ",\"accel_x\":%d", (int16_t) input_node->accel_x);
-	strcat(self->board871_log_content, temp);	
-
-	sprintf(temp, ",\"accel_y\":%d", (int16_t) input_node->accel_y);
-	strcat(self->board871_log_content, temp);	
-
-	sprintf(temp, ",\"accel_z\":%d", (int16_t) input_node->accel_z);
-	strcat(self->board871_log_content, temp);
-	
-	if (input_node->tilt_alert) {
-		sprintf(temp, ",\"tilt_alert\":true");
-	} else {
-		sprintf(temp, ",\"tilt_alert\":false");
-	}
-	strcat(self->board871_log_content, temp);
-	
-	if (input_node->wheelie_alert) {
-		sprintf(temp, ",\"wheelie_alert\":true");
-	} else {
-		sprintf(temp, ",\"wheelie_alert\":false");
-	}
-	strcat(self->board871_log_content, temp);
-	
-	if (input_node->overspeed_alert) {
-		sprintf(temp, ",\"overspeed_alert\":true");
-	} else {
-		sprintf(temp, ",\"overspeed_alert\":false");
-	}
-	strcat(self->board871_log_content, temp);
-	
-	sprintf(temp, ",\"connection_status\":{\"cell_id\":\"%s\",\"rsrp\":%d}", input_node->connection_status.cell_id, input_node->connection_status.rsrp);
-	strcat(self->board871_log_content, temp);
-	
-	strcat(self->board871_log_content, "}");
-		
+	Pack_Node_Data(self, input_node);
+	strcpy(self->board871_log_content, self->data_string);
 	Write_String_Log(self->board871_log_content);
-	
-	free(temp);
 }

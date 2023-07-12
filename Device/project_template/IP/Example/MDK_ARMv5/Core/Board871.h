@@ -46,6 +46,8 @@ static struct Board871 {
   struct BC660K bc660k;
   struct LC76F lc76f;
   struct MC3416 mc3416;
+	
+	char * data_string;
 }
 Board871;
 
@@ -58,6 +60,7 @@ void Add_Node(struct Board871 *self, struct Node *input_node);
 
 void Get_GPS_Data(struct Board871 * self);
 void Get_Accel_Data(struct Board871 * self);
+void Pack_Node_Data(struct Board871 * self, struct Node *input_node);
 
 float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign);
 float Degree_To_Rad(float degree);
