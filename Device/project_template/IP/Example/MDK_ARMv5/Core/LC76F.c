@@ -240,7 +240,6 @@ bool Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 	slice(token_array[9], self->temp, 2, 4);
 	current_node->timestamp.month = atoi(self->temp);
 	Clear_Temp(self);
-	Write_String_Log(self->temp);
 	slice(token_array[9], self->temp, 4, 6);
 	current_node->timestamp.year = atoi(self->temp);
 	
