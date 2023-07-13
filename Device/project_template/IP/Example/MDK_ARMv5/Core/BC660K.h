@@ -38,6 +38,7 @@ static struct BC660K {
   u16 receive_buffer_index;
 	uint8_t stat;
 	bool mqtt_opened;
+	bool mqtt_connected;
 }
 BC660K;
 
@@ -64,8 +65,9 @@ enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self);
 enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self);
 enum StatusType checkMQTT_AT_QMTOPEN(struct BC660K *self);
 enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self);
+enum StatusType checkConnectClient_AT_QMTCONN(struct BC660K *self);
 enum StatusType connectClient_AT_QMTCONN(struct BC660K *self);
-enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self);
+enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self, char *data);
 enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self);
 enum StatusType wakeUpModule_AT_QSCLK(struct BC660K *self);
 

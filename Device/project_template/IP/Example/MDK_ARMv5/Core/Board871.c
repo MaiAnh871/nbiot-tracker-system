@@ -372,14 +372,29 @@ void Connection_Flow(struct Board871 *self) {
 			break;
 		}
 		
-		if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
+		if (checkConnectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
 			continue;
+		}
+		
+		if (!self->bc660k.mqtt_connected) {
+			if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
+				continue;
+			}
+		}
+		
+		if (!self->bc660k.mqtt_connected) {
+			stage = 3;
+			break;
 		}
 		
 		stage = 2;
 	}
 	
+	/* Publishing stage */
 	while (stage == 2) {
-		
+		sprintf(self->data_string, "hello");
+		if (publishMessage_AT_QMTPUB(&self->bc660k, self->data_string) != STATUS_SUCCESS) {
+			continue;
+		}
 	}
 }
