@@ -54,6 +54,9 @@ Board871;
 /* Function prototypes */
 void Board871_Initialize(struct Board871 * self);
 
+/* Debug */
+void Print_Node(struct Board871 * self, struct Node *input_node);
+
 void Create_New_Node(struct Board871 * self);
 void Validate_Node(struct Board871 *self);
 void Add_Node(struct Board871 *self, struct Node *input_node);
@@ -67,7 +70,6 @@ float Degree_To_Rad(float degree);
 float Calculate_Distance(struct Board871 * self);
 uint32_t Calculate_Time(struct Board871 * self);
 
-/* Debug */
-void Print_Node(struct Board871 * self, struct Node *input_node);
+void Connection_Flow(struct Board871 *self);
 
 #endif /* BOARD871_ */

@@ -62,6 +62,18 @@ void Create_New_Node(struct Board871 * self) {
 	self->current_node->next_node = NULL;
 }
 
+/* Debug */
+void Print_Node(struct Board871 * self, struct Node *input_node) {
+	if (!input_node) {
+		Write_String_Log("Input node is NULL!\n");
+		return;
+	}
+	
+	Pack_Node_Data(self, input_node);
+	strcpy(self->board871_log_content, self->data_string);
+	Write_String_Log(self->board871_log_content);
+}
+
 void Validate_Node(struct Board871 *self) {
 	self->measure = false;
 	vTaskDelay(10);
@@ -294,14 +306,68 @@ uint32_t Calculate_Time(struct Board871 * self) {
 	return interval;
 }
 
-/* Debug */
-void Print_Node(struct Board871 * self, struct Node *input_node) {
-	if (!input_node) {
-		Write_String_Log("Input node is NULL!\n");
-		return;
+void Connection_Flow(struct Board871 *self) {
+	uint8_t stage = 0;
+	/* Initial stage */
+	while (stage == 0) {
+		if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (offEcho_ATE0(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (setAuthentication_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (setCACert_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (setClientCert_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (setClientPrivateKey_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (enableSSL_AT_QMTCFG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		stage = 1;
 	}
 	
-	Pack_Node_Data(self, input_node);
-	strcpy(self->board871_log_content, self->data_string);
-	Write_String_Log(self->board871_log_content);
+	/* Connecting stage */
+	while (stage == 1) {
+		if (wakeUpModule_AT_QSCLK(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}		
+
+		if (checkNetworkRegister_AT_CEREG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (self->bc660k.stat != 1) {
+			stage = 3;
+			break;
+		}
+		
+		if (openMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		stage = 2;
+	}
+	
+	while (stage == 2) {
+		
+	}
 }

@@ -238,7 +238,7 @@ void task_4(void * argument) {
 
 		/* Application start */
 
-		Connection_Flow(&board871.bc660k);
+		Connection_Flow(&board871);
 
 		/* Application end */
 		
