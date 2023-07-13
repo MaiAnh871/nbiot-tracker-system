@@ -157,8 +157,6 @@ bool Get_GPS_String(struct LC76F * self)
 	
 	if (Check_Valid_GPS_String(self)) {
 		strcpy(self->gps_string, self->raw_gps_string);
-//		strcpy(self->lc76f_log_content, self->raw_gps_string);
-//		Write_String_Log(self->gps_string);
 		return true;
 	}
 	Clear_GPS_String(self);

@@ -175,7 +175,7 @@ void task_1(void * argument) {
 
 		/* Application start */
 		Get_GPS_Data(&board871);
-		vTaskDelay(1);
+		vTaskDelay(10);
 		
 		/* Application end */
 		
@@ -217,6 +217,7 @@ void task_3(void * argument) {
 
 		/* Application start */
 		
+		Write_String_Log("Validating Node...");
 		Validate_Node(&board871);
 		vTaskDelay(VALIDATE_PERIOD);
 		
@@ -274,10 +275,10 @@ int main(void) {
 //	Print_Node(&board871, board871.current_node);
 
   // Create application main thread
-  xTaskCreate(task_1, "task_1", 256, NULL, 2, NULL);
-  xTaskCreate(task_2, "task_2", 256, NULL, 2, NULL);
-  xTaskCreate(task_3, "task_3", 256, NULL, 2, NULL);
-  xTaskCreate(task_4, "task_4", 256, NULL, 2, NULL);
+  xTaskCreate(task_1, "task_1", 512, NULL, 2, NULL);
+  xTaskCreate(task_2, "task_2", 512, NULL, 2, NULL);
+  xTaskCreate(task_3, "task_3", 512, NULL, 2, NULL);
+  xTaskCreate(task_4, "task_4", 512, NULL, 3, NULL);
 	
   // Start the kernel and execute the first thread
   vTaskStartScheduler();

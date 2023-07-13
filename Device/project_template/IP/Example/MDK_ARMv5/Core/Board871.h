@@ -37,6 +37,7 @@ extern void Write_String_Log(char * input_string);
 static struct Board871 {
 	/* Debug */
 	bool measure;
+	uint8_t stage;
 	uint8_t slow;
   char * board871_log_content;
 	struct Route route;

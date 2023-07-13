@@ -1,6 +1,7 @@
 #include "Board871.h"
 
 void Board871_Initialize(struct Board871 * self) {
+	self->stage = 0;
   self -> board871_log_content = (char * ) malloc(BOARD871_LOG_CONTENT * sizeof(char));
   if (!self -> board871_log_content) {
 		Error_Blinking_LED_1();
@@ -10,8 +11,6 @@ void Board871_Initialize(struct Board871 * self) {
   if (!self -> data_string) {
 		Error_Blinking_LED_1();
   }
-	
-	Create_New_Node(self);
 
   BC660K_Initialize(&self->bc660k);
   LC76F_Initialize(&self->lc76f);
@@ -20,7 +19,8 @@ void Board871_Initialize(struct Board871 * self) {
 	self->measure = true;
 	self->slow = 0;
 	self->route.total_length = 0;
-	self->publishing_node = self->route.node;
+	
+	Create_New_Node(self);
 }
 
 void Create_New_Node(struct Board871 * self) {
@@ -77,9 +77,10 @@ void Print_Node(struct Board871 * self, struct Node *input_node) {
 
 void Validate_Node(struct Board871 *self) {
 	self->measure = false;
-	vTaskDelay(10);
+	vTaskDelay(200);
 	
 	if (!self->current_node) {
+		Write_String_Log("!self->current_node");
 		Create_New_Node(self);
 		self->measure = true;
 		Write_String_Log("Current Node is Null!");
@@ -87,11 +88,13 @@ void Validate_Node(struct Board871 *self) {
 	}
 	
 	if (!self->current_node->valid) {
+		Write_String_Log("!self->current_node->valid");
 		self->measure = true;
 		return;
 	}
 	
 	if (!self->previous_node) {
+		Write_String_Log("!self->previous_node");
 		self->previous_node = self->current_node;
 		Add_Node(self, self->previous_node);
 		Create_New_Node(self);
@@ -104,6 +107,7 @@ void Validate_Node(struct Board871 *self) {
 	uint32_t time_interval = Calculate_Time(self);
 	
 	if (time_interval == 0) {
+		Write_String_Log("time_interval == 0");
 		self->measure = true;
 		return;
 	}
@@ -119,6 +123,7 @@ void Validate_Node(struct Board871 *self) {
 	}
 	
 	if (self->slow >= SLOW_COUNTER) {
+		Write_String_Log("self->slow >= SLOW_COUNTER");
 		self->slow = SLOW_COUNTER;
 		self->current_node->valid = false;
 		self->measure = true;
@@ -157,11 +162,12 @@ void Add_Node(struct Board871 *self, struct Node *input_node) {
 
 void Get_GPS_Data(struct Board871 * self) {
 	if (!self->measure) {
+		vTaskDelay(200);
 		return;
 	}
 	
 	if (!Get_GPS_String(&self->lc76f)) {
-		Write_String_Log("Cannot get GPS data!");
+//		Write_String_Log("Cannot get GPS data!");
 		return;
 	}
 	
@@ -172,6 +178,7 @@ void Get_GPS_Data(struct Board871 * self) {
 
 void Get_Accel_Data(struct Board871 * self) {
 	if (!self->measure) {
+		vTaskDelay(200);
 		return;
 	}
 	
@@ -188,7 +195,7 @@ void Pack_Node_Data(struct Board871 * self, struct Node *input_node) {
 	char *temp;
 	temp = calloc(100, sizeof(char));
 	 
-	sprintf(self->data_string, "{");
+	sprintf(self->data_string, "{\"message\":{");
 	
 	if (input_node->valid) {
 		sprintf(temp, "\"valid\":true");
@@ -245,7 +252,7 @@ void Pack_Node_Data(struct Board871 * self, struct Node *input_node) {
 	sprintf(temp, ",\"connection_status\":{\"cell_id\":\"%s\",\"rsrp\":%d}", input_node->connection_status.cell_id, input_node->connection_status.rsrp);
 	strcat(self->data_string, temp);
 	
-	strcat(self->data_string, "}");
+	strcat(self->data_string, "}}");
 	
 	free(temp);
 }
@@ -308,10 +315,9 @@ uint32_t Calculate_Time(struct Board871 * self) {
 }
 
 void Connection_Flow(struct Board871 *self) {
-	uint8_t stage = 0;
 	uint8_t attempt;
 	/* Initial stage */
-	while (stage == 0) {
+	while (self->stage == 0) {
 		if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
 			continue;
 		}
@@ -340,11 +346,11 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
-		stage = 1;
+		self->stage = 1;
 	}
 	
 	/* Connecting stage */
-	while (stage == 1) {
+	while (self->stage == 1) {
 		if (wakeUpModule_AT_QSCLK(&self->bc660k) != STATUS_SUCCESS) {
 			continue;
 		}		
@@ -354,7 +360,7 @@ void Connection_Flow(struct Board871 *self) {
 		}
 		
 		if (self->bc660k.stat != 1) {
-			stage = 3;
+			self->stage = 3;
 			break;
 		}
 		
@@ -378,14 +384,15 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
-		stage = 2;
+		self->stage = 2;
 	}
 	
 	/* Publishing stage */
-	while (stage == 2) {
+	while (self->stage == 2) {
 		if (!self->publishing_node) {
 			Write_String_Log("Waiting for validated head node!");
 			self->publishing_node = self->route.node;
+			vTaskDelay(VALIDATE_PERIOD);
 			continue;
 		}
 		
@@ -398,7 +405,7 @@ void Connection_Flow(struct Board871 *self) {
 		Pack_Node_Data(self, self->publishing_node);
 		
 		if (publishMessage_AT_QMTPUB(&self->bc660k, self->data_string) != STATUS_SUCCESS) {
-			stage = 1;
+			self->stage = 1;
 			continue;
 		}
 		
