@@ -669,13 +669,55 @@ enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self) {
 		return output_status;
 }
 
+enum StatusType checkMQTT_AT_QMTOPEN(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		sprintf(self->command, "AT+QMTOPEN?");
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		self->mqtt_opened = false;
+		switch(output_status){
+			
+			case STATUS_SUCCESS: {
+					/* Do something */
+					char *ptr;
+					ptr = strstr(self->receive_buffer, "+QMTOPEN");
+					if (ptr) {
+						self->mqtt_opened = true;
+					}
+					break;
+			}
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
+
 enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self) {
 		/* Initialize status */
 		enum StatusType output_status = STATUS_UNKNOWN;
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTOPEN=0,\"a2ht7rbdkt6040-ats.iot.ap-northeast-2.amazonaws.com\",8883");
-		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 20000);
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT + 5, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 20000);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -686,6 +728,8 @@ enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self) {
 					ptr = strstr(self->receive_buffer, "+QMTOPEN");
 					if (!ptr) {
 						output_status = STATUS_ERROR;
+					} else {
+						self->mqtt_opened = true;
 					}
 					break;
 			}
@@ -720,9 +764,15 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 		/* Actions with status */
 		switch(output_status){
 			
-			case STATUS_SUCCESS:
+			case STATUS_SUCCESS: {
 					/* Do something */
+					char *ptr;
+					ptr = strstr(self->receive_buffer, "+QMTCONN");
+					if (!ptr) {
+						output_status = STATUS_ERROR;
+					} 
 					break;
+			}
 
 			case STATUS_ERROR:
 					/* Do something */

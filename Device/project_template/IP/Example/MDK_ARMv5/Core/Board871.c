@@ -308,6 +308,7 @@ uint32_t Calculate_Time(struct Board871 * self) {
 
 void Connection_Flow(struct Board871 *self) {
 	uint8_t stage = 0;
+	uint8_t try = 3;
 	/* Initial stage */
 	while (stage == 0) {
 		if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
@@ -356,8 +357,19 @@ void Connection_Flow(struct Board871 *self) {
 			break;
 		}
 		
-		if (openMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
+		if (checkMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
 			continue;
+		}
+		
+		if (!self->bc660k.mqtt_opened) {
+			if (openMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
+				continue;
+			}
+		}
+		
+		if (!self->bc660k.mqtt_opened) {
+			stage = 3;
+			break;
 		}
 		
 		if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
