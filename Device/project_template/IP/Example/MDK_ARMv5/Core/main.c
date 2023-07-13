@@ -243,23 +243,9 @@ void task_4(void * argument) {
 		
 		end_time = CURRENT_TICK;
 		
-//		sprintf(board871.board871_log_content, "Task 3 period: %u s", (end_time - start_time));
+//		sprintf(board871.board871_log_content, "Task 4 period: %u s", (end_time - start_time));
 //		Write_String_Log(board871.board871_log_content);
   }
-	
-//  while (1) {
-//    // Application code
-//		wakeUpModule_AT_QSCLK(&board871.bc660k);
-//		checkNetworkRegister_AT_CEREG(&board871.bc660k);
-//		openMQTT_AT_QMTOPEN(&board871.bc660k);
-//		connectClient_AT_QMTCONN(&board871.bc660k);
-//		publishMessage_AT_QMTPUB(&board871.bc660k);
-//		publishMessage_AT_QMTPUB(&board871.bc660k);
-//		publishMessage_AT_QMTPUB(&board871.bc660k);
-//		closeMQTT_AT_QMTCLOSE(&board871.bc660k);
-
-//    vTaskDelay(500);
-//  }
 }
 
 int main(void) {
@@ -277,7 +263,7 @@ int main(void) {
   xTaskCreate(task_2, "task_2", 512, NULL, 2, NULL);
   xTaskCreate(task_3, "task_3", 512, NULL, 2, NULL);
   xTaskCreate(task_4, "task_4", 512, NULL, 2, NULL);
-	
+
   // Start the kernel and execute the first thread
   vTaskStartScheduler();
 

@@ -132,6 +132,22 @@ bool MC3416_Moving(struct MC3416 * self) {
 	uint8_t Rec_Data[6];
 	/* Change range and scale */
 	
+	static struct Accel previous_accel;
+	static struct Accel current_accel;
+	
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0E, &Rec_Data[0]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0D, &Rec_Data[1]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x10, &Rec_Data[2]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0F, &Rec_Data[3]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x12, &Rec_Data[4]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x11, &Rec_Data[5]);
+
+	previous_accel.Ax = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]) + MC3416_OFFSET_AX;
+	previous_accel.Ay = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
+	previous_accel.Az = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]) + MC3416_OFFSET_AZ;
+	
+	vTaskDelay(200);
+	
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0E, &Rec_Data[0]);
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0D, &Rec_Data[1]);
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x10, &Rec_Data[2]);
@@ -139,23 +155,9 @@ bool MC3416_Moving(struct MC3416 * self) {
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x12, &Rec_Data[4]);
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x11, &Rec_Data[5]);
 	
-	static struct Accel previous_accel;
-	static struct Accel current_accel;
-	
-	previous_accel.Ax = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]) + MC3416_OFFSET_AX;
-	previous_accel.Ay = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
-	previous_accel.Az = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]) + MC3416_OFFSET_AZ;
-	
-	vTaskDelay(500);
-	
 	current_accel.Ax = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]) + MC3416_OFFSET_AX;
 	current_accel.Ay = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
 	current_accel.Az = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]) + MC3416_OFFSET_AZ;
-	
-	sprintf(self->mc3416_log_content, "%d, %d, %d", abs(current_accel.Ax - previous_accel.Ax), abs(current_accel.Ay - previous_accel.Ay), abs(current_accel.Az - previous_accel.Az));
-	Write_String_Log(self->mc3416_log_content);	
-	
-	Write_String_Log("HELLO");
 	
 	if (abs(current_accel.Ax - previous_accel.Ax) >= MC3416_MOVEMENT_THRESHOLD
 			|| abs(current_accel.Ay - previous_accel.Ay) >= MC3416_MOVEMENT_THRESHOLD

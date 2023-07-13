@@ -315,6 +315,7 @@ enum StatusType checkNetworkRegister_AT_CEREG(struct BC660K *self) {
 		sprintf(self->command, "AT+CEREG?");
 		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 	
+		self->stat = 2;
 		/* Actions with status */
 		switch(output_status){
 			

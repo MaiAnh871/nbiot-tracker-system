@@ -49,6 +49,8 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define MIN_SPEED 0 // m/s
 #define SLOW_COUNTER 3
 #define DATA_NODE_STRING_LENGTH 500
+#define DOUBLE_CHECK_NETWORK_PERIOD 10000 // ms
+#define DOUBLE_CHECK_SPEED_PERIOD 60000 // ms
 
 /* BC660K settings */
 #define BC660K_LOG_CONTENT_SIZE 2000

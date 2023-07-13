@@ -485,36 +485,51 @@ void Connection_Flow(struct Board871 *self) {
 		if (MC3416_Moving(&self->mc3416)) {
 			speed_timer = CURRENT_TICK;
 			
-			if (CURRENT_TICK - network_timer >= 10000) {
+			if (CURRENT_TICK - network_timer >= DOUBLE_CHECK_NETWORK_PERIOD) {
 				network_timer = CURRENT_TICK;
-				Write_String_Log("Double checking network each 10 seconds while detecting movement...");
+				sprintf(self->board871_log_content, "Double checking network each %d ms while detecting movement...", DOUBLE_CHECK_NETWORK_PERIOD);
+				Write_String_Log(self->board871_log_content);
 				if (checkNetworkRegister_AT_CEREG(&self->bc660k) != STATUS_SUCCESS) {
 					continue;
 				}
 				
-				self->stage = 1;
+				if (self->bc660k.stat == 1) {
+					self->stage = 1;
+				}
+				
 			}
 		} else {
-			if (CURRENT_TICK - speed_timer >= 30000) {
-				Write_String_Log("No movement in 30 seconds");
+			if (CURRENT_TICK - speed_timer >= DOUBLE_CHECK_SPEED_PERIOD) {
+				sprintf(self->board871_log_content, "No movement in %d ms!", DOUBLE_CHECK_SPEED_PERIOD);
+				Write_String_Log("self->board871_log_content");
 				self->stage = 5;
 			}
 		}
 		
-		vTaskDelay(1);
+		vTaskDelay(100);
 	}
 	
 	/* No network, no movement => Power saving mode */
+	bool entry_step_5 = true;
 	while (self->stage == 5) {
-		Write_String_Log("\n========= STAGE 5 ========= \n");
-		/* Sleep module */
-		/* Suspend other tasks */
-		if (MC3416_Moving(&self->mc3416)) {
-			/* Wake module up */
-			/* Resume other tasks */
-			self->stage = 1;
+		if (entry_step_5) {
+			Write_String_Log("\n========= STAGE 5 ========= \n");
+			entry_step_5 = false;
 		}
 		
-		vTaskDelay(1000);
+		/* Sleep module */
+				
+		/* Suspend other tasks */		
+
+		/* Interrupt hardware does not work. Better use external interrupt! */
+		if (MC3416_Moving(&self->mc3416)) {
+			/* Wake module up */
+			
+			/* Resume other tasks */
+			
+			self->stage = 4;
+		}
+		
+		vTaskDelay(100);
 	}
 }
