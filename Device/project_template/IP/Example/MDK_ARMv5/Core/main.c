@@ -277,7 +277,7 @@ int main(void) {
   xTaskCreate(task_1, "task_1", 512, NULL, 2, NULL);
   xTaskCreate(task_2, "task_2", 512, NULL, 2, NULL);
   xTaskCreate(task_3, "task_3", 512, NULL, 2, NULL);
-  xTaskCreate(task_4, "task_4", 512, NULL, 3, NULL);
+  xTaskCreate(task_4, "task_4", 512, NULL, 2, NULL);
 	
   // Start the kernel and execute the first thread
   vTaskStartScheduler();

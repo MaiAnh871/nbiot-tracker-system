@@ -514,7 +514,7 @@ enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self) {
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
 		
-		vTaskDelay(1);
+		vTaskDelay(1000);
 		sprintf(self->command, CLIENT_CERT);
 		BC660K_USART0_Send(self->command);
 		BC660K_USART0_Send((char *)"\r\n");
@@ -865,7 +865,6 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self, char *data) {
 		
 		sprintf(self->bc660k_log_content, "%s", self->receive_buffer);
 		Write_String_Log(self->bc660k_log_content);
-		BC660K_Clear_Receive_Buffer(self);
 	
 		vTaskDelay(2000);
 		BC660K_USART0_Send(data);
@@ -876,7 +875,7 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self, char *data) {
 		Write_String_Log(data);
 		
 		self->command_timer = CURRENT_TICK;
-		while(CURRENT_TICK - self->command_timer <= (BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 2000)) {
+		while(CURRENT_TICK - self->command_timer <= (BC660K_COMMAND_TIMEOUT_DEFAULT_MS)) {
 				output_status = BC660K_USART0_Receive(self);
 		}
 		
@@ -894,11 +893,11 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self, char *data) {
 			
 			case STATUS_SUCCESS: {
 					/* Do something */
-					char *ptr;
-					ptr = strstr(self->receive_buffer, "+QMTPUB");
-					if (!ptr) {
-						output_status = STATUS_ERROR;
-					} 
+//					char *ptr;
+//					ptr = strstr(self->receive_buffer, "+QMTPUB");
+//					if (!ptr) {
+//						output_status = STATUS_ERROR;
+//					} 
 					break;
 			}
 

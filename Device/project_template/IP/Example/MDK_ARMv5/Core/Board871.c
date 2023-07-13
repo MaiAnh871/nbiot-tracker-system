@@ -78,7 +78,7 @@ void Print_Node(struct Board871 * self, struct Node *input_node) {
 
 void Validate_Node(struct Board871 *self) {
 	self->measure = false;
-	vTaskDelay(200);
+	vTaskDelay(1200);
 	
 	if (!self->current_node) {
 		Create_New_Node(self);
@@ -411,6 +411,10 @@ void Connection_Flow(struct Board871 *self) {
 			self->route.node = self->publishing_node->next_node;
 			self->publishing_node = self->publishing_node->next_node;
 			free(temp_node);
+		} else {
+			while (!self->publishing_node->next_node) {
+				vTaskDelay(1000);
+			}
 		}
 	}
 }
