@@ -802,7 +802,7 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTCONN=0,\"anhttm8client\"");
-		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 8000);
+		output_status = BC660K_Send_Command(self, 1, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 5000);
 		/* Actions with status */
 		switch(output_status){
 			

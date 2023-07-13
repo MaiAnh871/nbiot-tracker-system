@@ -217,7 +217,6 @@ bool Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 	slice(token_array[5], self->temp, 3, 5);
 	current_node->longitude.minute = atoi(self->temp);
 	Clear_Temp(self);
-	Write_String_Log(self->temp);
 	slice(token_array[5], self->temp, 6, 10);
 	current_node->longitude.second = atoi(self->temp);
 	

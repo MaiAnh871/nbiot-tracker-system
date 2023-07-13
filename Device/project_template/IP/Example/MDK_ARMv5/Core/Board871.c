@@ -368,24 +368,14 @@ void Connection_Flow(struct Board871 *self) {
 			}
 		}
 		
-		if (!self->bc660k.mqtt_opened) {
-			stage = 3;
-			break;
-		}
+//		if (!self->bc660k.mqtt_opened) {
+//			stage = 3;
+//			break;
+//		}
 		
-		if (checkConnectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
+		if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
+			closeMQTT_AT_QMTCLOSE(&self->bc660k);
 			continue;
-		}
-		
-		if (!self->bc660k.mqtt_connected) {
-			if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
-				continue;
-			}
-		}
-		
-		if (!self->bc660k.mqtt_connected) {
-			stage = 3;
-			break;
 		}
 		
 		stage = 2;
@@ -394,11 +384,13 @@ void Connection_Flow(struct Board871 *self) {
 	/* Publishing stage */
 	while (stage == 2) {
 		if (!self->publishing_node) {
+			Write_String_Log("Waiting for validated head node!");
 			self->publishing_node = self->route.node;
 			continue;
 		}
 		
 		if (!self->publishing_node->valid) {
+			Write_String_Log("Waiting for a validated node!");
 			vTaskDelay(VALIDATE_PERIOD);
 			continue;
 		}
@@ -406,6 +398,7 @@ void Connection_Flow(struct Board871 *self) {
 		Pack_Node_Data(self, self->publishing_node);
 		
 		if (publishMessage_AT_QMTPUB(&self->bc660k, self->data_string) != STATUS_SUCCESS) {
+			stage = 1;
 			continue;
 		}
 		
