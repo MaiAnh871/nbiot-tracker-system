@@ -122,3 +122,37 @@ void MC3416_Read_Accel(struct MC3416 * self, struct Node *current_node)
 	current_node->accel_y = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
 	current_node->accel_z = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]) + MC3416_OFFSET_AZ;
 }
+
+bool MC3416_Moving(struct MC3416 * self) {
+	static uint8_t Rec_Data[6];
+	/* Change range and scale */
+
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0E, &Rec_Data[0]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0D, &Rec_Data[1]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x10, &Rec_Data[2]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0F, &Rec_Data[3]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x12, &Rec_Data[4]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x11, &Rec_Data[5]);
+	
+	struct Accel previous_accel;
+	struct Accel current_accel;
+	
+	previous_accel.Ax = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]) + MC3416_OFFSET_AX;
+	previous_accel.Ay = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
+	previous_accel.Az = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]) + MC3416_OFFSET_AZ;
+	
+	vTaskDelay(500);
+	
+	current_accel.Ax = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]) + MC3416_OFFSET_AX;
+	current_accel.Ay = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
+	current_accel.Az = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]) + MC3416_OFFSET_AZ;
+	
+	if (abs(current_accel.Ax - previous_accel.Ax) >= MC3416_MOVEMENT_THRESHOLD
+			|| abs(current_accel.Ay - previous_accel.Ay) >= MC3416_MOVEMENT_THRESHOLD
+			|| abs(current_accel.Az - previous_accel.Az) >= MC3416_MOVEMENT_THRESHOLD) 
+	{
+		return true;
+	}
+	
+	return false;
+}

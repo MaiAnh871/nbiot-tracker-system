@@ -312,7 +312,7 @@ uint32_t Calculate_Time(struct Board871 * self) {
 }
 
 void Connection_Flow(struct Board871 *self) {
-	uint8_t attempt;
+	int8_t attempt;
 	/* Initial stage */
 	while (self->stage == 0) {
 		if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
@@ -352,11 +352,18 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}		
 
-		if (checkNetworkRegister_AT_CEREG(&self->bc660k) != STATUS_SUCCESS) {
-			continue;
+		attempt = 3;
+		while (attempt--) {
+			if (checkNetworkRegister_AT_CEREG(&self->bc660k) != STATUS_SUCCESS) {
+				continue;
+			}
+			
+			if (self->bc660k.stat == 1) {
+				break;
+			}
 		}
 		
-		if (self->bc660k.stat != 1) {
+		if (attempt == -1) {
 			self->stage = 3;
 			break;
 		}
@@ -370,11 +377,6 @@ void Connection_Flow(struct Board871 *self) {
 				continue;
 			}
 		}
-		
-//		if (!self->bc660k.mqtt_opened) {
-//			stage = 3;
-//			break;
-//		}
 		
 		if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
 			closeMQTT_AT_QMTCLOSE(&self->bc660k);
@@ -416,5 +418,77 @@ void Connection_Flow(struct Board871 *self) {
 				vTaskDelay(1000);
 			}
 		}
+	}
+	
+	/* Double check network */
+	while (self->stage == 3) {
+		int8_t attempt = 5;
+		while (attempt--) {
+			if (attempt < 4) {
+				vTaskDelay(30000);
+			}
+			
+			if (checkNetworkRegister_AT_CEREG(&self->bc660k) != STATUS_SUCCESS) {
+				continue;
+			}
+			
+			if (checkMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
+				continue;
+			}
+			
+			if (!self->bc660k.mqtt_opened) {
+				if (openMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
+					continue;
+				}
+			}
+			
+			if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
+				closeMQTT_AT_QMTCLOSE(&self->bc660k);
+				continue;
+			}
+			
+			self->stage = 2;
+			break;
+		}
+		
+		if (attempt == -1) {
+			self->stage = 4;
+		}
+	}
+	
+	/* No network, double check movement */
+	while (self->stage == 4) {
+		uint32_t speed_timer = CURRENT_TICK;
+		uint32_t network_timer = CURRENT_TICK;
+		if (MC3416_Moving(&self->mc3416)) {
+			speed_timer = CURRENT_TICK;
+			
+			if (CURRENT_TICK - network_timer >= 60000) {
+				if (checkNetworkRegister_AT_CEREG(&self->bc660k) != STATUS_SUCCESS) {
+					continue;
+				}
+				
+				self->stage = 1;
+			}
+		} else {
+			if (CURRENT_TICK - speed_timer >= 300000) {
+				self->stage = 5;
+			}
+		}
+		
+		vTaskDelay(1000);
+	}
+	
+	/* No network, no movement => Power saving mode */
+	while (self->stage == 5) {
+		/* Sleep module */
+		/* Suspend other tasks */
+		if (MC3416_Moving(&self->mc3416)) {
+			/* Wake module up */
+			/* Resume other tasks */
+			self->stage = 1;
+		}
+		
+		vTaskDelay(1000);
 	}
 }

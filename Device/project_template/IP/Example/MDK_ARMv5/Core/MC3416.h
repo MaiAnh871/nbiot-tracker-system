@@ -4,6 +4,8 @@
 /* Includes */
 #include "ht32.h"
 
+#include "stdlib.h"
+
 #include "Setting.h"
 
 #include "Collections.h"
@@ -32,5 +34,6 @@ void MC3416_I2C_Configuration(void);
 void MC3416_Read_Mem_Slave(I2C_AddressTypeDef Slave_Adr, uint8_t RegAddr, uint8_t * str_data);
 void MC3416_Write_Mem_Slave(I2C_AddressTypeDef Slave_Adr, uint8_t RegAddr, uint8_t data);
 void MC3416_Read_Accel(struct MC3416 * self, struct Node *current_node);
+bool MC3416_Moving(struct MC3416 * self);
 
 #endif /* MC3416_ */

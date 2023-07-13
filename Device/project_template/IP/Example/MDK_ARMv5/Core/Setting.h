@@ -80,4 +80,6 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define MC3416_OFFSET_AY 254
 #define MC3416_OFFSET_AZ 25
 
+#define MC3416_MOVEMENT_THRESHOLD 1500
+
 #endif /* SETTINGS_ */
