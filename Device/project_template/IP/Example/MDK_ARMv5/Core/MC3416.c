@@ -1,6 +1,11 @@
 #include "MC3416.h"
 
 void MC3416_Initialize(struct MC3416 * self) {
+  self -> mc3416_log_content = (char * ) malloc(MC3416_LOG_CONTENT_SIZE * sizeof(char));
+  if (!self -> mc3416_log_content) {
+		Error_Blinking_LED_1();
+  }
+	
 	MC3416_I2C_Configuration();
 	MC3416_Init();
 }
@@ -124,9 +129,9 @@ void MC3416_Read_Accel(struct MC3416 * self, struct Node *current_node)
 }
 
 bool MC3416_Moving(struct MC3416 * self) {
-	static uint8_t Rec_Data[6];
+	uint8_t Rec_Data[6];
 	/* Change range and scale */
-
+	
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0E, &Rec_Data[0]);
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0D, &Rec_Data[1]);
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x10, &Rec_Data[2]);
@@ -134,8 +139,8 @@ bool MC3416_Moving(struct MC3416 * self) {
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x12, &Rec_Data[4]);
 	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x11, &Rec_Data[5]);
 	
-	struct Accel previous_accel;
-	struct Accel current_accel;
+	static struct Accel previous_accel;
+	static struct Accel current_accel;
 	
 	previous_accel.Ax = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]) + MC3416_OFFSET_AX;
 	previous_accel.Ay = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
@@ -147,10 +152,16 @@ bool MC3416_Moving(struct MC3416 * self) {
 	current_accel.Ay = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
 	current_accel.Az = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]) + MC3416_OFFSET_AZ;
 	
+	sprintf(self->mc3416_log_content, "%d, %d, %d", abs(current_accel.Ax - previous_accel.Ax), abs(current_accel.Ay - previous_accel.Ay), abs(current_accel.Az - previous_accel.Az));
+	Write_String_Log(self->mc3416_log_content);	
+	
+	Write_String_Log("HELLO");
+	
 	if (abs(current_accel.Ax - previous_accel.Ax) >= MC3416_MOVEMENT_THRESHOLD
 			|| abs(current_accel.Ay - previous_accel.Ay) >= MC3416_MOVEMENT_THRESHOLD
 			|| abs(current_accel.Az - previous_accel.Az) >= MC3416_MOVEMENT_THRESHOLD) 
 	{
+		Write_String_Log("Detect movement!");
 		return true;
 	}
 	

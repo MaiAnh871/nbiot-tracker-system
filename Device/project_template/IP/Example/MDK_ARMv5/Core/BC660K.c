@@ -313,7 +313,7 @@ enum StatusType checkNetworkRegister_AT_CEREG(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+CEREG?");
-		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT + 5, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -323,7 +323,7 @@ enum StatusType checkNetworkRegister_AT_CEREG(struct BC660K *self) {
 					uint8_t token_num;
 					char ** token = Tokenize_String(self->receive_buffer, ",", &token_num);
 					char *ptr = strstr(token[0], "+CEREG");
-					if (ptr) {
+					if (ptr && (token_num >= 2)) {
 						self->stat = atoi(token[1]);
 //						sprintf(self->bc660k_log_content, "STAT: %u", self->stat);
 //						Write_String_Log(self->bc660k_log_content);

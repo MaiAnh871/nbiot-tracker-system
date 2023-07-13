@@ -313,8 +313,10 @@ uint32_t Calculate_Time(struct Board871 * self) {
 
 void Connection_Flow(struct Board871 *self) {
 	int8_t attempt;
+	int8_t count;
 	/* Initial stage */
 	while (self->stage == 0) {
+		Write_String_Log("\n========= STAGE 0 ========= \n");		
 		if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
 			continue;
 		}
@@ -348,22 +350,28 @@ void Connection_Flow(struct Board871 *self) {
 	
 	/* Connecting stage */
 	while (self->stage == 1) {
+		Write_String_Log("\n========= STAGE 1 ========= \n");
 		if (wakeUpModule_AT_QSCLK(&self->bc660k) != STATUS_SUCCESS) {
 			continue;
 		}		
 
-		attempt = 3;
-		while (attempt--) {
+		attempt = 8;
+		count = attempt;
+		while (count--) {
+			sprintf(self->board871_log_content, "Attempt: %u/%u", attempt - count, attempt);
+			Write_String_Log(self->board871_log_content);
 			if (checkNetworkRegister_AT_CEREG(&self->bc660k) != STATUS_SUCCESS) {
 				continue;
 			}
 			
 			if (self->bc660k.stat == 1) {
 				break;
+			} else {
+				vTaskDelay(3000);
 			}
 		}
 		
-		if (attempt == -1) {
+		if (count == -1) {
 			self->stage = 3;
 			break;
 		}
@@ -374,12 +382,14 @@ void Connection_Flow(struct Board871 *self) {
 		
 		if (!self->bc660k.mqtt_opened) {
 			if (openMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
+				self->stage = 3;
 				continue;
 			}
 		}
 		
 		if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
 			closeMQTT_AT_QMTCLOSE(&self->bc660k);
+			self->stage = 3;
 			continue;
 		}
 		
@@ -388,6 +398,7 @@ void Connection_Flow(struct Board871 *self) {
 	
 	/* Publishing stage */
 	while (self->stage == 2) {
+		Write_String_Log("\n========= STAGE 2 ========= \n");
 		if (!self->publishing_node) {
 			Write_String_Log("Waiting for validated head node!");
 			self->publishing_node = self->route.node;
@@ -422,9 +433,14 @@ void Connection_Flow(struct Board871 *self) {
 	
 	/* Double check network */
 	while (self->stage == 3) {
-		int8_t attempt = 5;
-		while (attempt--) {
-			if (attempt < 4) {
+		Write_String_Log("\n========= STAGE 3 ========= \n");
+		attempt = 2;
+		count = attempt;
+		while (count--) {
+			sprintf(self->board871_log_content, "Attempt: %u/%u", attempt - count, attempt);
+			Write_String_Log(self->board871_log_content);
+			if (count < (attempt - 1)) {
+				Write_String_Log("Wait 30 seconds...");
 				vTaskDelay(30000);
 			}
 			
@@ -451,19 +467,27 @@ void Connection_Flow(struct Board871 *self) {
 			break;
 		}
 		
-		if (attempt == -1) {
+		if (count == -1) {
 			self->stage = 4;
 		}
 	}
 	
 	/* No network, double check movement */
+	uint32_t speed_timer = CURRENT_TICK;
+	uint32_t network_timer = CURRENT_TICK;
+	bool entry_step_4 = true;
 	while (self->stage == 4) {
-		uint32_t speed_timer = CURRENT_TICK;
-		uint32_t network_timer = CURRENT_TICK;
+		if (entry_step_4) {
+			Write_String_Log("\n========= STAGE 4 ========= \n");
+			entry_step_4 = false;
+		}
+		
 		if (MC3416_Moving(&self->mc3416)) {
 			speed_timer = CURRENT_TICK;
 			
-			if (CURRENT_TICK - network_timer >= 60000) {
+			if (CURRENT_TICK - network_timer >= 10000) {
+				network_timer = CURRENT_TICK;
+				Write_String_Log("Double checking network each 10 seconds while detecting movement...");
 				if (checkNetworkRegister_AT_CEREG(&self->bc660k) != STATUS_SUCCESS) {
 					continue;
 				}
@@ -471,16 +495,18 @@ void Connection_Flow(struct Board871 *self) {
 				self->stage = 1;
 			}
 		} else {
-			if (CURRENT_TICK - speed_timer >= 300000) {
+			if (CURRENT_TICK - speed_timer >= 30000) {
+				Write_String_Log("No movement in 30 seconds");
 				self->stage = 5;
 			}
 		}
 		
-		vTaskDelay(1000);
+		vTaskDelay(1);
 	}
 	
 	/* No network, no movement => Power saving mode */
 	while (self->stage == 5) {
+		Write_String_Log("\n========= STAGE 5 ========= \n");
 		/* Sleep module */
 		/* Suspend other tasks */
 		if (MC3416_Moving(&self->mc3416)) {
