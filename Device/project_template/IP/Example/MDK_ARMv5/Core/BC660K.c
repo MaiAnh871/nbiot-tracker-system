@@ -313,7 +313,7 @@ enum StatusType checkNetworkRegister_AT_CEREG(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+CEREG?");
-		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT + 5, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -325,8 +325,8 @@ enum StatusType checkNetworkRegister_AT_CEREG(struct BC660K *self) {
 					char *ptr = strstr(token[0], "+CEREG");
 					if (ptr) {
 						self->stat = atoi(token[1]);
-						sprintf(self->bc660k_log_content, "STAT: %u", self->stat);
-						Write_String_Log(self->bc660k_log_content);
+//						sprintf(self->bc660k_log_content, "STAT: %u", self->stat);
+//						Write_String_Log(self->bc660k_log_content);
 					}
 					break;
 			}
@@ -680,9 +680,15 @@ enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self) {
 		/* Actions with status */
 		switch(output_status){
 			
-			case STATUS_SUCCESS:
+			case STATUS_SUCCESS: {
 					/* Do something */
+					char *ptr;
+					ptr = strstr(self->receive_buffer, "+QMTOPEN");
+					if (!ptr) {
+						output_status = STATUS_ERROR;
+					}
 					break;
+			}
 
 			case STATUS_ERROR:
 					/* Do something */
@@ -913,10 +919,29 @@ void Connection_Flow(struct BC660K *self) {
 		stage = 1;
 	}
 	
+	/* Connecting stage */
 	while (stage == 1) {
+		if (wakeUpModule_AT_QSCLK(self) != STATUS_SUCCESS) {
+			continue;
+		}		
+
 		if (checkNetworkRegister_AT_CEREG(self) != STATUS_SUCCESS) {
 			continue;
 		}
+		
+		if (self->stat != 1) {
+			stage = 3;
+			break;
+		}
+		
+		if (openMQTT_AT_QMTOPEN(self) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (connectClient_AT_QMTCONN(self) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		stage = 2;
 	}
-
 }
