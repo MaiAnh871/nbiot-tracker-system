@@ -20,6 +20,7 @@ void Board871_Initialize(struct Board871 * self) {
 	self->measure = true;
 	self->slow = 0;
 	self->route.total_length = 0;
+	self->publishing_node = self->route.node;
 }
 
 void Create_New_Node(struct Board871 * self) {
@@ -308,7 +309,7 @@ uint32_t Calculate_Time(struct Board871 * self) {
 
 void Connection_Flow(struct Board871 *self) {
 	uint8_t stage = 0;
-	uint8_t try = 3;
+	uint8_t attempt;
 	/* Initial stage */
 	while (stage == 0) {
 		if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
@@ -392,9 +393,27 @@ void Connection_Flow(struct Board871 *self) {
 	
 	/* Publishing stage */
 	while (stage == 2) {
-		sprintf(self->data_string, "hello");
+		if (!self->publishing_node) {
+			self->publishing_node = self->route.node;
+			continue;
+		}
+		
+		if (!self->publishing_node->valid) {
+			vTaskDelay(VALIDATE_PERIOD);
+			continue;
+		}
+		
+		Pack_Node_Data(self, self->publishing_node);
+		
 		if (publishMessage_AT_QMTPUB(&self->bc660k, self->data_string) != STATUS_SUCCESS) {
 			continue;
+		}
+		
+		if (self->publishing_node->next_node) {
+			struct Node *temp_node = self->publishing_node;
+			self->route.node = self->publishing_node->next_node;
+			self->publishing_node = self->publishing_node->next_node;
+			free(temp_node);
 		}
 	}
 }

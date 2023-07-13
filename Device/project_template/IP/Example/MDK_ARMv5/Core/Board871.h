@@ -42,6 +42,7 @@ static struct Board871 {
 	struct Route route;
 	struct Node *previous_node;
 	struct Node *current_node;
+	struct Node *publishing_node;
 
   struct BC660K bc660k;
   struct LC76F lc76f;
