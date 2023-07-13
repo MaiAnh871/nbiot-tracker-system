@@ -217,7 +217,6 @@ void task_3(void * argument) {
 
 		/* Application start */
 		
-		Write_String_Log("Validating Node...");
 		Validate_Node(&board871);
 		vTaskDelay(VALIDATE_PERIOD);
 		

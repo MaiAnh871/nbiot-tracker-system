@@ -21,6 +21,7 @@ void Board871_Initialize(struct Board871 * self) {
 	self->route.total_length = 0;
 	
 	Create_New_Node(self);
+	self->previous_node = self->current_node;
 }
 
 void Create_New_Node(struct Board871 * self) {
@@ -80,7 +81,6 @@ void Validate_Node(struct Board871 *self) {
 	vTaskDelay(200);
 	
 	if (!self->current_node) {
-		Write_String_Log("!self->current_node");
 		Create_New_Node(self);
 		self->measure = true;
 		Write_String_Log("Current Node is Null!");
@@ -88,14 +88,11 @@ void Validate_Node(struct Board871 *self) {
 	}
 	
 	if (!self->current_node->valid) {
-		Write_String_Log("!self->current_node->valid");
 		self->measure = true;
 		return;
 	}
 	
-	if (!self->previous_node) {
-		Write_String_Log("!self->previous_node");
-		self->previous_node = self->current_node;
+	if (!self->route.node) {
 		Add_Node(self, self->previous_node);
 		Create_New_Node(self);
 		self->measure = true;

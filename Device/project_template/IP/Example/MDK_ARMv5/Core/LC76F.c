@@ -148,6 +148,8 @@ bool Get_GPS_String(struct LC76F * self)
 		LC76F_UART0_Read_Block(self->raw_gps_string);
 		check = strstr(self->raw_gps_string, "$GNRMC");
 	}
+	
+	vTaskDelay(1);
 		
 	/* Sample raw GPS string */
 	if (TEST_GPS_STRING) {
