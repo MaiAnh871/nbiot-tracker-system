@@ -321,6 +321,10 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
+		for (count = 0; count < 4; count++) {
+			checkModule_AT(&self->bc660k);
+		}
+		
 		if (offEcho_ATE0(&self->bc660k) != STATUS_SUCCESS) {
 			continue;
 		}
@@ -385,6 +389,9 @@ void Connection_Flow(struct Board871 *self) {
 				self->stage = 3;
 				continue;
 			}
+		} else {
+			self->stage = 2;
+			continue;
 		}
 		
 		if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
@@ -399,6 +406,7 @@ void Connection_Flow(struct Board871 *self) {
 	/* Publishing stage */
 	while (self->stage == 2) {
 		Write_String_Log("\n========= STAGE 2 ========= \n");
+		
 		if (!self->publishing_node) {
 			Write_String_Log("Waiting for validated head node!");
 			self->publishing_node = self->route.node;
@@ -412,6 +420,10 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
+		if (getNetworkStatus_AT_QENG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+	
 		Pack_Node_Data(self, self->publishing_node);
 		
 		if (publishMessage_AT_QMTPUB(&self->bc660k, self->data_string) != STATUS_SUCCESS) {

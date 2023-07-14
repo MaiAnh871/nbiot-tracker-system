@@ -131,11 +131,10 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
     sprintf(self -> bc660k_log_content, "\n=== SENDING <%s> | ATTEMPT %u/%u ===", self -> command, (send_attempt - count), send_attempt);
 		Write_String_Log(self -> bc660k_log_content);
 
+		Write_String_Log(self -> command);
     BC660K_USART0_Send(self -> command);
     BC660K_USART0_Send((char * )
       "\r\n");
-		
-		Write_String_Log(self -> command);
 
 		self->command_timer = CURRENT_TICK;
 		BC660K_Clear_Receive_Buffer(self);
@@ -145,9 +144,9 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
 
     sprintf(self -> bc660k_log_content, "%s", self -> receive_buffer);
 		Write_String_Log(self -> bc660k_log_content);
-    sprintf(self -> bc660k_log_content, "Command status: %s", getStatusTypeString(output_status));
+    sprintf(self -> bc660k_log_content, "Command status: %s\n", getStatusTypeString(output_status));
 		Write_String_Log(self -> bc660k_log_content);
-    sprintf(self -> bc660k_log_content, "==========");
+    sprintf(self -> bc660k_log_content, "==========\n");
 		Write_String_Log(self -> bc660k_log_content);
 
 		vTaskDelay(BC660K_SEND_COMMAND_DELAY_MS);
@@ -360,12 +359,31 @@ enum StatusType getNetworkStatus_AT_QENG(struct BC660K *self) {
 		sprintf(self->command, "AT+QENG=0");
 		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 	
+		// +QENG: 0,1769,9,460,"048FFFCA",-67,-3,-64,13,3,"A794",0,-128,2
+	
 		/* Actions with status */
 		switch(output_status){
 			
-			case STATUS_SUCCESS:
+			case STATUS_SUCCESS: {
 					/* Do something */
+					uint8_t token_num;
+					char *ptr = strstr(self->receive_buffer, "\"");
+					if (ptr) {
+						char ** token = Tokenize_String(ptr, ",", &token_num);
+						
+						if (strlen(token[0]) != 10 || atoi(token[1]) > -40) {
+							output_status = STATUS_ERROR;
+							break;
+						}
+						
+						removeChars(token[0], "\"");
+						strcpy(self->connection_status.cell_id, token[0]);
+						self->connection_status.rsrp = atoi(token[1]);
+					} else {
+						output_status = STATUS_ERROR;
+					}
 					break;
+			}
 
 			case STATUS_ERROR:
 					/* Do something */

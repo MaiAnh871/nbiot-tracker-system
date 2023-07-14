@@ -39,6 +39,7 @@ static struct BC660K {
 	uint8_t stat;
 	bool mqtt_opened;
 	bool mqtt_connected;
+	struct Connection_Status connection_status;
 }
 BC660K;
 
