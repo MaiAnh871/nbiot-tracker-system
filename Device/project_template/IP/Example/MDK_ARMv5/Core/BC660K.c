@@ -975,7 +975,7 @@ enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self) {
 		return output_status;
 }
 
-enum StatusType wakeUpModule_AT_QSCLK(struct BC660K *self, uint8_t mode) {
+enum StatusType configureSleepMode_AT_QSCLK(struct BC660K *self, uint8_t mode) {
 		/* Initialize status */
 		enum StatusType output_status = STATUS_UNKNOWN;
 		
@@ -1067,7 +1067,7 @@ enum StatusType enableNBIoTRelatedEventReport(struct BC660K *self) {
 		
 		/* Write Command */
 
-		sprintf(self->command, "AT+CPSMS=0");	
+		sprintf(self->command, "AT+QNBIOTEVENT=1,1");	
 		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */

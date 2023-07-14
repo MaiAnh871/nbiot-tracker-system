@@ -329,6 +329,10 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
+		if (powerSavingModeSetting_AT_CPSMS(&self->bc660k, 0)) {
+			continue;
+		}
+		
 		if (setAuthentication_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
 			continue;
 		}
@@ -355,7 +359,7 @@ void Connection_Flow(struct Board871 *self) {
 	/* Connecting stage */
 	while (self->stage == 1) {
 		Write_String_Log("\n========= STAGE 1 ========= \n");
-		if (wakeUpModule_AT_QSCLK(&self->bc660k, 0) != STATUS_SUCCESS) {
+		if (configureSleepMode_AT_QSCLK(&self->bc660k, 0) != STATUS_SUCCESS) {
 			continue;
 		}		
 
@@ -530,13 +534,35 @@ void Connection_Flow(struct Board871 *self) {
 		}
 		
 		/* Sleep module */
+		if (powerSavingModeSetting_AT_CPSMS(&self->bc660k, 1) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (enableNBIoTRelatedEventReport(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (configureSleepMode_AT_QSCLK(&self->bc660k, 1) != STATUS_SUCCESS) {
+			continue;
+		}
 				
-		/* Suspend other tasks */		
+		/* Suspend other tasks */
+		
 
 		/* Interrupt hardware does not work. Better use external interrupt! */
 		if (MC3416_Moving(&self->mc3416)) {
 			/* Wake module up */
+			if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
+				continue;
+			}
 			
+			for (count = 0; count < 4; count++) {
+				checkModule_AT(&self->bc660k);
+			}
+			
+			if (powerSavingModeSetting_AT_CPSMS(&self->bc660k, 0)) {
+				continue;
+			}
 			/* Resume other tasks */
 			
 			self->stage = 4;
