@@ -1014,3 +1014,49 @@ enum StatusType wakeUpModule_AT_QSCLK(struct BC660K *self, uint8_t mode) {
 		
 		return output_status;
 }
+
+enum StatusType powerSavingModeSetting_AT_CPSMS(struct BC660K *self, uint8_t mode) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		if (mode > 2) {
+			output_status = STATUS_BAD_PARAMETERS;
+			return output_status;
+		}
+		
+		if (mode == 0) {
+			sprintf(self->command, "AT+QSCLK=%u", mode);
+		} else if (mode == 1) {
+			
+		}
+			
+		sprintf(self->command, "AT+QSCLK=%u", mode);
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
