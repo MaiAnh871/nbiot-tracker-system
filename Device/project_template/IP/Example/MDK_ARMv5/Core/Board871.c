@@ -355,7 +355,7 @@ void Connection_Flow(struct Board871 *self) {
 	/* Connecting stage */
 	while (self->stage == 1) {
 		Write_String_Log("\n========= STAGE 1 ========= \n");
-		if (wakeUpModule_AT_QSCLK(&self->bc660k) != STATUS_SUCCESS) {
+		if (wakeUpModule_AT_QSCLK(&self->bc660k, 0) != STATUS_SUCCESS) {
 			continue;
 		}		
 
