@@ -10,6 +10,10 @@
 
 #include "string.h"
 
+#include "FreeRTOS.h"
+
+#include "task.h"
+
 #include "time.h"
 
 #include "Setting.h"
@@ -26,6 +30,11 @@
 
 
 /* Extern variables and functions */
+extern xTaskHandle TaskHandle_1;
+extern xTaskHandle TaskHandle_2;
+extern xTaskHandle TaskHandle_3;
+extern xTaskHandle TaskHandle_4;
+
 extern void Error_Blinking_LED_1(void);
 extern void Connecting_Blinking_LED_2(void);
 
@@ -36,7 +45,6 @@ extern void Write_String_Log(char * input_string);
 /* Struct initialization */
 static struct Board871 {
 	/* Debug */
-	bool measure;
 	uint8_t stage;
 	uint8_t slow;
   char * board871_log_content;
@@ -56,9 +64,14 @@ Board871;
 /* Function prototypes */
 void Board871_Initialize(struct Board871 * self);
 
+/* Tasks */
+void Suspend_Measuring(struct Board871 *self);
+void Resume_Measuring(struct Board871 *self);
+
 /* Debug */
 void Print_Node(struct Board871 * self, struct Node *input_node);
 
+/* Main */
 void Create_New_Node(struct Board871 * self);
 void Validate_Node(struct Board871 *self);
 void Add_Node(struct Board871 *self, struct Node *input_node);

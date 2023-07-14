@@ -9,16 +9,13 @@
 
 #include <math.h>
 
+#include "FreeRTOS.h"
+
+#include "task.h"
+
 #include "Board871.h"
 
 /* Private function prototypes -----------------------------------------------------------------------------*/
-//void setup(struct BC660K * self);
-//void addCA(struct BC660K * self);
-//void loop(struct BC660K * self);
-
-/* AT Command functions */
-
-/* ==================== */
 
 /* UART ports */
 void UART0_GNSS_Configuration(void);
@@ -28,6 +25,11 @@ void UART0_Read_Block(uint8_t * data);
 /* Private macro -------------------------------------------------------------------------------------------*/
 
 /* Global variables ----------------------------------------------------------------------------------------*/
+xTaskHandle TaskHandle_1;
+xTaskHandle TaskHandle_2;
+xTaskHandle TaskHandle_3;
+xTaskHandle TaskHandle_4;
+
 struct Board871 board871;
 
 uint8_t data[100];
@@ -57,14 +59,6 @@ void task_1(void * argument);
 void task_2(void * argument);
 void task_3(void * argument);
 void task_4(void * argument);
-
-//void clear(uint8_t * input_string);
-//bool getRawGPS(void);
-//bool checkValidGPS(uint8_t * raw_GPS);
-//void printBool(bool b);
-//void extractMainData(void);
-//float calculateDistance(void);
-//void packMsg(void);
 
 static void delay_ms(u32 ms) {
   uint32_t i, j;
@@ -196,7 +190,7 @@ void task_2(void * argument) {
 		/* Application start */
 		
 		Get_Accel_Data(&board871);
-		vTaskDelay(996);
+		vTaskDelay(100);
 		
 		/* Application end */
 		
@@ -259,10 +253,10 @@ int main(void) {
 //	Print_Node(&board871, board871.current_node);
 
   // Create application main thread
-  xTaskCreate(task_1, "task_1", 512, NULL, 2, NULL);
-  xTaskCreate(task_2, "task_2", 512, NULL, 2, NULL);
-  xTaskCreate(task_3, "task_3", 512, NULL, 2, NULL);
-  xTaskCreate(task_4, "task_4", 512, NULL, 2, NULL);
+  xTaskCreate(task_1, "task_1", 512, NULL, 2, &TaskHandle_1);
+  xTaskCreate(task_2, "task_2", 512, NULL, 2, &TaskHandle_2);
+  xTaskCreate(task_3, "task_3", 512, NULL, 2, &TaskHandle_3);
+  xTaskCreate(task_4, "task_4", 512, NULL, 2, &TaskHandle_4);
 
   // Start the kernel and execute the first thread
   vTaskStartScheduler();

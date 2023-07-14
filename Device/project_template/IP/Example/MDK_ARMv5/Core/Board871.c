@@ -16,12 +16,21 @@ void Board871_Initialize(struct Board871 * self) {
   LC76F_Initialize(&self->lc76f);
   MC3416_Initialize(&self->mc3416);
 	
-	self->measure = true;
 	self->slow = 0;
 	self->route.total_length = 0;
 	
 	Create_New_Node(self);
 	self->previous_node = self->current_node;
+}
+
+void Suspend_Measuring(struct Board871 *self) {
+	vTaskSuspend(TaskHandle_1);
+	vTaskSuspend(TaskHandle_2);
+}
+
+void Resume_Measuring(struct Board871 *self) {
+	vTaskResume(TaskHandle_1);
+	vTaskResume(TaskHandle_2);
 }
 
 void Create_New_Node(struct Board871 * self) {
@@ -77,25 +86,24 @@ void Print_Node(struct Board871 * self, struct Node *input_node) {
 }
 
 void Validate_Node(struct Board871 *self) {
-	self->measure = false;
-	vTaskDelay(1200);
+	Suspend_Measuring(self);
 	
 	if (!self->current_node) {
 		Create_New_Node(self);
-		self->measure = true;
+		Resume_Measuring(self);
 		Write_String_Log("Current Node is Null!");
 		return;
 	}
 	
 	if (!self->current_node->valid) {
-		self->measure = true;
+		Resume_Measuring(self);
 		return;
 	}
 	
 	if (!self->route.node) {
 		Add_Node(self, self->previous_node);
 		Create_New_Node(self);
-		self->measure = true;
+		Resume_Measuring(self);
 		return;
 	}
 	
@@ -105,7 +113,7 @@ void Validate_Node(struct Board871 *self) {
 	
 	if (time_interval == 0) {
 		Write_String_Log("time_interval == 0");
-		self->measure = true;
+		Resume_Measuring(self);
 		return;
 	}
 	
@@ -123,7 +131,7 @@ void Validate_Node(struct Board871 *self) {
 		Write_String_Log("self->slow >= SLOW_COUNTER");
 		self->slow = SLOW_COUNTER;
 		self->current_node->valid = false;
-		self->measure = true;
+		Resume_Measuring(self);
 		return;
 	}
 	
@@ -136,7 +144,7 @@ void Validate_Node(struct Board871 *self) {
 		sprintf(self->board871_log_content, "TOTAL NODE: %u", self->route.total_length);
 		Write_String_Log(self->board871_log_content);
 	}
-	self->measure = true;
+	Resume_Measuring(self);
 }
 
 void Add_Node(struct Board871 *self, struct Node *input_node) {
@@ -158,11 +166,6 @@ void Add_Node(struct Board871 *self, struct Node *input_node) {
 
 
 void Get_GPS_Data(struct Board871 * self) {
-	if (!self->measure) {
-		vTaskDelay(200);
-		return;
-	}
-	
 	if (!Get_GPS_String(&self->lc76f)) {
 //		Write_String_Log("Cannot get GPS data!");
 		return;
@@ -174,11 +177,6 @@ void Get_GPS_Data(struct Board871 * self) {
 }
 
 void Get_Accel_Data(struct Board871 * self) {
-	if (!self->measure) {
-		vTaskDelay(200);
-		return;
-	}
-	
 	MC3416_Read_Accel(&self->mc3416, self->current_node);
 	vTaskDelay(1000);
 }
@@ -547,7 +545,8 @@ void Connection_Flow(struct Board871 *self) {
 		}
 				
 		/* Suspend other tasks */
-		
+		Suspend_Measuring(self);
+		vTaskSuspend(TaskHandle_3);
 
 		/* Interrupt hardware does not work. Better use external interrupt! */
 		if (MC3416_Moving(&self->mc3416)) {
@@ -564,7 +563,9 @@ void Connection_Flow(struct Board871 *self) {
 				continue;
 			}
 			/* Resume other tasks */
-			
+			Resume_Measuring(self);
+			vTaskResume(TaskHandle_3);	
+		
 			self->stage = 4;
 		}
 		
