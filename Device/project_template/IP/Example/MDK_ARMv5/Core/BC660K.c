@@ -1020,18 +1020,54 @@ enum StatusType powerSavingModeSetting_AT_CPSMS(struct BC660K *self, uint8_t mod
 		enum StatusType output_status = STATUS_UNKNOWN;
 		
 		/* Write Command */
-		if (mode > 2) {
+
+		if (mode == 0) {
+			sprintf(self->command, "AT+CPSMS=0");
+		} else if (mode == 1) {
+			sprintf(self->command, "AT+CPSMS=1,,,\"10100010\",\"00000100\"");
+		} else if (mode == 2) {
+			sprintf(self->command, "AT+CPSMS=2");
+		} else {
 			output_status = STATUS_BAD_PARAMETERS;
 			return output_status;
 		}
-		
-		if (mode == 0) {
-			sprintf(self->command, "AT+QSCLK=%u", mode);
-		} else if (mode == 1) {
 			
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
 		}
-			
-		sprintf(self->command, "AT+QSCLK=%u", mode);
+		
+		return output_status;
+}
+
+enum StatusType enableNBIoTRelatedEventReport(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+
+		sprintf(self->command, "AT+CPSMS=0");	
 		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
