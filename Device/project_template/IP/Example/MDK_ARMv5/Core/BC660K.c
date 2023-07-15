@@ -18,6 +18,9 @@ extern void BC660K_Initialize(struct BC660K * self) {
   if (!self -> receive_buffer) {
 		Error_Blinking_LED_1();
   }
+	
+	strcpy(self->connection_status.cell_id, "00000000");
+	self->connection_status.rsrp = 0;
 }
 
 void BC660K_USART0_Configuration(void) {
@@ -736,7 +739,7 @@ enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTOPEN=0,\"a2ht7rbdkt6040-ats.iot.ap-northeast-2.amazonaws.com\",8883");
-		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT + 5, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 20000);
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 8000);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -821,7 +824,7 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTCONN=0,\"anhttm8client\"");
-		output_status = BC660K_Send_Command(self, 1, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 5000);
+		output_status = BC660K_Send_Command(self, 1, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 2000);
 		/* Actions with status */
 		switch(output_status){
 			

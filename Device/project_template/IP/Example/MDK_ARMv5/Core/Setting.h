@@ -45,7 +45,7 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define LONGTITUDE_LENGTH 10	/* 'dddmm.mmmm' */
 #define CELL_ID_LENGTH 9 /* '00000000' - 'FFFFFFFF' */
 
-#define VALIDATE_PERIOD 4000 // ms
+#define VALIDATE_PERIOD 3000 // ms
 #define MIN_SPEED 0 // m/s
 #define SLOW_COUNTER 3
 #define DATA_NODE_STRING_LENGTH 500

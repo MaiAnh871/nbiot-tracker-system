@@ -58,6 +58,7 @@ static struct Board871 {
   struct MC3416 mc3416;
 	
 	char * data_string;
+	struct Connection_Status connection_status;
 }
 Board871;
 

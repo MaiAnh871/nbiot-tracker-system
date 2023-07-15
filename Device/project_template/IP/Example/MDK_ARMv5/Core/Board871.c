@@ -21,6 +21,9 @@ void Board871_Initialize(struct Board871 * self) {
 	
 	Create_New_Node(self);
 	self->previous_node = self->current_node;
+	
+	strcpy(self->connection_status.cell_id, "00000000");
+	self->connection_status.rsrp = 0;
 }
 
 void Suspend_Measuring(struct Board871 *self) {
@@ -422,10 +425,14 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
-		if (getNetworkStatus_AT_QENG(&self->bc660k) != STATUS_SUCCESS) {
-			continue;
+		if (getNetworkStatus_AT_QENG(&self->bc660k) == STATUS_SUCCESS) {
+			strcpy(self->connection_status.cell_id, self->bc660k.connection_status.cell_id);
+			self->connection_status.rsrp = self->bc660k.connection_status.rsrp;
 		}
-	
+		
+		strcpy(self->publishing_node->connection_status.cell_id, self->connection_status.cell_id);
+		self->publishing_node->connection_status.rsrp = self->connection_status.rsrp;
+		
 		Pack_Node_Data(self, self->publishing_node);
 		
 		if (publishMessage_AT_QMTPUB(&self->bc660k, self->data_string) != STATUS_SUCCESS) {
