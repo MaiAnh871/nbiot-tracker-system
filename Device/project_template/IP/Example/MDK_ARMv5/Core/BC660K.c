@@ -369,7 +369,7 @@ enum StatusType getNetworkStatus_AT_QENG(struct BC660K *self) {
 			
 			case STATUS_SUCCESS: {
 					/* Do something */
-					uint8_t token_num;
+					uint8_t token_num = 0;
 					char *ptr = strstr(self->receive_buffer, "\"");
 					if (ptr) {
 						char ** token = Tokenize_String(ptr, ",", &token_num);
@@ -824,7 +824,7 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTCONN=0,\"anhttm8client\"");
-		output_status = BC660K_Send_Command(self, 1, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 2000);
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 2000);
 		/* Actions with status */
 		switch(output_status){
 			

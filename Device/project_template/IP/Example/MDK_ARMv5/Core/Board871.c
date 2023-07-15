@@ -11,6 +11,11 @@ void Board871_Initialize(struct Board871 * self) {
   if (!self -> data_string) {
 		Error_Blinking_LED_1();
   }
+	
+  self -> temp = (char * ) malloc(100 * sizeof(char));
+  if (!self -> temp) {
+		Error_Blinking_LED_1();
+  }
 
   BC660K_Initialize(&self->bc660k);
   LC76F_Initialize(&self->lc76f);
@@ -171,6 +176,12 @@ void Add_Node(struct Board871 *self, struct Node *input_node) {
 	self->route.total_length++;
 }
 
+void Clear_String_Data(struct Board871 * self) {
+	int i;
+	for (i = 0; i < DATA_NODE_STRING_LENGTH; i++) {
+		self->data_string[i] = 0;
+	}
+}
 
 void Get_GPS_Data(struct Board871 * self) {
 	if (!Get_GPS_String(&self->lc76f)) {
@@ -193,70 +204,120 @@ void Pack_Node_Data(struct Board871 * self, struct Node *input_node) {
 		Write_String_Log("Input node is NULL!\n");
 		return;
 	}
+
+	sprintf(self->board871_log_content, "Packing data...");
+	Write_String_Log(self->board871_log_content);
 	
-	char *temp;
-	temp = calloc(100, sizeof(char));
+	sprintf(self->board871_log_content, "1");
+	Write_String_Log(self->board871_log_content);
 	 
+	Clear_String_Data(self);
+	
 	sprintf(self->data_string, "{\"message\":{");
 	
+	sprintf(self->board871_log_content, "2");
+	Write_String_Log(self->board871_log_content);
+	
 	if (input_node->valid) {
-		sprintf(temp, "\"valid\":true");
+		sprintf(self->temp, "\"valid\":true");
 	} else {
-		sprintf(temp, "\"valid\":false");
+		sprintf(self->temp, "\"valid\":false");
 	}
-	strcat(self->data_string, temp);
+	strcat(self->data_string, self->temp);
 	
-	sprintf(temp, ",\"timestamp\":\"%u:%u:%uT%u-%u-%u\"", input_node->timestamp.hour, input_node->timestamp.minute, input_node->timestamp.second, input_node->timestamp.day, input_node->timestamp.month, input_node->timestamp.year);
-	strcat(self->data_string, temp);
+	sprintf(self->board871_log_content, "3");
+	Write_String_Log(self->board871_log_content);
 	
-	sprintf(temp, ",\"device_id\":\"%s\"", input_node->device_id);
-	strcat(self->data_string, temp);
+	sprintf(self->temp, ",\"timestamp\":\"%u:%u:%uT%u-%u-%u\"", input_node->timestamp.hour, input_node->timestamp.minute, input_node->timestamp.second, input_node->timestamp.day, input_node->timestamp.month, input_node->timestamp.year);
+	strcat(self->data_string, self->temp);
 	
-	sprintf(temp, ",\"latitude\":%f", DMS_To_Decimal(input_node->latitude.degree, input_node->latitude.minute, input_node->latitude.second, input_node->latitude.latitude_direction));
-	strcat(self->data_string, temp);
+	sprintf(self->board871_log_content, "4");
+	Write_String_Log(self->board871_log_content);
 	
-	sprintf(temp, ",\"longitude\":%f",DMS_To_Decimal(input_node->longitude.degree, input_node->longitude.minute, input_node->longitude.second, input_node->longitude.longitude_direction));
-	strcat(self->data_string, temp);
+	sprintf(self->temp, ",\"device_id\":\"%s\"", input_node->device_id);
+	strcat(self->data_string, self->temp);
 	
-	sprintf(temp, ",\"speed\":%u", (uint16_t) input_node->speed);
-	strcat(self->data_string, temp);	
+	sprintf(self->board871_log_content, "5");
+	Write_String_Log(self->board871_log_content);
+	
+	sprintf(self->temp, ",\"latitude\":%f", DMS_To_Decimal(input_node->latitude.degree, input_node->latitude.minute, input_node->latitude.second, input_node->latitude.latitude_direction));
+	strcat(self->data_string, self->temp);
+	
+	sprintf(self->board871_log_content, "6");
+	Write_String_Log(self->board871_log_content);
+	
+	sprintf(self->temp, ",\"longitude\":%f",DMS_To_Decimal(input_node->longitude.degree, input_node->longitude.minute, input_node->longitude.second, input_node->longitude.longitude_direction));
+	strcat(self->data_string, self->temp);
+	
+	sprintf(self->board871_log_content, "7");
+	Write_String_Log(self->board871_log_content);
+	
+	sprintf(self->temp, ",\"speed\":%u", (uint16_t) input_node->speed);
+	strcat(self->data_string, self->temp);	
+	
+	sprintf(self->board871_log_content, "8");
+	Write_String_Log(self->board871_log_content);
 
-	sprintf(temp, ",\"accel_x\":%d", (int16_t) input_node->accel_x);
-	strcat(self->data_string, temp);	
+	sprintf(self->temp, ",\"accel_x\":%d", (int16_t) input_node->accel_x);
+	strcat(self->data_string, self->temp);
 
-	sprintf(temp, ",\"accel_y\":%d", (int16_t) input_node->accel_y);
-	strcat(self->data_string, temp);	
+	sprintf(self->board871_log_content, "9");
+	Write_String_Log(self->board871_log_content);
 
-	sprintf(temp, ",\"accel_z\":%d", (int16_t) input_node->accel_z);
-	strcat(self->data_string, temp);
+	sprintf(self->temp, ",\"accel_y\":%d", (int16_t) input_node->accel_y);
+	strcat(self->data_string, self->temp);	
+	
+	sprintf(self->board871_log_content, "10");
+	Write_String_Log(self->board871_log_content);
+
+	sprintf(self->temp, ",\"accel_z\":%d", (int16_t) input_node->accel_z);
+	strcat(self->data_string, self->temp);
+	
+	sprintf(self->board871_log_content, "11");
+	Write_String_Log(self->board871_log_content);
 	
 	if (input_node->tilt_alert) {
-		sprintf(temp, ",\"tilt_alert\":true");
+		sprintf(self->temp, ",\"tilt_alert\":true");
 	} else {
-		sprintf(temp, ",\"tilt_alert\":false");
+		sprintf(self->temp, ",\"tilt_alert\":false");
 	}
-	strcat(self->data_string, temp);
+	strcat(self->data_string, self->temp);
+	
+	sprintf(self->board871_log_content, "12");
+	Write_String_Log(self->board871_log_content);
 	
 	if (input_node->wheelie_alert) {
-		sprintf(temp, ",\"wheelie_alert\":true");
+		sprintf(self->temp, ",\"wheelie_alert\":true");
 	} else {
-		sprintf(temp, ",\"wheelie_alert\":false");
+		sprintf(self->temp, ",\"wheelie_alert\":false");
 	}
-	strcat(self->data_string, temp);
+	strcat(self->data_string, self->temp);
+	
+	sprintf(self->board871_log_content, "13");
+	Write_String_Log(self->board871_log_content);
 	
 	if (input_node->overspeed_alert) {
-		sprintf(temp, ",\"overspeed_alert\":true");
+		sprintf(self->temp, ",\"overspeed_alert\":true");
 	} else {
-		sprintf(temp, ",\"overspeed_alert\":false");
+		sprintf(self->temp, ",\"overspeed_alert\":false");
 	}
-	strcat(self->data_string, temp);
+	strcat(self->data_string, self->temp);
 	
-	sprintf(temp, ",\"connection_status\":{\"cell_id\":\"%s\",\"rsrp\":%d}", input_node->connection_status.cell_id, input_node->connection_status.rsrp);
-	strcat(self->data_string, temp);
+	sprintf(self->board871_log_content, "14");
+	Write_String_Log(self->board871_log_content);	
+	
+	sprintf(self->temp, ",\"connection_status\":{\"cell_id\":\"%s\",\"rsrp\":%d}", input_node->connection_status.cell_id, input_node->connection_status.rsrp);
+	strcat(self->data_string, self->temp);
+	
+	sprintf(self->board871_log_content, "15");
+	Write_String_Log(self->board871_log_content);
 	
 	strcat(self->data_string, "}}");
 	
-	free(temp);
+	sprintf(self->board871_log_content, "Packed data!");
+	Write_String_Log(self->board871_log_content);
+	
+	Write_String_Log(self->data_string);
 }
 
 float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign) {
@@ -393,19 +454,29 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
-		if (!self->bc660k.mqtt_opened) {
+		if (self->bc660k.mqtt_opened) {
+			self->stage = 2;
+			break;
+		}
+		
+		attempt = 5;
+		count = attempt;
+		while (count--) {
+			sprintf(self->board871_log_content, "Attempt: %u/%u", attempt - count, attempt);
+			Write_String_Log(self->board871_log_content);
 			if (openMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
-				self->stage = 3;
 				continue;
 			}
-		} else {
-			self->stage = 2;
-			continue;
+			break;
+		}
+
+		if (count == -1) {
+			self->stage = 3;
+			break;
 		}
 		
 		if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
 			closeMQTT_AT_QMTCLOSE(&self->bc660k);
-			self->stage = 3;
 			continue;
 		}
 		
@@ -419,33 +490,30 @@ void Connection_Flow(struct Board871 *self) {
 		if (!self->publishing_node) {
 			Write_String_Log("Waiting for validated head node!");
 			self->publishing_node = self->route.node;
-			vTaskDelay(VALIDATE_PERIOD);
+			vTaskDelay(1000);
 			continue;
 		}
 		
 		if (!self->publishing_node->valid) {
 			Write_String_Log("Waiting for a validated node!");
-			vTaskDelay(VALIDATE_PERIOD);
+			vTaskDelay(1000);
 			continue;
 		}
 
 		
 		if (getNetworkStatus_AT_QENG(&self->bc660k) == STATUS_SUCCESS) {
-			sprintf(self->board871_log_content, "/nSUCCESS");
+			sprintf(self->board871_log_content, "SUCCESS");
 			Write_String_Log(self->board871_log_content);
-			sprintf(self->board871_log_content, "BC660K - CELL_ID: %s, RSRP: %d", self->bc660k.connection_status.cell_id, self->bc660k.connection_status.rsrp);
-			Write_String_Log(self->board871_log_content);
-			sprintf(self->board871_log_content, "PUBLISHING NODE - CELL_ID: %s, RSRP: %d", self->publishing_node->connection_status.cell_id, self->publishing_node->connection_status.rsrp);
+			sprintf(self->board871_log_content, "CELL ID: %s  |  RSRP: %d", self->bc660k.connection_status.cell_id, self->bc660k.connection_status.rsrp);
 			Write_String_Log(self->board871_log_content);
 			strcpy(self->connection_status.cell_id, self->bc660k.connection_status.cell_id);
 			self->connection_status.rsrp = self->bc660k.connection_status.rsrp;
+		} else {
+			sprintf(self->board871_log_content, "FAIL");
+			Write_String_Log(self->board871_log_content);
 		}
 		
-		sprintf(self->board871_log_content, "/nFAIL");
-		Write_String_Log(self->board871_log_content);
 		sprintf(self->board871_log_content, "BC660K - CELL_ID: %s, RSRP: %d", self->bc660k.connection_status.cell_id, self->bc660k.connection_status.rsrp);
-		Write_String_Log(self->board871_log_content);
-		sprintf(self->board871_log_content, "PUBLISHING NODE - CELL_ID: %s, RSRP: %d", self->publishing_node->connection_status.cell_id, self->publishing_node->connection_status.rsrp);
 		Write_String_Log(self->board871_log_content);
 		
 		strcpy(self->publishing_node->connection_status.cell_id, self->connection_status.cell_id);
@@ -458,14 +526,18 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
+		Write_String_Log("Published!");
+		
 		if (self->publishing_node->next_node) {
-			struct Node *temp_node = self->publishing_node;
-			self->route.node = self->publishing_node->next_node;
-			self->publishing_node = self->publishing_node->next_node;
-			free(temp_node);
-		} else {
-			while (!self->publishing_node->next_node) {
-				vTaskDelay(1000);
+				if (self->publishing_node->next_node->valid) {
+				struct Node *temp_node = self->publishing_node;
+				Write_String_Log("Assigned temp_node");
+				self->route.node = self->publishing_node->next_node;
+				Write_String_Log("Assigned temp_node");
+				self->publishing_node = self->publishing_node->next_node;
+				Write_String_Log("Changed to next node");
+				free(temp_node);
+				Write_String_Log("Freed previous node");
 			}
 		}
 	}

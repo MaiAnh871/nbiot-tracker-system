@@ -179,13 +179,21 @@ bool Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 	/* Time */
 	Clear_Temp(self);
 	slice(token_array[1], self->temp, 0, 2);
-	current_node->timestamp.hour = (atoi(self->temp) + TIME_ZONE);
+	current_node->timestamp.hour = ((atoi(self->temp) + TIME_ZONE) % 24);
 	Clear_Temp(self);
 	slice(token_array[1], self->temp, 2, 4);
 	current_node->timestamp.minute = atoi(self->temp);
+	if (current_node->timestamp.minute > 59) {
+		current_node->valid = false;
+		return current_node->valid;
+	}
 	Clear_Temp(self);
 	slice(token_array[1], self->temp, 4, 6);
 	current_node->timestamp.second = atoi(self->temp);
+	if (current_node->timestamp.second > 59) {
+		current_node->valid = false;
+		return current_node->valid;
+	}	
 	
 	/* Latitude */
 	Clear_Temp(self);
@@ -235,9 +243,17 @@ bool Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 	Clear_Temp(self);
 	slice(token_array[9], self->temp, 0, 2);
 	current_node->timestamp.day = atoi(self->temp);
+	if (current_node->timestamp.day > 31) {
+		current_node->valid = false;
+		return current_node->valid;
+	}	
 	Clear_Temp(self);
 	slice(token_array[9], self->temp, 2, 4);
 	current_node->timestamp.month = atoi(self->temp);
+	if (current_node->timestamp.month > 12) {
+		current_node->valid = false;
+		return current_node->valid;
+	}	
 	Clear_Temp(self);
 	slice(token_array[9], self->temp, 4, 6);
 	current_node->timestamp.year = atoi(self->temp);

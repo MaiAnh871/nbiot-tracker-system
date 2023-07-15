@@ -57,6 +57,7 @@ static struct Board871 {
   struct LC76F lc76f;
   struct MC3416 mc3416;
 	
+	char * temp;
 	char * data_string;
 	struct Connection_Status connection_status;
 }
@@ -77,6 +78,7 @@ void Create_New_Node(struct Board871 * self);
 void Validate_Node(struct Board871 *self);
 void Add_Node(struct Board871 *self, struct Node *input_node);
 
+void Clear_String_Data(struct Board871 * self);
 void Get_GPS_Data(struct Board871 * self);
 void Get_Accel_Data(struct Board871 * self);
 void Pack_Node_Data(struct Board871 * self, struct Node *input_node);
