@@ -428,11 +428,25 @@ void Connection_Flow(struct Board871 *self) {
 			vTaskDelay(VALIDATE_PERIOD);
 			continue;
 		}
+
 		
 		if (getNetworkStatus_AT_QENG(&self->bc660k) == STATUS_SUCCESS) {
+			sprintf(self->board871_log_content, "/nSUCCESS");
+			Write_String_Log(self->board871_log_content);
+			sprintf(self->board871_log_content, "BC660K - CELL_ID: %s, RSRP: %d", self->bc660k.connection_status.cell_id, self->bc660k.connection_status.rsrp);
+			Write_String_Log(self->board871_log_content);
+			sprintf(self->board871_log_content, "PUBLISHING NODE - CELL_ID: %s, RSRP: %d", self->publishing_node->connection_status.cell_id, self->publishing_node->connection_status.rsrp);
+			Write_String_Log(self->board871_log_content);
 			strcpy(self->connection_status.cell_id, self->bc660k.connection_status.cell_id);
 			self->connection_status.rsrp = self->bc660k.connection_status.rsrp;
 		}
+		
+		sprintf(self->board871_log_content, "/nFAIL");
+		Write_String_Log(self->board871_log_content);
+		sprintf(self->board871_log_content, "BC660K - CELL_ID: %s, RSRP: %d", self->bc660k.connection_status.cell_id, self->bc660k.connection_status.rsrp);
+		Write_String_Log(self->board871_log_content);
+		sprintf(self->board871_log_content, "PUBLISHING NODE - CELL_ID: %s, RSRP: %d", self->publishing_node->connection_status.cell_id, self->publishing_node->connection_status.rsrp);
+		Write_String_Log(self->board871_log_content);
 		
 		strcpy(self->publishing_node->connection_status.cell_id, self->connection_status.cell_id);
 		self->publishing_node->connection_status.rsrp = self->connection_status.rsrp;

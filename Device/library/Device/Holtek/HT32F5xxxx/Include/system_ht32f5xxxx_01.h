@@ -41,7 +41,7 @@
 /** @addtogroup HT32F5xxxx_System_Exported_types
   * @{
   */
-extern __IO uint32_t SystemCoreClock;  /*!< System Clock Frequency (Core Clock)                             */
+//extern __IO uint32_t SystemCoreClock;  /*!< System Clock Frequency (Core Clock)                             */
 /**
   * @}
   */
