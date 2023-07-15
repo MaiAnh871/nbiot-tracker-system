@@ -82,9 +82,9 @@ static struct Node {
 	struct Latitude latitude;
 	struct Longitude longitude;
 	float speed; /* distance_last_node / time_interval_last_node */
-	float accel_x;
-	float accel_y;
-	float accel_z;
+	int16_t accel_x;
+	int16_t accel_y;
+	int16_t accel_z;
 	bool tilt_alert;
 	bool wheelie_alert;
 	bool overspeed_alert;

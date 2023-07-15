@@ -190,7 +190,6 @@ void task_2(void * argument) {
 		/* Application start */
 		
 		Get_Accel_Data(&board871);
-		vTaskDelay(100);
 		
 		/* Application end */
 		

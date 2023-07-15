@@ -6,11 +6,13 @@
 //#define TEST_ENABLE
 
 #ifdef TEST_ENABLE
-	#define TEST_GPS_STRING true
-	#define TEST_NODE_DATA true
+	#define TEST_GPS_STRING false
+	#define TEST_NODE_DATA false
+	#define TEST_ACCEL true
 #else
 	#define TEST_GPS_STRING false
 	#define TEST_NODE_DATA false
+	#define TEST_ACCEL false
 #endif
 
 /* Math */
@@ -53,6 +55,8 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define DOUBLE_CHECK_NETWORK_PERIOD 10000 // ms
 #define DOUBLE_CHECK_SPEED_PERIOD 60000 // ms
 #define TIME_ZONE 7
+#define TILT_THRESHOLD 45 // degree (ax)
+#define WHEELIE_THRESHOLD 30 // degree (ay)
 
 /* BC660K settings */
 #define BC660K_LOG_CONTENT_SIZE 2000

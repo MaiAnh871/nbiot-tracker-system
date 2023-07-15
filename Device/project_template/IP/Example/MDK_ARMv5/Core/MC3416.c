@@ -126,6 +126,24 @@ void MC3416_Read_Accel(struct MC3416 * self, struct Node *current_node)
 	current_node->accel_x = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]) + MC3416_OFFSET_AX;
 	current_node->accel_y = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
 	current_node->accel_z = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]) + MC3416_OFFSET_AZ;
+	
+	if (abs(current_node->accel_x) > (TILT_THRESHOLD / 90.0 * (INT16_MAX / 2))) {
+		current_node->tilt_alert = true;
+	} else {
+		current_node->tilt_alert = false;
+	}
+	
+	if (abs(current_node->accel_y) > (WHEELIE_THRESHOLD / 90.0 * (INT16_MAX / 2))) {
+		current_node->wheelie_alert = true;
+	} else {
+		current_node->wheelie_alert = false;
+	}
+	
+	if (TEST_ACCEL) {
+		sprintf(self->mc3416_log_content, "Ax %d  |  Ay: %d  |  Az: %d  |  TILT: %d  |  WHEELIE: %d  ", current_node->accel_x, current_node->accel_y, current_node->accel_z, current_node->tilt_alert, current_node->wheelie_alert);
+		Write_String_Log(self->mc3416_log_content);
+	}
+		
 }
 
 bool MC3416_Moving(struct MC3416 * self) {
