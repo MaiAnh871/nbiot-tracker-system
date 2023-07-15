@@ -134,13 +134,13 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
     sprintf(self -> bc660k_log_content, "\n=== SENDING <%s> | ATTEMPT %u/%u ===", self -> command, (send_attempt - count), send_attempt);
 		Write_String_Log(self -> bc660k_log_content);
 
+		BC660K_Clear_Receive_Buffer(self);
 		Write_String_Log(self -> command);
     BC660K_USART0_Send(self -> command);
     BC660K_USART0_Send((char * )
       "\r\n");
 
 		self->command_timer = CURRENT_TICK;
-		BC660K_Clear_Receive_Buffer(self);
 		while(CURRENT_TICK - self->command_timer <= command_timeout) {
 				output_status = BC660K_USART0_Receive(self);
 		}
@@ -151,8 +151,6 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
 		Write_String_Log(self -> bc660k_log_content);
     sprintf(self -> bc660k_log_content, "==========\n");
 		Write_String_Log(self -> bc660k_log_content);
-
-		vTaskDelay(BC660K_SEND_COMMAND_DELAY_MS);
 		
     if (output_status == STATUS_SUCCESS) {
       break;
@@ -370,18 +368,26 @@ enum StatusType getNetworkStatus_AT_QENG(struct BC660K *self) {
 			case STATUS_SUCCESS: {
 					/* Do something */
 					uint8_t token_num = 0;
+					sprintf(self->bc660k_log_content, "QENG - receive_buffer: %s", self->receive_buffer);
+					Write_String_Log(self->bc660k_log_content);
 					char *ptr = strstr(self->receive_buffer, "\"");
 					if (ptr) {
+						sprintf(self->bc660k_log_content, "QENG - ptr: %s", ptr);
+						Write_String_Log(self->bc660k_log_content);
 						char ** token = Tokenize_String(ptr, ",", &token_num);
 						
+						sprintf(self->bc660k_log_content, "QENG - token[0]: %s  |  token[1]: %d", token[0], atoi(token[1]));
+						Write_String_Log(self->bc660k_log_content);
 						if (strlen(token[0]) != 10 || atoi(token[1]) > -40) {
 							output_status = STATUS_ERROR;
+							free(token);
 							break;
 						}
 						
 						removeChars(token[0], "\"");
 						strcpy(self->connection_status.cell_id, token[0]);
 						self->connection_status.rsrp = atoi(token[1]);
+						free(token);
 					} else {
 						output_status = STATUS_ERROR;
 					}

@@ -500,7 +500,6 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 
-		
 		if (getNetworkStatus_AT_QENG(&self->bc660k) == STATUS_SUCCESS) {
 			sprintf(self->board871_log_content, "SUCCESS");
 			Write_String_Log(self->board871_log_content);
