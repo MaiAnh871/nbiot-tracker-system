@@ -130,6 +130,10 @@ void Validate_Node(struct Board871 *self) {
 		self->slow = 0;
 	}
 	
+	if ((speed * 3.6) > SPEED_LIMIT) {
+		self->current_node->overspeed_alert = true;
+	}
+	
 	if (self->slow >= SLOW_COUNTER) {
 		Write_String_Log("self->slow >= SLOW_COUNTER");
 		self->slow = SLOW_COUNTER;

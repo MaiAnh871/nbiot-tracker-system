@@ -179,7 +179,7 @@ bool Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 	/* Time */
 	Clear_Temp(self);
 	slice(token_array[1], self->temp, 0, 2);
-	current_node->timestamp.hour = atoi(self->temp);
+	current_node->timestamp.hour = (atoi(self->temp) + TIME_ZONE);
 	Clear_Temp(self);
 	slice(token_array[1], self->temp, 2, 4);
 	current_node->timestamp.minute = atoi(self->temp);

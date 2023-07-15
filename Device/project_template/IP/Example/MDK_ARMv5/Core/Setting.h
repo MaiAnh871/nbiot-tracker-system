@@ -47,10 +47,12 @@ const char * ERROR_COMMAND_SIGN[] = {
 
 #define VALIDATE_PERIOD 3000 // ms
 #define MIN_SPEED 0 // m/s
+#define SPEED_LIMIT 60 // km/h
 #define SLOW_COUNTER 3
 #define DATA_NODE_STRING_LENGTH 500
 #define DOUBLE_CHECK_NETWORK_PERIOD 10000 // ms
 #define DOUBLE_CHECK_SPEED_PERIOD 60000 // ms
+#define TIME_ZONE 7
 
 /* BC660K settings */
 #define BC660K_LOG_CONTENT_SIZE 2000
