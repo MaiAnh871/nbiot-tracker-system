@@ -471,7 +471,7 @@ void Connection_Flow(struct Board871 *self) {
 	/* Double check network */
 	while (self->stage == 3) {
 		Write_String_Log("\n========= STAGE 3 ========= \n");
-		attempt = 2;
+		attempt = 4;
 		count = attempt;
 		while (count--) {
 			sprintf(self->board871_log_content, "Attempt: %u/%u", attempt - count, attempt);
@@ -482,6 +482,10 @@ void Connection_Flow(struct Board871 *self) {
 			}
 			
 			if (checkNetworkRegister_AT_CEREG(&self->bc660k) != STATUS_SUCCESS) {
+				continue;
+			}
+			
+			if (self->bc660k.stat != 1) {
 				continue;
 			}
 			
