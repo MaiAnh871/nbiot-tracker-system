@@ -60,6 +60,9 @@ static struct Board871 {
 	char * temp;
 	char * data_string;
 	struct Connection_Status connection_status;
+	
+	bool has_gps;
+	bool has_nbiot;
 }
 Board871;
 

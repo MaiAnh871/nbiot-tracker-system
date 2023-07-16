@@ -47,7 +47,9 @@ int16_t Az = 0;
 static void delay_ms(u32 ms);
 void LED_Init(void);
 void Toggle_LED_1(void);
+void On_LED_1(void);
 void Toggle_LED_2(void);
+void On_LED_2(void);
 
 void Error_Blinking_LED_1(void);
 void Connecting_Blinking_LED_2(void);
@@ -85,14 +87,22 @@ void Toggle_LED_1() {
   HT32F_DVB_LEDToggle(HT_LED1);
 }
 
+void On_LED_1() {
+	HT32F_DVB_LEDOn(HT_LED1);
+}
+
 void Toggle_LED_2() {
   HT32F_DVB_LEDToggle(HT_LED2);
+}
+
+void On_LED_2() {
+	HT32F_DVB_LEDOn(HT_LED2);
 }
 
 void Error_Blinking_LED_1(void) {
 	while (1) {
 		Toggle_LED_1();
-		delay_ms(200);
+		vTaskDelay(100);
 	}
 }
 
@@ -241,6 +251,56 @@ void task_4(void * argument) {
   }
 }
 
+void task_5(void * argument) {
+  while (1) {
+		uint32_t start_time;
+		uint32_t end_time;
+		
+		start_time = CURRENT_TICK;
+
+		/* Application start */
+
+		if (board871.has_gps) {
+			On_LED_1();
+		} else {
+			Toggle_LED_1();
+			vTaskDelay(1000);
+		}
+		
+		/* Application end */
+		
+		end_time = CURRENT_TICK;
+		
+//		sprintf(board871.board871_log_content, "Task 5 period: %u s", (end_time - start_time));
+//		Write_String_Log(board871.board871_log_content);
+  }
+}
+
+void task_6(void * argument) {
+	while (1) {
+		uint32_t start_time;
+		uint32_t end_time;
+		
+		start_time = CURRENT_TICK;
+
+		/* Application start */
+
+		if (board871.has_nbiot) {
+			On_LED_2();
+		} else {
+			Toggle_LED_2();
+			vTaskDelay(1000);
+		}
+		
+		/* Application end */
+		
+		end_time = CURRENT_TICK;
+		
+//		sprintf(board871.board871_log_content, "Task 6 period: %u s", (end_time - start_time));
+//		Write_String_Log(board871.board871_log_content);
+	}
+}
+
 int main(void) {
   SystemCoreClockUpdate();
 	
@@ -256,6 +316,8 @@ int main(void) {
   xTaskCreate(task_2, "task_2", 512, NULL, 2, &TaskHandle_2);
   xTaskCreate(task_3, "task_3", 512, NULL, 2, &TaskHandle_3);
   xTaskCreate(task_4, "task_4", 512, NULL, 3, &TaskHandle_4);
+	xTaskCreate(task_5, "task_5", 128, NULL, 2, NULL);
+	xTaskCreate(task_6, "task_6", 128, NULL, 2, NULL);
 
   // Start the kernel and execute the first thread
   vTaskStartScheduler();

@@ -29,6 +29,9 @@ void Board871_Initialize(struct Board871 * self) {
 	
 	strcpy(self->connection_status.cell_id, "00000000");
 	self->connection_status.rsrp = 0;
+	
+	self->has_gps = false;
+	self->has_nbiot = false;
 }
 
 void Suspend_Measuring(struct Board871 *self) {
@@ -172,10 +175,12 @@ void Clear_String_Data(struct Board871 * self) {
 void Get_GPS_Data(struct Board871 * self) {
 	if (!Get_GPS_String(&self->lc76f)) {
 //		Write_String_Log("Cannot get GPS data!");
+		self->has_gps = false;
 		return;
 	}
 	
 	Parse_GPS_String(&self->lc76f, self->current_node);
+	self->has_gps = true;
 }
 
 void Get_Accel_Data(struct Board871 * self) {
@@ -309,6 +314,7 @@ void Connection_Flow(struct Board871 *self) {
 	int8_t count;
 	/* Initial stage */
 	while (self->stage == 0) {
+		self->has_nbiot = false;
 		Write_String_Log("\n========= STAGE 0 ========= \n");		
 		if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
 			continue;
@@ -321,6 +327,10 @@ void Connection_Flow(struct Board871 *self) {
 		if (offEcho_ATE0(&self->bc660k) != STATUS_SUCCESS) {
 			continue;
 		}
+		
+		if (configureSleepMode_AT_QSCLK(&self->bc660k, 0) != STATUS_SUCCESS) {
+			continue;
+		}		
 		
 		if (powerSavingModeSetting_AT_CPSMS(&self->bc660k, 0)) {
 			continue;
@@ -351,6 +361,7 @@ void Connection_Flow(struct Board871 *self) {
 	
 	/* Connecting stage */
 	while (self->stage == 1) {
+		self->has_nbiot = false;
 		Write_String_Log("\n========= STAGE 1 ========= \n");
 		if (configureSleepMode_AT_QSCLK(&self->bc660k, 0) != STATUS_SUCCESS) {
 			continue;
@@ -412,6 +423,7 @@ void Connection_Flow(struct Board871 *self) {
 	
 	/* Publishing stage */
 	while (self->stage == 2) {
+		self->has_nbiot = true;
 		Write_String_Log("\n========= STAGE 2 ========= \n");
 		
 		if (!self->publishing_node) {
@@ -470,16 +482,18 @@ void Connection_Flow(struct Board871 *self) {
 	
 	/* Double check network */
 	while (self->stage == 3) {
+		self->has_nbiot = false;
 		Write_String_Log("\n========= STAGE 3 ========= \n");
 		attempt = 4;
 		count = attempt;
 		while (count--) {
-			sprintf(self->board871_log_content, "Attempt: %u/%u", attempt - count, attempt);
-			Write_String_Log(self->board871_log_content);
 			if (count < (attempt - 1)) {
 				Write_String_Log("Wait 30 seconds...");
 				vTaskDelay(30000);
 			}
+			
+			sprintf(self->board871_log_content, "Attempt: %u/%u", attempt - count, attempt);
+			Write_String_Log(self->board871_log_content);
 			
 			if (checkNetworkRegister_AT_CEREG(&self->bc660k) != STATUS_SUCCESS) {
 				continue;
@@ -518,6 +532,7 @@ void Connection_Flow(struct Board871 *self) {
 	uint32_t network_timer = CURRENT_TICK;
 	bool entry_step_4 = true;
 	while (self->stage == 4) {
+		self->has_nbiot = false;
 		if (entry_step_4) {
 			Write_String_Log("\n========= STAGE 4 ========= \n");
 			entry_step_4 = false;
@@ -542,7 +557,7 @@ void Connection_Flow(struct Board871 *self) {
 		} else {
 			if (CURRENT_TICK - speed_timer >= DOUBLE_CHECK_SPEED_PERIOD) {
 				sprintf(self->board871_log_content, "No movement in %d ms!", DOUBLE_CHECK_SPEED_PERIOD);
-				Write_String_Log("self->board871_log_content");
+				Write_String_Log(self->board871_log_content);
 				self->stage = 5;
 			}
 		}
@@ -553,6 +568,7 @@ void Connection_Flow(struct Board871 *self) {
 	/* No network, no movement => Power saving mode */
 	bool entry_step_5 = true;
 	while (self->stage == 5) {
+		self->has_nbiot = false;
 		if (entry_step_5) {
 			Write_String_Log("\n========= STAGE 5 ========= \n");
 			entry_step_5 = false;
@@ -574,26 +590,34 @@ void Connection_Flow(struct Board871 *self) {
 		/* Suspend other tasks */
 		Suspend_Measuring(self);
 		vTaskSuspend(TaskHandle_3);
-
-		/* Interrupt hardware does not work. Better use external interrupt! */
-		if (MC3416_Moving(&self->mc3416)) {
-			/* Wake module up */
-			if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
-				continue;
-			}
-			
-			for (count = 0; count < 4; count++) {
-				checkModule_AT(&self->bc660k);
-			}
-			
-			if (powerSavingModeSetting_AT_CPSMS(&self->bc660k, 0)) {
-				continue;
-			}
-			/* Resume other tasks */
-			Resume_Measuring(self);
-			vTaskResume(TaskHandle_3);	
 		
-			self->stage = 4;
+		while (!MC3416_Moving(&self->mc3416)) {
+			/* Interrupt hardware does not work. Better use external interrupt! */
+			if (MC3416_Moving(&self->mc3416)) {
+				/* Wake module up */
+				if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
+					continue;
+				}
+				
+				for (count = 0; count < 4; count++) {
+					checkModule_AT(&self->bc660k);
+				}
+				
+				if (powerSavingModeSetting_AT_CPSMS(&self->bc660k, 0)) {
+					continue;
+				}
+				
+				if (configureSleepMode_AT_QSCLK(&self->bc660k, 0) != STATUS_SUCCESS) {
+					continue;
+				}		
+				
+				/* Resume other tasks */
+				Resume_Measuring(self);
+				vTaskResume(TaskHandle_3);	
+			
+				self->stage = 4;
+				break;
+			}
 		}
 		
 		vTaskDelay(100);
