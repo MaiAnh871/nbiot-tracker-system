@@ -236,7 +236,7 @@ void Pack_Node_Data(struct Board871 * self, struct Node *input_node) {
 	sprintf(self->board871_log_content, "7");
 	Write_String_Log(self->board871_log_content);
 	
-	sprintf(self->temp, ",\"speed\":%u", (uint16_t) input_node->speed);
+	sprintf(self->temp, ",\"speed\":%f", input_node->speed);
 	strcat(self->data_string, self->temp);	
 	
 	sprintf(self->board871_log_content, "8");

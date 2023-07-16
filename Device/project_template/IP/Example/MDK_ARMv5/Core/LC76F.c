@@ -286,6 +286,7 @@ void Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 	
 	current_node->coordinates = self->current_coordinates;
 	current_node->speed = speed;
+	current_node->valid = true;
 }
 
 float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign) {
@@ -335,6 +336,9 @@ uint32_t Calculate_Time(struct LC76F * self) {
 	end_time.tm_mon = timestamp_2.month;        // Month (0-11, January = 0)
 	end_time.tm_year = timestamp_2.year + 2000 - 1900;     // Year since 1900
 	
+	sprintf(self->lc76f_log_content, "%u:%u:%u", timestamp_2.hour, timestamp_2.minute, timestamp_2.second);
+	Write_String_Log(self->lc76f_log_content);
+	
 	// Convert the timestamps to time_t values
 	time_t start_t = mktime(&start_time);
 	time_t end_t = mktime(&end_time);
@@ -346,5 +350,10 @@ uint32_t Calculate_Time(struct LC76F * self) {
 }
 
 float Calculate_Speed(struct LC76F * self) {
-	return Calculate_Distance(self) / (float) Calculate_Time(self);
+	float distance = Calculate_Distance(self);
+	float time_interval = (float) Calculate_Time(self);
+	float speed = distance / time_interval;
+	sprintf(self->lc76f_log_content, "DISTANCE: %f, TIME_INTERVAL: %f, SPEED: %f", distance, time_interval, speed);
+	Write_String_Log(self->lc76f_log_content);
+	return speed;
 }
