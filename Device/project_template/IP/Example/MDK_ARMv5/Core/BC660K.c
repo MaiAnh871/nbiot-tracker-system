@@ -121,14 +121,6 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
   }
   u8 count = send_attempt;
 
-	char *command;
-	command = (char * ) malloc(BC660K_COMMAND_SIZE * sizeof(char));
-	if (!command) {
-		Error_Blinking_LED_1();
-	}
-
-	strcpy(command, self->command);
-
   while (count--) {
 
     sprintf(self -> bc660k_log_content, "\n=== SENDING <%s> | ATTEMPT %u/%u ===", self -> command, (send_attempt - count), send_attempt);

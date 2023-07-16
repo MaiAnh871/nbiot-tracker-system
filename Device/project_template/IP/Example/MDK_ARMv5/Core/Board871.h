@@ -83,11 +83,6 @@ void Get_GPS_Data(struct Board871 * self);
 void Get_Accel_Data(struct Board871 * self);
 void Pack_Node_Data(struct Board871 * self, struct Node *input_node);
 
-float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign);
-float Degree_To_Rad(float degree);
-float Calculate_Distance(struct Board871 * self);
-uint32_t Calculate_Time(struct Board871 * self);
-
 void Connection_Flow(struct Board871 *self);
 
 #endif /* BOARD871_ */

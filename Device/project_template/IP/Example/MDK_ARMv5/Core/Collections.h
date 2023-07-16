@@ -75,12 +75,16 @@ static struct Latitude {
 	enum Latitude_Direction latitude_direction;
 } Latitude;
 
-static struct Node {
-	bool valid;
+static struct Coordinates {
 	struct Timestamp timestamp;
-	char device_id[DEVICE_ID_LENGTH];
 	struct Latitude latitude;
 	struct Longitude longitude;
+} Coordinates;
+
+static struct Node {
+	bool valid;
+	struct Coordinates coordinates;
+	char device_id[DEVICE_ID_LENGTH];
 	float speed; /* distance_last_node / time_interval_last_node */
 	int16_t accel_x;
 	int16_t accel_y;
