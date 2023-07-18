@@ -146,6 +146,7 @@ void Validate_Node(struct Board871 *self) {
 		sprintf(self->board871_log_content, "TOTAL NODE: %u", self->route.total_length);
 		Write_String_Log(self->board871_log_content);
 	}
+	
 	Resume_Measuring(self);
 }
 
@@ -472,20 +473,17 @@ void Connection_Flow(struct Board871 *self) {
 		Write_String_Log("Published!");
 		
 		if (self->publishing_node->next_node) {
-				struct Node *temp_node = self->publishing_node;
-//				Write_String_Log("Assigned temp_node");
-				self->route.node = self->publishing_node->next_node;
-//				Write_String_Log("Assigned temp_node");
-				self->publishing_node = self->publishing_node->next_node;
-//				Write_String_Log("Changed to next node");
-				free(temp_node);
-//				Write_String_Log("Freed previous node");
-		} else {
-			while (!self->publishing_node->next_node) {
-				vTaskDelay(1000);
-			}
+			struct Node *temp_node = self->publishing_node;
+			Write_String_Log("Assigned temp_node");
+			self->route.node = self->publishing_node->next_node;
+			Write_String_Log("Assigned temp_node");
+			self->publishing_node = self->publishing_node->next_node;
+			Write_String_Log("Changed to next node");
+			free(temp_node);
+			Write_String_Log("Freed previous node");
 		}
 	}
+
 	
 	/* Double check network */
 	while (self->stage == 3) {

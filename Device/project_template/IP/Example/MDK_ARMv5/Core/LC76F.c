@@ -246,15 +246,9 @@ void Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 	Clear_Temp(self);
 	slice(token_array[9], self->temp, 0, 2);
 	temp_coordinates.timestamp.day = atoi(self->temp);
-	if (current_node->coordinates.timestamp.day > 31) {
-		return;
-	}	
 	Clear_Temp(self);
 	slice(token_array[9], self->temp, 2, 4);
 	temp_coordinates.timestamp.month = atoi(self->temp);
-	if (current_node->coordinates.timestamp.month > 12) {
-		return;
-	}	
 	Clear_Temp(self);
 	slice(token_array[9], self->temp, 4, 6);
 	temp_coordinates.timestamp.year = atoi(self->temp);	
