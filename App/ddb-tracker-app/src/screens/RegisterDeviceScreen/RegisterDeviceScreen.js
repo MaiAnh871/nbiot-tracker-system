@@ -27,13 +27,7 @@ export default function RegisterDeviceScreen() {
 
   // console.log(outputListDevice);
   
-  const outputDeviceList = API.graphql({
-    query: queries.listDevices
-  }).then((result) => {
-    console.log(result);
-  }).catch((error) => {
-    console.log(error);
-  });
+
   //console.log(outputDeviceList);
 
   // useEffect(() => {

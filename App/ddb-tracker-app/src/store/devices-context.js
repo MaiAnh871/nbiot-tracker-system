@@ -1,45 +1,7 @@
 import { createContext, useEffect, useReducer } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listDevices } from '../graphql/queries';
-
-const INIT_DEVICES = [
-    {
-        id: 'd1',
-        deviceId: '861536030196001'
-    },
-    {
-        id: 'd2',
-        deviceId: '861536030196019'
-    }, 
-    {
-        id: 'd3',
-        deviceId: '868754048214137'
-    }, 
-    {
-        id: 'd4',
-        deviceId: '868754048214129'
-    }, 
-    {
-        id: 'd5',
-        deviceId: '868754048214265'
-    }, 
-    {
-        id: 'd6',
-        deviceId: '868754048214365'
-    }, 
-    {
-        id: 'd7',
-        deviceId: '868754048212565'
-    }, 
-    {
-        id: 'd8',
-        deviceId: '868754048214365'
-    }, 
-    {
-        id: 'd9',
-        deviceId: '868754048212565'
-    }, 
-];
+import * as queries from '../graphql/queries';
 
 export const DevicesContext = createContext({
     devices: [],
@@ -49,6 +11,9 @@ export const DevicesContext = createContext({
 
 function devicesReducer(state, action) {
     switch (action.kind) {
+        case 'INIT':
+            return [...action.payload];
+
         case 'ADD':
             const id = new Date().toString() + Math.random().toString();
             return [{ ...action.payload, id: id }, ...state]
@@ -62,21 +27,25 @@ function devicesReducer(state, action) {
 }
 
 function DevicesContextProvider({ children }) {
-    const [ devicesState, dispatch ] = useReducer(devicesReducer, INIT_DEVICES);
+    const [ devicesState, dispatch ] = useReducer(devicesReducer, []);
 
-    // useEffect(() => {
-    //     async function fetchDevices() {
-    //         try {
-    //             const deviceData = await API.graphql(graphqlOperation(listDevices));
-    //             const devices = deviceData.data.listDevices.items;
-    //             console(devices);
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     }
-
-    //     fetchDevices();
-    // }, []);
+    useEffect(() => {
+        API.graphql({ query: queries.listDevices })
+            .then((result) => {
+                const devices = result.data.listDevices.items;
+                console.log(devices); // This will log an array of device objects)
+                dispatch({ kind: 'INIT', payload: result.data?.listDevices?.items });
+                if (devices && devices.length > 0) {
+                    const deviceIMEIs = devices.map((device) => device.deviceIMEI);
+                    console.log(deviceIMEIs); // This will log an array of deviceIMEI values
+                } else {
+                    console.log('No devices found.');
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
 
     function addDevice(deviceData) {
         dispatch({ kind: 'ADD', payload: deviceData });
