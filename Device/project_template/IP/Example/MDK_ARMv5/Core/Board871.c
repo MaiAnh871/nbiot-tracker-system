@@ -194,18 +194,18 @@ void Pack_Node_Data(struct Board871 * self, struct Node *input_node) {
 		return;
 	}
 
-	sprintf(self->board871_log_content, "Packing data...");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "Packing data...");
+//	Write_String_Log(self->board871_log_content);
 	
-	sprintf(self->board871_log_content, "1");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "1");
+//	Write_String_Log(self->board871_log_content);
 	 
 	Clear_String_Data(self);
 	
 	sprintf(self->data_string, "{\"message\":{");
 	
-	sprintf(self->board871_log_content, "2");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "2");
+//	Write_String_Log(self->board871_log_content);
 	
 	if (input_node->valid) {
 		sprintf(self->temp, "\"valid\":true");
@@ -214,56 +214,56 @@ void Pack_Node_Data(struct Board871 * self, struct Node *input_node) {
 	}
 	strcat(self->data_string, self->temp);
 	
-	sprintf(self->board871_log_content, "3");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "3");
+//	Write_String_Log(self->board871_log_content);
 	
 	sprintf(self->temp, ",\"timestamp\":\"%u:%u:%uT%u-%u-%u\"", input_node->coordinates.timestamp.hour, input_node->coordinates.timestamp.minute, input_node->coordinates.timestamp.second, input_node->coordinates.timestamp.day, input_node->coordinates.timestamp.month, input_node->coordinates.timestamp.year);
 	strcat(self->data_string, self->temp);
 	
-	sprintf(self->board871_log_content, "4");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "4");
+//	Write_String_Log(self->board871_log_content);
 	
 	sprintf(self->temp, ",\"device_id\":\"%s\"", input_node->device_id);
 	strcat(self->data_string, self->temp);
 	
-	sprintf(self->board871_log_content, "5");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "5");
+//	Write_String_Log(self->board871_log_content);
 	
 	sprintf(self->temp, ",\"latitude\":%f", DMS_To_Decimal(input_node->coordinates.latitude.degree, input_node->coordinates.latitude.minute, input_node->coordinates.latitude.second, input_node->coordinates.latitude.latitude_direction));
 	strcat(self->data_string, self->temp);
 	
-	sprintf(self->board871_log_content, "6");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "6");
+//	Write_String_Log(self->board871_log_content);
 	
 	sprintf(self->temp, ",\"longitude\":%f",DMS_To_Decimal(input_node->coordinates.longitude.degree, input_node->coordinates.longitude.minute, input_node->coordinates.longitude.second, input_node->coordinates.longitude.longitude_direction));
 	strcat(self->data_string, self->temp);
 	
-	sprintf(self->board871_log_content, "7");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "7");
+//	Write_String_Log(self->board871_log_content);
 	
 	sprintf(self->temp, ",\"speed\":%f", input_node->speed);
 	strcat(self->data_string, self->temp);	
 	
-	sprintf(self->board871_log_content, "8");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "8");
+//	Write_String_Log(self->board871_log_content);
 
 	sprintf(self->temp, ",\"accel_x\":%d", (int16_t) input_node->accel_x);
 	strcat(self->data_string, self->temp);
 
-	sprintf(self->board871_log_content, "9");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "9");
+//	Write_String_Log(self->board871_log_content);
 
 	sprintf(self->temp, ",\"accel_y\":%d", (int16_t) input_node->accel_y);
 	strcat(self->data_string, self->temp);	
 	
-	sprintf(self->board871_log_content, "10");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "10");
+//	Write_String_Log(self->board871_log_content);
 
 	sprintf(self->temp, ",\"accel_z\":%d", (int16_t) input_node->accel_z);
 	strcat(self->data_string, self->temp);
 	
-	sprintf(self->board871_log_content, "11");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "11");
+//	Write_String_Log(self->board871_log_content);
 	
 	if (input_node->tilt_alert) {
 		sprintf(self->temp, ",\"tilt_alert\":true");
@@ -272,8 +272,8 @@ void Pack_Node_Data(struct Board871 * self, struct Node *input_node) {
 	}
 	strcat(self->data_string, self->temp);
 	
-	sprintf(self->board871_log_content, "12");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "12");
+//	Write_String_Log(self->board871_log_content);
 	
 	if (input_node->wheelie_alert) {
 		sprintf(self->temp, ",\"wheelie_alert\":true");
@@ -282,8 +282,8 @@ void Pack_Node_Data(struct Board871 * self, struct Node *input_node) {
 	}
 	strcat(self->data_string, self->temp);
 	
-	sprintf(self->board871_log_content, "13");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "13");
+//	Write_String_Log(self->board871_log_content);
 	
 	if (input_node->overspeed_alert) {
 		sprintf(self->temp, ",\"overspeed_alert\":true");
@@ -292,21 +292,21 @@ void Pack_Node_Data(struct Board871 * self, struct Node *input_node) {
 	}
 	strcat(self->data_string, self->temp);
 	
-	sprintf(self->board871_log_content, "14");
-	Write_String_Log(self->board871_log_content);	
+//	sprintf(self->board871_log_content, "14");
+//	Write_String_Log(self->board871_log_content);	
 	
 	sprintf(self->temp, ",\"connection_status\":{\"cell_id\":\"%s\",\"rsrp\":%d}", input_node->connection_status.cell_id, input_node->connection_status.rsrp);
 	strcat(self->data_string, self->temp);
 	
-	sprintf(self->board871_log_content, "15");
-	Write_String_Log(self->board871_log_content);
+//	sprintf(self->board871_log_content, "15");
+//	Write_String_Log(self->board871_log_content);
 	
 	strcat(self->data_string, "}}");
 	
-	sprintf(self->board871_log_content, "Packed data!");
-	Write_String_Log(self->board871_log_content);
-	
-	Write_String_Log(self->data_string);
+//	sprintf(self->board871_log_content, "Packed data!");
+//	Write_String_Log(self->board871_log_content);
+
+//	Write_String_Log(self->data_string);
 }
 
 void Connection_Flow(struct Board871 *self) {
@@ -365,7 +365,11 @@ void Connection_Flow(struct Board871 *self) {
 		Write_String_Log("\n========= STAGE 1 ========= \n");
 		if (configureSleepMode_AT_QSCLK(&self->bc660k, 0) != STATUS_SUCCESS) {
 			continue;
-		}		
+		}
+		
+		if (getNetworkStatus_AT_QENG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
 
 		attempt = 8;
 		count = attempt;
@@ -440,15 +444,15 @@ void Connection_Flow(struct Board871 *self) {
 		}
 
 		if (getNetworkStatus_AT_QENG(&self->bc660k) == STATUS_SUCCESS) {
-			sprintf(self->board871_log_content, "SUCCESS");
-			Write_String_Log(self->board871_log_content);
-			sprintf(self->board871_log_content, "CELL ID: %s  |  RSRP: %d", self->bc660k.connection_status.cell_id, self->bc660k.connection_status.rsrp);
-			Write_String_Log(self->board871_log_content);
+//			sprintf(self->board871_log_content, "SUCCESS");
+//			Write_String_Log(self->board871_log_content);
+//			sprintf(self->board871_log_content, "CELL ID: %s  |  RSRP: %d", self->bc660k.connection_status.cell_id, self->bc660k.connection_status.rsrp);
+//			Write_String_Log(self->board871_log_content);
 			strcpy(self->connection_status.cell_id, self->bc660k.connection_status.cell_id);
 			self->connection_status.rsrp = self->bc660k.connection_status.rsrp;
 		} else {
-			sprintf(self->board871_log_content, "FAIL");
-			Write_String_Log(self->board871_log_content);
+//			sprintf(self->board871_log_content, "FAIL");
+//			Write_String_Log(self->board871_log_content);
 		}
 		
 		sprintf(self->board871_log_content, "BC660K - CELL_ID: %s, RSRP: %d", self->bc660k.connection_status.cell_id, self->bc660k.connection_status.rsrp);

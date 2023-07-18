@@ -360,16 +360,16 @@ enum StatusType getNetworkStatus_AT_QENG(struct BC660K *self) {
 			case STATUS_SUCCESS: {
 					/* Do something */
 					uint8_t token_num = 0;
-					sprintf(self->bc660k_log_content, "QENG - receive_buffer: %s", self->receive_buffer);
-					Write_String_Log(self->bc660k_log_content);
+//					sprintf(self->bc660k_log_content, "QENG - receive_buffer: %s", self->receive_buffer);
+//					Write_String_Log(self->bc660k_log_content);
 					char *ptr = strstr(self->receive_buffer, "\"");
 					if (ptr) {
-						sprintf(self->bc660k_log_content, "QENG - ptr: %s", ptr);
-						Write_String_Log(self->bc660k_log_content);
+//						sprintf(self->bc660k_log_content, "QENG - ptr: %s", ptr);
+//						Write_String_Log(self->bc660k_log_content);
 						char ** token = Tokenize_String(ptr, ",", &token_num);
 						
-						sprintf(self->bc660k_log_content, "QENG - token[0]: %s  |  token[1]: %d", token[0], atoi(token[1]));
-						Write_String_Log(self->bc660k_log_content);
+//						sprintf(self->bc660k_log_content, "QENG - token[0]: %s  |  token[1]: %d", token[0], atoi(token[1]));
+//						Write_String_Log(self->bc660k_log_content);
 						if (strlen(token[0]) != 10 || atoi(token[1]) > -40) {
 							output_status = STATUS_ERROR;
 							free(token);

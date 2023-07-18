@@ -273,6 +273,9 @@ void Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 		return;
 	}
 	
+//	sprintf(self->lc76f_log_content, ",\"MEASURING timestamp\":\"%u:%u:%uT%u-%u-%u\"", self->current_coordinates.timestamp.hour, self->current_coordinates.timestamp.minute, self->current_coordinates.timestamp.second, self->current_coordinates.timestamp.day, self->current_coordinates.timestamp.month, self->current_coordinates.timestamp.year);
+//	Write_String_Log(self->lc76f_log_content);
+	
 	self->current_coordinates = temp_coordinates;
 	
 	float speed = Calculate_Speed(self);
@@ -286,7 +289,6 @@ void Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 	
 	current_node->coordinates = self->current_coordinates;
 	current_node->speed = speed;
-	current_node->valid = true;
 }
 
 float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign) {
