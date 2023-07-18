@@ -186,15 +186,9 @@ void Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 	Clear_Temp(self);
 	slice(token_array[1], self->temp, 2, 4);
 	temp_coordinates.timestamp.minute = atoi(self->temp);
-	if (temp_coordinates.timestamp.minute > 59) {
-		return;
-	}
 	Clear_Temp(self);
 	slice(token_array[1], self->temp, 4, 6);
 	temp_coordinates.timestamp.second = atoi(self->temp);
-	if (temp_coordinates.timestamp.second > 59) {
-		return;
-	}
 	
 	/* Latitude */
 	Clear_Temp(self);
@@ -289,6 +283,7 @@ void Parse_GPS_String(struct LC76F * self, struct Node *current_node) {
 	
 	current_node->coordinates = self->current_coordinates;
 	current_node->speed = speed;
+	current_node->valid = true;
 }
 
 float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign) {

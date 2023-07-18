@@ -138,6 +138,7 @@ void Validate_Node(struct Board871 *self) {
 	
 	self->previous_node = self->current_node;
 	Create_New_Node(self);
+//	Print_Node(self, self->previous_node);
 	Add_Node(self, self->previous_node);
 	
 	if (TEST_NODE_DATA) {
@@ -471,15 +472,17 @@ void Connection_Flow(struct Board871 *self) {
 		Write_String_Log("Published!");
 		
 		if (self->publishing_node->next_node) {
-				if (self->publishing_node->next_node->valid) {
 				struct Node *temp_node = self->publishing_node;
-				Write_String_Log("Assigned temp_node");
+//				Write_String_Log("Assigned temp_node");
 				self->route.node = self->publishing_node->next_node;
-				Write_String_Log("Assigned temp_node");
+//				Write_String_Log("Assigned temp_node");
 				self->publishing_node = self->publishing_node->next_node;
-				Write_String_Log("Changed to next node");
+//				Write_String_Log("Changed to next node");
 				free(temp_node);
-				Write_String_Log("Freed previous node");
+//				Write_String_Log("Freed previous node");
+		} else {
+			while (!self->publishing_node->next_node) {
+				vTaskDelay(1000);
 			}
 		}
 	}
