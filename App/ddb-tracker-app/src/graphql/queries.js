@@ -104,24 +104,7 @@ export const listDevices = /* GraphQL */ `
       items {
         id
         deviceIMEI
-        user {
-          id
-          username
-          email
-          name
-          createdAt
-          updatedAt
-          owner
-        }
-        messages {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userDevicesId
-        owner
       }
-      nextToken
     }
   }
 `;
