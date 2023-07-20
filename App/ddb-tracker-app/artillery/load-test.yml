@@ -1,0 +1,27 @@
+config:
+  target: "https://wbyw4lptgfd3hlazh43drg275y.appsync-api.ap-northeast-2.amazonaws.com/graphql"
+  phases:
+    - duration: 60
+      arrivalRate: 10
+      rampTo: 15
+
+scenarios:
+  - name: List device
+    flow:
+      - post:
+          url: "/"
+          headers:
+            authorization: "AMAZON_COGNITO_USER_POOLS"
+          json:
+            query: |
+              mutation CreateDevice(
+                $input: CreateDeviceInput!
+                $condition: ModelDeviceConditionInput
+              )
+                createDevice(input: $input, condition: $condition) {
+                  id
+                  deviceIMEI
+                }
+              variables: 
+                input:
+                  deviceIMEI: "device-{{ $randomString}}"
