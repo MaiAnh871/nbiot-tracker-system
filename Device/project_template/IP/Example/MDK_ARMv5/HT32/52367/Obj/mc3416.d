@@ -43,5 +43,6 @@
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_cm0plus_misc.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_serial.h \
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_div.h \
-  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h Core\Setting.h \
+  ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h Core\Setting.h \
   Core\Collections.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h
