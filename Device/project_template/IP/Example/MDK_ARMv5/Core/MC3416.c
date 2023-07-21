@@ -1,6 +1,11 @@
 #include "MC3416.h"
 
 void MC3416_Initialize(struct MC3416 * self) {
+  self -> mc3416_log_content = (char * ) malloc(MC3416_LOG_CONTENT_SIZE * sizeof(char));
+  if (!self -> mc3416_log_content) {
+		Error_Blinking_LED_1();
+  }
+	
 	MC3416_I2C_Configuration();
 	MC3416_Init();
 }
@@ -121,4 +126,64 @@ void MC3416_Read_Accel(struct MC3416 * self, struct Node *current_node)
 	current_node->accel_x = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]) + MC3416_OFFSET_AX;
 	current_node->accel_y = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
 	current_node->accel_z = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]) + MC3416_OFFSET_AZ;
+	
+	if (abs(current_node->accel_x) > (TILT_THRESHOLD / 90.0 * (INT16_MAX / 2))) {
+		current_node->tilt_alert = true;
+	} else {
+		current_node->tilt_alert = false;
+	}
+	
+	if (abs(current_node->accel_y) > (WHEELIE_THRESHOLD / 90.0 * (INT16_MAX / 2))) {
+		current_node->wheelie_alert = true;
+	} else {
+		current_node->wheelie_alert = false;
+	}
+	
+	if (TEST_ACCEL) {
+		sprintf(self->mc3416_log_content, "Ax %d  |  Ay: %d  |  Az: %d  |  TILT: %d  |  WHEELIE: %d  ", current_node->accel_x, current_node->accel_y, current_node->accel_z, current_node->tilt_alert, current_node->wheelie_alert);
+		Write_String_Log(self->mc3416_log_content);
+	}
+		
+}
+
+bool MC3416_Moving(struct MC3416 * self) {
+	uint8_t Rec_Data[6];
+	/* Change range and scale */
+	
+	static struct Accel previous_accel;
+	static struct Accel current_accel;
+	
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0E, &Rec_Data[0]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0D, &Rec_Data[1]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x10, &Rec_Data[2]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0F, &Rec_Data[3]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x12, &Rec_Data[4]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x11, &Rec_Data[5]);
+
+	previous_accel.Ax = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]) + MC3416_OFFSET_AX;
+	previous_accel.Ay = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
+	previous_accel.Az = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]) + MC3416_OFFSET_AZ;
+	
+	vTaskDelay(200);
+	
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0E, &Rec_Data[0]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0D, &Rec_Data[1]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x10, &Rec_Data[2]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x0F, &Rec_Data[3]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x12, &Rec_Data[4]);
+	MC3416_Read_Mem_Slave(MC3416_ADDR, 0x11, &Rec_Data[5]);
+	
+	current_accel.Ax = (int16_t)(Rec_Data[0] << 8 | Rec_Data [1]) + MC3416_OFFSET_AX;
+	current_accel.Ay = (int16_t)(Rec_Data[2] << 8 | Rec_Data [3]) + MC3416_OFFSET_AY;
+	current_accel.Az = (int16_t)(Rec_Data[4] << 8 | Rec_Data [5]) + MC3416_OFFSET_AZ;
+	
+	if (abs(current_accel.Ax - previous_accel.Ax) >= MC3416_MOVEMENT_THRESHOLD
+			|| abs(current_accel.Ay - previous_accel.Ay) >= MC3416_MOVEMENT_THRESHOLD
+			|| abs(current_accel.Az - previous_accel.Az) >= MC3416_MOVEMENT_THRESHOLD) 
+	{
+		Write_String_Log("Detect movement!");
+		return true;
+	}
+	
+	return false;
 }

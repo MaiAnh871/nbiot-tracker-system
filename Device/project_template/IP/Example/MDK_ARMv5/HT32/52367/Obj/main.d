@@ -53,7 +53,20 @@
   ..\..\..\..\utilities\common\ebi_lcd.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h Core\Board871.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
+  C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\FreeRTOS.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h \
+  RTE\RTOS\FreeRTOSConfig.h \
+  C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\CMSIS\RTOS2\FreeRTOS\Include\freertos_evr.h \
+  RTE\_HT32\RTE_Components.h \
+  C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\projdefs.h \
+  C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\portable.h \
+  C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\deprecated_definitions.h \
+  C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\portable\GCC\ARM_CM0\portmacro.h \
+  C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\mpu_wrappers.h \
+  C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\task.h \
+  C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\list.h \
+  Core\Board871.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\time.h \
   Core\Setting.h Core\Collections.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h Core\Utilities.h \
-  Core\BC660K.h Core\LC76F.h Core\MC3416.h
+  Core\BC660K.h Core\SSL_param.h Core\LC76F.h Core\MC3416.h

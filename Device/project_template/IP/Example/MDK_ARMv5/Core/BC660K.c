@@ -18,6 +18,9 @@ extern void BC660K_Initialize(struct BC660K * self) {
   if (!self -> receive_buffer) {
 		Error_Blinking_LED_1();
   }
+	
+	strcpy(self->connection_status.cell_id, "00000000");
+	self->connection_status.rsrp = 0;
 }
 
 void BC660K_USART0_Configuration(void) {
@@ -118,21 +121,13 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
   }
   u8 count = send_attempt;
 
-	char *command;
-	command = (char * ) malloc(BC660K_COMMAND_SIZE * sizeof(char));
-	if (!command) {
-	Error_Blinking_LED_1();
-	}
-
-	strcpy(command, self->command);
-
   while (count--) {
 
-    sprintf(self -> bc660k_log_content, "\n=== SENDING <%s> | ATTEMPT %u/%u ===\n", self -> command, (send_attempt - count), send_attempt);
+    sprintf(self -> bc660k_log_content, "\n=== SENDING <%s> | ATTEMPT %u/%u ===", self -> command, (send_attempt - count), send_attempt);
 		Write_String_Log(self -> bc660k_log_content);
-	
-		BC660K_Clear_Receive_Buffer(self);
 
+		BC660K_Clear_Receive_Buffer(self);
+		Write_String_Log(self -> command);
     BC660K_USART0_Send(self -> command);
     BC660K_USART0_Send((char * )
       "\r\n");
@@ -142,15 +137,12 @@ enum StatusType BC660K_Send_Command(struct BC660K * self, u8 send_attempt, u32 c
 				output_status = BC660K_USART0_Receive(self);
 		}
 
-    sprintf(self -> bc660k_log_content, "%s\n\n", self -> receive_buffer);
+    sprintf(self -> bc660k_log_content, "%s", self -> receive_buffer);
 		Write_String_Log(self -> bc660k_log_content);
-		BC660K_Clear_Receive_Buffer(self);
     sprintf(self -> bc660k_log_content, "Command status: %s\n", getStatusTypeString(output_status));
 		Write_String_Log(self -> bc660k_log_content);
     sprintf(self -> bc660k_log_content, "==========\n");
 		Write_String_Log(self -> bc660k_log_content);
-
-		vTaskDelay(BC660K_SEND_COMMAND_DELAY_MS);
 		
     if (output_status == STATUS_SUCCESS) {
       break;
@@ -315,12 +307,22 @@ enum StatusType checkNetworkRegister_AT_CEREG(struct BC660K *self) {
 		sprintf(self->command, "AT+CEREG?");
 		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 	
+		self->stat = 2;
 		/* Actions with status */
 		switch(output_status){
 			
-			case STATUS_SUCCESS:
+			case STATUS_SUCCESS: {
 					/* Do something */
+					uint8_t token_num;
+					char ** token = Tokenize_String(self->receive_buffer, ",", &token_num);
+					char *ptr = strstr(token[0], "+CEREG");
+					if (ptr && (token_num >= 2)) {
+						self->stat = atoi(token[1]);
+//						sprintf(self->bc660k_log_content, "STAT: %u", self->stat);
+//						Write_String_Log(self->bc660k_log_content);
+					}
 					break;
+			}
 
 			case STATUS_ERROR:
 					/* Do something */
@@ -350,12 +352,39 @@ enum StatusType getNetworkStatus_AT_QENG(struct BC660K *self) {
 		sprintf(self->command, "AT+QENG=0");
 		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 	
+		// +QENG: 0,1769,9,460,"048FFFCA",-67,-3,-64,13,3,"A794",0,-128,2
+	
 		/* Actions with status */
 		switch(output_status){
 			
-			case STATUS_SUCCESS:
+			case STATUS_SUCCESS: {
 					/* Do something */
+					uint8_t token_num = 0;
+//					sprintf(self->bc660k_log_content, "QENG - receive_buffer: %s", self->receive_buffer);
+//					Write_String_Log(self->bc660k_log_content);
+					char *ptr = strstr(self->receive_buffer, "\"");
+					if (ptr) {
+//						sprintf(self->bc660k_log_content, "QENG - ptr: %s", ptr);
+//						Write_String_Log(self->bc660k_log_content);
+						char ** token = Tokenize_String(ptr, ",", &token_num);
+						
+//						sprintf(self->bc660k_log_content, "QENG - token[0]: %s  |  token[1]: %d", token[0], atoi(token[1]));
+//						Write_String_Log(self->bc660k_log_content);
+						if (strlen(token[0]) != 10 || atoi(token[1]) > -40) {
+							output_status = STATUS_ERROR;
+							free(token);
+							break;
+						}
+						
+						removeChars(token[0], "\"");
+						strcpy(self->connection_status.cell_id, token[0]);
+						self->connection_status.rsrp = atoi(token[1]);
+						free(token);
+					} else {
+						output_status = STATUS_ERROR;
+					}
 					break;
+			}
 
 			case STATUS_ERROR:
 					/* Do something */
@@ -418,7 +447,7 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self)  {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QSSLCFG=0,0,\"cacert\"");
-		sprintf(self->bc660k_log_content, "\n=== SENDING <%s> ===\n", self->command);
+		sprintf(self->bc660k_log_content, "=== SENDING <%s> ===", self->command);
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
 	
@@ -426,18 +455,19 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self)  {
 		BC660K_USART0_Send((char *)"\r\n");
 
 		self->command_timer = CURRENT_TICK;
-		while(CURRENT_TICK - self->command_timer <= BC660K_COMMAND_TIMEOUT_DEFAULT_MS) {
-				output_status = BC660K_USART0_Receive(self);
-		}
+//		while(CURRENT_TICK - self->command_timer <= BC660K_COMMAND_TIMEOUT_DEFAULT_MS) {
+//				output_status = BC660K_USART0_Receive(self);
+//		}
 		
-		sprintf(self->bc660k_log_content, "|%s|", self->receive_buffer);
+		sprintf(self->bc660k_log_content, "%s", self->receive_buffer);
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
 		
+		vTaskDelay(1);
 		sprintf(self->command, CA_CERT);
 		BC660K_USART0_Send(self->command);
 		BC660K_USART0_Send((char *)"\r\n");
-		vTaskDelay(100);
+		vTaskDelay(1);
 		BC660K_USART0_Send_Char(26);
 	
 		self->command_timer = CURRENT_TICK;
@@ -445,15 +475,15 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self)  {
 				output_status = BC660K_USART0_Receive(self);
 		}
 		
-		sprintf(self->bc660k_log_content, "%s\n\n", self->receive_buffer);
+		sprintf(self->bc660k_log_content, "%s", self->receive_buffer);
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
-		sprintf(self->bc660k_log_content, "Command status: %s\n", getStatusTypeString(output_status));
+		sprintf(self->bc660k_log_content, "Command status: %s", getStatusTypeString(output_status));
 		Write_String_Log(self->bc660k_log_content);
-		sprintf(self->bc660k_log_content, "==========\n");
+		sprintf(self->bc660k_log_content, "==========");
 		Write_String_Log(self->bc660k_log_content);
 		
-		vTaskDelay(BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+		vTaskDelay(BC660K_SEND_COMMAND_DELAY_MS);
 		
 		/* Actions with status */
 		switch(output_status){
@@ -488,7 +518,7 @@ enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QSSLCFG=0,0,\"clientcert\"");
-		sprintf(self->bc660k_log_content, "\n=== SENDING <%s> ===\n", self->command);
+		sprintf(self->bc660k_log_content, "=== SENDING <%s> ===", self->command);
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
 	
@@ -496,18 +526,19 @@ enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self) {
 		BC660K_USART0_Send((char *)"\r\n");
 
 		self->command_timer = CURRENT_TICK;
-		while(CURRENT_TICK - self->command_timer <= BC660K_COMMAND_TIMEOUT_DEFAULT_MS) {
-				output_status = BC660K_USART0_Receive(self);
-		}
+//		while(CURRENT_TICK - self->command_timer <= BC660K_COMMAND_TIMEOUT_DEFAULT_MS) {
+//				output_status = BC660K_USART0_Receive(self);
+//		}
 		
 		sprintf(self->bc660k_log_content, "%s", self->receive_buffer);
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
 		
+		vTaskDelay(1000);
 		sprintf(self->command, CLIENT_CERT);
 		BC660K_USART0_Send(self->command);
 		BC660K_USART0_Send((char *)"\r\n");
-		vTaskDelay(100);
+		vTaskDelay(1);
 		BC660K_USART0_Send_Char(26);
 	
 		self->command_timer = CURRENT_TICK;
@@ -515,15 +546,15 @@ enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self) {
 				output_status = BC660K_USART0_Receive(self);
 		}
 		
-		sprintf(self->bc660k_log_content, "%s\n\n", self->receive_buffer);
+		sprintf(self->bc660k_log_content, "%s", self->receive_buffer);
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
-		sprintf(self->bc660k_log_content, "Command status: %s\n", getStatusTypeString(output_status));
+		sprintf(self->bc660k_log_content, "Command status: %s", getStatusTypeString(output_status));
 		Write_String_Log(self->bc660k_log_content);
-		sprintf(self->bc660k_log_content, "==========\n");
+		sprintf(self->bc660k_log_content, "==========");
 		Write_String_Log(self->bc660k_log_content);
 		
-		vTaskDelay(BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+		vTaskDelay(BC660K_SEND_COMMAND_DELAY_MS);
 		
 		/* Actions with status */
 		switch(output_status){
@@ -558,7 +589,7 @@ enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QSSLCFG=0,0,\"clientkey\"");
-		sprintf(self->bc660k_log_content, "\n=== SENDING <%s> ===\n", self->command);
+		sprintf(self->bc660k_log_content, "=== SENDING <%s> ===", self->command);
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
 	
@@ -566,18 +597,19 @@ enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self) {
 		BC660K_USART0_Send((char *)"\r\n");
 
 		self->command_timer = CURRENT_TICK;
-		while(CURRENT_TICK - self->command_timer <= BC660K_COMMAND_TIMEOUT_DEFAULT_MS) {
-				output_status = BC660K_USART0_Receive(self);
-		}
+//		while(CURRENT_TICK - self->command_timer <= BC660K_COMMAND_TIMEOUT_DEFAULT_MS) {
+//				output_status = BC660K_USART0_Receive(self);
+//		}
 		
 		sprintf(self->bc660k_log_content, "%s", self->receive_buffer);
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
 		
+		vTaskDelay(3000);
 		sprintf(self->command, CLIENT_KEY);
 		BC660K_USART0_Send(self->command);
 		BC660K_USART0_Send((char *)"\r\n");
-		vTaskDelay(100);
+		vTaskDelay(10);
 		BC660K_USART0_Send_Char(26);
 	
 		self->command_timer = CURRENT_TICK;
@@ -585,15 +617,15 @@ enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self) {
 				output_status = BC660K_USART0_Receive(self);
 		}
 		
-		sprintf(self->bc660k_log_content, "%s\n\n", self->receive_buffer);
+		sprintf(self->bc660k_log_content, "%s", self->receive_buffer);
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
-		sprintf(self->bc660k_log_content, "Command status: %s\n", getStatusTypeString(output_status));
+		sprintf(self->bc660k_log_content, "Command status: %s", getStatusTypeString(output_status));
 		Write_String_Log(self->bc660k_log_content);
-		sprintf(self->bc660k_log_content, "==========\n");
+		sprintf(self->bc660k_log_content, "==========");
 		Write_String_Log(self->bc660k_log_content);
 		
-		vTaskDelay(BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+		vTaskDelay(BC660K_SEND_COMMAND_DELAY_MS);
 		
 		/* Actions with status */
 		switch(output_status){
@@ -657,20 +689,112 @@ enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self) {
 		return output_status;
 }
 
+enum StatusType checkMQTT_AT_QMTOPEN(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		sprintf(self->command, "AT+QMTOPEN?");
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		self->mqtt_opened = false;
+		switch(output_status){
+			
+			case STATUS_SUCCESS: {
+					/* Do something */
+					char *ptr;
+					ptr = strstr(self->receive_buffer, "+QMTOPEN");
+					if (ptr) {
+						self->mqtt_opened = true;
+					}
+					break;
+			}
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
+
 enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self) {
 		/* Initialize status */
 		enum StatusType output_status = STATUS_UNKNOWN;
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTOPEN=0,\"a2ht7rbdkt6040-ats.iot.ap-northeast-2.amazonaws.com\",8883");
-		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 9000);
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 8000);
 	
 		/* Actions with status */
 		switch(output_status){
 			
-			case STATUS_SUCCESS:
+			case STATUS_SUCCESS: {
+					/* Do something */
+					char *ptr;
+					ptr = strstr(self->receive_buffer, "+QMTOPEN");
+					if (!ptr) {
+						output_status = STATUS_ERROR;
+					} else {
+						self->mqtt_opened = true;
+					}
+					break;
+			}
+
+			case STATUS_ERROR:
 					/* Do something */
 					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
+
+enum StatusType checkConnectClient_AT_QMTCONN(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		sprintf(self->command, "AT+QMTCONN?");
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		self->mqtt_connected = false;
+		switch(output_status){
+			
+			case STATUS_SUCCESS: {
+					/* Do something */
+					char *ptr;
+					ptr = strstr(self->receive_buffer, "+QMTCONN");
+					if (ptr) {
+						self->mqtt_connected = true;
+					}
+					break;
+			}
 
 			case STATUS_ERROR:
 					/* Do something */
@@ -698,13 +822,19 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTCONN=0,\"anhttm8client\"");
-		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 8000);
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 2000);
 		/* Actions with status */
 		switch(output_status){
 			
-			case STATUS_SUCCESS:
+			case STATUS_SUCCESS: {
 					/* Do something */
+					char *ptr;
+					ptr = strstr(self->receive_buffer, "+QMTCONN");
+					if (!ptr) {
+						output_status = STATUS_ERROR;
+					} 
 					break;
+			}
 
 			case STATUS_ERROR:
 					/* Do something */
@@ -726,14 +856,22 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 		return output_status;
 }
 
-enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
+enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self, char *data) {
 		/* Initialize status */
 		enum StatusType output_status = STATUS_UNKNOWN;
-		
+	
+		if (!data) {
+			output_status = STATUS_BAD_PARAMETERS;
+			sprintf(self->bc660k_log_content, "Command status: %s", getStatusTypeString(output_status));
+			Write_String_Log(self->bc660k_log_content);
+			sprintf(self->bc660k_log_content, "==========");
+			Write_String_Log(self->bc660k_log_content);
+			return output_status;
+		}
 		
 		/* Write Command */
-		sprintf(self->command, "AT+QMTPUB=0,0,0,0,\"tracker/data\",300");
-		sprintf(self->bc660k_log_content, "\n=== SENDING <%s> ===\n", self->command);
+		sprintf(self->command, "AT+QMTPUB=0,0,0,0,\"tracker/data\",%u", strlen(data));
+		sprintf(self->bc660k_log_content, "=== SENDING <%s> ===", self->command);
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);
 	
@@ -741,40 +879,47 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self) {
 		BC660K_USART0_Send((char *)"\r\n");
 
 		self->command_timer = CURRENT_TICK;
-		while(CURRENT_TICK - self->command_timer <= BC660K_COMMAND_TIMEOUT_DEFAULT_MS) {
+//		while(CURRENT_TICK - self->command_timer <= BC660K_COMMAND_TIMEOUT_DEFAULT_MS) {
+//				output_status = BC660K_USART0_Receive(self);
+//		}
+		
+		sprintf(self->bc660k_log_content, "%s", self->receive_buffer);
+		Write_String_Log(self->bc660k_log_content);
+	
+		vTaskDelay(2000);
+		BC660K_USART0_Send(data);
+		BC660K_USART0_Send((char *)"\r\n");
+		vTaskDelay(10);
+		BC660K_USART0_Send_Char(26);
+		
+		Write_String_Log(data);
+		
+		self->command_timer = CURRENT_TICK;
+		while(CURRENT_TICK - self->command_timer <= (BC660K_COMMAND_TIMEOUT_DEFAULT_MS)) {
 				output_status = BC660K_USART0_Receive(self);
 		}
 		
 		sprintf(self->bc660k_log_content, "%s", self->receive_buffer);
 		Write_String_Log(self->bc660k_log_content);
-		BC660K_Clear_Receive_Buffer(self);
-		
-
-//		sprintf(self->command, "{\"message\":{\"time\":\"15-05-2023 15:11:35\",\"acce_x\":\"%hd\",\"acce_y\":\"%hd\",\"acce_z\":\"%hd\",\"lat\":\"%f\",\"long\":\"%f\"}}", Ax, Ay, Az, latitude, longitude);
-//		BC660K_USART0_Send(self->command);
-//		BC660K_USART0_Send((char *)"\r\n");
-	
-		self->command_timer = CURRENT_TICK;
-		while(CURRENT_TICK - self->command_timer <= (BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 2000)) {
-				output_status = BC660K_USART0_Receive(self);
-		}
-		
-		sprintf(self->bc660k_log_content, "%s\n\n", self->receive_buffer);
+		sprintf(self->bc660k_log_content, "Command status: %s", getStatusTypeString(output_status));
 		Write_String_Log(self->bc660k_log_content);
-		BC660K_Clear_Receive_Buffer(self);
-		sprintf(self->bc660k_log_content, "Command status: %s\n", getStatusTypeString(output_status));
-		Write_String_Log(self->bc660k_log_content);
-		sprintf(self->bc660k_log_content, "==========\n");
+		sprintf(self->bc660k_log_content, "==========");
 		Write_String_Log(self->bc660k_log_content);
 		
-		vTaskDelay(BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+		vTaskDelay(BC660K_SEND_COMMAND_DELAY_MS);
 		
 		/* Actions with status */
 		switch(output_status){
 			
-			case STATUS_SUCCESS:
+			case STATUS_SUCCESS: {
 					/* Do something */
+//					char *ptr;
+//					ptr = strstr(self->receive_buffer, "+QMTPUB");
+//					if (!ptr) {
+//						output_status = STATUS_ERROR;
+//					} 
 					break;
+			}
 
 			case STATUS_ERROR:
 					/* Do something */
@@ -831,12 +976,99 @@ enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self) {
 		return output_status;
 }
 
-enum StatusType wakeUpModule_AT_QSCLK(struct BC660K *self) {
+enum StatusType configureSleepMode_AT_QSCLK(struct BC660K *self, uint8_t mode) {
 		/* Initialize status */
 		enum StatusType output_status = STATUS_UNKNOWN;
 		
 		/* Write Command */
-		sprintf(self->command, "AT+QSCLK=0");
+		if (mode > 2) {
+			output_status = STATUS_BAD_PARAMETERS;
+			return output_status;
+		}
+		
+		sprintf(self->command, "AT+QSCLK=%u", mode);
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
+
+enum StatusType powerSavingModeSetting_AT_CPSMS(struct BC660K *self, uint8_t mode) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+
+		if (mode == 0) {
+			sprintf(self->command, "AT+CPSMS=0");
+		} else if (mode == 1) {
+			sprintf(self->command, "AT+CPSMS=1,,,\"10100010\",\"00000100\"");
+		} else if (mode == 2) {
+			sprintf(self->command, "AT+CPSMS=2");
+		} else {
+			output_status = STATUS_BAD_PARAMETERS;
+			return output_status;
+		}
+			
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+}
+
+enum StatusType enableNBIoTRelatedEventReport(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+
+		sprintf(self->command, "AT+QNBIOTEVENT=1,1");	
 		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */

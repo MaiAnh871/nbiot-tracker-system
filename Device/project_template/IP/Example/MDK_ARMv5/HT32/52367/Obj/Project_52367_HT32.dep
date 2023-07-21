@@ -1,19 +1,19 @@
 Dependencies for Project 'Project_52367', Target 'HT32': (DO NOT MODIFY !)
 CompilerVersion: 6190000::V6.19::ARMCLANG
-F (.\Core\Setting.h)(0x649C3617)()
-F (.\Core\Collections.h)(0x649C1CA9)()
-F (.\Core\Board871.h)(0x649C1B9F)()
-F (.\Core\Board871.c)(0x649C1B9F)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/board871.o -MD)
-I (Core\Board871.h)(0x649C1B9F)
+F (.\Core\Setting.h)(0x64B9F2BD)()
+F (.\Core\Collections.h)(0x64B9F2BC)()
+F (.\Core\Board871.h)(0x64B9F2BC)()
+F (.\Core\Board871.c)(0x64B9F2BD)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/board871.o -MD)
+I (Core\Board871.h)(0x64B9F2BC)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -59,29 +59,43 @@ I (..\..\..\..\utilities\common\spi_lcd.h)(0x64737A5D)
 I (..\..\..\..\utilities\common\lcd.h)(0x64737A5D)
 I (..\..\..\..\utilities\common\ebi_lcd.h)(0x64737A5D)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
-I (Core\Setting.h)(0x649C3617)
-I (Core\Collections.h)(0x649C1CA9)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x64A03AA2)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\FreeRTOS.h)(0x6386C230)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x63885718)
+I (RTE\RTOS\FreeRTOSConfig.h)(0x64B9EA81)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\CMSIS\RTOS2\FreeRTOS\Include\freertos_evr.h)(0x6386C230)
+I (RTE\_HT32\RTE_Components.h)(0x64873B5D)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\projdefs.h)(0x6386C230)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\portable.h)(0x6386C230)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\deprecated_definitions.h)(0x6386C230)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\portable\GCC\ARM_CM0\portmacro.h)(0x6386C230)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\mpu_wrappers.h)(0x6386C230)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\task.h)(0x6386C230)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\list.h)(0x6386C230)
+I (C:\Keil_v5\ARM\ARMCLANG\include\time.h)(0x64AD0337)
+I (Core\Setting.h)(0x64B9F2BD)
+I (Core\Collections.h)(0x64B9F2BC)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x63885718)
-I (Core\Utilities.h)(0x64948046)
-I (Core\BC660K.h)(0x649473C0)
-I (Core\LC76F.h)(0x649C25DD)
+I (Core\Utilities.h)(0x64AEAE9F)
+I (Core\BC660K.h)(0x64B9F2BA)
+I (Core\SSL_param.h)(0x64B9F2B4)
+I (Core\LC76F.h)(0x64B9F2BC)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63885718)
-I (Core\MC3416.h)(0x649C2575)
-F (.\Core\BC660K.h)(0x649473C0)()
-F (.\Core\BC660K.c)(0x64947EF8)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/bc660k.o -MD)
-I (Core\BC660K.h)(0x649473C0)
+I (Core\MC3416.h)(0x64B9F2B9)
+F (.\Core\BC660K.h)(0x64B9F2BA)()
+F (.\Core\BC660K.c)(0x64B9F2BC)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/bc660k.o -MD)
+I (Core\BC660K.h)(0x64B9F2BA)
 I (..\..\..\..\utilities\ht32_board.h)(0x64737A5D)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\utilities\HT32_Board\ht32f52367_sk.h)(0x64737A5D)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -125,22 +139,24 @@ I (..\..\..\..\utilities\common\spi_lcd.h)(0x64737A5D)
 I (..\..\..\..\utilities\common\lcd.h)(0x64737A5D)
 I (..\..\..\..\utilities\common\ebi_lcd.h)(0x64737A5D)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
-I (Core\Setting.h)(0x649C3617)
-I (Core\Collections.h)(0x649C1CA9)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x64A03AA2)
+I (Core\SSL_param.h)(0x64B9F2B4)
+I (Core\Setting.h)(0x64B9F2BD)
+I (Core\Collections.h)(0x64B9F2BC)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x63885718)
-F (.\Core\LC76F.h)(0x649C25DD)()
-F (.\Core\LC76F.c)(0x649ACF58)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/lc76f.o -MD)
-I (Core\LC76F.h)(0x649C25DD)
+I (Core\Utilities.h)(0x64AEAE9F)
+F (.\Core\LC76F.h)(0x64B9F2BC)()
+F (.\Core\LC76F.c)(0x64B9F2BD)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/lc76f.o -MD)
+I (Core\LC76F.h)(0x64B9F2BC)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -179,12 +195,13 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_serial.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_div.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x64A03AA2)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63885718)
-I (Core\Setting.h)(0x649C3617)
-I (Core\Collections.h)(0x649C1CA9)
+I (C:\Keil_v5\ARM\ARMCLANG\include\time.h)(0x64AD0337)
+I (Core\Setting.h)(0x64B9F2BD)
+I (Core\Collections.h)(0x64B9F2BC)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x63885718)
-I (Core\Utilities.h)(0x64948046)
+I (Core\Utilities.h)(0x64AEAE9F)
 I (..\..\..\..\utilities\ht32_board.h)(0x64737A5D)
 I (..\..\..\..\utilities\HT32_Board\ht32f52367_sk.h)(0x64737A5D)
 I (..\..\..\..\utilities\common\i2c_eeprom.h)(0x64737A5D)
@@ -192,18 +209,18 @@ I (..\..\..\..\utilities\common\spi_flash.h)(0x64737A5D)
 I (..\..\..\..\utilities\common\spi_lcd.h)(0x64737A5D)
 I (..\..\..\..\utilities\common\lcd.h)(0x64737A5D)
 I (..\..\..\..\utilities\common\ebi_lcd.h)(0x64737A5D)
-F (.\Core\MC3416.h)(0x649C2575)()
-F (.\Core\MC3416.c)(0x649C2575)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/mc3416.o -MD)
-I (Core\MC3416.h)(0x649C2575)
+F (.\Core\MC3416.h)(0x64B9F2B9)()
+F (.\Core\MC3416.c)(0x64B9F2BB)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/mc3416.o -MD)
+I (Core\MC3416.h)(0x64B9F2B9)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -241,23 +258,24 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_cm0plus_misc.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_serial.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_div.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h)(0x64737A5C)
-I (Core\Setting.h)(0x649C3617)
-I (Core\Collections.h)(0x649C1CA9)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63885718)
+I (Core\Setting.h)(0x64B9F2BD)
+I (Core\Collections.h)(0x64B9F2BC)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x63885718)
-F (.\Core\Utilities.h)(0x64948046)()
-F (.\Core\Utilities.c)(0x649ABAF7)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/utilities.o -MD)
-I (Core\Utilities.h)(0x64948046)
+F (.\Core\Utilities.h)(0x64AEAE9F)()
+F (.\Core\Utilities.c)(0x64B0E896)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/utilities.o -MD)
+I (Core\Utilities.h)(0x64AEAE9F)
 I (..\..\..\..\utilities\ht32_board.h)(0x64737A5D)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\utilities\HT32_Board\ht32f52367_sk.h)(0x64737A5D)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -301,20 +319,20 @@ I (..\..\..\..\utilities\common\spi_lcd.h)(0x64737A5D)
 I (..\..\..\..\utilities\common\lcd.h)(0x64737A5D)
 I (..\..\..\..\utilities\common\ebi_lcd.h)(0x64737A5D)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x64A03AA2)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x63885718)
-I (Core\Setting.h)(0x649C3617)
-I (Core\Collections.h)(0x649C1CA9)
-F (.\Core\main.c)(0x649C365E)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/main.o -MD)
+I (Core\Setting.h)(0x64B9F2BD)
+I (Core\Collections.h)(0x64B9F2BC)
+F (.\Core\main.c)(0x64B9F2BD)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/main.o -MD)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -360,16 +378,30 @@ I (..\..\..\..\utilities\common\spi_lcd.h)(0x64737A5D)
 I (..\..\..\..\utilities\common\lcd.h)(0x64737A5D)
 I (..\..\..\..\utilities\common\ebi_lcd.h)(0x64737A5D)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x64A03AA2)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63885718)
-I (Core\Board871.h)(0x649C1B9F)
-I (Core\Setting.h)(0x649C3617)
-I (Core\Collections.h)(0x649C1CA9)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\FreeRTOS.h)(0x6386C230)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x63885718)
+I (RTE\RTOS\FreeRTOSConfig.h)(0x64B9EA81)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\CMSIS\RTOS2\FreeRTOS\Include\freertos_evr.h)(0x6386C230)
+I (RTE\_HT32\RTE_Components.h)(0x64873B5D)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\projdefs.h)(0x6386C230)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\portable.h)(0x6386C230)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\deprecated_definitions.h)(0x6386C230)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\portable\GCC\ARM_CM0\portmacro.h)(0x6386C230)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\mpu_wrappers.h)(0x6386C230)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\task.h)(0x6386C230)
+I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\list.h)(0x6386C230)
+I (Core\Board871.h)(0x64B9F2BC)
+I (C:\Keil_v5\ARM\ARMCLANG\include\time.h)(0x64AD0337)
+I (Core\Setting.h)(0x64B9F2BD)
+I (Core\Collections.h)(0x64B9F2BC)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x63885718)
-I (Core\Utilities.h)(0x64948046)
-I (Core\BC660K.h)(0x649473C0)
-I (Core\LC76F.h)(0x649C25DD)
-I (Core\MC3416.h)(0x649C2575)
+I (Core\Utilities.h)(0x64AEAE9F)
+I (Core\BC660K.h)(0x64B9F2BA)
+I (Core\SSL_param.h)(0x64B9F2B4)
+I (Core\LC76F.h)(0x64B9F2BC)
+I (Core\MC3416.h)(0x64B9F2B9)
 F (..\_ht32_project_source.h)(0x00000000)()
 F (..\ht32f5xxxx_conf.h)(0x64737A5C)()
 F (..\ht32f5xxxx_01_usbdconf.h)(0x64737A5C)()
@@ -380,11 +412,11 @@ F (..\system_ht32f5xxxx_03.c)(0x648C9AFD)(-xc -std=c90 --target=arm-arm-none-eab
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -429,11 +461,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -478,11 +510,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -528,11 +560,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -575,11 +607,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -622,11 +654,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -669,11 +701,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -716,11 +748,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -763,11 +795,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -810,11 +842,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -857,11 +889,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -904,11 +936,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -951,11 +983,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -998,11 +1030,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1045,11 +1077,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1092,11 +1124,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1139,11 +1171,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1187,11 +1219,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1233,11 +1265,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1280,11 +1312,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1327,11 +1359,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1374,11 +1406,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1421,11 +1453,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1468,11 +1500,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1515,11 +1547,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1556,17 +1588,17 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_cm0plus_misc.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_serial.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_div.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h)(0x64737A5C)
-F (..\..\..\..\library\HT32F5xxxx_Driver\src\ht32f5xxxx_usart.c)(0x64737A5C)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/ht32f5xxxx_usart.o -MD)
+F (..\..\..\..\library\HT32F5xxxx_Driver\src\ht32f5xxxx_usart.c)(0x64AC2A3F)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/ht32f5xxxx_usart.o -MD)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_usart.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1608,11 +1640,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1657,11 +1689,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1703,11 +1735,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1757,11 +1789,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1814,11 +1846,11 @@ I (..\..\..\..\utilities\HT32_Board\ht32f52367_sk.h)(0x64737A5D)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1866,11 +1898,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1921,11 +1953,11 @@ I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -1978,11 +2010,11 @@ I (..\..\..\..\utilities\HT32_Board\ht32f52367_sk.h)(0x64737A5D)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x64737A5C)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\core_cm0plus.h)(0x64737A5C)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
 I (..\..\..\..\library\CMSIS\Include\cmsis_version.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_compiler.h)(0x64737A5C)
 I (..\..\..\..\library\CMSIS\Include\cmsis_armclang.h)(0x64737A5C)
-I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x648C9B6F)
+I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\system_ht32f5xxxx_01.h)(0x64B9F2BB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_lib.h)(0x64737A5C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f52357_67_libcfg.h)(0x64737A5C)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63885718)
@@ -2028,10 +2060,10 @@ F (..\readme.txt)(0x64737A5C)()
 F (C:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Source/freertos_evr.c)(0x6386C230)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/freertos_evr.o -MD)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\FreeRTOS.h)(0x6386C230)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
-I (RTE\RTOS\FreeRTOSConfig.h)(0x64948A06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
+I (RTE\RTOS\FreeRTOSConfig.h)(0x64B9EA81)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\CMSIS\RTOS2\FreeRTOS\Include\freertos_evr.h)(0x6386C230)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x64A03AA2)
 I (RTE\_HT32\RTE_Components.h)(0x64873B5D)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\projdefs.h)(0x6386C230)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\portable.h)(0x6386C230)
@@ -2049,10 +2081,10 @@ F (C:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/list.
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63885718)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\FreeRTOS.h)(0x6386C230)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
-I (RTE\RTOS\FreeRTOSConfig.h)(0x64948A06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
+I (RTE\RTOS\FreeRTOSConfig.h)(0x64B9EA81)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\CMSIS\RTOS2\FreeRTOS\Include\freertos_evr.h)(0x6386C230)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x64A03AA2)
 I (RTE\_HT32\RTE_Components.h)(0x64873B5D)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\projdefs.h)(0x6386C230)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\portable.h)(0x6386C230)
@@ -2060,13 +2092,13 @@ I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\inclu
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\portable\GCC\ARM_CM0\portmacro.h)(0x6386C230)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\mpu_wrappers.h)(0x6386C230)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\list.h)(0x6386C230)
-F (C:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0/port.c)(0x648C9ED2)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/port.o -MD)
+F (C:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0/port.c)(0x64AC2A37)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/port.o -MD)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\FreeRTOS.h)(0x6386C230)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
-I (RTE\RTOS\FreeRTOSConfig.h)(0x64948A06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
+I (RTE\RTOS\FreeRTOSConfig.h)(0x64B9EA81)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\CMSIS\RTOS2\FreeRTOS\Include\freertos_evr.h)(0x6386C230)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x64A03AA2)
 I (RTE\_HT32\RTE_Components.h)(0x64873B5D)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\projdefs.h)(0x6386C230)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\portable.h)(0x6386C230)
@@ -2077,11 +2109,11 @@ I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\inclu
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\list.h)(0x6386C230)
 F (C:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/MemMang/heap_4.c)(0x6386C230)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/heap_4.o -MD)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x64A03AA2)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\FreeRTOS.h)(0x6386C230)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
-I (RTE\RTOS\FreeRTOSConfig.h)(0x64948A06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
+I (RTE\RTOS\FreeRTOSConfig.h)(0x64B9EA81)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\CMSIS\RTOS2\FreeRTOS\Include\freertos_evr.h)(0x6386C230)
 I (RTE\_HT32\RTE_Components.h)(0x64873B5D)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\projdefs.h)(0x6386C230)
@@ -2093,11 +2125,11 @@ I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\inclu
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\list.h)(0x6386C230)
 F (C:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/queue.c)(0x6386C230)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/queue.o -MD)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x64A03AA2)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\FreeRTOS.h)(0x6386C230)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
-I (RTE\RTOS\FreeRTOSConfig.h)(0x64948A06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
+I (RTE\RTOS\FreeRTOSConfig.h)(0x64B9EA81)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\CMSIS\RTOS2\FreeRTOS\Include\freertos_evr.h)(0x6386C230)
 I (RTE\_HT32\RTE_Components.h)(0x64873B5D)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\projdefs.h)(0x6386C230)
@@ -2110,11 +2142,11 @@ I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\inclu
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\queue.h)(0x6386C230)
 F (C:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/tasks.c)(0x6386C230)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I ../../../../library/CMSIS/Include -I ../../../../library/Device/Holtek/HT32F5xxxx/Include -I ../../../../library/HT32F5xxxx_Driver/inc -I ../../../../library/HT32_USBD_Library/inc -I ../../../../utilities-I./RTE/RTOS-I./RTE/_HT32-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/include-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/portable/GCC/ARM_CM0-IC:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/lyduc/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.46/ARM/INC/Holtek/HT32F5xxxx-D__UVISION_VERSION="538" -D_RTE_ -DUSE_HT32F52357_67 -D_RTE_ -DUSE_HT32_DRIVER -DUSE_HT32F52367_SK -DUSE_HT32F52357_67 -DUSE_MEM_HT32F52367-o ./ht32/52367/obj/tasks.o -MD)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x64A03AA2)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\FreeRTOS.h)(0x6386C230)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
-I (RTE\RTOS\FreeRTOSConfig.h)(0x64948A06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
+I (RTE\RTOS\FreeRTOSConfig.h)(0x64B9EA81)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\CMSIS\RTOS2\FreeRTOS\Include\freertos_evr.h)(0x6386C230)
 I (RTE\_HT32\RTE_Components.h)(0x64873B5D)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\projdefs.h)(0x6386C230)
@@ -2130,10 +2162,10 @@ F (C:/Users/lyduc/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/Source/timer
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63885718)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\FreeRTOS.h)(0x6386C230)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x63885718)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63885718)
-I (RTE\RTOS\FreeRTOSConfig.h)(0x64948A06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x64B215F6)
+I (RTE\RTOS\FreeRTOSConfig.h)(0x64B9EA81)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\CMSIS\RTOS2\FreeRTOS\Include\freertos_evr.h)(0x6386C230)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x64A03AA2)
 I (RTE\_HT32\RTE_Components.h)(0x64873B5D)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\projdefs.h)(0x6386C230)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\portable.h)(0x6386C230)
@@ -2144,4 +2176,4 @@ I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\inclu
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\list.h)(0x6386C230)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\queue.h)(0x6386C230)
 I (C:\Users\lyduc\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\Source\include\timers.h)(0x6386C230)
-F (RTE/RTOS/FreeRTOSConfig.h)(0x64948A06)()
+F (RTE/RTOS/FreeRTOSConfig.h)(0x64B9EA81)()

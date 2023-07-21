@@ -10,6 +10,8 @@
 
 #include <math.h>
 
+#include "time.h"
+
 #include "Setting.h"
 
 #include "Collections.h"
@@ -31,6 +33,10 @@ static struct LC76F {
 	char * raw_gps_string;
 	char * gps_string;
 	char * temp;
+	
+	bool update_previous_coordinates;
+	struct Coordinates previous_coordinates;
+	struct Coordinates current_coordinates;
 }
 LC76F;
 
@@ -46,10 +52,12 @@ void Clear_GPS_String(struct LC76F * self);
 bool Check_Valid_GPS_String(struct LC76F * self);
 void Clear_Temp(struct LC76F * self);
 bool Get_GPS_String(struct LC76F * self);
-bool Parse_GPS_String(struct LC76F * self, struct Node *current_node);
-//float Calculate_Distance(void);
-//bool Get_GPS_data(void);
-//bool Check_valid_data(uint8_t * GPS_data);
-//void clear(uint8_t * input_string);
+void Parse_GPS_String(struct LC76F * self, struct Node *current_node);
+
+float DMS_To_Decimal(uint8_t degree, uint8_t minute, uint16_t second, int8_t sign);
+float Degree_To_Rad(float degree);
+float Calculate_Distance(struct LC76F * self);
+uint32_t Calculate_Time(struct LC76F * self);
+float Calculate_Speed(struct LC76F * self);
 
 #endif /* LC76F_ */

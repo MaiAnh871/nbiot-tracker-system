@@ -59,7 +59,7 @@ static enum Longitude_Direction {
 static struct Longitude {
 	uint8_t degree; 	/* 0 - 180 (standardized) */
 	uint8_t minute; 	/* 0 - 60 */
-	int second;		/* 0 - 9999 ~ 0 - 60 */
+	uint16_t second;		/* 0 - 9999 ~ 0 - 60 */
 	enum Longitude_Direction longitude_direction;
 } Longitude;
 
@@ -71,20 +71,24 @@ static enum Latitude_Direction {
 static struct Latitude {
 	uint8_t degree; 	/* 0 - 90 (standardized) */
 	uint8_t minute; 	/* 0 - 60 */
-	int second;		/* 0 - 9999 ~ 0 - 60 */
+	uint16_t second;		/* 0 - 9999 ~ 0 - 60 */
 	enum Latitude_Direction latitude_direction;
 } Latitude;
 
-static struct Node {
-	bool valid;
+static struct Coordinates {
 	struct Timestamp timestamp;
-	char device_id[DEVICE_ID_LENGTH];
 	struct Latitude latitude;
 	struct Longitude longitude;
+} Coordinates;
+
+static struct Node {
+	bool valid;
+	struct Coordinates coordinates;
+	char device_id[DEVICE_ID_LENGTH];
 	float speed; /* distance_last_node / time_interval_last_node */
-	float accel_x;
-	float accel_y;
-	float accel_z;
+	int16_t accel_x;
+	int16_t accel_y;
+	int16_t accel_z;
 	bool tilt_alert;
 	bool wheelie_alert;
 	bool overspeed_alert;
@@ -93,7 +97,7 @@ static struct Node {
 } Node;
 
 static struct Route {
-	float total_length;
+	uint16_t total_length;
 	struct Node *node;
 } Route;
 

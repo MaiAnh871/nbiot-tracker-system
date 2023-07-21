@@ -8,11 +8,15 @@
 
 #include "string.h"
 
+#include "stdint.h"
+
 #include "SSL_param.h"
 
 #include "Setting.h"
 
 #include "Collections.h"
+
+#include "Utilities.h"
 
 /* Extern variables and functions */
 extern void Error_Blinking_LED_1(void);
@@ -32,6 +36,10 @@ static struct BC660K {
   char * command;
   char * receive_buffer;
   u16 receive_buffer_index;
+	uint8_t stat;
+	bool mqtt_opened;
+	bool mqtt_connected;
+	struct Connection_Status connection_status;
 }
 BC660K;
 
@@ -56,10 +64,14 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self);
 enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self);
 enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self);
 enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self);
+enum StatusType checkMQTT_AT_QMTOPEN(struct BC660K *self);
 enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self);
+enum StatusType checkConnectClient_AT_QMTCONN(struct BC660K *self);
 enum StatusType connectClient_AT_QMTCONN(struct BC660K *self);
-enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self);
+enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self, char *data);
 enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self);
-enum StatusType wakeUpModule_AT_QSCLK(struct BC660K *self);
+enum StatusType configureSleepMode_AT_QSCLK(struct BC660K *self, uint8_t mode);
+enum StatusType powerSavingModeSetting_AT_CPSMS(struct BC660K *self, uint8_t mode);
+enum StatusType enableNBIoTRelatedEventReport(struct BC660K *self);
 
 #endif /* BC660K_ */

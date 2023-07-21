@@ -46,7 +46,8 @@
   ..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_rand.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h Core\Setting.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\time.h Core\Setting.h \
   Core\Collections.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
   Core\Utilities.h ..\..\..\..\utilities\ht32_board.h \
   ..\..\..\..\utilities\HT32_Board\ht32f52367_sk.h \
