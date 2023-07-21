@@ -155,9 +155,23 @@ void Add_Node(struct Board871 *self, struct Node *input_node) {
 		return;
 	}
 	
+	sprintf(self->board871_log_content, "ROUTE LENGTH: %u", self->route.total_length);
+	Write_String_Log(self->board871_log_content);
+	
 	if (!self->route.node) {
 		self->route.node = input_node;
 	} else {
+		if (self->route.total_length >= MAX_TOTAL_NODE) {
+			sprintf(self->board871_log_content, "NUMBER OF NODE EXCEEDS LIMITATION (%u): %u. Remove the head of Route!", MAX_TOTAL_NODE, self->route.total_length);
+			Write_String_Log(self->board871_log_content);
+			struct Node *temp = self->route.node;
+			if (self->publishing_node == self->route.node) {
+				self->publishing_node = self->route.node->next_node;
+			}
+			self->route.node = self->route.node->next_node;
+			self->route.total_length--;
+			free(temp);
+		}
 		struct Node *ptr = self->route.node;
 		while (ptr->next_node) {
 			ptr = ptr->next_node;
@@ -481,6 +495,7 @@ void Connection_Flow(struct Board871 *self) {
 			Write_String_Log("Changed to next node");
 			free(temp_node);
 			Write_String_Log("Freed previous node");
+			self->route.total_length--;
 		}
 	}
 

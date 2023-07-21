@@ -47,7 +47,7 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define LONGTITUDE_LENGTH 10	/* 'dddmm.mmmm' */
 #define CELL_ID_LENGTH 9 /* '00000000' - 'FFFFFFFF' */
 
-#define VALIDATE_PERIOD 3000 // ms
+#define VALIDATE_PERIOD 7000 // ms
 #define MIN_SPEED 0 // m/s
 #define SPEED_LIMIT 60 // km/h
 #define SLOW_COUNTER 3
@@ -57,6 +57,7 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define TIME_ZONE 7
 #define TILT_THRESHOLD 45 // degree (ax)
 #define WHEELIE_THRESHOLD 30 // degree (ay)
+#define MAX_TOTAL_NODE 60
 
 /* BC660K settings */
 #define BC660K_LOG_CONTENT_SIZE 2000
