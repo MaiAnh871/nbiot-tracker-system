@@ -14,11 +14,18 @@ scenarios:
             x-api-key: "x-api-key"
           json:
             query: |
-              query ListDevices {
-                listDevices {
-                  items {
-                    id
-                    deviceIMEI
-                  }
+              mutation CreateDevice(
+                $input: CreateDeviceInput!
+                $condition: ModelDeviceConditionInput
+              ) {
+                createDevice(input: $input, condition: $condition) {
+                  id
+                  deviceIMEI
+                  createdAt
+                  updatedAt
+                  userDevicesId
                 }
               }
+            variables:
+              input:
+                deviceIMEI: "Test device IMEI"
