@@ -386,15 +386,15 @@ enum StatusType getNetworkStatus_AT_QENG(struct BC660K *self) {
 					
 					ptr = strstr(self->receive_buffer, "+QMTRECV");
 					if (ptr) {
-						
+						uint8_t token_num = 0;
+						char ** token = Tokenize_String(ptr, ",", &token_num);
+						if (ptr && (token_num >= 2)) {
+							sprintf(self->bc660k_log_content, "RECEIVE: |%s|", token[3]);
+							Write_String_Log(self->bc660k_log_content);
+						}
+						free(token);
 					}
-					token = Tokenize_String(self->receive_buffer, ",", &token_num);
-					ptr = strstr(token[0], "+CEREG");
-					if (ptr && (token_num >= 2)) {
-						self->stat = atoi(token[1]);
-//						sprintf(self->bc660k_log_content, "STAT: %u", self->stat);
-//						Write_String_Log(self->bc660k_log_content);
-					}
+
 					break;
 			}
 
@@ -930,9 +930,16 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self, char *data) {
 					if (!ptr) {
 						output_status = STATUS_ERROR;
 					}
+					
 					ptr = strstr(self->receive_buffer, "+QMTRECV");
 					if (ptr) {
-						
+						uint8_t token_num = 0;
+						char ** token = Tokenize_String(ptr, ",", &token_num);
+						if (ptr && (token_num >= 2)) {
+							sprintf(self->bc660k_log_content, "RECEIVE: |%s|", token[3]);
+							Write_String_Log(self->bc660k_log_content);
+						}
+						free(token);
 					}
 					break;
 			}
