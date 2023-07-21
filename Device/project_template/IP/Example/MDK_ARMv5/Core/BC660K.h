@@ -69,6 +69,7 @@ enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self);
 enum StatusType checkConnectClient_AT_QMTCONN(struct BC660K *self);
 enum StatusType connectClient_AT_QMTCONN(struct BC660K *self);
 enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self, char *data);
+enum StatusType subscribeMessage_AT_QMTSUB(struct BC660K *self);
 enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self);
 enum StatusType configureSleepMode_AT_QSCLK(struct BC660K *self, uint8_t mode);
 enum StatusType powerSavingModeSetting_AT_CPSMS(struct BC660K *self, uint8_t mode);

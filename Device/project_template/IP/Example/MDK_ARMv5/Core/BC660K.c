@@ -383,6 +383,18 @@ enum StatusType getNetworkStatus_AT_QENG(struct BC660K *self) {
 					} else {
 						output_status = STATUS_ERROR;
 					}
+					
+					ptr = strstr(self->receive_buffer, "+QMTRECV");
+					if (ptr) {
+						
+					}
+					token = Tokenize_String(self->receive_buffer, ",", &token_num);
+					ptr = strstr(token[0], "+CEREG");
+					if (ptr && (token_num >= 2)) {
+						self->stat = atoi(token[1]);
+//						sprintf(self->bc660k_log_content, "STAT: %u", self->stat);
+//						Write_String_Log(self->bc660k_log_content);
+					}
 					break;
 			}
 
@@ -913,11 +925,15 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self, char *data) {
 			
 			case STATUS_SUCCESS: {
 					/* Do something */
-//					char *ptr;
-//					ptr = strstr(self->receive_buffer, "+QMTPUB");
-//					if (!ptr) {
-//						output_status = STATUS_ERROR;
-//					} 
+					char *ptr;
+					ptr = strstr(self->receive_buffer, "+QMTPUB");
+					if (!ptr) {
+						output_status = STATUS_ERROR;
+					}
+					ptr = strstr(self->receive_buffer, "+QMTRECV");
+					if (ptr) {
+						
+					}
 					break;
 			}
 
@@ -940,6 +956,41 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self, char *data) {
 		
 		return output_status;
 }
+
+enum StatusType subscribeMessage_AT_QMTSUB(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+	
+		/* Write Command */
+		sprintf(self->command, "AT+QMTSUB=0,1,\"anhttm8-tracker/8711820/control\",0");
+		output_status = BC660K_Send_Command(self, 2, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+};
 
 enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self) {
 		/* Initialize status */

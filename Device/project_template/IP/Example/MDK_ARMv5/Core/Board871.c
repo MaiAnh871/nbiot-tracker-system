@@ -438,6 +438,10 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
+		if (subscribeMessage_AT_QMTSUB(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
 		self->stage = 2;
 	}
 	
