@@ -31,7 +31,6 @@ void Board871_Initialize(struct Board871 * self) {
 	self->connection_status.rsrp = 0;
 	
 	self->has_gps = false;
-	self->has_nbiot = false;
 }
 
 void Suspend_Measuring(struct Board871 *self) {
@@ -191,12 +190,11 @@ void Clear_String_Data(struct Board871 * self) {
 void Get_GPS_Data(struct Board871 * self) {
 	if (!Get_GPS_String(&self->lc76f)) {
 //		Write_String_Log("Cannot get GPS data!");
-		self->has_gps = false;
 		return;
 	}
 	
-	Parse_GPS_String(&self->lc76f, self->current_node);
 	self->has_gps = true;
+	Parse_GPS_String(&self->lc76f, self->current_node);
 }
 
 void Get_Accel_Data(struct Board871 * self) {
@@ -330,7 +328,6 @@ void Connection_Flow(struct Board871 *self) {
 	int8_t count;
 	/* Initial stage */
 	while (self->stage == 0) {
-		self->has_nbiot = false;
 		Write_String_Log("\n========= STAGE 0 ========= \n");		
 		if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
 			continue;
@@ -377,14 +374,27 @@ void Connection_Flow(struct Board871 *self) {
 	
 	/* Connecting stage */
 	while (self->stage == 1) {
-		self->has_nbiot = false;
 		Write_String_Log("\n========= STAGE 1 ========= \n");
 		if (configureSleepMode_AT_QSCLK(&self->bc660k, 0) != STATUS_SUCCESS) {
 			continue;
 		}
 		
-		if (getNetworkStatus_AT_QENG(&self->bc660k) != STATUS_SUCCESS) {
-			continue;
+		attempt = 4;
+		count = attempt;
+		while (count--) {
+			sprintf(self->board871_log_content, "Checking GPS: %u/%u", attempt - count, attempt);
+			Write_String_Log(self->board871_log_content);
+			
+			if (self->has_gps) {
+				break;
+			} else {
+				vTaskDelay(20000);
+			}
+		}
+		
+		if (count == -1) {
+			self->stage = 5;
+			break;
 		}
 
 		attempt = 8;
@@ -443,7 +453,6 @@ void Connection_Flow(struct Board871 *self) {
 	
 	/* Publishing stage */
 	while (self->stage == 2) {
-		self->has_nbiot = true;
 		Write_String_Log("\n========= STAGE 2 ========= \n");
 		
 		if (!self->publishing_node) {
@@ -496,13 +505,19 @@ void Connection_Flow(struct Board871 *self) {
 			free(temp_node);
 			Write_String_Log("Freed previous node");
 			self->route.total_length--;
+		} else {
+			if (!(MC3416_Moving(&self->mc3416) && self->has_gps)) {
+				closeMQTT_AT_QMTCLOSE(&self->bc660k);
+				self->stage = 4;
+			}
+			
+			vTaskDelay(1000);
 		}
 	}
 
 	
 	/* Double check network */
 	while (self->stage == 3) {
-		self->has_nbiot = false;
 		Write_String_Log("\n========= STAGE 3 ========= \n");
 		attempt = 4;
 		count = attempt;
@@ -548,18 +563,17 @@ void Connection_Flow(struct Board871 *self) {
 	}
 	
 	/* No network, double check movement */
-	uint32_t speed_timer = CURRENT_TICK;
+	uint32_t movement_timer = CURRENT_TICK;
 	uint32_t network_timer = CURRENT_TICK;
 	bool entry_step_4 = true;
 	while (self->stage == 4) {
-		self->has_nbiot = false;
 		if (entry_step_4) {
 			Write_String_Log("\n========= STAGE 4 ========= \n");
 			entry_step_4 = false;
 		}
 		
 		if (MC3416_Moving(&self->mc3416)) {
-			speed_timer = CURRENT_TICK;
+			movement_timer = CURRENT_TICK;
 			
 			if (CURRENT_TICK - network_timer >= DOUBLE_CHECK_NETWORK_PERIOD) {
 				network_timer = CURRENT_TICK;
@@ -575,7 +589,7 @@ void Connection_Flow(struct Board871 *self) {
 				
 			}
 		} else {
-			if (CURRENT_TICK - speed_timer >= DOUBLE_CHECK_SPEED_PERIOD) {
+			if (CURRENT_TICK - movement_timer >= DOUBLE_CHECK_SPEED_PERIOD) {
 				sprintf(self->board871_log_content, "No movement in %d ms!", DOUBLE_CHECK_SPEED_PERIOD);
 				Write_String_Log(self->board871_log_content);
 				self->stage = 5;
@@ -588,7 +602,6 @@ void Connection_Flow(struct Board871 *self) {
 	/* No network, no movement => Power saving mode */
 	bool entry_step_5 = true;
 	while (self->stage == 5) {
-		self->has_nbiot = false;
 		if (entry_step_5) {
 			Write_String_Log("\n========= STAGE 5 ========= \n");
 			entry_step_5 = false;
