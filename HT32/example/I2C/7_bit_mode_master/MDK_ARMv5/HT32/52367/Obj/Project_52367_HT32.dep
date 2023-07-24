@@ -54,7 +54,7 @@ I (..\..\..\..\utilities\common\spi_flash.h)(0x635A7864)
 I (..\..\..\..\utilities\common\spi_lcd.h)(0x618A5D9D)
 I (..\..\..\..\utilities\common\lcd.h)(0x5D7A419C)
 I (..\..\..\..\utilities\common\ebi_lcd.h)(0x5D7A419C)
-I (..\ht32_board_config.h)(0x64BE22C9)
+I (..\ht32_board_config.h)(0x64BE4E4E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63885718)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63885718)
 I (E:\STUDY\DATN\HT32\example\I2C\7_bit_mode_master\MDK_ARMv5\m_drv_mc34x6.h)(0x64BE2C0F)
@@ -132,7 +132,7 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x63885718)
 I (m_drv_console.h)(0x64BE2C5A)
 I (m_drv_mc_utility.h)(0x64BE2B67)
 F (..\_ht32_project_source.h)(0x00000000)()
-F (..\ht32_board_config.h)(0x64BE22C9)()
+F (..\ht32_board_config.h)(0x64BE4E4E)()
 F (..\ht32f5xxxx_conf.h)(0x63AC0EA0)()
 F (..\ht32f5xxxx_01_usbdconf.h)(0x5A3B779C)()
 F (.\ht32_op.s)(0x6368B62D)(--target=arm-arm-none-eabi -mcpu=cortex-m0plus -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4 -Wa,armasm,--pd,"__MICROLIB SETA 1"-IC:/Users/Admin/AppData/Local/Arm/Packs/Holtek/HT32_DFP/1.0.43/ARM/INC/Holtek/HT32F5xxxx-Wa,armasm,--pd,"__UVISION_VERSION SETA 538" -Wa,armasm,--pd,"USE_HT32F52357_67 SETA 1" -Wa,armasm,--pd,"USE_HT32_CHIP SETA 11"-o ./ht32/52367/obj/ht32_op.o)
