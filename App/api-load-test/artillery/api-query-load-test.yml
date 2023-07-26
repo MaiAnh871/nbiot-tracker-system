@@ -1,0 +1,40 @@
+config:
+  target: "https://54li4fruk5cktcaiuhtcd42i4q.appsync-api.ap-northeast-2.amazonaws.com/graphql"
+  phases:
+    - duration: 30
+      arrivalRate: 10
+    - duration: 60
+      arrivalRate: 15
+      rampTo: 20
+    - duration: 30
+      arrivalRate: 10
+
+scenarios:
+  - name: Query list messages
+    flow:
+      - post:
+          url: "/"
+          headers:
+            x-api-key: "da2-yhutz7ss4rg2xeu7gz6ab2o25m"
+          json:
+            query: |
+              query ListMessages {
+                listMessages {
+                  items {
+                    id
+                    imei
+                    timestamp
+                    latitude
+                    longitude
+                    speed
+                    acceX
+                    acceY
+                    acceZ
+                    cellID
+                    rsrp
+                    tilt_alert
+                    wheelie_alert
+                    overspeed_alert
+                  }
+                }
+              }

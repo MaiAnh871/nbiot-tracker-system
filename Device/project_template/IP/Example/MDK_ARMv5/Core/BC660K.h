@@ -72,6 +72,8 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self, char *data);
 enum StatusType subscribeMessage_AT_QMTSUB(struct BC660K *self);
 enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self);
 enum StatusType configureSleepMode_AT_QSCLK(struct BC660K *self, uint8_t mode);
+enum StatusType configureEDRX_AT_QEDRXCFG(struct BC660K *self, uint8_t mode);
+enum StatusType checkEDRX_AT_CEDRXRDP(struct BC660K *self);
 enum StatusType powerSavingModeSetting_AT_CPSMS(struct BC660K *self, uint8_t mode);
 enum StatusType enableNBIoTRelatedEventReport(struct BC660K *self);
 

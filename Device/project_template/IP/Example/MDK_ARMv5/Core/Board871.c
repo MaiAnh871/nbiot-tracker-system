@@ -372,6 +372,10 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
+		if (configureEDRX_AT_QEDRXCFG(&self->bc660k, 2) != STATUS_SUCCESS) {
+			continue;
+		}
+		
 		self->stage = 1;
 	}
 	

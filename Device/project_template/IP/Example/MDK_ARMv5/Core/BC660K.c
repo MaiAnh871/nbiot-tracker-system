@@ -749,7 +749,7 @@ enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTOPEN=0,\"a2ht7rbdkt6040-ats.iot.ap-northeast-2.amazonaws.com\",8883");
-		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 8000);
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 12000);
 	
 		/* Actions with status */
 		switch(output_status){
@@ -1073,6 +1073,87 @@ enum StatusType configureSleepMode_AT_QSCLK(struct BC660K *self, uint8_t mode) {
 		
 		return output_status;
 }
+
+enum StatusType configureEDRX_AT_QEDRXCFG(struct BC660K *self, uint8_t mode) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+
+		if (mode == 0) {
+			sprintf(self->command, "AT+QEDRXCFG=0");
+		} else if (mode == 1) {
+			sprintf(self->command, "AT+QEDRXCFG=1,5,\"1111\",\"0000\"");
+		} else if (mode == 2) {
+			sprintf(self->command, "AT+QEDRXCFG=2,5,\"1111\",\"0000\"");
+		} else {
+			output_status = STATUS_BAD_PARAMETERS;
+			return output_status;
+		}
+			
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+};
+enum StatusType checkEDRX_AT_CEDRXRDP(struct BC660K *self) {
+		/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		sprintf(self->command, "AT+CEDRXRDP");
+			
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
+		
+		return output_status;
+};
 
 enum StatusType powerSavingModeSetting_AT_CPSMS(struct BC660K *self, uint8_t mode) {
 		/* Initialize status */

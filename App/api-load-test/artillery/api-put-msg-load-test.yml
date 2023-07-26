@@ -1,0 +1,51 @@
+config:
+  target: "https://54li4fruk5cktcaiuhtcd42i4q.appsync-api.ap-northeast-2.amazonaws.com/graphql"
+  phases:
+    - duration: 60
+      arrivalRate: 1000
+
+scenarios:
+  - name: List device
+    flow:
+      - post:
+          url: "/"
+          headers:
+            x-api-key: "da2-yhutz7ss4rg2xeu7gz6ab2o25m"
+          json:
+            query: |
+              mutation CreateMessage(
+                $input: CreateMessageInput!
+                $condition: ModelMessageConditionInput
+              ) {
+                createMessage(input: $input, condition: $condition) {
+                  id
+                  imei
+                  timestamp
+                  latitude
+                  longitude
+                  speed
+                  acceX
+                  acceY
+                  acceZ
+                  cellID
+                  rsrp
+                  tilt_alert
+                  wheelie_alert
+                  overspeed_alert
+                }
+              }
+            variables:
+              input:
+                imei: "151468786415321"
+                timestamp: "2020-01-01T00:00:00Z"
+                latitude: "35.6897"
+                longitude: "139.7671"
+                speed: "10"
+                acceX: "13"
+                acceY: "220"
+                acceZ: "33"
+                cellID: "1uicw2"
+                rsrp: "-90"
+                tilt_alert: "1"
+                wheelie_alert: "1"
+                overspeed_alert: "1"

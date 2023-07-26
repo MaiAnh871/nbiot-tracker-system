@@ -4,14 +4,11 @@
 
 type User @model
   @auth(rules: [
-    # { allow: groups, groups: ["Admin"] },
     { allow: owner, 
-    # ownerField: "username", 
     operations: [create, update, delete, read] }
   ]){
   id: ID!
   username: String! 
-  # @index(name: "byUsername", queryField: "userByUserName", sortKeyFields: ["id"])
   email: String!
   name: String!
   devices: [Device] @hasMany
@@ -19,11 +16,9 @@ type User @model
 
 type Device @model
   @auth(rules: [
-    #{ allow: groups, groups: ["Admin"] },
-    { allow: owner, 
-    #ownerField: "username", 
+    { allow: owner,
     operations: [create, update, delete, read] }
-  ]) {
+  ]){
   id: ID!
   deviceIMEI: String!
   user: User @belongsTo

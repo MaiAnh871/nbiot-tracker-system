@@ -1,0 +1,31 @@
+config:
+  target: "https://54li4fruk5cktcaiuhtcd42i4q.appsync-api.ap-northeast-2.amazonaws.com/graphql"
+  phases:
+    - duration: 60
+      arrivalRate: 10
+      rampTo: 15
+
+scenarios:
+  - name: List device
+    flow:
+      - post:
+          url: "/"
+          headers:
+            x-api-key: "da2-yhutz7ss4rg2xeu7gz6ab2o25m"
+          json:
+            query: |
+              mutation CreateDevice(
+                $input: CreateDeviceInput!
+                $condition: ModelDeviceConditionInput
+              ) {
+                createDevice(input: $input, condition: $condition) {
+                  id
+                  deviceIMEI
+                  createdAt
+                  updatedAt
+                  userDevicesId
+                }
+              }
+            variables:
+              input:
+                deviceIMEI: "Test device IMEI"
