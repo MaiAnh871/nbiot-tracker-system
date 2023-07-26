@@ -62,7 +62,6 @@ static struct Board871 {
 	struct Connection_Status connection_status;
 	
 	bool has_gps;
-	bool has_nbiot;
 }
 Board871;
 
