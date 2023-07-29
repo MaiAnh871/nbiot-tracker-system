@@ -369,6 +369,14 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
+		if (configureEDRX_AT_QEDRXCFG(&self->bc660k, 1) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (checkEDRX_AT_CEDRXRDP(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
 		self->stage = 1;
 	}
 	

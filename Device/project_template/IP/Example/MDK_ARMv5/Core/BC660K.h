@@ -64,6 +64,8 @@ enum StatusType setCACert_AT_QSSLCFG(struct BC660K *self);
 enum StatusType setClientCert_AT_QSSLCFG(struct BC660K *self);
 enum StatusType setClientPrivateKey_AT_QSSLCFG(struct BC660K *self);
 enum StatusType enableSSL_AT_QMTCFG(struct BC660K *self);
+enum StatusType configureEDRX_AT_QEDRXCFG(struct BC660K *self, uint8_t mode);
+enum StatusType checkEDRX_AT_CEDRXRDP(struct BC660K *self);
 enum StatusType checkMQTT_AT_QMTOPEN(struct BC660K *self);
 enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self);
 enum StatusType checkConnectClient_AT_QMTCONN(struct BC660K *self);
