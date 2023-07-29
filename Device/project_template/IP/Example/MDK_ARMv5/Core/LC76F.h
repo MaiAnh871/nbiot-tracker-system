@@ -42,6 +42,10 @@ LC76F;
 
 /* Function prototypes */
 void LC76F_Initialize(struct LC76F * self);
+void LC76F_Configuration_Standby_Pin(struct LC76F * self);
+
+void LC76F_Standby(struct LC76F * self);
+void LC76F_Wakeup(struct LC76F * self);
 
 void LC76F_UART0_Configuration(void);
 void LC76F_UART0_Receive(void);

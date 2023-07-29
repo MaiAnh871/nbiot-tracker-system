@@ -3,16 +3,18 @@
 
 /* Testing */
 // Uncomment the following line for testing
-//#define TEST_ENABLE
+#define TEST_ENABLE
 
 #ifdef TEST_ENABLE
 	#define TEST_GPS_STRING false
 	#define TEST_NODE_DATA false
-	#define TEST_ACCEL true
+	#define TEST_ACCEL false
+	#define TEST_CURRENT_CONSUMPTION true /* In stage 5, MCU will sleep and need to reset MCU */
 #else
 	#define TEST_GPS_STRING false
 	#define TEST_NODE_DATA false
 	#define TEST_ACCEL false
+	#define TEST_CURRENT_CONSUMPTION false
 #endif
 
 /* Math */
@@ -48,7 +50,7 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define CELL_ID_LENGTH 9 /* '00000000' - 'FFFFFFFF' */
 
 #define VALIDATE_PERIOD 7000 // ms
-#define MIN_SPEED 0 // m/s
+#define MIN_SPEED 0.1 // m/s
 #define SPEED_LIMIT 60 // km/h
 #define SLOW_COUNTER 3
 #define DATA_NODE_STRING_LENGTH 500

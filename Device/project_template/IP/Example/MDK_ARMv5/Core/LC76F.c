@@ -3,6 +3,7 @@
 
 extern void LC76F_Initialize(struct LC76F * self) {
 	LC76F_UART0_Configuration();
+	LC76F_Configuration_Standby_Pin(self);
 	
   self -> lc76f_log_content = (char * ) malloc(LC76F_LOG_CONTENT_SIZE * sizeof(char));
   if (!self -> lc76f_log_content) {
@@ -25,6 +26,38 @@ extern void LC76F_Initialize(struct LC76F * self) {
   }
 	
 	self->update_previous_coordinates = true;
+}
+
+void LC76F_Configuration_Standby_Pin(struct LC76F * self) {
+	/* Enable peripheral clock                                                                              */
+	CKCU_PeripClockConfig_TypeDef CKCUClock = {{ 0 }};
+	CKCUClock.Bit.AFIO = 1;
+	CKCUClock.Bit.PC = 1;
+	CKCU_PeripClockConfig(CKCUClock, ENABLE);
+	
+	
+	/* Configure GPIO as output mode                                                                        */
+	
+	/* Configure AFIO mode as GPIO                                                                          */
+	AFIO_GPxConfig(GPIO_PC, AFIO_PIN_13, AFIO_FUN_GPIO);
+	
+	/* Configure GPIO pull resistor                                                                         */
+	GPIO_PullResistorConfig(HT_GPIOC, GPIO_PIN_13, GPIO_PR_UP);
+	
+	/* Default value RESET/SET */
+	GPIO_WriteOutBits(HT_GPIOB, GPIO_PIN_1, SET);
+	
+	/* Configure GPIO direction as output                                                                   */
+	GPIO_DirectionConfig(HT_GPIOC, GPIO_PIN_13, GPIO_DIR_OUT);
+}
+
+void LC76F_Standby(struct LC76F * self) {
+	GPIO_ClearOutBits(HT_GPIOC, GPIO_PIN_13);
+
+}
+
+void LC76F_Wakeup(struct LC76F * self) {
+	GPIO_SetOutBits(HT_GPIOC, GPIO_PIN_13);
 }
 
 void LC76F_UART0_Configuration(void) 
