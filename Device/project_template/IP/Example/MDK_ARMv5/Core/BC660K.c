@@ -744,12 +744,23 @@ enum StatusType openMQTT_AT_QMTOPEN(struct BC660K *self) {
 			
 			case STATUS_SUCCESS: {
 					/* Do something */
+					output_status = STATUS_ERROR;
 					char *ptr;
 					ptr = strstr(self->receive_buffer, "+QMTOPEN");
 					if (!ptr) {
-						output_status = STATUS_ERROR;
 					} else {
-						self->mqtt_opened = true;
+						uint8_t num_token;
+						char ** token = Tokenize_String(self->receive_buffer, ",", &num_token);
+						if (num_token >= 1) {
+							if (atoi(token[1]) == 0) {
+								Write_String_Log("MQTT IS OPENED!\n");
+								self->mqtt_opened = true;
+								output_status = STATUS_SUCCESS;
+							} else {
+								Write_String_Log("MQTT IS NOT OPENED!\n");
+							}
+						}
+						free(token);
 					}
 					break;
 			}

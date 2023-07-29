@@ -507,6 +507,7 @@ void Connection_Flow(struct Board871 *self) {
 			self->route.total_length--;
 		} else {
 			if (!(MC3416_Moving(&self->mc3416) && self->has_gps)) {
+				Write_String_Log("\nDETECT NO MOVEMENT OR NO GPS!");
 				closeMQTT_AT_QMTCLOSE(&self->bc660k);
 				self->stage = 4;
 			}
@@ -621,8 +622,15 @@ void Connection_Flow(struct Board871 *self) {
 		}
 				
 		/* Suspend other tasks */
+		LC76F_Standby(&self->lc76f);
 		Suspend_Measuring(self);
 		vTaskSuspend(TaskHandle_3);
+		if (TEST_CURRENT_CONSUMPTION) {
+			PWRCU_DeepSleep1(PWRCU_SLEEP_ENTRY_WFI);
+		}
+		
+		/* Log would not be written if MCU is sleeping */
+		Write_String_Log("\nSLEEPING.....\n");
 		
 		while (!MC3416_Moving(&self->mc3416)) {
 			/* Interrupt hardware does not work. Better use external interrupt! */
@@ -645,6 +653,8 @@ void Connection_Flow(struct Board871 *self) {
 				}		
 				
 				/* Resume other tasks */
+				Write_String_Log("\nWAKING UP.....\n");
+				LC76F_Wakeup(&self->lc76f);
 				Resume_Measuring(self);
 				vTaskResume(TaskHandle_3);	
 			
