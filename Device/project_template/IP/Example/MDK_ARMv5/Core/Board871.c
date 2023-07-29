@@ -625,6 +625,10 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
+		if (controlReportDeepSleep(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
 		if (configureSleepMode_AT_QSCLK(&self->bc660k, 1) != STATUS_SUCCESS) {
 			continue;
 		}
