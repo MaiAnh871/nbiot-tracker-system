@@ -6,8 +6,8 @@ import time
 # Define Variables
 MQTT_PORT = 8883
 MQTT_KEEPALIVE_INTERVAL = 45
-MQTT_TOPIC = "helloTopic"
-MQTT_MSG = "hello MQTT"
+MQTT_TOPIC = "iot/tracker"
+MQTT_MSG = "{\"message\":{\"valid\":true,\"timestamp\":\"9:47:34T14-7-23\",\"device_id\":\"00-00-00-00-00-00\",\"latitude\":\"21.005743\",\"longitude\":\"105.839905\",\"speed\":\"0\",\"accel_x\":\"9264\",\"accel_y\":\"17582\",\"accel_z\":\"-8003\",\"tilt_alert\":false,\"wheelie_alert\":false,\"overspeed_alert\":false,\"connection_status\":{\"cell_id\":\"00000000\",\"rsrp\":\"0\"}}}"
 
 MQTT_HOST = "a2ht7rbdkt6040-ats.iot.ap-northeast-2.amazonaws.com"
 CA_ROOT_CERT_FILE = "CA_CERT.pem"
@@ -35,7 +35,7 @@ mqttc.loop_start()
 
 counter = 0
 while True:
-	mqttc.publish(MQTT_TOPIC,MQTT_MSG + str(counter),qos=1)
+	mqttc.publish(MQTT_TOPIC,MQTT_MSG,qos=1)
 	counter += 1
 	time.sleep(1)
 
