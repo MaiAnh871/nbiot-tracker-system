@@ -428,6 +428,8 @@ void Connection_Flow(struct Board871 *self) {
 		
 		getNetworkStatus_AT_QENG(&self->bc660k);
 		
+		closeMQTT_AT_QMTCLOSE(&self->bc660k);
+		
 		attempt = 3;
 		count = attempt;
 		
