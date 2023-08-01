@@ -518,8 +518,8 @@ void Connection_Flow(struct Board871 *self) {
 		while (count--) {
 			sprintf(self->board871_log_content, "Attempt: %u/%u", attempt - count, attempt);
 			Write_String_Log(self->board871_log_content);
-			if (publishMessage_AT_QMTPUB(&self->bc660k, self->data_string) != STATUS_SUCCESS) {
-				continue;
+			if (publishMessage_AT_QMTPUB(&self->bc660k, self->data_string) == STATUS_SUCCESS) {
+				break;
 			}
 		}
 		
