@@ -387,7 +387,7 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
-		attempt = 4;
+		attempt = 10;
 		count = attempt;
 		while (count--) {
 			sprintf(self->board871_log_content, "Checking GPS: %u/%u", attempt - count, attempt);
@@ -396,12 +396,12 @@ void Connection_Flow(struct Board871 *self) {
 			if (self->has_gps) {
 				break;
 			} else {
-				vTaskDelay(20000);
+				vTaskDelay(7000);
 			}
 		}
 		
 		if (count == -1) {
-			self->stage = 5;
+			self->stage = 4;
 			break;
 		}
 
@@ -426,34 +426,50 @@ void Connection_Flow(struct Board871 *self) {
 			break;
 		}
 		
-		if (checkMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
-			continue;
-		}
+		getNetworkStatus_AT_QENG(&self->bc660k);
 		
-		if (self->bc660k.mqtt_opened) {
-			self->stage = 2;
-			break;
-		}
-		
-		attempt = 5;
+		attempt = 3;
 		count = attempt;
+		
 		while (count--) {
 			sprintf(self->board871_log_content, "Attempt: %u/%u", attempt - count, attempt);
 			Write_String_Log(self->board871_log_content);
-			if (openMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
+			if (checkMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
 				continue;
 			}
-			break;
+			
+			if (self->bc660k.mqtt_opened) {
+				break;
+			} else {
+				openMQTT_AT_QMTOPEN(&self->bc660k);
+				
+				if (self->bc660k.mqtt_opened) {
+					connectClient_AT_QMTCONN(&self->bc660k);
+					self->stage = 2;
+					break;
+				}
+				
+			}
 		}
-
-		if (count == -1) {
-			self->stage = 3;
+		
+		if (self->stage == 2) {
 			break;
 		}
 		
-		if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
+		if (count == -1) {
 			closeMQTT_AT_QMTCLOSE(&self->bc660k);
 			continue;
+		}
+		
+		if (checkConnectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (self->bc660k.mqtt_connected) {
+			self->stage = 2;
+			break;
+		} else {
+			connectClient_AT_QMTCONN(&self->bc660k);
 		}
 		
 		self->stage = 2;
@@ -496,9 +512,20 @@ void Connection_Flow(struct Board871 *self) {
 		
 		Pack_Node_Data(self, self->publishing_node);
 		
-		if (publishMessage_AT_QMTPUB(&self->bc660k, self->data_string) != STATUS_SUCCESS) {
+		attempt = 5;
+		count = attempt;
+		
+		while (count--) {
+			sprintf(self->board871_log_content, "Attempt: %u/%u", attempt - count, attempt);
+			Write_String_Log(self->board871_log_content);
+			if (publishMessage_AT_QMTPUB(&self->bc660k, self->data_string) != STATUS_SUCCESS) {
+				continue;
+			}
+		}
+		
+		if (count == -1) {
 			self->stage = 1;
-			continue;
+			break;
 		}
 		
 		Write_String_Log("Published!");
@@ -523,62 +550,15 @@ void Connection_Flow(struct Board871 *self) {
 			vTaskDelay(1000);
 		}
 	}
-
-	
-	/* Double check network */
-	while (self->stage == 3) {
-		Write_String_Log("\n========= STAGE 3 ========= \n");
-		attempt = 4;
-		count = attempt;
-		while (count--) {
-			if (count < (attempt - 1)) {
-				Write_String_Log("Wait 30 seconds...");
-				vTaskDelay(30000);
-			}
-			
-			sprintf(self->board871_log_content, "Attempt: %u/%u", attempt - count, attempt);
-			Write_String_Log(self->board871_log_content);
-			
-			if (checkNetworkRegister_AT_CEREG(&self->bc660k) != STATUS_SUCCESS) {
-				continue;
-			}
-			
-			if (self->bc660k.stat != 1) {
-				continue;
-			}
-			
-			if (checkMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
-				continue;
-			}
-			
-			if (!self->bc660k.mqtt_opened) {
-				if (openMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
-					continue;
-				}
-			}
-			
-			if (connectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
-				closeMQTT_AT_QMTCLOSE(&self->bc660k);
-				continue;
-			}
-			
-			self->stage = 2;
-			break;
-		}
-		
-		if (count == -1) {
-			self->stage = 4;
-		}
-	}
 	
 	/* No network, double check movement */
 	uint32_t movement_timer = CURRENT_TICK;
 	uint32_t network_timer = CURRENT_TICK;
-	bool entry_step_4 = true;
-	while (self->stage == 4) {
-		if (entry_step_4) {
-			Write_String_Log("\n========= STAGE 4 ========= \n");
-			entry_step_4 = false;
+	bool entry_step_3 = true;
+	while (self->stage == 3) {
+		if (entry_step_3) {
+			Write_String_Log("\n========= STAGE 3 ========= \n");
+			entry_step_3 = false;
 		}
 		
 		if (MC3416_Moving(&self->mc3416)) {
@@ -601,7 +581,7 @@ void Connection_Flow(struct Board871 *self) {
 			if (CURRENT_TICK - movement_timer >= DOUBLE_CHECK_SPEED_PERIOD) {
 				sprintf(self->board871_log_content, "No movement in %d ms!", DOUBLE_CHECK_SPEED_PERIOD);
 				Write_String_Log(self->board871_log_content);
-				self->stage = 5;
+				self->stage = 4;
 			}
 		}
 		
@@ -609,11 +589,11 @@ void Connection_Flow(struct Board871 *self) {
 	}
 	
 	/* No network, no movement => Power saving mode */
-	bool entry_step_5 = true;
-	while (self->stage == 5) {
-		if (entry_step_5) {
-			Write_String_Log("\n========= STAGE 5 ========= \n");
-			entry_step_5 = false;
+	bool entry_step_4 = true;
+	while (self->stage == 4) {
+		if (entry_step_4) {
+			Write_String_Log("\n========= STAGE 4 ========= \n");
+			entry_step_4 = false;
 		}
 		
 		/* Sleep module */
@@ -670,7 +650,7 @@ void Connection_Flow(struct Board871 *self) {
 				Resume_Measuring(self);
 				vTaskResume(TaskHandle_3);	
 			
-				self->stage = 4;
+				self->stage = 3;
 				break;
 			}
 		}
