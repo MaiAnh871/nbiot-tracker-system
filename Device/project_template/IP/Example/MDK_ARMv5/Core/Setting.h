@@ -3,7 +3,7 @@
 
 /* Testing */
 // Uncomment the following line for testing
-#define TEST_ENABLE
+//#define TEST_ENABLE
 
 #ifdef TEST_ENABLE
 	#define TEST_GPS_STRING false

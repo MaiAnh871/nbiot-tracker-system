@@ -962,7 +962,7 @@ enum StatusType publishMessage_AT_QMTPUB(struct BC660K *self, char *data) {
 		}
 		
 		/* Write Command */
-		sprintf(self->command, "AT+QMTPUB=0,0,0,0,\"tracker/data\",%u", strlen(data));
+		sprintf(self->command, "AT+QMTPUB=0,0,0,0,\"anhttm8-tracker/861536030196001/message\",%u", strlen(data));
 		sprintf(self->bc660k_log_content, "=== SENDING <%s> ===", self->command);
 		Write_String_Log(self->bc660k_log_content);
 		BC660K_Clear_Receive_Buffer(self);

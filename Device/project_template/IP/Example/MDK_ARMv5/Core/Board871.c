@@ -55,7 +55,7 @@ void Create_New_Node(struct Board871 * self) {
 	self->current_node->coordinates.timestamp.month = 1;
 	self->current_node->coordinates.timestamp.year = 1970;
 	
-	sprintf(self->current_node->device_id, "%s", "00-00-00-00-00-00");
+	sprintf(self->current_node->device_id, "%s", "861536030196001");
 	
 	self->current_node->coordinates.latitude.degree = 0;
 	self->current_node->coordinates.latitude.minute = 0;
