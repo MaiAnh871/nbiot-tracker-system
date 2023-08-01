@@ -655,6 +655,10 @@ void Connection_Flow(struct Board871 *self) {
 			}
 		}
 		
+		if (self->stage == 3){
+			break;
+		}
+		
 		vTaskDelay(100);
 	}
 }

@@ -54,7 +54,7 @@ const char * ERROR_COMMAND_SIGN[] = {
 #define SPEED_LIMIT 60 // km/h
 #define SLOW_COUNTER 3
 #define DATA_NODE_STRING_LENGTH 500
-#define DOUBLE_CHECK_NETWORK_PERIOD 10000 // ms
+#define DOUBLE_CHECK_NETWORK_PERIOD 5000 // ms
 #define DOUBLE_CHECK_SPEED_PERIOD 60000 // ms
 #define TIME_ZONE 7
 #define TILT_THRESHOLD 45 // degree (ax)
