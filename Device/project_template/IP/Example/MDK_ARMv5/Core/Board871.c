@@ -627,40 +627,34 @@ void Connection_Flow(struct Board871 *self) {
 		Write_String_Log("\nSLEEPING.....\n");
 		
 		while (!MC3416_Moving(&self->mc3416)) {
-			/* Interrupt hardware does not work. Better use external interrupt! */
-			if (MC3416_Moving(&self->mc3416)) {
-				/* Wake module up */
-				if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
-					continue;
-				}
-				
-				for (count = 0; count < 4; count++) {
-					checkModule_AT(&self->bc660k);
-				}
-				
-				if (powerSavingModeSetting_AT_CPSMS(&self->bc660k, 0)) {
-					continue;
-				}
-				
-				if (configureSleepMode_AT_QSCLK(&self->bc660k, 0) != STATUS_SUCCESS) {
-					continue;
-				}		
-				
-				/* Resume other tasks */
-				Write_String_Log("\nWAKING UP.....\n");
-				LC76F_Wakeup(&self->lc76f);
-				Resume_Measuring(self);
-				vTaskResume(TaskHandle_3);	
-			
-				self->stage = 3;
-				break;
-			}
+			vTaskDelay(500);
 		}
 		
-		if (self->stage == 3){
-			break;
+		/* Interrupt hardware does not work. Better use external interrupt! */
+		/* Wake module up */
+		if (checkModule_AT(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
 		}
 		
-		vTaskDelay(100);
+		for (count = 0; count < 4; count++) {
+			checkModule_AT(&self->bc660k);
+		}
+		
+		if (powerSavingModeSetting_AT_CPSMS(&self->bc660k, 0)) {
+			continue;
+		}
+		
+		if (configureSleepMode_AT_QSCLK(&self->bc660k, 0) != STATUS_SUCCESS) {
+			continue;
+		}		
+		
+		/* Resume other tasks */
+		Write_String_Log("\nWAKING UP.....\n");
+		LC76F_Wakeup(&self->lc76f);
+		Resume_Measuring(self);
+		vTaskResume(TaskHandle_3);	
+	
+		self->stage = 3;
+		
 	}
 }
