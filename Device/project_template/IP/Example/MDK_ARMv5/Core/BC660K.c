@@ -785,7 +785,7 @@ enum StatusType checkMQTT_AT_QMTOPEN(struct BC660K *self) {
 			case STATUS_SUCCESS: {
 					/* Do something */
 					char *ptr;
-					ptr = strstr(self->receive_buffer, "+QMTOPEN");
+					ptr = strstr(self->receive_buffer, "+QMTOPEN: 0,0");
 					if (ptr) {
 						self->mqtt_opened = true;
 					}
@@ -881,7 +881,7 @@ enum StatusType checkConnectClient_AT_QMTCONN(struct BC660K *self) {
 			case STATUS_SUCCESS: {
 					/* Do something */
 					char *ptr;
-					ptr = strstr(self->receive_buffer, "+QMTCONN");
+					ptr = strstr(self->receive_buffer, "+QMTCONN: 0,0,0");
 					if (ptr) {
 						self->mqtt_connected = true;
 					}
