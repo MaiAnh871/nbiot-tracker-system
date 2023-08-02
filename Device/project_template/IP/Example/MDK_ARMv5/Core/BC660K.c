@@ -1039,7 +1039,7 @@ enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTCLOSE=0");
-		output_status = BC660K_Send_Command(self, 2, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+		output_status = BC660K_Send_Command(self, 1, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
 	
 		/* Actions with status */
 		switch(output_status){

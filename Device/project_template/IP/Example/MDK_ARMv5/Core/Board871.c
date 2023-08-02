@@ -433,14 +433,20 @@ void Connection_Flow(struct Board871 *self) {
 		while (count--) {
 			sprintf(self->board871_log_content, "Attempt: %u/%u", attempt - count, attempt);
 			Write_String_Log(self->board871_log_content);
+			
 			if (checkMQTT_AT_QMTOPEN(&self->bc660k) != STATUS_SUCCESS) {
 				continue;
 			}
 			
 			if (self->bc660k.mqtt_opened) {
+				Write_String_Log("MQTT IS OPENED!\n");
 				break;
 			} else {
 				openMQTT_AT_QMTOPEN(&self->bc660k);
+				
+				if (self->bc660k.mqtt_opened) {
+					break;
+				}
 			}
 		}
 		
