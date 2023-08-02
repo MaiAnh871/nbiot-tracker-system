@@ -154,9 +154,6 @@ void Add_Node(struct Board871 *self, struct Node *input_node) {
 		return;
 	}
 	
-	sprintf(self->board871_log_content, "ROUTE LENGTH: %u", self->route.total_length);
-	Write_String_Log(self->board871_log_content);
-	
 	if (!self->route.node) {
 		self->route.node = input_node;
 	} else {
@@ -349,25 +346,25 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
-		if (setAuthentication_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
-			continue;
-		}
-		
-		if (setCACert_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
-			continue;
-		}
-		
-		if (setClientCert_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
-			continue;
-		}
-		
-		if (setClientPrivateKey_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
-			continue;
-		}
-		
-		if (enableSSL_AT_QMTCFG(&self->bc660k) != STATUS_SUCCESS) {
-			continue;
-		}
+//		if (setAuthentication_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
+//			continue;
+//		}
+//		
+//		if (setCACert_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
+//			continue;
+//		}
+//		
+//		if (setClientCert_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
+//			continue;
+//		}
+//		
+//		if (setClientPrivateKey_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
+//			continue;
+//		}
+//		
+//		if (enableSSL_AT_QMTCFG(&self->bc660k) != STATUS_SUCCESS) {
+//			continue;
+//		}
 		
 		if (configureEDRX_AT_QEDRXCFG(&self->bc660k, 1) != STATUS_SUCCESS) {
 			continue;
