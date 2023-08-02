@@ -881,8 +881,9 @@ enum StatusType checkConnectClient_AT_QMTCONN(struct BC660K *self) {
 			case STATUS_SUCCESS: {
 					/* Do something */
 					char *ptr;
-					ptr = strstr(self->receive_buffer, "+QMTCONN: 0,0,0");
+					ptr = strstr(self->receive_buffer, "+QMTCONN: 0,3");
 					if (ptr) {
+						Write_String_Log("MQTT IS CONNECTED!");
 						self->mqtt_connected = true;
 					}
 					break;
@@ -914,7 +915,7 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 		
 		/* Write Command */
 		sprintf(self->command, "AT+QMTCONN=0,\"anhttm8client\"");
-		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 2000);
+		output_status = BC660K_Send_Command(self, BC660K_SEND_ATTEMPT_DEFAULT, BC660K_COMMAND_TIMEOUT_DEFAULT_MS + 4000);
 		/* Actions with status */
 		switch(output_status){
 			
@@ -923,7 +924,8 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 					self->mqtt_connected = false;
 					char *ptr;
 					ptr = strstr(self->receive_buffer, "+QMTCONN: 0,0");
-					if (!ptr) {
+					if (ptr) {
+						Write_String_Log("MQTT IS CONNECTED!\n");
 						self->mqtt_connected = true;
 					} 
 					break;

@@ -346,25 +346,25 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
-//		if (setAuthentication_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
-//			continue;
-//		}
-//		
-//		if (setCACert_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
-//			continue;
-//		}
-//		
-//		if (setClientCert_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
-//			continue;
-//		}
-//		
-//		if (setClientPrivateKey_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
-//			continue;
-//		}
-//		
-//		if (enableSSL_AT_QMTCFG(&self->bc660k) != STATUS_SUCCESS) {
-//			continue;
-//		}
+		if (setAuthentication_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (setCACert_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (setClientCert_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (setClientPrivateKey_AT_QSSLCFG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
+		
+		if (enableSSL_AT_QMTCFG(&self->bc660k) != STATUS_SUCCESS) {
+			continue;
+		}
 		
 		if (configureEDRX_AT_QEDRXCFG(&self->bc660k, 1) != STATUS_SUCCESS) {
 			continue;
@@ -456,6 +456,8 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
+		disconnectMQTT_AT_QMTDISC(&self->bc660k);
+		
 		attempt = 3;
 		count = attempt;
 		
@@ -468,7 +470,6 @@ void Connection_Flow(struct Board871 *self) {
 			}
 			
 			if (self->bc660k.mqtt_connected) {
-				Write_String_Log("MQTT IS CONNECTED!\n");
 				break;
 			} else {
 				connectClient_AT_QMTCONN(&self->bc660k);
@@ -484,6 +485,8 @@ void Connection_Flow(struct Board871 *self) {
 			closeMQTT_AT_QMTCLOSE(&self->bc660k);
 			continue;
 		}
+		
+		self->stage = 2;
 	}
 	
 	/* Publishing stage */
