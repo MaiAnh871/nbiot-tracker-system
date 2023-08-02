@@ -441,18 +441,7 @@ void Connection_Flow(struct Board871 *self) {
 				break;
 			} else {
 				openMQTT_AT_QMTOPEN(&self->bc660k);
-				
-				if (self->bc660k.mqtt_opened) {
-					connectClient_AT_QMTCONN(&self->bc660k);
-					self->stage = 2;
-					break;
-				}
-				
 			}
-		}
-		
-		if (self->stage == 2) {
-			break;
 		}
 		
 		if (count == -1) {
