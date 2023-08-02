@@ -920,10 +920,11 @@ enum StatusType connectClient_AT_QMTCONN(struct BC660K *self) {
 			
 			case STATUS_SUCCESS: {
 					/* Do something */
+					self->mqtt_connected = false;
 					char *ptr;
-					ptr = strstr(self->receive_buffer, "+QMTCONN");
+					ptr = strstr(self->receive_buffer, "+QMTCONN: 0,0");
 					if (!ptr) {
-						output_status = STATUS_ERROR;
+						self->mqtt_connected = true;
 					} 
 					break;
 			}
@@ -1065,6 +1066,40 @@ enum StatusType closeMQTT_AT_QMTCLOSE(struct BC660K *self) {
 					break;
 		}
 		
+		return output_status;
+}
+
+enum StatusType disconnectMQTT_AT_QMTDISC(struct BC660K *self) {
+	/* Initialize status */
+		enum StatusType output_status = STATUS_UNKNOWN;
+		
+		/* Write Command */
+		sprintf(self->command, "AT+QMTDISC=0");
+		output_status = BC660K_Send_Command(self, 1, BC660K_COMMAND_TIMEOUT_DEFAULT_MS);
+	
+		/* Actions with status */
+		switch(output_status){
+			
+			case STATUS_SUCCESS:
+					/* Do something */
+					break;
+
+			case STATUS_ERROR:
+					/* Do something */
+					break;
+			
+			case STATUS_TIMEOUT:
+					/* Do something */
+					break;
+			
+			case STATUS_BAD_PARAMETERS:
+					/* Do something */
+					break;
+			
+			default:
+					/* Do something */
+					break;
+		}
 		return output_status;
 }
 

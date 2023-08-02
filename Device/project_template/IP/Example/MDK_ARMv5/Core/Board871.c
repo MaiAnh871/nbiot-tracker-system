@@ -448,6 +448,7 @@ void Connection_Flow(struct Board871 *self) {
 					break;
 				}
 			}
+			
 		}
 		
 		if (count == -1) {
@@ -455,18 +456,34 @@ void Connection_Flow(struct Board871 *self) {
 			continue;
 		}
 		
-		if (checkConnectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
+		attempt = 3;
+		count = attempt;
+		
+		while (count--) {
+			sprintf(self->board871_log_content, "Attempt: %u/%u", attempt - count, attempt);
+			Write_String_Log(self->board871_log_content);
+			
+			if (checkConnectClient_AT_QMTCONN(&self->bc660k) != STATUS_SUCCESS) {
+				continue;
+			}
+			
+			if (self->bc660k.mqtt_connected) {
+				Write_String_Log("MQTT IS CONNECTED!\n");
+				break;
+			} else {
+				connectClient_AT_QMTCONN(&self->bc660k);
+				
+				if (self->bc660k.mqtt_connected) {
+					break;
+				}
+			}
+			
+		}
+		
+		if (count == -1) {
+			closeMQTT_AT_QMTCLOSE(&self->bc660k);
 			continue;
 		}
-		
-		if (self->bc660k.mqtt_connected) {
-			self->stage = 2;
-			break;
-		} else {
-			connectClient_AT_QMTCONN(&self->bc660k);
-		}
-		
-		self->stage = 2;
 	}
 	
 	/* Publishing stage */
